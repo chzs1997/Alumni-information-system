@@ -1,0 +1,124 @@
+.menu ul li{
+    float: left;
+    list-style-type: none;
+    padding: 0 40px;
+}
+.service_news ul li img:hover{
+    transform: scale(1.2);/*当鼠标移动到图片上时实现放大功能*/
+}
+.service_news ul li{
+    height: 100px;
+    overflow: hidden;
+    border-bottom: 1px solid lavender;
+    background: white;
+    list-style-type: none;
+    transition-duration: 0.5s;
+    margin: 10px 10px 5px 0;
+
+}
+.service_news ul li:hover{
+    background-color: lavender;
+    transition-duration: 0.5s;
+}
+.service_news .service_left{
+    overflow: hidden;/*隐藏溢出图片内容*/
+    transition-duration: 0.5s;
+    width: 200px;
+    height:100px;
+    /*background: green;*/
+    float: left;
+    margin-right:20px;
+}
+
+.service_news .service_left img{
+    width: 120px;
+    height:90px;
+    margin-left: -20px;
+}
+.service_news .service_right{
+    width:800px ;
+    float: left;
+    /*background: pink;*/
+}
+.right_top{
+    height:60px;
+}
+.right_top h3{
+    line-height: 70px;
+}
+.right_bottom{
+    margin_top:50px;
+}
+.right_bottom_left span{
+    color: darkgray;
+    font-size: 12px;
+}
+
+.service_news{
+    margin-top: 70px;
+    margin-left: 300px;
+}
+
+
+
+.service_news ul li{
+
+}
+.service_list_top{
+    width: 100%;
+    height: 44px;
+    background:url(http://localhost:8080/static/static/img/service/navigator_background.jpg);
+}
+
+.service_list_top p{
+    color: black;
+}
+.service_list_top i{
+    color: #0177ff;
+}
+.service_list_top h2{
+    width: 230px;
+    height:42px;
+    overflow: hidden;
+    font-weight: bold;
+    font-size: 30px;
+    float: left;
+}
+
+.service_list_top div{
+    line-height: 42px;
+    margin-right: 6px;
+    overflow: hidden;
+}
+
+.service_list_top span p{
+    float:right;
+}
+
+/*右箭头*/
+.right-arrow {
+    display :inline-block;
+    position: relative;
+    width: 28px;
+    height: 78px;
+    margin-right: 10px;
+    float:left;
+}
+.right-arrow::after {
+    display: inline-block;
+    content: " ";
+    height: 13px;
+    width: 13px;
+    border-width: 3px 3px 0 0;
+    border-color: #0177ff;
+    border-style: solid;
+    transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+    position: absolute;
+    top: 50%;
+    left: 150px;
+}
+
+.Portfolio-grid1 img{
+    width: 300px;
+    height: 300px;
+}

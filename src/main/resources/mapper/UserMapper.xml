@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.winterchen.dao.UserDao" >
+
+  <!-- 数据库表映射 -->
+  <resultMap id="userRM" type="com.winterchen.model.UserDomain">
+    <result property="userId" column="U_ID"/>
+    <result property="userProperty" column="U_PROPERTY"/>
+    <result property="userName" column="U_NAME"/>
+    <result property="userGender" column="U_GENDER"/>
+    <result property="userEducation" column="U_EDUCATION"/>
+    <result property="userBirthPlace" column="U_BIRTHPLACE"/>
+    <result property="password" column="U_PASSWORD"/>
+    <result property="phone" column="U_CONTACT"/>
+    <result property="userMajor" column="U_MAJOR"/>
+    <result property="userMail" column="U_MAIL"/>
+    <result property="userDepartment" column="U_DEPARTMENT"/>
+    <result property="userIdNumber" column="U_ID_NUMBER"/>
+    <result property="userCompany" column="U_COMPANY"/>
+    <result property="userPosition" column="U_POSITION"/>
+    <result property="userAddress" column="U_ADDRESS"/>
+    <result property="userStudentId" column="U_STUDENTID"/>
+    <result property="userGrade" column="U_GRADE"/>
+    <result property="userImg" column="U_IMG"/>
+  </resultMap>
+
+    <resultMap id="userAmount" type="java.util.HashMap">
+        <result property="key" column = "week"/>
+        <result property="value" column = "num"/>
+    </resultMap>
+
+    <select id="findUserAmountLastWeek" resultMap="userAmount">
+        select t.date as week
+              ,count(*) num
+        from(
+        select date_format(create_time,"%Y%m%d") date
+        from schooluser
+        where datediff(now(),create_time) &lt;7
+        )t
+        group by t.date
+        order by t.date DESC
+    </select>
+
+  <!--设置数据库表名-->
+  <sql id="BASE_TABLE">
+    schooluser
+  </sql>
+
+  <!--查询所有用户-->
+  <select id="selectUsers" resultMap="userRM">
+      SELECT
+        *
+      FROM
+         `alumni information system`.schooluser
+      ORDER BY U_GRADE asc , U_MAJOR asc
+  </select>
+
+
+  <!--根据年级查询用户-->
+  <select id="findByGrade" resultMap="userRM">
+      SELECT
+        *
+      FROM
+         `alumni information system`.schooluser
+      WHERE U_GRADE = #{userGrade}
+      ORDER BY U_MAJOR
+  </select>
+
+  <!--根据专业查询用户-->
+  <select id="findByMajor" resultMap="userRM">
+      SELECT
+        *
+      FROM
+         `alumni information system`.schooluser
+      WHERE U_MAJOR = #{userMajor}
+      ORDER BY U_GRADE
+  </select>
+
+  <!--根据年级和专业查询用户-->
+  <select id="findByGradeAndMajor" resultMap="userRM">
+      SELECT
+        *
+      FROM
+         `alumni information system`.schooluser
+      WHERE U_GRADE = #{userGrade} and U_MAJOR = #{userMajor}
+      ORDER BY U_GRADE asc , U_MAJOR asc
+  </select>
+
+
+
+  <!--根据用户id查询用户-->
+  <select id="findByUserId" resultMap="userRM">
+    SELECT
+    *
+    FROM
+    <include refid="BASE_TABLE"/>
+    WHERE U_ID=#{userId}
+  </select>
+
+
+
+  <!--根据用户身份证号查询用户-->
+  <select id="findByuserIdNumber" resultMap="userRM">
+    SELECT
+    *
+    FROM
+    <include refid="BASE_TABLE"/>
+    where U_ID_NUMBER = #{userIdNumber}
+  </select>
+
+  <!--根据用户电话号码查询用户-->
+  <select id="findByPhoneNum" resultMap="userRM">
+    SELECT
+        U_NAME
+    FROM
+    <include refid="BASE_TABLE"/>
+    WHERE U_CONTACT = #{userContact}
+  </select>
+
+  <!--根据用户ID修改用户密码-->
+  <update id="updatePassword">
+    UPDATE  <include refid="BASE_TABLE"/>
+    SET U_PASSWORD = #{password}
+    WHERE U_ID_NUMBER = #{userIdNumber}
+  </update>
+
+  <!--注册-->
+  <insert id="login" parameterType="com.winterchen.model.UserDomain">
+    INSERT INTO <include refid="BASE_TABLE"/>
+       (U_NAME, U_PASSWORD, U_CONTACT, U_ID_NUMBER)
+    VALUES (#{userName}, #{password}, #{phone}, #{userIdNumber})
+  </insert>
+
+  <!--补充信息-->
+  <update id="add_info" parameterType="com.winterchen.model.UserDomain" >
+    UPDATE <include refid="BASE_TABLE"/>
+    SET U_GENDER = #{userGender}
+        ,U_GRADE = #{userGrade}
+        ,U_MAJOR = #{userMajor}
+        ,U_ADDRESS = #{userAddress}
+        ,U_COMPANY = #{userCompany}
+        ,U_POSITION = #{userPosition}
+        ,U_EDUCATION = #{userEducation}
+        ,U_BIRTHPLACE = #{userBirthPlace}
+    WHERE U_ID_NUMBER = #{userIdNumber}
+  </update>
+
+  <!--登录-->
+  <select id="check" resultMap="userRM">
+    SELECT *
+    FROM <include refid="BASE_TABLE"/>
+    WHERE U_NAME = #{userName} and U_PASSWORD = #{password}
+  </select>
+
+   <select id="findAmountLastMonth"  resultType="integer">
+       select count(*) amount
+       from schooluser
+       where datediff(CREATE_TIME,now()) &lt;=30
+   </select>
+
+    <select id="findAmountTotal"  resultType="integer">
+       select count(*) amount
+       from schooluser
+   </select>
+
+</mapper>

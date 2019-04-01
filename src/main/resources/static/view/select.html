@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+用户编号：<input type="text" id="userId">
+<button type="button">提交</button><br>
+<span id="spanId"></span>
+</body>
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script type="text/javascript">
+    //获取basePath，测试的话就能用就完了
+    var obj = window.document.location;
+    var BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));
+    //请求传参模拟
+    $("button").on("click", function () {
+        var userId = $("#userId").val();
+
+        $.ajax({
+            url: BASE_PATH + "/user/select/",
+            type: "post",
+            dateType: "json",
+            data: {"userId": userId},
+            async: false,
+            success: function f(data) {
+                var userId = data.userId;
+                var username = data.username;
+                var password = data.password;
+                var phone = data.phone;
+                $("#spanId").html(" username:" + username + "<br>" +"  password:" + password + "<br>" +"userid: "+ userId + "<br>" +" phone:"+phone);
+            },
+            error: function f(data) {
+                alert("查无此人");
+            }
+        })
+    });
+</script>
+</html>

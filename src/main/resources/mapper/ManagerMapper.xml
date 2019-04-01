@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.winterchen.dao.ManagerDao" >
+
+    <!-- 数据库表映射 -->
+    <resultMap id="managerRM" type="com.winterchen.model.Manager">
+        <result property="managerId" column="ManagerId"/>
+        <result property="managerName" column="ManagerName"/>
+        <result property="managerGender" column="ManagerGender"/>
+        <result property="managerPassword" column="ManagerPassword"/>
+        <result property="managerIdentity" column="ManagerIdentity"/>
+    </resultMap>
+
+    <!--设置数据库表名-->
+    <sql id="BASE_TABLE">
+    manager
+  </sql>
+
+    <!--管理员登陆-->
+    <select id="login" resultMap="managerRM">
+      SELECT
+        *
+      FROM
+         manager
+      WHERE ManagerName = #{managerName} and ManagerPassword = #{managerPassword}
+  </select>
+
+
+</mapper>

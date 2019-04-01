@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.winterchen.dao.StrokeDao" >
+
+    <!-- 数据库表映射 -->
+    <resultMap id="strokeRM" type="com.winterchen.model.Stroke">
+        <result property="schId" column="SCH_ID"/>
+        <result property="userId" column="U_ID"/>
+        <result property="schTime" column="SCH_TIME"/>
+        <result property="schPlace" column="SCH_PLACE"/>
+    </resultMap>
+
+    <!--设置数据库表名-->
+    <sql id="BASE_TABLE">
+    stroke
+  </sql>
+
+    <!--查询所有行程-->
+    <select id="selectStroke" resultType="com.winterchen.model.Stroke">
+      SELECT
+        *
+      FROM
+        <include refid="BASE_TABLE"/>
+  </select>
+
+    <!--根据用户id查询用户行程-->
+    <select id="findByUserId" resultType="com.winterchen.model.Stroke">
+        SELECT
+        SCH_ID
+        ,U_ID
+        ,SCH_TIME
+        ,SCH_PLACE
+        FROM
+        <include refid="BASE_TABLE"/>
+        WHERE U_ID=#{userId}
+    </select>
+
+
+    <!--根据行程ID修改行程-->
+    <update id="updatePassword">
+        UPDATE  <include refid="BASE_TABLE"/>
+        SET SCH_TIME = #{schTime} and SCH_PLACE = #{schPlace}
+        WHERE SCH_ID = #{schId}
+    </update>
+
+    <!--添加行程-->
+    <insert id="strokeKeep" parameterType="com.winterchen.model.UserDomain">
+        INSERT INTO <include refid="BASE_TABLE"/>
+        (U_ID,SCH_TIME,SCH_PLACE)
+        VALUES (#{userId}, #{schTime}, #{schPlace})
+    </insert>
+
+    <!--根据用户ID查询行程-->
+    <select id="strokeSelectByuserId" resultMap="strokeRM">
+        SELECT
+          U_ID,
+          SCH_TIME,
+          SCH_PLACE
+        FROM
+        <include refid="BASE_TABLE"/>
+        WHERE U_ID = #{userId}
+    </select>
+
+    <!--根据用户ID修改行程信息-->
+    <update id="strokeUpdateByuserId">
+        UPDATE <include refid="BASE_TABLE"/>
+        SET SCH_TIME = #{schTime},SCH_PLACE = #{schPlace}
+        WHERE U_ID = #{userId}
+    </update>
+</mapper>

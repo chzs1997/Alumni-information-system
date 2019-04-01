@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button type="button">提交</button>
+userid:<input type="text" id="userid"><br>
+username:<input type="text" id="username"><br>
+password:<input type="password" id="password"><br>
+phone:<input type="text" id="phone"><br>
+<span id="spId">df</span>
+</body>
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script type="text/javascript">
+    //获取basePath，测试的话就能用就完了
+    var obj = window.document.location;
+    var BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));
+    //请求传参模拟
+    $("button").on("click", function () {
+        var userName = $("#username").val();
+        var passWord = $("#password").val();
+        var userId = $("#userid").val();
+        var phone = $("#phone").val();
+
+
+        $.ajax({
+            url: BASE_PATH + "/user/login/",
+            type: "post",
+            dateType: "json",
+            data: {"username": userName, "password": passWord, "userId": userId, "phone": phone},
+            async: false,
+            success: function f(data) {
+                var val = data.result;
+                var username = data.username;
+                var password = data.password;
+                $("#spId").html(val + " username:" + username + "  password:" + password + "<br>" +"userid: "+ userId + " phone:"+phone);
+            },
+            error: function f(data) {
+                alert("lose");
+            }
+        })
+    });
+</script>
+</html>

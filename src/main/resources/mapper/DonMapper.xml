@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.winterchen.dao.DonationDao" >
+
+    <!-- 数据库表映射 -->
+    <resultMap id="donRM" type="com.winterchen.model.Donation">
+        <result property="donId" column="DON_ID"/>
+        <result property="userId" column="U_ID"/>
+        <result property="donProperty" column="DON_PROPERTY"/>
+        <result property="donItem" column="DON_ITEM"/>
+        <result property="donTime" column="DON_TIME"/>
+        <result property="donAmount" column="DON_AMOUNT"/>
+    </resultMap>
+
+    <!--设置数据库表名-->
+    <sql id="BASE_TABLE">
+    donation
+  </sql>
+
+    <!--查询所有行程-->
+    <select id="selectDonation" resultType="com.winterchen.model.Donation">
+        SELECT
+        *
+        FROM
+        <include refid="BASE_TABLE"/>
+    </select>
+
+    <!--根据用户id查询用户行程-->
+    <select id="findByUserId" resultType="com.winterchen.model.Donation">
+        SELECT
+        U_ID
+        ,DON_PREPERTY
+        ,DON_ITEM
+        ,DON_TIME
+        ,DON_AMOUNT
+        FROM
+        <include refid="BASE_TABLE"/>
+        WHERE U_ID=#{userId}
+    </select>
+
+
+    <!--添加行程-->
+    <insert id="donationKeep" parameterType="com.winterchen.model.Donation">
+        INSERT INTO <include refid="BASE_TABLE"/>
+        (U_ID,SCH_TIME,SCH_PLACE)
+        VALUES (#{userId}, #{schTime}, #{schPlace})
+    </insert>
+
+    <!--根据用户ID查询行程-->
+    <select id="donationSelectByuserId" resultMap="donRM">
+        SELECT
+        U_ID
+        ,DON_PREPERTY
+        ,DON_ITEM
+        ,DON_TIME
+        ,DON_AMOUNT
+        FROM
+        <include refid="BASE_TABLE"/>
+        WHERE U_ID = #{userId}
+    </select>
+
+    <!--根据用户ID修改行程信息-->
+    <update id="donationUpdateByuserId">
+        UPDATE <include refid="BASE_TABLE"/>
+        SET SCH_TIME = #{schTime},SCH_PLACE = #{schPlace}
+        WHERE U_ID = #{userId}
+    </update>
+
+    <!--查询上月捐赠金额-->
+    <select id="findAmountLastMonth" resultType="integer">
+        select sum(DON_AMOUNT) AS DON_AMOUNT
+        from dondation
+        where datediff(DON_TIME,now()) &lt;=30
+    </select>
+
+    <!--查询合计捐赠金额-->
+    <select id="findAmountTotal" resultType="integer">
+        select sum(DON_AMOUNT) AS DON_AMOUNT
+        from dondation
+    </select>
+</mapper>

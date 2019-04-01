@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.winterchen.dao.CharacterStyleDao" >
+
+    <!-- 数据库表映射 -->
+    <resultMap id="characterStyleRM" type="com.winterchen.model.CharacterStyle">
+        <result property="characterId" column="CHARACTER_ID"/>
+        <result property="characterType" column="CHARACTER_TYPE"/>
+        <result property="characterName" column="CHARACTER_NAME"/>
+        <result property="characterTime" column="CHARACTER_TIME"/>
+        <result property="characterPicture" column="CHARACTER_PICTURE"/>
+        <result property="characterIntroduction" column="CHARACTER_INTRODUCTION"/>
+        <result property="characterTitle" column="CHARACTER_TITLE"/>
+        <result property="characterContent" column="CHARACTER_CONTENT"/>
+    </resultMap>
+
+    <!--设置数据库表名-->
+    <sql id="BASE_TABLE">
+    characterstyle
+    </sql>
+
+    <!--分页查询-->
+    <select id="findCharacterData" resultMap="characterStyleRM">
+      SELECT
+        CHARACTER_ID
+       ,CHARACTER_TYPE
+       ,CHARACTER_NAME
+       ,CHARACTER_TIME
+       ,CHARACTER_PICTURE
+       ,CHARACTER_INTRODUCTION
+       ,CHARACTER_TITLE
+       ,CHARACTER_CONTENT
+      FROM
+        <include refid="BASE_TABLE"/>
+      WHERE CHARACTER_TYPE = #{characterType}
+  </select>
+
+    <!--根据客户ID查询-->
+    <select id="findCharacterById" resultMap="characterStyleRM">
+        SELECT
+        CHARACTER_ID
+        ,CHARACTER_TYPE
+        ,CHARACTER_NAME
+        ,CHARACTER_TIME
+        ,CHARACTER_PICTURE
+        ,CHARACTER_INTRODUCTION
+        ,CHARACTER_TITLE
+        ,CHARACTER_CONTENT
+        FROM
+        <include refid="BASE_TABLE"/>
+        WHERE CHARACTER_ID = #{characterId}
+    </select>
+
+    <!--根据人物ID查找相关老师-->
+    <select id="selectSimilar" resultMap="characterStyleRM">
+        SELECT
+        CHARACTER_ID
+        ,CHARACTER_TYPE
+        ,CHARACTER_NAME
+        ,CHARACTER_TIME
+        ,CHARACTER_PICTURE
+        ,CHARACTER_INTRODUCTION
+        ,CHARACTER_TITLE
+        ,CHARACTER_CONTENT
+        FROM <include refid="BASE_TABLE"/>
+        WHERE CHARACTER_TYPE = (SELECT CHARACTER_TYPE
+                                FROM <include refid="BASE_TABLE"/>
+                                WHERE CHARACTER_ID = #{characterId})
+    </select>
+
+
+</mapper>

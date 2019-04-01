@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.winterchen.dao.NewsDao" >
+
+    <!-- 数据库表映射 -->
+    <resultMap id="newsRM" type="com.winterchen.model.News">
+        <result property="artId" column="ART_ID"/>
+        <result property="userId" column="U_ID"/>
+        <result property="artType" column="ART_TYPE"/>
+        <result property="artTime" column="ART_TIME"/>
+        <result property="artTitle" column="ART_TITLE"/>
+        <result property="artSummary" column="ART_SUMMARY"/>
+        <result property="artContent" column="ART_CONTENT"/>
+        <result property="artImage" column="ART_IMAGE"/>
+        <result property="artLabel1" column="ART_LABEL1"/>
+        <result property="artLabel2" column="ART_LABEL2"/>
+        <result property="artLabel3" column="ART_LABEL3"/>
+        <result property="artLabel4" column="ART_LABEL4"/>
+    </resultMap>
+
+    <resultMap id="commentRM" type="com.winterchen.model.Comment">
+        <result property="commentId" column="COMMENT_ID"/>
+        <result property="commentTime" column="COMMENT_TIME"/>
+        <result property="commentName" column="COMMENT_NAME"/>
+        <result property="commentMail" column="COMMENT_MAIL"/>
+        <result property="commentContent" column="COMMENT_CONTENT"/>
+        <result property="artId" column="ART_ID"/>
+    </resultMap>
+
+    <!--设置数据库表名-->
+    <sql id="BASE_TABLE">
+    news
+  </sql>
+
+    <!--查询所有用户-->
+    <select id="findArtId" resultType="integer">
+      SELECT
+        ART_ID
+      FROM
+        <include refid="BASE_TABLE"/>
+      order by ART_ID DESC limit 1
+   </select>
+
+    <select id = "selectAllNews" resultMap="newsRM">
+        SELECT *
+        FROM
+        <include refid="BASE_TABLE"/>
+        WHERE ART_TYPE = '1'
+        ORDER BY ART_TIME DESC
+    </select>
+
+    <select id = "selectAnnouncement" resultMap="newsRM">
+        SELECT *
+        FROM
+        <include refid="BASE_TABLE"/>
+        WHERE ART_TYPE = '3'
+        ORDER BY ART_TIME DESC
+    </select>
+
+    <select id = "findNewsByartId" resultMap="newsRM">
+        SELECT *
+        FROM
+        <include refid="BASE_TABLE"/>
+        WHERE ART_ID = #{artId}
+    </select>
+
+    <select id = "findNewsExtra" resultMap="newsRM">
+        SELECT *
+        FROM
+        <include refid="BASE_TABLE"/>
+        WHERE ART_ID != #{artId}
+              and ART_TYPE = (select ART_TYPE from news where ART_ID = #{artId})
+        ORDER BY ART_TIME DESC
+        limit 12
+    </select>
+
+    <select id = "findNewsRelation" resultMap="newsRM">
+        SELECT *
+        FROM
+        news
+        WHERE  (ART_LABEL1 in (
+                   SELECT art_label1 as label from news where art_id = #{artId}
+                   union SELECT art_label2 as label from news where art_id = #{artId}
+				   union SELECT art_label3 as label from news where art_id = #{artId}
+				   union SELECT art_label4 as label from news where art_id = #{artId}
+                )
+                or
+                ART_LABEL2 in (
+                   SELECT art_label1 as label from news where art_id = #{artId}
+                   union SELECT art_label2 as label from news where art_id = #{artId}
+				   union SELECT art_label3 as label from news where art_id = #{artId}
+				   union SELECT art_label4 as label from news where art_id = #{artId}
+                )
+                or
+                ART_LABEL3 in (
+                   SELECT art_label1 as label from news where art_id = #{artId}
+                   union SELECT art_label2 as label from news where art_id = #{artId}
+				   union SELECT art_label3 as label from news where art_id = #{artId}
+				   union SELECT art_label4 as label from news where art_id = #{artId}
+                )
+                or
+                ART_LABEL4 in (
+                   SELECT art_label1 as label from news where art_id = #{artId}
+                   union SELECT art_label2 as label from news where art_id = #{artId}
+				   union SELECT art_label3 as label from news where art_id = #{artId}
+				   union SELECT art_label4 as label from news where art_id = #{artId}
+                )
+			  )
+		and art_type = 1
+		and art_id != #{artId}
+        ORDER BY ART_TIME DESC
+        limit 4
+    </select>
+
+    <insert id = "save" parameterType="com.winterchen.model.News">
+        INSERT INTO <include refid="BASE_TABLE"/>
+        (ART_TYPE
+        ,ART_TITLE
+        ,ART_CONTENT
+        ,ART_IMAGE
+        ,ART_LABEL1
+        ,ART_LABEL2
+        ,ART_LABEL3
+        ,ART_LABEL4)
+        VALUES (
+         #{artType}
+        ,#{artTitle}
+        ,#{artContent}
+        ,#{artImage}
+        ,#{artLabel1}
+        ,#{artLabel2}
+        ,#{artLabel3}
+        ,#{artLabel4}
+        )
+    </insert>
+
+    <insert id="addComments" parameterType="com.winterchen.model.Comment">
+       INSERT INTO comment
+       (
+        COMMENT_NAME
+       ,COMMENT_MAIL
+       ,COMMENT_CONTENT
+       ,ART_ID)
+       VALUES
+        (
+        #{commentName}
+       ,#{commentMail}
+       ,#{commentContent}
+       ,#{artId}
+       )
+    </insert>
+
+    <select id="commentsSeralize" resultMap="commentRM">
+        select *
+        from comment
+        where ART_ID = #{artId}
+        order by COMMENT_TIME desc
+        limit 4
+    </select>
+
+    <select id="findNewsByartType" resultMap="newsRM">
+        select *
+        from news
+        where ART_TYPE = #{artType}
+        order by ART_TIME desc
+        limit 3
+    </select>
+
+</mapper>

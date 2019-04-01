@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+	<title>校友返校活动</title>
+	<!-- Meta tag Keywords -->
+	<meta name="serviceListDetail" content="width=device-width, initial-scale=1">
+	<meta charset="UTF-8" />
+	<meta name="keywords" content="" />
+	<script>
+		addEventListener("load", function () {
+			setTimeout(hideURLbar, 0);
+		}, false);
+
+		function hideURLbar() {
+			window.scrollTo(0, 1);
+		}
+	</script>
+	<!-- //Meta tag Keywords -->
+	<link rel="stylesheet" href="static/static/system/font-awesome-4.7.0/css/font-awesome.min.css"/>
+	<!-- Custom-Files -->
+	<link rel="stylesheet" href="static/static/css/service/bootstrap.css">
+	<!-- Bootstrap-Core-CSS -->
+	<link href="static/static/css/service/css_slider.css" type="text/css" rel="stylesheet" media="all">
+	<!-- banner slider -->
+	<link rel="stylesheet" href="static/static/css/service/style.css" type="text/css" media="all" />
+	<!-- Style-CSS -->
+	<link href="static/static/css/service/font-awesome.min.css" rel="stylesheet">
+	<!-- Font-Awesome-Icons-CSS -->
+	<!-- //Custom-Files -->
+
+	<!-- Web-Fonts -->
+	<link href="http://fonts.googleapis.com/css?family=Sarabun:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i"
+	 rel="stylesheet">
+	<link href="http://fonts.googleapis.com/css?family=Crimson+Text:400,400i,600,600i,700,700i" rel="stylesheet">
+	<!-- //Web-Fonts -->
+
+	<!--title-->
+	<link type="text/css" href="../static/static/css/HomePage.css" rel="stylesheet" />
+	<link href="../static/static/css/banner.css" rel="stylesheet" type="text/css" />
+	<link type="text/css" rel="stylesheet" href="../static/static/css/login.css" />
+	<link href="../static/static/css/media_query.css" rel="stylesheet" type="text/css"/>
+	<link href="../static/static/css/font-awesome.min.css"/>
+	<link href="../static/static/css/animate.css" rel="stylesheet" type="text/css"/>
+	<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet"/>
+	<link href="../static/static/css/owl.carousel.css" rel="stylesheet" type="text/css"/>
+	<link href="../static/static/css/owl.theme.default.css" rel="stylesheet" type="text/css"/>
+	<link href="../static/static/css/style_1.css" rel="stylesheet" type="text/css"/>
+
+	<!--导航栏-->
+	<link type="text/css" href="static/static/css/PersonalInfo.css" rel="stylesheet" />
+	<link type = "text/css" href="static/static/css/service/list.css" rel="stylesheet"/>
+
+
+	<!-- CSS
+================================================== -->
+	<link rel="stylesheet" href="static/static/css/company/zerogrid.css"/>
+	<link rel="stylesheet" href="static/static/css/company/style.css"/>
+	<link rel="stylesheet" href="static/static/css/company/lightbox.css"/>
+
+	<!-- Custom Fonts -->
+	<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+
+	<link rel="stylesheet" href="static/static/css/company/menu.css"/>
+	<script src="static/static/js/company/jquery1111.min.js" type="text/javascript"></script>
+	<script src="static/static/js/company/script.js"></script>
+
+
+</head>
+
+<body>
+	<!-- main banner -->
+	<div class="main-top" id="home">
+
+		<div id="top">
+			<div id="top1">
+			<span>
+				<a href="../templates/Register.html" id = "top1_register">注册</a>
+			    <a class="cd-signin" href="#0" id = "top1_login">登录</a>
+				<span class="nav_left">
+					<h1>
+						<a href="#" class="txtArr">
+							<img class="userIcon touxiang" src="../static/static/img/touxaing.jpg" onclick="navagator_list()" style="margin-top: -25px"/>
+						</a>
+					</h1>
+				</span>
+				<div id = "homeOptions" class="headListPlugin popBox">
+                      <div class="profileTitle" id = "linkInfo">
+						  <a href="#">
+							  <p class="headPic">
+							  <img src = "../static/static/img/touxaing.jpg" class="touxiang"/>
+							  </p>
+							  <div class="intro">
+								  <p>
+									  <b class="yourName">未登录</b>
+								  </p>
+								  <p class="wid"></p>
+							  </div>
+						  </a>
+					  </div>
+					<ul class="lm">
+						<li class="liops" id = "skinBox">
+						   <a href="../templates/PersonalInfo.html" id = "linkSkin">查看资料</a>
+						</li>
+                        <li class = "liops">
+							<a href = "#" id = "linkFrame">联系我们</a>
+						</li>
+						<li class = "liops clear263Logo rzrq_hide selected">
+							<a href = "#" id = "linkHelp">帮助</a>
+						</li>
+						<li class="liops tLine">
+                            <a href="#" id="mailsetMessage" onclick="out_login()">退出登陆</a>
+						</li>
+					</ul>
+				</div>
+			</span>
+			</div>
+			<img id="logo" src="static/static/img/logo.png" />
+			<span id="title" style="top: 40px">公共管理学院校友会</span>
+			<div id="box">
+				<input type="text" name="search" placeholder="请输入关键字" class="search"/>
+				<div id="search">搜索</div>
+			</div>
+			<!--<img id="bac" src="img/湘大.png" />-->
+		</div>
+		<nav class="hl_nav">
+			<ul class="nav_list">
+				<li>
+					<a class="nav_head" href="../templates/HomePage.html">首页</a>
+				</li>
+				<li>
+					<a class="nav_head" href="#">新闻快讯</a>
+					<a class="nav_body" href="../templates/news.html">学院新闻</a>
+					<a class="nav_body" href="#">校友新闻</a>
+					<a class="nav_body" href="http://www.xtu.edu.cn/xdxw/xnxw/" target="_blank">学校新闻</a>
+				</li>
+				<li>
+					<a class="nav_head" href="#">人物风采</a>
+					<a class="nav_body" href="http://glxy.xtu.edu.cn/e/action/ListInfo/?classid=7" target="_blank">老师之星</a>
+					<a class="nav_body" href="../templates/CharacterStyle.html">学生之星</a>
+					<a class="nav_body" href="../templates/CharacterStyle.html">校友之星</a>
+				</li>
+				<li   class="active">
+					<a class="nav_head" href="../templates/Service.html">校友服务</a>
+					<a class="nav_body" href="../Service_list.html">校友卡</a>
+					<a class="nav_body" href="../templates/Service_souvenir.html">校友纪念品</a>
+					<a class="nav_body" href="../templates/Service_hotel.html">周边食宿</a>
+					<a class="nav_body" href="Service_returnSchool_old.html">校友返校活动</a>
+				</li>
+				<li>
+					<a class="nav_head" href="#">校友捐赠</a>
+					<a class="nav_body" href="#">校友捐赠</a>
+					<a class="nav_body" href="#">校友捐赠</a>
+				</li>
+				<li>
+					<a class="nav_head" href="../templates/Company.html">校友企业</a>
+					<a class="nav_body" href="../templates/Company.html">校友企业</a>
+				</li>
+			</ul>
+		</nav>
+	</div>
+	<!-- //main banner -->
+
+	<div id="zi" style="float: left">
+		<div id="zi1">
+			<div class="zi1_1">
+				<img src="static/static/img/serviceSign.jpg"  id="pic1"/>&nbsp;&nbsp;
+				<span>校友服务</span>
+			</div>
+			<div class="zi1_2" id="zi1_2_1" onclick="dj(this);"  style="background:#C2C2C2"><a href="../Service_list.html">校友卡</a></div>
+			<div class="zi1_2" id="zi1_3_1" onclick="dj(this);"><a href="../templates/Service_souvenir.html">校友纪念品</a></div>
+			<div class="zi1_2" id="zi1_4_1" onclick="dj(this);"><a href="../templates/Service_hotel.html">周边食宿</a></div>
+			<div class="zi1_2" id="zi1_5_1" onclick="dj(this);"><a href="Service_returnSchool_old.html">协助校友返校</a></div>
+		</div>
+	</div>
+	<div class="service_news" >
+		<div class = "service_list_top">
+             <h2 title = "校友卡">校友卡</h2>
+			 <div>
+				 <p>
+					 您现在所在的位置：<a href="../templates/HomePage.html">首页</a>><a href="../templates/Service.html">校友服务</a>><i>校友卡</i>
+				 </p>
+			 </div>
+		</div>
+		<article>
+			<div class="art-header" style="margin-top: 20px">
+				<h1 class="entry-title">湘潭大学公共管理学院校友卡相关问题汇总</h1>
+			</div>
+			<div class="art-content">
+				<div class="excerpt"><p>
+					<strong>▮Q：<span>为何校友身份一直处在认证审核状态？</span></strong>
+				</p>
+					<p style="text-indent:0em;text-align:justify;">
+						线上申请校友认同卡的校友需先通过校友身份认证，校友个人信息填写正确，系统将智能审核通过；信息填写不正确，系统将无法通过智能审核，需通过<strong>文末阅读原文链接</strong>修改个人信息。若修改后，仍未通过审核，请将个人信息（姓名、年级专业、手机号）发至校友会邮箱：xy@sufe.edu.cn
+					</p>
+					<p style="text-indent:0em;text-align:justify;">
+						<br />
+					</p>
+					<p style="text-align:justify;">
+						<strong>▮Q：<span>何时才能到学校开通校园卡功能？</span></strong>
+					</p>
+					<p style="text-indent:0em;text-align:justify;">
+						校友认同卡申请成功后，校友会将以短信方式分批通知校友返校开通校园功能，具体时间以短信为准。
+					</p>
+					<p style="text-indent:0em;text-align:justify;">
+						<br />
+					</p>
+					<p style="text-align:justify;">
+						<strong>▮Q：<span>在申请办卡过程中遇到问题，该向谁咨询？</span></strong>
+					</p>
+					<p style="text-indent:0em;text-align:justify;">
+						1）校友认同卡申请过程中校友身份审核认证的问题请致电校友系统工作人员：黄百花&nbsp; 021-55961316
+					</p>
+					<p style="text-indent:0em;text-align:justify;">
+						2）校友认同卡金融业务相关问题请致电招商银行和中国银行：
+					</p>
+					<p style="text-indent:0em;text-align:justify;">
+						招商银行：信用卡客服热线4008205555
+					</p>
+					<p style="text-indent:0em;text-align:justify;">
+						中国银行：胡岭 021—65723547
+					</p>
+					<p style="text-indent:0em;text-align:justify;">
+						3）校友认同卡校内功能开通相关问题请致电校友会秘书处：021—65903683
+					</p>
+					<p style="text-align:center;">
+						<span style="color:#021EAA;"><strong>如何申办校友认同卡</strong></span>
+					</p>
+					<p style="text-align:center;">
+						<img width="100%" class=" __bg_gif" src="http://mmbiz.qpic.cn/mmbiz_gif/EBePkXqP70FOexN542cxdrDK2t4dBFzzEzTNbU3ou3TZCiaN4KOJEcPCiaqriavK5Mlznn2RURr4LCI2NZGictrj3w/0?wx_fmt=gif&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" style="height:auto !important;width:111.111px !important;" />
+					</p>
+					<p style="text-align:center;">
+						<img width="2em" src="http://mmbiz.qpic.cn/mmbiz_png/EBePkXqP70FOexN542cxdrDK2t4dBFzzsHHV8odmfk6kks72jgpdKH2OfKNmbfQTQweYTqpNg3lEa02j4YNibibg/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" class="" style="height:auto !important;width:2em !important;" />
+					</p>
+					<p style="text-align:center;">
+						<strong>方法一：线上申办</strong>
+					</p>
+					<div style="text-align:center;">
+						<img width="2em" src="http://mmbiz.qpic.cn/mmbiz_png/EBePkXqP70FOexN542cxdrDK2t4dBFzzmzwbQXT2tqlQEy5icXYic7us4GAnko0jz1iaeCM4sAE4prnLPGxE1V4CA/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" class="" style="height:auto !important;width:2em !important;" />
+					</div>
+					<p style="text-indent:0em;text-align:justify;">
+						<strong>关注“<span style="color:#7B0C00;">湘潭大学公共管理学院校友总会</span>”官方微信服务号，通过<span style="color:#7B0C00;">校友服务大厅</span>中的“<span style="color:#7B0C00;">校友认同卡</span>”模块提交预约申请，招商银行或中国银行工作人员将联系您完成后续申请流程。</strong>
+					</p>
+					<p style="text-indent:0em;">
+						<strong><br />
+						</strong>
+					</p>
+					<div style="text-align:center;">
+						<img width="2em" src="http://mmbiz.qpic.cn/mmbiz_png/EBePkXqP70FOexN542cxdrDK2t4dBFzzsHHV8odmfk6kks72jgpdKH2OfKNmbfQTQweYTqpNg3lEa02j4YNibibg/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" class="" style="height:auto !important;width:2em !important;" />
+					</div>
+					<p style="text-align:center;">
+						<strong>方法二：线下申请</strong>
+					</p>
+					<div style="text-align:center;">
+						<img width="2em" src="http://mmbiz.qpic.cn/mmbiz_png/EBePkXqP70FOexN542cxdrDK2t4dBFzzmzwbQXT2tqlQEy5icXYic7us4GAnko0jz1iaeCM4sAE4prnLPGxE1V4CA/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" class="" style="height:auto !important;width:2em !important;" />
+					</div>
+					<p>
+						<strong>招商银行校友认同卡</strong>
+					</p>
+					<p>
+	<span style="color:#7B0C00;"><strong><br />
+</strong></span>
+					</p>
+					<p>
+						<span style="color:#7B0C00;"><strong>办理方式：</strong></span>
+					</p>
+					<p style="text-indent:0em;">
+						直接前往招商银行各分支行网点进行申请。
+					</p>
+					<p style="text-indent:0em;">
+						<br />
+					</p>
+					<p style="text-align:justify;">
+						<span style="color:#7B0C00;"><strong>办卡所需材料：</strong></span>
+					</p>
+					<p style="text-indent:0em;text-align:justify;">
+						须携带身份证及校友（含教职工）身份证明文件，其中校友（含教职工）身份证明材料主要指：
+					</p>
+					<p style="text-indent:0em;text-align:justify;">
+						<span style="color:#7B0C00;"><strong>① 应届毕业生：</strong></span>
+					</p>
+					<p style="text-indent:0em;text-align:justify;">
+						需提供：本人身份证、毕业证书/学生证、三方协议。
+					</p>
+					<p style="text-indent:0em;text-align:justify;">
+						<span style="color:#7B0C00;"><strong><span>②&nbsp;校友：</span></strong></span>
+					</p>
+					<p style="text-indent:0em;text-align:justify;">
+						<span>包括但不限于历年毕业证书（学位证书）复印件、学信网查询页面、学校档案馆开具的学历证明。</span>
+					</p>
+					<p style="text-indent:0em;text-align:justify;">
+						<span style="color:#7B0C00;"><strong>③&nbsp;教职工：</strong></span>
+					</p>
+					<p style="text-indent:0em;text-align:justify;">
+						包括但不限于名片、铭牌，校方开具的工作证明、收入证明。
+					</p>
+					<p>
+						<br />
+					</p>
+					<p>
+						<strong>中国银行校友认同卡</strong>
+					</p>
+					<p>
+						<span style="color:#7B0C00;"><strong>办理方式：</strong></span>
+					</p>
+					<p>
+						<span style="line-height:1.6;">直接前往中国银行湘潭各分支行网点进行申请。</span>
+					</p>
+					<p>
+	<span style="line-height:1.6;"><br />
+</span>
+					</p>
+					<p>
+						<span style="color:#7B0C00;"><strong>办卡所需材料：</strong></span>
+					</p>
+					<p style="text-indent:0em;">
+						<span style="color:#7B0C00;"><strong>① 应届毕业生</strong>（仅限办理金卡）：</span>
+					</p>
+					<p style="text-indent:0em;">
+						需提供：本人身份证、毕业证书/学生证、三方协议。
+					</p>
+					<p style="text-indent:0em;">
+						<span style="color:#7B0C00;"><strong>② 湘大校友：</strong></span>
+					</p>
+					<p style="text-indent:0em;text-align:center;">
+						<span style="color:#7B0C00;"><strong>◆</strong><span style="line-height:1.6;">湘潭工作<strong>◆</strong></span></span>
+					</p>
+					<p style="text-indent:0em;text-align:justify;">
+						需提供本人身份证、毕业证书/学信网学历页。
+					</p>
+					<p style="text-indent:0em;text-align:justify;">
+						如需办理白金卡则需提供财力证明，包括本市税单（二维码）、本市房产证、公积金查询单、近6个月代发流水。
+					</p>
+					<p style="text-indent:0em;">
+						<br />
+					</p>
+					<p style="text-indent:0em;text-align:center;">
+						<span style="color:#7B0C00;"><strong>◆</strong>非湘潭工作<strong>◆</strong></span>
+					</p>
+					<p style="text-indent:0em;text-align:justify;">
+						ⅰ. 外地工作：
+					</p>
+					<p style="text-indent:0em;text-align:justify;">
+						需提供身份证、毕业证书/学信网学历页。如需提高额度则需提供近六个月代发流水。
+					</p>
+					<p style="text-indent:0em;text-align:justify;">
+						ⅱ. 外国人士：
+					</p>
+					<p style="text-indent:0em;text-align:justify;">
+						外籍人士需提供护照、6个月以上居留许可证（距离到期日1个月以上）、毕业证书/学信网学历页，可办理0额度校友认同卡。
+					</p>
+					<p style="text-indent:0em;text-align:justify;">
+						如需提高额度则需提供本市房产证明或境内税单。
+					</p>
+					<p style="text-indent:0em;text-align:justify;">
+						ⅲ. 港澳台人士：
+					</p>
+					<p style="text-indent:0em;text-align:justify;">
+						港澳台人士需提供通行证、毕业证书/学信网学历页，办理0额度校友认同卡。如需提高额度则需提供本市房产证明或境内税单。
+					</p>
+					<p style="text-align:center;">
+						<span style="color:#021EAA;"><strong>校友认同卡校园功能</strong></span>
+					</p>
+					<div style="text-align:center;">
+						<img width="100%" class="img_loading __bg_gif" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" style="border-width:1px;border-style:solid;border-color:#EEEDEB;height:51.3038px !important;width:110px !important;" /><img width="2em" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" style="height:31.9965px !important;width:31.9965px !important;" />
+					</div>
+					<p style="text-align:center;">
+						<strong>&nbsp;用 卡 篇&nbsp;</strong>
+					</p>
+					<div style="text-align:center;">
+						<img width="2em" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" style="height:31.9965px !important;width:31.9965px !important;" />
+					</div>
+					<p style="text-align:justify;">
+						<strong>▮Q：我拿到了校友认同卡并根据银行提示开通了卡片，校园服务功能是否也一并开通了呢？如果没有，我该如何开通校内服务功能呢？</strong>
+					</p>
+					<p style="text-indent:0em;text-align:justify;">
+						校友需要持校友认同卡、身份证和校友认同卡审核通过的界面信息到武东路校区大学生活动中心卡务窗口开通校园卡功能，卡务窗口工作时间：工作日8:30-16:00。
+					</p>
+					<p style="text-indent:0em;">
+						<br />
+					</p>
+					<p style="text-align:justify;">
+						<strong>▮Q：校园功能开通后，如果我想在校内消费，是直接扣除我的信用卡额度吗？如果不是，有哪些充值方式呢？</strong>
+					</p>
+					<p style="text-indent:0em;text-align:justify;">
+						校园功能开通后需充值才能在校内消费，充值方式：人工充值，支付宝网络自助充值（充值后在校内圈存POS机上领取充值资金）。
+					</p>
+					<p style="text-indent:0em;">
+						<br />
+					</p>
+					<p style="text-align:justify;">
+						<strong>▮Q：我可以凭借校友认同卡在校内哪些地方消费呢？</strong>
+					</p>
+					<p style="text-indent:0em;text-align:justify;">
+						<span>凭借校友认同卡可在校内食堂（教工食堂除外）或装有校园卡POS机的网点进行消费。</span>
+					</p>
+					<p style="text-indent:0em;text-align:justify;">
+	<span><br />
+</span>
+					</p>
+					<p style="text-align:justify;">
+						<strong>▮Q：搭伙费的扣除方式是怎样的？</strong>
+					</p>
+					<p style="text-indent:0em;text-align:justify;">
+						<span>搭伙费在充值时一次性扣除。例如，校友一次性充值200元，扣除20%后可用余额为160元。</span>
+					</p>
+					<p style="text-indent:0em;">
+	<span><br />
+</span>
+					</p>
+					<p style="text-align:justify;">
+						<strong>▮Q：我不慎丢失了校友认同卡，已经向银行申请了挂失、补办，还需要向学校申请吗？如果需要，如何办理挂失和补办呢？解挂也是同样的流程吗？</strong>
+					</p>
+					<p style="text-indent:0em;text-align:justify;">
+						<span>校友认同卡丢失还需挂失校园卡功能，挂失方式：电话自助挂失（021-65904019），微信服务大厅挂失（微信服务号wxsufe），卡务窗口人工挂失。</span>
+					</p>
+					<p style="text-indent:0em;text-align:justify;">
+						<span>补办和解挂：需携带校友认同卡和身份证到卡务窗口办理。</span>
+					</p>
+					<p style="text-indent:0em;text-align:justify;">
+	<span><br />
+</span>
+					</p>
+					<p style="text-align:justify;">
+						<strong>▮Q：申请挂失、补办后，旧卡的钱可以直接转到新办的校友认同卡吗？</strong>
+					</p>
+					<p style="text-indent:0em;text-align:justify;">
+						<span>挂失卡补办5天后，可持新卡到卡务窗口办理旧卡余额转账。</span>
+					</p>
+					<p style="text-indent:0em;text-align:justify;">
+	<span><br />
+</span>
+					</p>
+					<p style="text-align:justify;">
+						<strong>▮Q：已经向银行申请注销了校友认同卡，还需要向学校申请注销吗？如果需要，如何办理相关手续呢？卡内的钱能否退还呢？</strong>
+					</p>
+					<p style="text-indent:0em;text-align:justify;">
+						<span>校友需持卡到卡务窗口办理注销，并在现场退返卡内资金。</span>
+					</p>
+					<p style="text-indent:0em;text-align:justify;">
+	<span><br />
+</span>
+					</p>
+					<div style="text-align:center;">
+						<img width="2em" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" style="height:31.9965px !important;width:31.9965px !important;" />
+					</div>
+					<p style="text-align:center;">
+						<strong>&nbsp;图 书 馆 篇&nbsp;</strong>
+					</p>
+					<div style="text-align:center;">
+						<img width="2em" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" style="height:31.9965px !important;width:31.9965px !important;" />
+					</div>
+					<p style="text-align:justify;">
+						<strong>▮Q：我凭校友认同卡就可以直接进出图书馆，并享有在馆内阅览书刊等服务了吗？</strong>
+					</p>
+					<p style="text-indent:0em;text-align:justify;">
+						<span>校友在学生活动中心开通校内功能后，还需到图书馆借还台开通图书馆功能，方可享受馆内阅览书刊、检索数据库资源等服务。</span>
+					</p>
+					<p style="text-indent:0em;text-align:justify;">
+						开通地点：湘大图书馆一楼总借还台。
+					</p>
+					<p style="text-indent:0em;text-align:justify;">
+						服务时间：
+					</p>
+					<p style="text-indent:0em;text-align:justify;">
+						周一至周五：8:10-20:00，
+					</p>
+					<p style="text-indent:0em;text-align:justify;">
+						周六：9:00-12:00，13:30-16:30
+					</p>
+					<p style="text-indent:0em;">
+						<br />
+					</p>
+					<p style="text-align:justify;">
+						<strong>▮Q：图书馆相关功能的有效期是多长时间？到期后，如何延期？</strong>
+					</p>
+					<p style="text-indent:0em;text-align:justify;">
+						<span>每次有效期为2年，到期后需重新申请。</span>
+					</p>
+					<p style="text-indent:0em;text-align:justify;">
+						<span>延期需先到大学生活动中心激活卡后，再来图书馆开通。</span>
+					</p>
+					<p style="text-indent:0em;text-align:justify;">
+	<span><br />
+</span>
+					</p>
+					<p style="text-align:justify;">
+						<strong>▮Q：图书馆什么时间开放？</strong>
+					</p>
+					<p style="text-indent:0em;text-align:justify;">
+						<span>周一至周五：8：10-22：00，周六、日：9：00-22：00。</span>
+					</p>
+					<p style="text-indent:0em;text-align:justify;">
+						<span>阅览室的开放时间请查询图书馆主页。</span>
+					</p>
+					<p style="text-indent:0em;text-align:justify;">
+	<span><br />
+</span>
+					</p>
+					<p style="text-align:justify;">
+						<strong>▮Q：我想在馆内上网检索学校数据库资源，有哪些途径？</strong>
+					</p>
+					<p style="text-indent:0em;text-align:justify;">
+						<span>可在一楼信息聚合港和7楼电子阅览空间进行检索和查看。</span>
+					</p>
+					<p style="text-indent:0em;text-align:justify;">
+	<span><br />
+</span>
+					</p>
+					<p style="text-align:justify;">
+						<strong>▮Q：我可以使用图书馆内的自助打印机吗？如果可以，如何收费？</strong>
+					</p>
+					<p style="text-indent:0em;text-align:justify;">
+						<span>可以刷校友认同卡使用。A4 0.1元/页，具体可查询图书馆主页。</span>
+					</p>
+					<p style="text-indent:0em;">
+	<span><br />
+</span>
+					</p>
+					<div style="text-align:center;">
+						<img width="2em" src="http://mmbiz.qpic.cn/mmbiz_png/EBePkXqP70FOexN542cxdrDK2t4dBFzzsHHV8odmfk6kks72jgpdKH2OfKNmbfQTQweYTqpNg3lEa02j4YNibibg/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" class="" style="height:auto !important;width:2em !important;" />
+					</div>
+					<p style="text-align:center;">
+						<strong>&nbsp;场 馆 篇&nbsp;</strong>
+					</p>
+					<div style="text-align:center;">
+						<img width="2em" src="http://mmbiz.qpic.cn/mmbiz_png/EBePkXqP70FOexN542cxdrDK2t4dBFzzmzwbQXT2tqlQEy5icXYic7us4GAnko0jz1iaeCM4sAE4prnLPGxE1V4CA/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" class="" style="height:auto !important;width:2em !important;" />
+					</div>
+					<p style="text-align:justify;">
+						<strong>▮Q：校史馆、校友馆和商学博物馆对校友开放吗？哪些时间段开放?</strong>
+					</p>
+					<p style="text-indent:0em;text-align:justify;">
+						<span>校友可凭校友认同卡免费参观校史馆、校友馆和商学博物馆。开放时间段将公布在档案馆主页，敬请留意。</span>
+					</p>
+					<p style="text-indent:0em;text-align:justify;">
+	<span><br />
+</span>
+					</p>
+					<p style="text-align:justify;">
+						<strong>▮Q：参观时，有语音导览服务或者讲解服务吗？</strong>
+					</p>
+					<p style="text-indent:0em;text-align:justify;">
+						<span>参观时，校友可关注馆内微信公众号，并享受免费的语音导览服务。如需讲解服务，需以团体为单位通过校友总会或学院等校内有关单位进行预约。</span>
+					</p>
+					<p style="text-indent:0em;text-align:justify;">
+	<span><br />
+</span>
+					</p>
+					<p style="text-align:justify;">
+						<strong>▮Q：湘大体育馆面向校友开放吗？我凭借校友认同卡办理健身卡享有优惠政策吗？</strong>
+					</p>
+					<p style="text-indent:0em;text-align:justify;">
+						<span>校友可凭卡在开放时间至湘大体育馆前台办理健身卡，享受校内师生优惠政策，以具体规定为准。</span>
+					</p></div>
+			</div>
+		</article>
+	</div>
+
+
+	<div class="container-fluid fh5co_footer_bg pb-3" style="background: rgb(139, 0, 0)">
+		<div class="container animate-box">
+			<div class="row">
+				<div class="col-12 spdp_right py-5"><img src="../static/static/img/logo.png" alt="img" class="footer_logo"/></div>
+				<div class="clearfix"></div>
+				<div class="col-12 col-md-4 col-lg-3">
+					<div class="footer_main_title py-3">湘潭大学公共管理学院校友会</div>
+					<div class="footer_sub_about pb-3"> 湘潭大学公共管理学院成立于2007年，是在原来人文学院、信息管理系、管理学院相关专业和学科整合基础上发展而来的。学院办学基础良好，学术积淀深厚，精英人才荟萃。学院成立以来，秉承湘潭大学“博学笃行，盛德日新”的校训，弘扬学院“公为天下”的精神，在师资队伍、人才培养、科学研究、学科建设等方面取得了可喜的成绩，并在跻身国内一流公共管理学院的道路上迈出了重要的步伐。
+					</div>
+				</div>
+				<div class="col-12 col-md-12 col-lg-4 " style="margin-left: 50px">
+					<div class="footer_main_title py-3"> 联系我们</div>
+					<div><span>院  长：盛明科</span> <span class = "right_padding">办公地点：公管楼309</span></div>
+					<div><span>联系电话：0731-58292890</span></div>
+					<div><span>Email: 354939403@qq.com</span></div><br/>
+					<div><span>党委书记：陈长明 </span> <span class = "right_padding">办公地点：公管楼303</span></div>
+					<div><span>联系电话：0731-58298532</span> <br/><span>Email: ccm1@xtu.edu.cn</span> </div><br/>
+					<div><span>副院长：王凯伟 </span> <span class = "right_padding">办公地点：公管楼301 </span></div>
+					<div><span>联系电话：0731-58298519 </span> <br/><span>Email: wangkw168@126.com</span></div><br/>
+					<div><span>副院长：毛太田 </span> <span class = "right_padding">办公地点：公管楼310 </span></div>
+					<div><span>联系电话：0731-58293695</span> <br/><span>Email: iaiafang@yeah.net</span></div><br/>
+				</div>
+				<div class="col-12 col-md-12 col-lg-4 ">
+					<div class="footer_main_title py-3"> 联系我们</div>
+					<div><span>副院长：谭九生</span> <span class = "right_padding">办公地点：公管楼307</span></div>
+					<div><span>联系电话：0731-58298303 </span></div>
+					<div><span>Email: 1572346084@qq.com</span></div><br/>
+					<div><span>副书记：谷立平 </span> <span class = "right_padding">办公地点：公管楼311</span></div>
+					<div><span>联系电话：0731-58293735</span> <br/><span>Email: 20240917@qq.com</span> </div><br/>
+					<div><span>院长助理：罗泽意 </span> <span class = "right_padding">办公地点：公管楼319 </span></div>
+					<div><span>联系电话：0731-58298296转8006 </span> <br/><span>Email: luozy83@163.com </span></div><br/>
+					<div><span>院长助理：刘超 </span> <span class = "right_padding">办公地点：公管楼316 </span></div>
+					<div><span>联系电话：0731-58298296转8007</span> <br/><span>Email: yifang0709@foxmail.com </span></div><br/>
+				</div>
+			</div>
+			<div class="row justify-content-center pt-2 pb-4">
+				<span>友情链接：</span>
+				<span><a href = "http://glxy.xtu.edu.cn/" target="_blank" style="color: white;margin-right: 15px">湘潭大学公共管理学院</a></span>
+				<span><a href = "http://www.xtu.edu.cn/" target="_blank" style="color: white;margin-right: 15px">湘潭大学</a></span>
+				<span><a href = "http://xyzh.xtu.edu.cn/" target="_blank" style="color: white;margin-right: 15px">湘潭大学校友会</a></span><br/>
+			</div>
+			<div class="row justify-content-center pt-2 pb-4">
+				<span style="margin-right: 15px">地址：湖南省湘潭市雨湖区湘潭大学</span>
+				<span style="margin-right: 15px">邮编：411105</span>
+				<span style="margin-right: 15px">院训：公为天下，管益千秋</span>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="cd-user-modal">
+			<div class="cd-user-modal-container">
+				<ul class="cd-switcher">
+					<li class="on">
+						<a href="#0">用户名密码登录</a>
+					</li>
+					<li>
+						<a href="#0">手机验证码登录</a>
+					</li>
+				</ul>
+
+				<div id="cd-login">
+					<!-- 用户名密码登录 -->
+					<form class="cd-form">
+						<p class="fieldset">
+							<label class="image-replace cd-username" for="signin-username">用户名</label>
+							<input class="full-width has-padding has-border" id="signin-username" type="text" placeholder="输入用户名"/>
+						</p>
+
+						<p class="fieldset">
+							<label class="image-replace cd-password" for="signin-password">密码</label>
+							<input class="full-width has-padding has-border" id="signin-password" type="text" placeholder="输入密码"/>
+						</p>
+
+						<div id="zhuce">
+							<p id="zhuce1">还没账号？
+								<a href="../templates/Register.html">立即注册</a>
+							</p>
+							<p id="zhuce2">
+								<a href="forgetPassword">忘记密码？</a>
+							</p>
+						</div>
+
+						<p class="fieldset">
+							<input class="full-width2" type="submit" value="登 录" onclick="login_1()"/>
+						</p>
+					</form>
+				</div>
+
+				<div id="cd-signup">
+					<!-- 手机验证码登录 -->
+					<form class="cd-form">
+						<p class="fieldset">
+							<label class="image-replace cd-username" for="signup-username">手机号</label>
+							<input class="full-width has-padding has-border" id="signup-username" type="text" placeholder="输入手机号"/>
+						</p>
+
+						<p class="fieldset">
+							<label class="image-replace cd-email" for="signup-email">验证码</label>
+							<input class="full-width has-padding has-border" id="signup-email" type="email" placeholder="输入验证码"/>
+						</p>
+
+						<p class="">
+							<!--<label class="image-replace cd-password" for="signup-password">密码</label>-->
+							<!--<input class="full-width has-padding has-border" id="signup-password" type="text"  placeholder="输入密码">-->
+							<input id="btn" class="yan" type="button" value="获取验证码" onclick="send()"/>
+						</p>
+
+						<p class="fieldset">
+							<input class="full-width2" type="submit" value="登录" onclick="login_2()"/>
+						</p>
+					</form>
+				</div>
+
+				<a href="#0" class="cd-close-form">关闭</a>
+			</div>
+		</div>
+	</div>
+
+
+	<script src="../static/static/js/modernizr-3.5.0.min.js"></script>
+	<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+	<script src="../static/static/js/banner.js" type="text/javascript"></script>
+	<script src="../static/static/js/login.js" type="text/javascript"></script>
+	<script src="../static/static/js/jquery.min.js"></script>
+	<script type="text/javascript" src="http://www.sucaihuo.com/Public/js/other/jquery.js"></script>
+
+</body>
+
+</html>

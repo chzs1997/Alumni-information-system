@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8" />
+		<title>用户注册</title>
+		<link rel="stylesheet" href="static/static/css/base.css" />
+		<link rel="stylesheet" href="static/static/css/layout.css" />
+		<link rel="stylesheet" type="text/css" href="static/static/css/Professional.css" />
+		<link rel="stylesheet" href="static/static/css/HomePage.css" />
+		<script type="text/javascript" src="static/static/js/jquery-1.8.3.min.js"></script>
+		<script type="text/javascript" src="static/static/js/jquery.min.js"></script>
+		<script type="text/javascript" src="static/static/js/jquery2.1.1.min.js"></script>
+		<script type="text/javascript" src="static/static/js/province.js" defer="defer"></script>
+		<script type="text/javascript" src="static/static/js/basic.js"></script>
+		<script type="text/javascript" src="static/static/js/jquery-1.8.31.min.js" ></script>
+		<script type="text/javascript" src="static/static/js/birthPlaceProvince.js" defer="defer"></script>
+		<script type="text/javascript" src="static/static/js/yanzheng.js" ></script>
+		<script type="text/javascript" src="static/static/js/zhuanye.js"></script>
+		<script type="text/javascript" src="static/static/js/nianji.js"></script>
+		<script type="text/javascript" src="static/static/js/education.js"></script>
+	</head>
+
+	<body>
+		
+		<div id="top">
+			<!--<div id="top1"><span id="login">登录</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>注册</span></div>-->
+			<img id="logo" src="static/static/img/logo.png" />
+			<span id="title">公共管理学院校友会</span>
+		</div>
+
+		<div id="wrapper">
+			<div class="container w960 mt20">
+				<div id="processor">
+					<ol class="processorBox oh">
+						<li class="current">
+							<div class="step_inner fl">
+								<span class="icon_step">1</span>
+								<h4>填写基本信息</h4>
+							</div>
+						</li>
+						<li>
+							<div class="step_inner">
+								<span class="icon_step">2</span>
+								<h4>注册验证</h4>
+							</div>
+						</li>
+						<li>
+							<div class="step_inner fr">
+								<span class="icon_step">3</span>
+								<h4>完善用户资料</h4>
+							</div>
+						</li>
+					</ol>
+					<div class="step_line"></div>
+				</div>
+				<div class="content">
+					<div id="step1" class="step hide">
+						<form action="" method="post" id="step1_frm">
+							<div class="frm_control_group">
+								<label class="frm_label">姓名</label>
+								<div class="frm_controls">
+									<input type="text" name="" class="frm_input email" maxlength="32" id = "userName"/>
+								</div>
+							</div>
+							<div class="frm_control_group">
+								<label class="frm_label">身份证号</label>
+								<div class="frm_controls">
+									<input type="text" name="" class="frm_input ID" id = "userIdNumber" onblur="checkIdentity()"/>
+								</div>
+							</div>
+							<div class="frm_control_group">
+								<label class="frm_label">手机号</label>
+								<div class="frm_controls">
+									<input type="text" name="" class="frm_input tel" id = "phone"  onblur="phoneCheck()"/>
+									<!--<input type="button" value="获取验证码" class="btn btn_default" />-->
+								</div>
+							</div>
+							<div class="frm_control_group">
+								<label class="frm_label">密码</label>
+								<div class="frm_controls">
+									<input type="password" name="pwd" class="frm_input passwd" id = "password" onblur="check_pwd()"/>
+									<p class="frm_tips">字母、数字或者英文符号，最短6位，区分大小写</p>
+									<p id = "err_pwd"></p>
+								</div>
+							</div>
+							<div class="frm_control_group">
+								<label class="frm_label">再次输入密码</label>
+								<div class="frm_controls">
+									<input type="password" name="pwd2" class="frm_input passwd2" id = "password2" onblur="check_pwd2()"/>
+									<p id = "err_pwd2"></p>
+								</div>
+							</div>
+							<div class="toolBar">
+								<a id="nextBtn" class="btn btn_primary" onclick="btn1()" href="javascript:;">下一步</a>
+							</div>
+						</form>
+					</div>
+					
+					<div id="step2" class="step hide">
+						<div class="w330">
+							<label >手机号</label>
+								<div>
+									<input type="text" name="" class="frm_input tel" id = "Contact"/>
+									<input type="button" value="获取验证码" id="btn" onclick="send()"/><br/>
+									<input type="text" name="" class="frm_input tel" id = "code" placeholder="请输入验证码"/>
+								</div>
+								<br /><br />
+						<a class="btn btn_primary" id="btn2" onclick="btn2()" href="javascript:;" >下一步</a>
+						</div>
+					</div>
+				
+					<div id="step3" class="step hide">
+						<form action="" method="post" id="step3_frm">
+							<div class="frm_control_group">
+								<label class="frm_label">用户名</label>
+								<div class="frm_controls">
+									<input type="text" name="" class="frm_input name" maxlength="32" id = "nickname"/>
+								</div>
+							</div>
+							<div class="frm_control_group">
+								<label class="frm_label">性别</label>
+								<input type="radio" value="1" name="sex" />男
+								<input type="radio" value="2" name="sex" />女
+							</div>
+
+							<div class="frm_control_group">
+								<label class="frm_label">籍贯</label>
+								<select name="province" id="birthplaceProvince">
+									<option value="请选择城市" >请选择省份</option>
+								</select>
+								<select name="city" id="birthplaceCity">
+									<option value="请选择城市">请选择城市</option>
+								</select>
+							</div>
+
+
+							<div class="content3 frm_control_group">
+								<label class="frm_label">学历</label>
+								<div class="select2">
+									<p data-value="选择选项">选择选项</p>
+									<ul>
+										<li data-value="选择选项" class="Selected">选择选项</li>
+										<li data-value="本科" >本科</li>
+										<li data-value="硕士" >硕士</li>
+										<li data-value="博士" >博士</li>
+										<li data-value="博士后" >博士后</li>
+										<li data-value="院士" >院士</li>
+									</ul>
+								</div>
+							</div>
+
+
+							<div class="content1 frm_control_group">
+								<label class="frm_label">年级</label>
+								<div class="select1">
+									<p data-value="选择选项">选择选项</p>
+									<ul>
+										<li data-value="选择选项" class="Selected">选择选项</li>
+										<li data-value="2019届" >2019届</li>
+										<li data-value="2018届" >2018届</li>
+										<li data-value="2017届" >2017届</li>
+										<li data-value="2016届" >2016届</li>
+										<li data-value="2015届" >2015届</li>
+										<li data-value="2014届" >2014届</li>
+										<li data-value="2013届" >2013届</li>
+										<li data-value="2012届" >2012届</li>
+										<li data-value="2011届" >2011届</li>
+									</ul>
+								</div>
+							</div>
+							<div class=" content2 frm_control_group">
+							  <label class="frm_label zhuanye">专业</label>
+								<div class="select">
+								
+									<p data-value="选择选项">选择选项</p>
+									<ul>
+										<li data-value="选择选项" class="Selected">选择选项</li>
+										<li data-value="信息管理与信息系统1班">信息管理与信息系统1班</li>
+										<li data-value="信息管理与信息系统2班">信息管理与信息系统2班</li>
+										<li data-value="数字出版">数字出版</li>
+										<li data-value="行政管理1班">行政管理1班</li>
+										<li data-value="行政管理2班">行政管理2班</li>
+										<li data-value="政治学与行政学1班">政治与行政学1班</li>
+										<li data-value="政治学与行政学2班">政治与行政学2班</li>
+										<li data-value="公共事业与管理">公共事业管理</li>
+										<li data-value="档案学">档案学</li>
+									</ul>
+								</div>
+							</div>
+							<div class="frm_control_group">
+								<label class="frm_label">工作地点</label>
+								<select name="province" id="province">
+									<option value="请选择城市" >请选择省份</option>
+								</select>
+								<select name="city" id="city">
+									<option value="请选择城市">请选择城市</option>
+								</select>
+							</div>
+
+							<div class="frm_control_group">
+								<label class="frm_label">工作单位</label>
+								<div class="frm_controls">
+									<input type="text" name="" class="frm_input name" maxlength="32" id = "workPlace"/>
+								</div>
+							</div>
+							<div class="frm_control_group">
+								<label class="frm_label">工作职位</label>
+								<div class="frm_controls">
+									<input type="text" name="" class="frm_input name" maxlength="32" id = "workPosition"/>
+								</div>
+							</div>
+							<div class="toolBar">
+								<a id="finishedBtn" class="btn btn_primary"  onclick="btn_add()">完成</a>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+
+</html>
