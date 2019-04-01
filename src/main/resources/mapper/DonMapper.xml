@@ -17,6 +17,27 @@
     donation
   </sql>
 
+    <resultMap id="donationAmount" type="java.util.HashMap">
+        <result property="key" column = "time"/>
+        <result property="value" column = "amount"/>
+    </resultMap>
+
+    <select id="findAmountLast5Months" resultMap="donationAmount">
+        select date_format(DON_TIME,"%Y%m") as time,sum(DON_AMOUNT) amount
+        from donation
+        where TIMESTAMPDIFF(MONTH,DON_TIME,now()) &lt;=5 and DON_PROPERTY = 1
+        group by time
+        order by time
+    </select>
+
+    <select id="findAmountLast5MonthsAnonymous" resultMap="donationAmount">
+        select date_format(DON_TIME,"%Y%m") as time,sum(DON_AMOUNT) amount
+        from donation
+        where TIMESTAMPDIFF(MONTH,DON_TIME,now()) &lt;=5 and DON_PROPERTY = 2
+        group by time
+        order by time
+    </select>
+
     <!--查询所有行程-->
     <select id="selectDonation" resultType="com.winterchen.model.Donation">
         SELECT
@@ -69,13 +90,13 @@
     <!--查询上月捐赠金额-->
     <select id="findAmountLastMonth" resultType="integer">
         select sum(DON_AMOUNT) AS DON_AMOUNT
-        from dondation
+        from donation
         where datediff(DON_TIME,now()) &lt;=30
     </select>
 
     <!--查询合计捐赠金额-->
     <select id="findAmountTotal" resultType="integer">
         select sum(DON_AMOUNT) AS DON_AMOUNT
-        from dondation
+        from donation
     </select>
 </mapper>

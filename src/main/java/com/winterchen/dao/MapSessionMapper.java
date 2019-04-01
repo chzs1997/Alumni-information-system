@@ -30,4 +30,22 @@ public class MapSessionMapper extends SqlSessionDaoSupport {
         Map<Integer,Integer> map = handler.getMappendResults();
         return map;
     }
+
+    @SuppressWarnings("unchecked")
+    public Map<Integer,Integer> findAmountLast5Months(){
+        MapResultHander handler = new MapResultHander();
+
+        this.getSqlSession().select(DonationDao.class.getName()+".findAmountLast5Months",handler);
+        Map<Integer,Integer> map = handler.getMappendResults();
+        return map;
+    }
+
+    @SuppressWarnings("unchecked")
+    public Map<Integer,Integer> findAmountLast5MonthsAnonymous(){
+        MapResultHander handler = new MapResultHander();
+
+        this.getSqlSession().select(DonationDao.class.getName()+".findAmountLast5MonthsAnonymous",handler);
+        Map<Integer,Integer> map = handler.getMappendResults();
+        return map;
+    }
 }

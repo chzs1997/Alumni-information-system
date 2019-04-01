@@ -2,6 +2,8 @@ package com.winterchen.dao;
 
 import com.winterchen.model.Donation;
 
+import java.util.List;
+
 /**
  * @Author: liuzipan
  * @Description
@@ -34,4 +36,9 @@ public interface DonationDao {
      * 查询合计捐赠金额
      * */
     int findAmountTotal();
+
+    /*
+     * 查询近5个月捐赠数量
+     * */
+    List<Donation> findAmountLast5Months();
 }

@@ -1,10 +1,13 @@
 package com.winterchen.service.impl;
 
 import com.winterchen.dao.DonationDao;
+import com.winterchen.dao.MapSessionMapper;
 import com.winterchen.model.Donation;
 import com.winterchen.service.DonationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Map;
 
 /**
  * @Author: liuzipan
@@ -17,6 +20,9 @@ public class DonationServiceImpl implements DonationService {
 
     @Autowired
     private DonationDao donationDao;
+
+    @Autowired
+    MapSessionMapper mapSessionMapper;
 
     @Override
     public int donationKeep(int userId, int donProperty, String donItem, int donAmount) {
@@ -41,5 +47,17 @@ public class DonationServiceImpl implements DonationService {
     @Override
     public int findAmountTotal() {
         return donationDao.findAmountTotal();
+    }
+
+    @Override
+    public Map<Integer, Integer> findAmountLast5Months() {
+        Map<Integer,Integer> mapAmount = mapSessionMapper.findAmountLast5Months();
+        return mapAmount;
+    }
+
+    @Override
+    public Map<Integer, Integer> findAmountLast5MonthsAnonymous() {
+        Map<Integer,Integer> mapAmount = mapSessionMapper.findAmountLast5MonthsAnonymous();
+        return mapAmount;
     }
 }

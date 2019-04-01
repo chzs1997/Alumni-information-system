@@ -9,11 +9,16 @@ var  date1,date1Num
     ,date6,date6Num
     ,date7,date7Num
 
-var donationMonth1,donationMonth1Amount
-    ,donationMonth2,donationMonth2Amount
-    ,donationMonth3,donationMonth3Amount
-    ,donationMonth4,donationMonth4Amount
-    ,donationMonth5,donationMonth5Amount
+var donationMonth1,donationMonth1AmountReal
+    ,donationMonth2,donationMonth2AmountReal
+    ,donationMonth3,donationMonth3AmountReal
+    ,donationMonth4,donationMonth4AmountReal
+    ,donationMonth5,donationMonth5AmountReal
+    ,donationMonth1AmountAnonymous
+    ,donationMonth2AmountAnonymous
+    ,donationMonth3AmountAnonymous
+    ,donationMonth4AmountAnonymous
+    ,donationMonth5AmountAnonymous
 
 var newsMonth1,newsMonth1Amount
     ,newsMonth2,newsMonth2Amount
@@ -66,6 +71,76 @@ jQuery(document).ready(function ($) {
         error: function f() {
         }
     });
+    $.ajax({
+        url: BASE_PATH + "/manager/findAmountLast5MonthsReal",
+        type: "post",
+        dateType: "json",
+        data: {},
+        async: false,
+        success: function f(data) {
+            var j = 1;
+            for(var i in data){
+                switch (j) {
+                    case 1:
+                        donationMonth1 = i;
+                        donationMonth1AmountReal = data[i];
+                        break;
+                    case 2:
+                        donationMonth2 = i;
+                        donationMonth2AmountReal = data[i];
+                        break;
+                    case 3:
+                        donationMonth3 = i;
+                        donationMonth3AmountReal = data[i];
+                        break;
+                    case 4:
+                        donationMonth4 = i;
+                        donationMonth4AmountReal = data[i];
+                        break;
+                    case 5:
+                        donationMonth5 = i;
+                        donationMonth5AmountReal = data[i];
+                        break;
+                }
+                j++;
+            }
+            $.ajax({
+                url: BASE_PATH + "/manager/findAmountLast5MonthsAnonymous",
+                type: "post",
+                dateType: "json",
+                data: {},
+                async: false,
+                success: function f(data) {
+                    var j = 1;
+                    for(var i in data){
+                        switch (j) {
+                            case 1:
+                                donationMonth1AmountAnonymous = data[i];
+                                break;
+                            case 2:
+                                donationMonth2AmountAnonymous = data[i];
+                                break;
+                            case 3:
+                                donationMonth3AmountAnonymous = data[i];
+                                break;
+                            case 4:
+                                donationMonth4AmountAnonymous = data[i];
+                                break;
+                            case 5:
+                                donationMonth5AmountAnonymous = data[i];
+                                break;
+                        }
+                        j++;
+                    }
+
+                },
+                error: function f() {
+                }
+            });
+        },
+        error: function f() {
+        }
+    });
     //近一周用户注册量
     new Chart(document.getElementById("myChart1").getContext('2d'), {
         type: 'bar',
@@ -109,31 +184,16 @@ jQuery(document).ready(function ($) {
     new Chart(document.getElementById("myChart2"), {
         type: 'line',
         data: {
-            labels: [1850,1900,1950,1999,2050],
+            labels: [donationMonth5,donationMonth4,donationMonth3,donationMonth2,donationMonth1],
             datasets: [{
-                data: [111,133,221,783,2478],
+                data: [donationMonth5AmountReal,donationMonth4AmountReal,donationMonth3AmountReal,donationMonth2AmountReal,donationMonth1AmountReal],
                 label: '',
                 borderColor: "#3e95cd",
                 fill: false
             }, {
-                data: [809,947,1402,3700,5267],
+                data: [donationMonth5AmountAnonymous,donationMonth4AmountAnonymous,donationMonth3AmountAnonymous,donationMonth2AmountAnonymous,donationMonth5AmountAnonymous],
                 label: '',
                 borderColor: "#8e5ea2",
-                fill: false
-            }, {
-                data: [276,408,547,675,734],
-                label: '',
-                borderColor: "#3cba9f",
-                fill: false
-            }, {
-                data: [38,74,167,508,784],
-                label: '',
-                borderColor: "#e8c3b9",
-                fill: false
-            }, {
-                data: [26,82,172,312,433],
-                label: '',
-                borderColor: "#c45850",
                 fill: false
             }
             ]

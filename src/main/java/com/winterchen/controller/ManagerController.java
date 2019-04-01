@@ -116,4 +116,26 @@ public class ManagerController {
         Map<Integer,Integer> hashMap =  userService.findUserAmountLastWeek();
         return hashMap;
     }
+
+    /*
+    *
+    * 近5个月实名捐赠金额
+    * */
+    @ResponseBody
+    @RequestMapping(value = "/findAmountLast5MonthsReal")
+    public Object findAmountLast5Months(){
+        Map<Integer,Integer> hashMap =  donationService.findAmountLast5Months();
+        return hashMap;
+    }
+
+    /*
+     *
+     * 近5个月匿名捐赠金额
+     * */
+    @ResponseBody
+    @RequestMapping(value = "/findAmountLast5MonthsAnonymous")
+    public Object findAmountLast5MonthsAnonymous(){
+        Map<Integer,Integer> hashMap =  donationService.findAmountLast5MonthsAnonymous();
+        return hashMap;
+    }
 }

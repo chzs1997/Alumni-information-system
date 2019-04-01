@@ -3,6 +3,8 @@ package com.winterchen.service;
 import com.winterchen.model.Donation;
 import org.springframework.stereotype.Service;
 
+import java.util.Map;
+
 /**
  * @Author: liuzipan
  * @Description
@@ -36,4 +38,14 @@ public interface DonationService {
      * 查询合计捐赠金额
      * */
     int findAmountTotal();
+
+    /*
+    * 查询近5个月实名捐赠数量
+    * */
+    Map<Integer,Integer> findAmountLast5Months();
+
+    /*
+     * 查询近5个月匿名捐赠数量
+     * */
+    Map<Integer,Integer> findAmountLast5MonthsAnonymous();
 }
