@@ -2,9 +2,7 @@ package com.winterchen.controller;
 
 import com.winterchen.conf.MyWebAppConfigurer;
 import com.winterchen.model.Manager;
-import com.winterchen.service.DonationService;
-import com.winterchen.service.ManagerService;
-import com.winterchen.service.UserService;
+import com.winterchen.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,6 +30,12 @@ public class ManagerController {
     @Autowired
     private DonationService donationService;
 
+    @Autowired
+    private LoginLogService loginLogService;
+
+    @Autowired
+    private ManagerLogService managerLogService;
+
     /*
     *
     * 用户登陆
@@ -50,6 +54,8 @@ public class ManagerController {
         } else {
             //数据库中有该用户
             // 设置session
+            managerLogService.save(i.getManagerId(),i.getManagerName(),i.getManagerIdentity(),i.getManagerGender());
+
             session.setAttribute(MyWebAppConfigurer.SESSION_KEY, i.getManagerId());
             session.setAttribute("managerName", i.getManagerName());
             session.setAttribute("managerPassword", i.getManagerPassword());
@@ -137,5 +143,36 @@ public class ManagerController {
     public Object findAmountLast5MonthsAnonymous(){
         Map<Integer,Integer> hashMap =  donationService.findAmountLast5MonthsAnonymous();
         return hashMap;
+    }
+
+    /*
+    *
+    * 查询最近用户登陆情况
+    * */
+    @ResponseBody
+    @RequestMapping(value = "/findUserLoginLog")
+    public Object findUserLoginLog(
+            @RequestParam(name = "pageNum", required = false, defaultValue = "1")
+                    int pageNum,
+            @RequestParam(name = "pageSize", required = false, defaultValue = "9")
+                    int pageSize
+    ){
+        return loginLogService.selectLog(pageNum,pageSize);
+    }
+
+
+    /*
+     *
+     * 查询最近管理员登陆情况
+     * */
+    @ResponseBody
+    @RequestMapping(value = "/findManagerLoginLog")
+    public Object findManagerLoginLog(
+            @RequestParam(name = "pageNum", required = false, defaultValue = "1")
+                    int pageNum,
+            @RequestParam(name = "pageSize", required = false, defaultValue = "3")
+                    int pageSize
+    ){
+        return managerLogService.selectLog(pageNum,pageSize);
     }
 }

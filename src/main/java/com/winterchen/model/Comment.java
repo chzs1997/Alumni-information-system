@@ -22,6 +22,9 @@ public class Comment {
     //评论时间
     private Date commentTime;
 
+    //评论时间
+    private Integer commentType;
+
     //评论邮箱
     private String commentMail;
 

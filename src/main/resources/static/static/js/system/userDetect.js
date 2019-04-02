@@ -21,6 +21,7 @@ jQuery(document).ready(function($) {
                 if(managerName != null){
                     $("#username_navigator").text(managerName);
                     $("#username_right").text(managerName);
+                    $("#username_bottom").text(managerName);
                     $("#userIdentity_right").text(identity);
                 }
             }

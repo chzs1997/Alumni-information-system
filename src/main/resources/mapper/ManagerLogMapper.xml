@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.winterchen.dao.ManagerLogDao" >
+
+    <!-- 数据库表映射 -->
+    <resultMap id="managerLogRM" type="com.winterchen.model.ManagerLog">
+        <result property="loginId" column="LOGIN_Id"/>
+        <result property="managerId" column="MANAGER_Id"/>
+        <result property="managerName" column="MANAGER_NAME"/>
+        <result property="managerIdentity" column="MANAGER_IDENTITY"/>
+        <result property="managerGender" column="MANAGER_GENDER"/>
+        <result property="loginTime" column="LOGIN_TIME"/>
+    </resultMap>
+
+    <!--设置数据库表名-->
+    <sql id="BASE_TABLE">
+    managerlog
+    </sql>
+
+
+    <!--插入查询-->
+    <insert id="save" parameterType="com.winterchen.model.ManagerLog">
+      insert into managerlog
+      (MANAGER_ID,MANAGER_NAME,MANAGER_IDENTITY,MANAGER_GENDER)
+      values (#{managerId},#{managerName},#{managerIdentity},#{managerGender})
+    </insert>
+
+    <select id="selectUsers" resultMap="managerLogRM">
+       select MANAGER_NAME,MANAGER_IDENTITY,MANAGER_GENDER
+       from managerlog
+       order by LOGIN_TIME DESC
+    </select>
+
+
+
+</mapper>

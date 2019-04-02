@@ -3,6 +3,7 @@ package com.winterchen.controller;
 
 import com.winterchen.conf.MyWebAppConfigurer;
 import com.winterchen.model.UserDomain;
+import com.winterchen.service.LoginLogService;
 import com.winterchen.service.UserService;
 import com.winterchen.util.SendMessageUtil;
 import net.sf.json.JSONObject;
@@ -31,6 +32,9 @@ public class UserController extends HttpServlet {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private LoginLogService loginLogService;
 
     /*保存手机验证码*/
     static String verifyCode;
@@ -85,6 +89,7 @@ public class UserController extends HttpServlet {
         } else {
             //数据库中有该用户
             // 设置session
+            loginLogService.save(i.getUserId(),i.getUserName());  //在登陆日志中保存
             session.setAttribute(MyWebAppConfigurer.SESSION_KEY, i.getUserId());
             session.setAttribute("username", i.getUserName());
             session.setAttribute("password", i.getPassword());

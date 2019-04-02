@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.winterchen.dao.LoginLogDao" >
+
+    <!-- 数据库表映射 -->
+    <resultMap id="loginLogRM" type="com.winterchen.model.LoginLog">
+        <result property="loginId" column="LOGIN_ID"/>
+        <result property="userId" column="U_ID"/>
+        <result property="userName" column="U_NAME"/>
+        <result property="loginTime" column="LOGIN_Time"/>
+    </resultMap>
+
+    <!--设置数据库表名-->
+    <sql id="BASE_TABLE">
+    loginlog
+    </sql>
+
+    <!--分页查询-->
+    <insert id="save" parameterType="com.winterchen.model.LoginLog">
+      insert into loginlog
+      (U_ID,U_NAME)
+      values (#{userId},#{userName})
+    </insert>
+
+    <select id="selectUsers" resultMap="loginLogRM">
+       select U_NAME,LOGIN_TIME
+       from loginlog
+       order by LOGIN_TIME DESC
+    </select>
+
+
+
+</mapper>
