@@ -1,5 +1,6 @@
 package com.winterchen.controller;
 
+import com.winterchen.dao.NewsDao;
 import com.winterchen.service.NewsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,6 +25,9 @@ public class NewsController extends HttpServlet {
 
     @Autowired
     private NewsService newsService;
+
+    @Autowired
+    private NewsDao newsDao;
 
     /**
      * 文件上传具体实现方法;
@@ -132,6 +136,7 @@ public class NewsController extends HttpServlet {
             @RequestParam(name = "artId", required = false, defaultValue = "1")
                     int artId
     ){
+        newsDao.updateViewCounts(artId);
         return newsService.findNewsByartId(artId);
     }
 
@@ -189,6 +194,52 @@ public class NewsController extends HttpServlet {
     }
 
     /*
+    *
+    * 对评论点赞或者点踩
+    *
+    * */
+    @ResponseBody
+    @PostMapping("/addCounts")
+    public Object addCounts(
+            @RequestParam(name = "commentId") int commentId,
+            @RequestParam(name = "commentPraise", required = false, defaultValue = "0") int  commentPraise,
+            @RequestParam(name = "commentTread", required = false, defaultValue = "0") int commentTread
+    ){
+        newsService.addCounts(commentId,commentPraise,commentTread);
+        return 1;
+    }
+
+    /*
+     *
+     * 对新闻点赞
+     *
+     * */
+    @ResponseBody
+    @PostMapping("/praiseAdd")
+    public Object addCounts(
+            @RequestParam(name = "artId") int artId,
+            @RequestParam(name = "newsPraise", required = false, defaultValue = "0") int  newsPraise
+    ){
+        newsService.praiseAdd(artId,newsPraise);
+        return newsService.selectCounts(artId);
+    }
+
+    /*
+     *
+     * 初始化评论点赞数量
+     *
+     * */
+    @ResponseBody
+    @PostMapping("/coutsSeralize")
+    public Object addCounts(
+            @RequestParam(name = "artId") int artId
+    ){
+        return newsService.selectCounts(artId);
+    }
+
+
+
+    /*
      *
      * 初始化评论
      * */
@@ -197,6 +248,8 @@ public class NewsController extends HttpServlet {
     public Object serviceListSeralize(@RequestParam(name = "artType") int artType){
         return newsService.findNewsByartType(artType);
     }
+
+
 
 
 }

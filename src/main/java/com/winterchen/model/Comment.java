@@ -31,6 +31,12 @@ public class Comment {
     //评论内容
     private String commentContent;
 
+    //点赞次数
+    private Integer commentPraiseCounts;
+
+    //被踩次数
+    private Integer commentTreadCounts;
+
     //评论人姓名
     private String commentName;
 }

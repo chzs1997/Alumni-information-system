@@ -116,6 +116,11 @@ public class HomeController {
         return "Service_returnSchool";
     }
 
+    @RequestMapping("/Service_hotel")
+    public String Service_hotel(){
+        return "Service_hotel";
+    }
+
     @RequestMapping("/Service_list_detail")
     public String Service_list_detail(){
         return "Service_list_detail";

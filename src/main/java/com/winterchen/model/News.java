@@ -34,6 +34,15 @@ public class News {
     /*新闻内容*/
     private String artContent;
 
+    /*新闻浏览次数*/
+    private Integer artViewCounts;
+
+    /*新闻分享次数*/
+    private Integer artShareCounts;
+
+    /*新闻点赞次数*/
+    private Integer artPraiseCounts;
+
     /*新闻图片*/
     private String artImage;
 

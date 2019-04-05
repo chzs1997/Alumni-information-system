@@ -55,4 +55,19 @@ public interface NewsDao {
 
     //根据新闻类型寻找相关新闻
     List<News> findNewsByartType(@Param("artType") int artType);
+
+    //浏览次数增加
+    int updateViewCounts(@Param("artId") int artId);
+
+    //对评论点赞或者点踩
+    int addCounts(@Param("commentId") int commentId
+                 ,@Param("commentPraise") int commentPraise
+                 ,@Param("commentTread") int commentTread);
+
+    //对新闻点赞
+    int praiseAdd(@Param("artId") int artId
+                 ,@Param("newsPraise") int newsPraise);
+
+    //查找新闻点赞评论次数
+    News selectCounts(int artId);
 }

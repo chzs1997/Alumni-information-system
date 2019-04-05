@@ -72,7 +72,7 @@
     text-shadow: 0 2px 5px rgba(33, 33, 33, 0.5);
 }
 
-.card-c1 .:not([class*="text-"]) {
+.card-c1 :not([class*="text-"]) {
     color: #999999;
 }
 
@@ -262,7 +262,7 @@
     padding: 15px 15px 0;
 }
 
-.card-c2 .,
+.card-c2 ,
 .card-c2 label {
     font-size: 14px;
     font-weight: 400;

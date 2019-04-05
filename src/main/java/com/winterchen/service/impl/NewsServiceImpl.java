@@ -9,6 +9,7 @@ import com.winterchen.service.NewsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -105,5 +106,25 @@ public class NewsServiceImpl implements NewsService {
     @Override
     public List<News> findNewsByartType(int artType) {
         return newsDao.findNewsByartType(artType);
+    }
+
+    @Override
+    public int addCounts(int commentId, int commentPraise, int commentTread) {
+        return newsDao.addCounts(commentId,commentPraise,commentTread);
+    }
+
+    @Override
+    public int praiseAdd(int artId, int newsPraise) {
+        return newsDao.praiseAdd(artId, newsPraise);
+    }
+
+    @Override
+    public Object selectCounts(int artId) {
+        News i = newsDao.selectCounts(artId);
+        HashMap<String,Object> hashMap = new HashMap<>();
+        hashMap.put("artShareCounts",i.getArtShareCounts());
+        hashMap.put("artViesCounts",i.getArtViewCounts());
+        hashMap.put("artPraiseCounts",i.getArtPraiseCounts());
+        return hashMap;
     }
 }

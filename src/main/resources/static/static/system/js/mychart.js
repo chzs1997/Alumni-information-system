@@ -1,24 +1,19 @@
 //获取basePath，测试的话就能用就完了
 var obj = window.document.location;
 var BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));
-var  date1,date1Num
-    ,date2,date2Num
-    ,date3,date3Num
-    ,date4,date4Num
-    ,date5,date5Num
-    ,date6,date6Num
-    ,date7,date7Num
+var  date1,date1Num = 0
+    ,date2,date2Num = 0
+    ,date3,date3Num = 0
+    ,date4,date4Num = 0
+    ,date5,date5Num = 0
+    ,date6,date6Num = 0
+    ,date7,date7Num = 0
 
-var donationMonth1,donationMonth1AmountReal
-    ,donationMonth2,donationMonth2AmountReal
-    ,donationMonth3,donationMonth3AmountReal
-    ,donationMonth4,donationMonth4AmountReal
-    ,donationMonth5,donationMonth5AmountReal
-    ,donationMonth1AmountAnonymous
-    ,donationMonth2AmountAnonymous
-    ,donationMonth3AmountAnonymous
-    ,donationMonth4AmountAnonymous
-    ,donationMonth5AmountAnonymous
+var donationMonth1,donationMonth1AmountReal    ,donationMonth1AmountAnonymous
+    ,donationMonth2,donationMonth2AmountReal    ,donationMonth2AmountAnonymous
+    ,donationMonth3,donationMonth3AmountReal    ,donationMonth3AmountAnonymous
+    ,donationMonth4,donationMonth4AmountReal    ,donationMonth4AmountAnonymous
+    ,donationMonth5,donationMonth5AmountReal    ,donationMonth5AmountAnonymous
 
 var newsMonth1,newsMonth1Amount
     ,newsMonth2,newsMonth2Amount

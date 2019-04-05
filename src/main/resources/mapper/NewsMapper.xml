@@ -11,6 +11,9 @@
         <result property="artTitle" column="ART_TITLE"/>
         <result property="artSummary" column="ART_SUMMARY"/>
         <result property="artContent" column="ART_CONTENT"/>
+        <result property="artViewCounts" column="ART_VIEW_COUNTS"/>
+        <result property="artShareCounts" column="ART_SHARE_COUNTS"/>
+        <result property="artPraiseCounts" column="ART_PRAISE_COUNTS"/>
         <result property="artImage" column="ART_IMAGE"/>
         <result property="artLabel1" column="ART_LABEL1"/>
         <result property="artLabel2" column="ART_LABEL2"/>
@@ -24,6 +27,8 @@
         <result property="commentName" column="COMMENT_NAME"/>
         <result property="commentMail" column="COMMENT_MAIL"/>
         <result property="commentContent" column="COMMENT_CONTENT"/>
+        <result property="commentPraiseCounts" column="COMMENT_PRAISE_COUNTS"/>
+        <result property="commentTreadCounts" column="COMMENT_TREAD_COUNTS"/>
         <result property="artId" column="ART_ID"/>
     </resultMap>
 
@@ -164,6 +169,32 @@
         where ART_TYPE = #{artType}
         order by ART_TIME desc
         limit 3
+    </select>
+
+    <update id="updateViewCounts">
+        update news set ART_VIEW_COUNTS = ART_VIEW_COUNTS+1
+        where ART_ID = #{artId}
+    </update>
+
+    <update id="addCounts">
+    update comment
+    set COMMENT_PRAISE_COUNTS = COMMENT_PRAISE_COUNTS + #{commentPraise} ,
+        COMMENT_TREAD_COUNTS = COMMENT_TREAD_COUNTS+#{commentTread}
+	where COMMENT_ID = #{commentId}
+    </update>
+
+    <update id="praiseAdd">
+    update news
+    set ART_PRAISE_COUNTS = ART_PRAISE_COUNTS + #{newsPraise}
+	where ART_ID = #{artId}
+    </update>
+
+    <select id="selectCounts" resultMap="newsRM">
+        SELECT  ART_SHARE_COUNTS
+               ,ART_VIEW_COUNTS
+               ,ART_PRAISE_COUNTS
+        FROM   news
+        WHERE ART_ID = #{artId}
     </select>
 
 </mapper>

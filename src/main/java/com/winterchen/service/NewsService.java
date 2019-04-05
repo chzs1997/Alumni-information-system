@@ -45,4 +45,13 @@ public interface NewsService {
 
     //根据新闻类型寻找相关新闻
     List<News> findNewsByartType(int artType);
+
+    //对评论点赞或者点踩
+    int addCounts(int commentId, int commentPraise, int commentTread);
+
+    //对新闻点赞
+    int praiseAdd(int artId, int newsPraise);
+
+    //查找新闻点赞评论次数
+    Object selectCounts(int artId);
 }

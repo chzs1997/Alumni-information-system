@@ -29,6 +29,8 @@
         <result property="value" column = "num"/>
     </resultMap>
 
+
+    <!--近一周用户注册量-->
     <select id="findUserAmountLastWeek" resultMap="userAmount">
         select t.date as week
               ,count(*) num

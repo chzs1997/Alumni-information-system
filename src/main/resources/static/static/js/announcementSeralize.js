@@ -106,36 +106,36 @@ jQuery(document).ready(function () {
     });
 })
 
-function toggleColor(e) {
-    if(e.style.color == "red"){
-        e.style.color = "#747474";
-    }
-    else{
-        e.style.color = "red";
-    }
-}
+// function toggleColor(e) {
+//     if(e.style.color == "red"){
+//         e.style.color = "#747474";
+//     }
+//     else{
+//         e.style.color = "red";
+//     }
+// }
 
-$("#commentButton").on("click",function () {
-    var commentName = $("#commentName").val();
-    var commentMail = $("#commentMail").val();
-    var commentContent = $("#commentContent").val();
-    const artId = parseInt(window.location.href.split("?")[1].split("=")[1]);
-    const obj = window.document.location;
-    const BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));
-    //添加评论
-    $.ajax({
-        url: BASE_PATH + "/news/addComments",
-        type: "post",
-        dateType: "json",
-        data: {"commentName":commentName,"commentMail":commentMail,"commentContent":commentContent,"artId":artId},
-        async: false,
-        success: function f(data) {
-            if(data == 1){
-                alert("注册成功");
-                window.location.href = "news_detail.html?artId="+artId;
-            }
-        },
-        error: function f() {
-        }
-    });
-})
+// $("#commentButton").on("click",function () {
+//     var commentName = $("#commentName").val();
+//     var commentMail = $("#commentMail").val();
+//     var commentContent = $("#commentContent").val();
+//     const artId = parseInt(window.location.href.split("?")[1].split("=")[1]);
+//     const obj = window.document.location;
+//     const BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));
+//     //添加评论
+//     $.ajax({
+//         url: BASE_PATH + "/news/addComments",
+//         type: "post",
+//         dateType: "json",
+//         data: {"commentName":commentName,"commentMail":commentMail,"commentContent":commentContent,"artId":artId},
+//         async: false,
+//         success: function f(data) {
+//             if(data == 1){
+//                 alert("注册成功");
+//                 window.location.href = "news_detail.html?artId="+artId;
+//             }
+//         },
+//         error: function f() {
+//         }
+//     });
+// })

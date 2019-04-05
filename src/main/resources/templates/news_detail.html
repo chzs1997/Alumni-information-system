@@ -187,18 +187,7 @@
 
 
     <div class="entity_social">
-        <a href="#" class="icons-sm sh-ic">
-            <i class="fa fa-share-alt"></i>
-            <b>424</b> <span class="share_ic">分享</span>
-        </a>
-        <a href="#" class="icons-sm fb-ic"><i class="fa fa-wechat"></i></a>
-        <!--Twitter-->
-        <a href="#" class="icons-sm tw-ic"><i class="fa fa-qq"></i></a>
-        <!--Google +-->
-        <a href="#" class="icons-sm inst-ic"><i class="fa fa-renren"> </i></a>
-        <!--Linkedin-->
-        <a href="#" class="icons-sm tmb-ic"><i class="fa fa-weibo"> </i></a>
-        <!--Pinterest-->
+        <span>浏览次数：</span><b id = "newsViewCounts"></b>
     </div>
     <!-- entity_social -->
 
@@ -223,8 +212,20 @@
         <!-- entity_tag -->
 
         <div class="entity_social">
-            <span><i class="fa fa-share-alt"></i>424 <a href="#">分享</a> </span>
-            <span><i class="fa fa-comments-o"></i>4 <a href="#">评论</a> </span>
+            <span><i class="fa fa-thumbs-o-up entity_vote" aria-hidden="true" onclick="praise(this)" style="cursor: pointer;color: white"></i><b id = "praiseCounts">424 </b><a href="#">点赞</a> </span>
+            <span><i class="fa fa-comments-o"></i><b id = "commentsCounts">424 </b><a href="#">评论</a> </span>
+            <a href="#" class="icons-sm sh-ic">
+                <i class="fa fa-share-alt"></i>
+                <b id = "shareCounts">424</b> <span class="share_ic">分享</span>
+            </a>
+            <a href="#" class="icons-sm fb-ic"><i class="fa fa-wechat"></i></a>
+            <!--Twitter-->
+            <a href="#" class="icons-sm tw-ic"><i class="fa fa-qq"></i></a>
+            <!--Google +-->
+            <a href="#" class="icons-sm inst-ic"><i class="fa fa-renren"> </i></a>
+            <!--Linkedin-->
+            <a href="#" class="icons-sm tmb-ic"><i class="fa fa-weibo"> </i></a>
+            <!--Pinterest-->
         </div>
         <!-- entity_social -->
 
