@@ -216,4 +216,9 @@ public class HomeController {
     public String PersonalInfo(){
         return "PersonalInfo";
     }
+
+    @RequestMapping("/sysUserInfo")
+    public String sysUserInfo(){
+        return "sysUserInfo";
+    }
 }

@@ -2,11 +2,10 @@
 
 .banner {
 	width: 100%;
-	height: 600px;
+	height: 40%;
 	/*background-color: aqua;*/
 	overflow: hidden;
 	cursor: pointer;
-	top: 23px;
 }
 
 .imgbox {
@@ -29,14 +28,13 @@
 }
 
 .change {
-	height: 100px;
+	height: 10%;
 	display: block;
 	position: absolute;
 	z-index: 20;
 	opacity: 0.4;
 	transition: 0.4s;
-	top: 70%;
-	margin-top: -50px
+	top: 60%;
 }
 
 .change:hover {

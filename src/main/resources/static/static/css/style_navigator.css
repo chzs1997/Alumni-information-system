@@ -231,7 +231,7 @@ ul.social {
   float: left;
 }
 .rslides img {
-  height: auto;
+  /*height: auto;*/
   border: 0;
   }
 .callbacks_tabs{

@@ -48,4 +48,20 @@ public class MapSessionMapper extends SqlSessionDaoSupport {
         Map<Integer,Integer> map = handler.getMappendResults();
         return map;
     }
+
+    @SuppressWarnings("findNewsCommentCountsLastMonth")
+    public Map<Integer,Integer> findNewsCommentCountsLastMonth(){
+        MapResultHander handler = new MapResultHander();
+        this.getSqlSession().select(NewsDao.class.getName()+".findNewsCommentCountsLastMonth",handler);
+        Map<Integer,Integer> map = handler.getMappendResults();
+        return map;
+    }
+
+    @SuppressWarnings("findNewsViewCountsLastMonth")
+    public Map<Integer,Integer> findNewsViewCountsLastMonth(){
+        MapResultHander handler = new MapResultHander();
+        this.getSqlSession().select(NewsDao.class.getName()+".findNewsViewCountsLastMonth",handler);
+        Map<Integer,Integer> map = handler.getMappendResults();
+        return map;
+    }
 }

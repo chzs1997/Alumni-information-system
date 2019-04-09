@@ -162,9 +162,8 @@ function login_1() {
     var BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));
     var userName = $("#signin-username").val();
     var passWord = $("#signin-password").val();
-
     $.ajax({
-        url: BASE_PATH + "/user/check/",
+        url: BASE_PATH + "/user/check",
         type: "post",
         dateType: "json",
         data: {"userName": userName, "password": passWord},
@@ -200,7 +199,7 @@ function login_2() {
     var Code = $("#signup-email").val();
 
     $.ajax({
-        url: BASE_PATH + "/user/determine/",
+        url: BASE_PATH + "/user/determine",
         type: "post",
         dateType: "json",
         data: {"Code": Code},

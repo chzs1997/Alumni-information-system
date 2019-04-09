@@ -15,6 +15,9 @@ var donationMonth1,donationMonth1AmountReal    ,donationMonth1AmountAnonymous
     ,donationMonth4,donationMonth4AmountReal    ,donationMonth4AmountAnonymous
     ,donationMonth5,donationMonth5AmountReal    ,donationMonth5AmountAnonymous
 
+var viewCounts1,viewCounts2,viewCounts3,viewCounts4,viewCounts5
+var commentCounts1,commentCounts2,commentCounts3,commentCounts4,commentCounts5
+
 var newsMonth1,newsMonth1Amount
     ,newsMonth2,newsMonth2Amount
     ,newsMonth3,newsMonth3Amount
@@ -202,7 +205,123 @@ jQuery(document).ready(function ($) {
         }
     });
 
+    //近1个月新闻浏览量
+    $.ajax({
+        url: BASE_PATH + "/news/findNewsViewCountsLastMonth",
+        type: "post",
+        dateType: "json",
+        data: {},
+        async: false,
+        success: function f(data) {
+            var j = 1;
+            for(var i in data){
+                switch (j) {
+                    case 1:
+                        viewCounts1 = data[i];
+                        break;
+                    case 2:
+                        viewCounts2 = data[i];
+                        break;
+                    case 3:
+                        viewCounts3 = data[i];
+                        break;
+                    case 4:
+                        viewCounts4 = data[i];
+                        break;
+                    case 5:
+                        viewCounts5 = data[i];
+                        break;
+                }
+                j++;
+            }
+        },
+        error: function f() {
+        }
+    });
 
+    //近1个月新闻浏览量
+    $.ajax({
+        url: BASE_PATH + "/news/findNewsCommentCountsLastMonth",
+        type: "post",
+        dateType: "json",
+        data: {},
+        async: false,
+        success: function f(data) {
+            var j = 1;
+            for(var i in data){
+                switch (j) {
+                    case 1:
+                        commentCounts1 = data[i];
+                        break;
+                    case 2:
+                        commentCounts2 = data[i];
+                        break;
+                    case 3:
+                        commentCounts3 = data[i];
+                        break;
+                    case 4:
+                        commentCounts4 = data[i];
+                        break;
+                    case 5:
+                        commentCounts5 = data[i];
+                        break;
+                }
+                j++;
+            }
+        },
+        error: function f() {
+        }
+    });
+
+    // Polar chart
+    new Chart(document.getElementById("polar-chart").getContext('2d'), {
+        type: 'polarArea',
+        data: {
+            labels: ["学院新闻", "校友新闻", "通知公告", "校友卡", "校友返校"],
+            datasets: [{
+                backgroundColor: [
+                    "#31708f",
+                    "#dc3545",
+                    "#ffc107",
+                    "#1B242F",
+                    "#5cb85c",
+                ],
+                data: [viewCounts1, viewCounts2, viewCounts3, viewCounts4, viewCounts5]
+            }]
+        },
+        options: {
+            legend: { display: false },
+            title: {
+                display: true,
+                text: ''
+            }
+        }
+    });
+
+// Polar chart2
+    new Chart(document.getElementById("polar-chart2").getContext('2d'), {
+        type: 'polarArea',
+        data: {
+            labels: ["学院新闻", "校友新闻", "通知公告", "校友卡", "校友返校"],
+            datasets: [{
+                backgroundColor: [
+                    "#31708f",
+                    "#dc3545",
+                    "#ffc107",
+                    "#1B242F",
+                    "#5cb85c",
+                ],
+                data: [commentCounts1, commentCounts2, commentCounts3, commentCounts4, commentCounts5]
+            }]
+        },
+        options: {
+            legend: { display: false },
+            title: {
+                display: true,
+                text: ''
+            }
+        }
+    });
 });
 
 
@@ -332,29 +451,3 @@ new Chart(document.getElementById("myChart4").getContext('2d'), {
     }
 });
 
-// Polar chart
-new Chart(document.getElementById("polar-chart").getContext('2d'), {
-  type: 'polarArea',
-  data: {
-    labels: ["M", "T", "W", "T", "F", "S", "S"],
-    datasets: [{
-      backgroundColor: [
-        "#2ecc71",
-        "#3498db",
-        "#95a5a6",
-        "#9b59b6",
-        "#f1c40f",
-        "#e74c3c",
-        "#34495e"
-      ],
-      data: [12, 19, 3, 17, 28, 24, 7]
-    }]
-  },
-  options: {
-    legend: { display: false },
-    title: {
-      display: true,
-      text: ''
-     } 
-  }
-});

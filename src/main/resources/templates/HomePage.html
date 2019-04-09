@@ -4,15 +4,12 @@
 	<head>
 		<meta charset="UTF-8"/>
 		<title>湘潭大学公共管理学院校友会</title>
-		<link type="text/css" href="../static/static/css/HomePage.css" rel="stylesheet" />
-		<link href="../static/static/css/banner.css" rel="stylesheet" type="text/css" />
-		<link type="text/css" rel="stylesheet" href="../static/static/css/login.css" />
-		<link href="../static/static/css/media_query.css" rel="stylesheet" type="text/css"/>
-		<link href="../static/static/css/bootstrap.css" rel="stylesheet" type="text/css"/>
-		<link href="../static/static/css/font-awesome.min.css"/>
-		<link href="../static/static/css/animate.css" rel="stylesheet" type="text/css"/>
-		<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet"/>
-		<link href="../static/static/css/style_1.css" rel="stylesheet" type="text/css"/>
+		<!--首页-->
+		<link type="text/css" href="static/static/css/HomePage.css" rel="stylesheet" />
+		<link href="static/static/css/banner.css" rel="stylesheet" type="text/css" />
+		<link type="text/css" rel="stylesheet" href="static/static/css/login.css" />
+		<link href="static/static/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+		<link href="static/static/css/style_1.css" rel="stylesheet" type="text/css"/>
 
 
 		<!--导航栏的作用-->
@@ -54,11 +51,9 @@
 				<a href="Register.html" id = "top1_register">注册</a>
 			    <a class="cd-signin" href="#0" id = "top1_login">登录</a>
 				<span class="nav_left">
-					<h1>
 						<a href="#" class="txtArr">
-							<img class="userIcon touxiang" src="../static/static/img/touxaing.jpg" onclick="navagator_list()" />
+							<img class="userIcon touxiang" src="static/static/img/touxaing.jpg" onclick="navagator_list()" />
 						</a>
-					</h1>
 				</span>
 				<div id = "homeOptions" class="headListPlugin popBox">
                       <div class="profileTitle" id = "linkInfo">
@@ -102,12 +97,12 @@
 		<nav class="hl_nav">
 			<ul class="nav_list">
 				<li class="active">
-					<a class="nav_head" href="HomePage.html">首页</a>
+					<a class="nav_head" href="HomePage">首页</a>
 				</li>
 				<li>
-					<a class="nav_head" href="news.html">新闻快讯</a>
-					<a class="nav_body" href="news.html">学院新闻</a>
-					<a class="nav_body" href="news.html">校友新闻</a>
+					<a class="nav_head" href="news">新闻快讯</a>
+					<a class="nav_body" href="news">学院新闻</a>
+					<a class="nav_body" href="news">校友新闻</a>
 					<a class="nav_body" href="http://www.xtu.edu.cn/xdxw/xnxw/" target="_blank">学校新闻</a>
 				</li>
 				<li>
@@ -118,10 +113,10 @@
 				</li>
 				<li>
 					<a class="nav_head" href="Service.html">校友服务</a>
-					<a class="nav_body" href="../Service_list.html">校友卡</a>
+					<a class="nav_body" href="Service_SchoolCard.html">校友卡</a>
 					<a class="nav_body" href="Service_souvenir.html">校友纪念品</a>
 					<a class="nav_body" href="Service_hotel.html">周边食宿</a>
-					<a class="nav_body" href="../garage/Service_returnSchool_old.html">校友返校活动</a>
+					<a class="nav_body" href="Service_returnSchool.html">校友返校活动</a>
 				</li>
 				<li>
 					<a class="nav_head" href="#">校友捐赠</a>
@@ -152,17 +147,17 @@
 				<img class="img" src="static/static/img/HomePage/4.jpg" width = "1540px" height = "500px"/>
 			</div>
 		</div>
-		<div class="container-fluid fh5co_footer_bg pb-3" style="background: rgb(139, 0, 0)">
+		<div class="container-fluid fh5co_footer_bg pb-3 special_bottom">
 			<div class="container animate-box">
 				<div class="row">
-					<div class="col-12 spdp_right py-5"><img src="../static/static/img/logo.png" alt="img" class="footer_logo"/></div>
+					<div class="col-12 spdp_right py-5"><img src="static/static/img/logo.png" alt="img" class="footer_logo"/></div>
 					<div class="clearfix"></div>
-					<div class="col-12 col-md-4 col-lg-3">
+					<div class="bottomIntroductionLeft">
 						<div class="footer_main_title py-3">湘潭大学公共管理学院校友会</div>
 						<div class="footer_sub_about pb-3"> 湘潭大学公共管理学院成立于2007年，是在原来人文学院、信息管理系、管理学院相关专业和学科整合基础上发展而来的。学院办学基础良好，学术积淀深厚，精英人才荟萃。学院成立以来，秉承湘潭大学“博学笃行，盛德日新”的校训，弘扬学院“公为天下”的精神，在师资队伍、人才培养、科学研究、学科建设等方面取得了可喜的成绩，并在跻身国内一流公共管理学院的道路上迈出了重要的步伐。
 						</div>
 					</div>
-					<div class="col-12 col-md-12 col-lg-4 " style="margin-left: 50px">
+					<div class="bottomIntroductionMedium">
 						<div class="footer_main_title py-3"> 联系我们</div>
 						<div><span>院  长：盛明科</span> <span class = "right_padding">办公地点：公管楼309</span></div>
 						<div><span>联系电话：0731-58292890</span></div>
@@ -174,7 +169,7 @@
 						<div><span>副院长：毛太田 </span> <span class = "right_padding">办公地点：公管楼310 </span></div>
 						<div><span>联系电话：0731-58293695</span> <br/><span>Email: iaiafang@yeah.net</span></div><br/>
 					</div>
-					<div class="col-12 col-md-12 col-lg-4 ">
+					<div class="bottomIntroductionRight">
 						<div class="footer_main_title py-3"> 联系我们</div>
 						<div><span>副院长：谭九生</span> <span class = "right_padding">办公地点：公管楼307</span></div>
 						<div><span>联系电话：0731-58298303 </span></div>

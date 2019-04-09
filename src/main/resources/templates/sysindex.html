@@ -204,17 +204,8 @@
             <!-- Sidebar Navidation Menus-->
             <ul class="list-unstyled">
                 <li class="active"> <a href="/sysindex"><i></i>首页</a></li>
-                <li><a href="#apps" aria-expanded="false" data-toggle="collapse"> <i></i>APP</a>
-                    <ul id="apps" class="collapse list-unstyled">
-                        <li><a href="sysmedia.html">设备</a></li>
-                    </ul>
-                </li>
                 <li> <a href="syschart.html"> <i></i>统计图表</a></li>
                 <li><a href="sysbasic-form.html"> <i></i>新闻编辑</a>
-                    <!--<ul id="forms" class="collapse list-unstyled">-->
-                        <!--<li><a href="sysbasic-form.html">Basic Form</a></li>-->
-                        <!--<li><a href="sysform-layouts.html">Form Layouts</a></li>-->
-                    <!--</ul>-->
                 </li>
                 <li><a href="#pages" aria-expanded="false" data-toggle="collapse"> <i></i>登陆信息</a>
                     <ul id="pages" class="collapse list-unstyled">
@@ -245,10 +236,6 @@
                             <div class="text-left report1-cont">
                                 <h2 class="font-light m-b-0" id="userAmountLastMonth"><i class="ti-arrow-up text-danger"></i> 5,530</h2>
                             </div>
-                            <!--<span class="text-danger">43%</span>-->
-                            <!--<div class="progress">-->
-                                <!--<div class="progress-bar bg-danger" role="progressbar" style="width: 43%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>-->
-                            <!--</div>-->
                             <p><small>上个月注册用户数</small></p>
                         </div>
                     </div>
@@ -392,15 +379,17 @@
                             </ul>
                         </div>
                         <div class="header">
-                            <h4 class="title">留言统计</h4>
+                            <h4 class="title">近一个月浏览量统计</h4>
                         </div>
                         <div class="content">
                             <canvas class="ct-chart" id="polar-chart"></canvas>
                             <div class="footer">
                                 <div class="legend">
-                                    <i class="fa fa-circle text-info"></i> 点赞
-                                    <i class="fa fa-circle text-danger"></i> 评论
-                                    <i class="fa fa-circle text-warning"></i> 无表现
+                                    <i class="fa fa-circle text-info"></i> 学院新闻
+                                    <i class="fa fa-circle text-danger"></i> 校友新闻
+                                    <i class="fa fa-circle text-warning"></i> 通知公告
+                                    <i class="fa fa-circle text-primary"></i> 校友卡
+                                    <i class="fa fa-circle text-success"></i> 校友返校
                                 </div>
                                 <hr/>
                                 <div class="stats">
@@ -428,36 +417,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 mt-0" id="card-2">
-                    <div class="card hovercard">
-                        <div class="cardheader"></div>
-                        <div class="avatar">
-                            <img alt="" src="static/static/img/touxaing.jpg" class="img-fluid"/>
-                        </div>
-                        <div class="info">
-                            <div class="title">
-                                <a target="_blank" href="#" id = "username_bottom">无用户</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <div class="col-md-4">
                     <div class="card card-c2">
-                        <div class="dropdown pull-right menu-sett-card" > 
-                            <!--<a id="notifications" class="nav-link" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
-                                <!--<i class="fa fa-ellipsis-v men"></i> -->
-                            <!--</a>-->
-                            <!--<ul aria-labelledby="notifications" class="dropdown-menu">-->
-                                <!--<li>-->
-                                    <!--<a rel="nofollow" href="#" class="dropdown-item nav-link">Edit</a>-->
-                                <!--</li>-->
-                                <!--<li>-->
-                                    <!--<a rel="nofollow" href="#" class="dropdown-item nav-link">FAQ</a>-->
-                                <!--</li>-->
-                                <!--<li>-->
-                                    <!--<a rel="nofollow" href="#" class="dropdown-item nav-link">Support</a>-->
-                                <!--</li> -->
-                            <!--</ul>-->
+                        <div class="dropdown pull-right menu-sett-card" >
                         </div>
                         <div class="header">
                             <h4 class="title">近期登陆管理员</h4>
@@ -491,12 +453,51 @@
                                             <small id = "manager_identity_3">管理员</small>
                                         </div>
                                     </a>
-                                </li> 
+                                </li>
 
-                            </ul> 
+                            </ul>
                         </div>
                     </div>
-                </div> 
+                </div>
+                <div class="col-md-4">
+                    <div class="card card-c2">
+                        <div class="dropdown pull-right menu-sett-card" >
+                            <a id="notifications2" class="nav-link" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-ellipsis-v men"></i>
+                            </a>
+                            <ul aria-labelledby="notifications" class="dropdown-menu">
+                                <li>
+                                    <a rel="nofollow" href="#" class="dropdown-item nav-link">Edit</a>
+                                </li>
+                                <li>
+                                    <a rel="nofollow" href="#" class="dropdown-item nav-link">FAQ</a>
+                                </li>
+                                <li>
+                                    <a rel="nofollow" href="#" class="dropdown-item nav-link">Support</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="header">
+                            <h4 class="title">近一个月评论量统计</h4>
+                        </div>
+                        <div class="content">
+                            <canvas class="ct-chart" id="polar-chart2"></canvas>
+                            <div class="footer">
+                                <div class="legend">
+                                    <i class="fa fa-circle text-info"></i> 学院新闻
+                                    <i class="fa fa-circle text-danger"></i> 校友新闻
+                                    <i class="fa fa-circle text-warning"></i> 通知公告
+                                    <i class="fa fa-circle text-primary"></i> 校友卡
+                                    <i class="fa fa-circle text-success"></i> 校友返校
+                                </div>
+                                <hr/>
+                                <div class="stats">
+                                    <i class="fa fa-clock-o"></i> 1天之前
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div> 
 
 

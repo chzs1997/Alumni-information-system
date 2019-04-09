@@ -12,6 +12,7 @@ import java.io.BufferedOutputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Map;
 
 /**
  * @Author: liuzipan
@@ -249,7 +250,26 @@ public class NewsController extends HttpServlet {
         return newsService.findNewsByartType(artType);
     }
 
+    /*
+    *
+    * 近一个月新闻浏览量统计
+    * */
+    @ResponseBody
+    @RequestMapping(value = "/findNewsViewCountsLastMonth")
+    public Object findNewsViewCountsLastMonth(){
+        Map<Integer,Integer> hashMap =  newsService.findNewsViewCountsLastMonth();
+        return hashMap;
+    }
 
-
+    /*
+     *
+     * 近一个月新闻浏览量统计
+     * */
+    @ResponseBody
+    @RequestMapping(value = "/findNewsCommentCountsLastMonth")
+    public Object findNewsCommentCountsLastMonth(){
+        Map<Integer,Integer> hashMap =  newsService.findNewsCommentCountsLastMonth();
+        return hashMap;
+    }
 
 }

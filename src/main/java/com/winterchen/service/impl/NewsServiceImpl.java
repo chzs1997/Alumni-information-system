@@ -2,6 +2,7 @@ package com.winterchen.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.winterchen.dao.MapSessionMapper;
 import com.winterchen.dao.NewsDao;
 import com.winterchen.model.Comment;
 import com.winterchen.model.News;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Author: liuzipan
@@ -23,6 +25,9 @@ public class NewsServiceImpl implements NewsService {
 
     @Autowired
     private NewsDao newsDao;
+
+    @Autowired
+    MapSessionMapper mapSessionMapper;
 
     @Override
     public int findArtId() {
@@ -126,5 +131,17 @@ public class NewsServiceImpl implements NewsService {
         hashMap.put("artViesCounts",i.getArtViewCounts());
         hashMap.put("artPraiseCounts",i.getArtPraiseCounts());
         return hashMap;
+    }
+
+    @Override
+    public Map<Integer, Integer> findNewsViewCountsLastMonth() {
+        Map<Integer,Integer> mapAmount = mapSessionMapper.findNewsViewCountsLastMonth();
+        return mapAmount;
+    }
+
+    @Override
+    public Map<Integer, Integer> findNewsCommentCountsLastMonth() {
+        Map<Integer,Integer> mapAmount = mapSessionMapper.findNewsCommentCountsLastMonth();
+        return mapAmount;
     }
 }

@@ -6,6 +6,7 @@ import com.winterchen.model.News;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Author: liuzipan
@@ -54,4 +55,14 @@ public interface NewsService {
 
     //查找新闻点赞评论次数
     Object selectCounts(int artId);
+
+    /*
+     * 近一个月新闻浏览量
+     * */
+    Map<Integer,Integer> findNewsViewCountsLastMonth();
+
+    /*
+     * 近一个月新闻评论量
+     * */
+    Map<Integer,Integer> findNewsCommentCountsLastMonth();
 }

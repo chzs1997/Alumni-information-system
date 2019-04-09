@@ -32,10 +32,40 @@
         <result property="artId" column="ART_ID"/>
     </resultMap>
 
+    <resultMap id="newsAmount" type="java.util.HashMap">
+        <result property="key" column = "newType"/>
+        <result property="value" column = "counts"/>
+    </resultMap>
+
     <!--设置数据库表名-->
     <sql id="BASE_TABLE">
     news
   </sql>
+
+    <!--近一个月新闻浏览量-->
+    <select id="findNewsViewCountsLastMonth" resultMap="newsAmount">
+        select ART_TYPE as newType
+              ,sum(ART_VIEW_COUNTS) counts
+        from news
+        where datediff(now(),CREATE_TIME)&lt;=30
+        group by ART_TYPE
+        order by newType
+    </select>
+
+    <!--近一个月新闻评论量-->
+    <select id="findNewsCommentCountsLastMonth" resultMap="newsAmount">
+      select a1.ART_TYPE   as newType
+            ,sum(a2.commentCounts) counts
+      from news a1
+      left join (
+         select ART_ID,count(*) commentCounts
+         from comment
+         group by ART_ID
+      )a2
+      on a1.ART_ID = a2.ART_ID
+      group by a1.ART_TYPE
+      order by a1.ART_TYPE
+    </select>
 
     <!--查询所有用户-->
     <select id="findArtId" resultType="integer">
