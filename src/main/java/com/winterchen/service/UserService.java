@@ -4,8 +4,6 @@ import com.github.pagehelper.PageInfo;
 import com.winterchen.model.UserDomain;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 
@@ -17,7 +15,7 @@ public interface UserService {
 
 
     /*注册*/
-    int login(String userName, String password, String phone, String userIdNumber);
+    int login(String userName, String password, String phone, String userMail);
 
     /*登录*/
     UserDomain check(String userName, String password);
@@ -35,7 +33,7 @@ public interface UserService {
     UserDomain findByPhoneNum(String phoneNum);
 
     /*根据用户id修改密码*/
-    int updatePassword(String userIdNumber,String password);
+    int updatePassword(Integer userId, String password);
 
     /*根据用户身份证号修改密码*/
 
@@ -43,8 +41,11 @@ public interface UserService {
     /*根据用户身份证查询用户*/
     UserDomain findByuserIdNumber(String userIdNumber);
 
+    /*根据用户邮箱验证*/
+    UserDomain findByuserMail(String userMail);
+
     /*根据用户身份证号添加其他信息*/
-    int add_info(String userIdNumber
+    int add_info(String userMail
                  ,String userGender
                  ,String userGrade
                  ,String userMajor

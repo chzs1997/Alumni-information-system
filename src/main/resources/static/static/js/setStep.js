@@ -1,3 +1,4 @@
+var userId;  //设定用户ID
 function extend(obj1, obj2) {
 	for(var attr in obj2) {
 		obj1[attr] = obj2[attr];
@@ -99,16 +100,17 @@ SetStep.prototype.init = function(arg) {
 				//获取basePath，测试的话就能用就完了
 				var obj = window.document.location;
 				var BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));
-				var userIdNumber = $("#sfz").val();
+				var mailCode = $("#code").val();
+				var userMail = $("#Mail").val();
 				$.ajax({
-					url: BASE_PATH + "/user/updatePassword_1/",
+					url: BASE_PATH + "/user/updatePassword_1",
 					type: "post",
 					dateType: "json",
-					data: {"userIdNumber": userIdNumber},
+					data: {"mailCode": mailCode,"userMail":userMail},
 					async: false,
 					success: function f(data) {
 						var result = data.userName;
-
+                        userId = data.userId;
 						if(result != '查无此人'){
 							if($(_that).attr('disabled') || _that.opt.animating) {
 								return false;
@@ -120,7 +122,7 @@ SetStep.prototype.init = function(arg) {
 							}
 						}
 						else{
-							alert("查无此人")
+							alert(result);
 						}
 					},
 					error: function f() {
@@ -134,14 +136,13 @@ SetStep.prototype.init = function(arg) {
 				var BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));
 				var password = $("#new_password").val();
 				var passwordCheck = $("#new_password2").val();
-				var userIdNumber = $("#sfz").val();
 
 				if(password == passwordCheck){
 					$.ajax({
-						url: BASE_PATH + "/user/updatePassword_2/",
+						url: BASE_PATH + "/user/updatePassword_2",
 						type: "post",
 						dateType: "json",
-						data: {"userIdNumber": userIdNumber, "password": password},
+						data: {"userId": userId, "password": password},
 						async: false,
 						success: function f(data) {
 							var result = data;

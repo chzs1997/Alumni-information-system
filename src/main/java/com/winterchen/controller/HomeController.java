@@ -13,6 +13,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class HomeController {
 
+    @RequestMapping("/index")
+    public String index(){
+        return "/index";
+    }
+
+    @RequestMapping("/gallery")
+    public String gallery(){
+        return "/gallery";
+    }
+
+    @RequestMapping("/gallery_new")
+    public String galleryNew(){
+        return "/gallery_new";
+    }
+
     @RequestMapping("/HomePage")
     public String HomePage(){
         return "/HomePage";

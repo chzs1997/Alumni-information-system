@@ -110,6 +110,15 @@
     where U_ID_NUMBER = #{userIdNumber}
   </select>
 
+    <!--根据用户邮箱查询用户-->
+    <select id="findByuserMail" resultMap="userRM">
+        SELECT
+        *
+        FROM
+        <include refid="BASE_TABLE"/>
+        where U_MAIL = #{userMail}
+    </select>
+
   <!--根据用户电话号码查询用户-->
   <select id="findByPhoneNum" resultMap="userRM">
     SELECT
@@ -123,14 +132,14 @@
   <update id="updatePassword">
     UPDATE  <include refid="BASE_TABLE"/>
     SET U_PASSWORD = #{password}
-    WHERE U_ID_NUMBER = #{userIdNumber}
+    WHERE U_ID = #{userId}
   </update>
 
   <!--注册-->
   <insert id="login" parameterType="com.winterchen.model.UserDomain">
     INSERT INTO <include refid="BASE_TABLE"/>
-       (U_NAME, U_PASSWORD, U_CONTACT, U_ID_NUMBER)
-    VALUES (#{userName}, #{password}, #{phone}, #{userIdNumber})
+       (U_NAME, U_PASSWORD, U_CONTACT, U_MAIL)
+    VALUES (#{userName}, #{password}, #{phone}, #{userMail})
   </insert>
 
   <!--补充信息-->
@@ -144,7 +153,7 @@
         ,U_POSITION = #{userPosition}
         ,U_EDUCATION = #{userEducation}
         ,U_BIRTHPLACE = #{userBirthPlace}
-    WHERE U_ID_NUMBER = #{userIdNumber}
+    WHERE U_MAIL = #{userMail}
   </update>
 
   <!--登录-->

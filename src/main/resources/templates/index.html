@@ -1,0 +1,954 @@
+﻿<!DOCTYPE html>
+<html lang="zxx">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta content="" name="description">
+        <meta content="" name="keywords">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="HandheldFriendly" content="true">
+        <meta content="telephone=no" name="format-detection">
+        <!-- favicon -->
+        <link rel="shortcut icon" type="image/png" href="favicon.png" />
+
+        <!--首页-->
+        <link type="text/css" href="static/static/css/HomePage.css" rel="stylesheet" />
+        <link href="static/static/css/banner.css" rel="stylesheet" type="text/css" />
+        <link type="text/css" rel="stylesheet" href="static/static/css/login.css" />
+        <link href="static/static/css/bootstrap_bottom.css" rel="stylesheet" type="text/css"/>
+        <link href="static/static/css/style_1.css" rel="stylesheet" type="text/css"/>
+
+
+        <!--导航栏的作用-->
+        <link rel="stylesheet" href="static/static/css/style_navigator.css">
+
+        <!-- custom CSS -->
+        <link href="static/static/css/index/main.css" rel="stylesheet" type="text/css" />
+            <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+            <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+
+        <title>Home</title>
+    </head>
+    <body>
+    <div id="top">
+        <div id="top1">
+            <div id="home">
+                <div class="w3ls-slider">
+                    <div class="banner-dott">
+                        <div class="header-top">
+                            <div class="">
+                                <div class="w3_menu">
+                                    <div class="mobile-nav-button">
+                                        <div class="mobile-nav-button__line"></div>
+                                        <div class="mobile-nav-button__line"></div>
+                                        <div class="mobile-nav-button__line"></div>
+                                    </div>
+                                    <nav class="mobile-menu">
+                                        <ul>
+                                            <li  class="active"><a href="HomePage.html" id="#home">首页</a></li>
+                                            <li><a href="news.html" class="scroll">新闻快讯</a></li>
+                                            <li><a href="CharacterStyle.html" class="scroll">人物风采</a></li>
+                                            <li><a href="Service.html" class="scroll">校友服务</a></li>
+                                            <li><a href="#testimonials" class="scroll">校友捐赠</a></li>
+                                            <li><a href="Company.html" class="scroll">校友企业</a></li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <span>
+				<a href="Register.html" id = "top1_register">注册</a>
+			    <a class="cd-signin" href="#0" id = "top1_login">登录</a>
+				<span class="nav_left">
+						<a href="#" class="txtArr">
+							<img class="userIcon touxiang" src="static/static/img/touxaing.jpg" onclick="navagator_list()" />
+						</a>
+				</span>
+				<div id = "homeOptions" class="headListPlugin popBox">
+                      <div class="profileTitle" id = "linkInfo">
+						  <a href="#">
+							  <p class="headPic">
+							  <img src = "static/static/img/touxaing.jpg" class="touxiang"/>
+							  </p>
+							  <div class="intro">
+								  <p>
+									  <b class="yourName">未登录</b>
+								  </p>
+								  <p class="wid"></p>
+							  </div>
+						  </a>
+					  </div>
+					<ul class="lm">
+						<li class="liops" id = "skinBox">
+						   <a href="PersonalInfo.html" id = "linkSkin">查看资料</a>
+						</li>
+                        <li class = "liops">
+							<a href = "#" id = "linkFrame">联系我们</a>
+						</li>
+						<li class = "liops clear263Logo rzrq_hide selected">
+							<a href = "#" id = "linkHelp">帮助</a>
+						</li>
+						<li class="liops tLine">
+                            <a href="#" id="mailsetMessage" onclick="out_login()">退出登陆</a>
+						</li>
+					</ul>
+				</div>
+			</span>
+        </div>
+        <img id="logo" src="static/static/img/logo.png" />
+        <span id="title" style="top: 40px">公共管理学院校友会</span>
+        <div id="box">
+            <input type="text" name="search" placeholder="请输入关键字" class="search"/>
+            <div id="search">搜索</div>
+        </div>
+        <!--<img id="bac" src="img/湘大.png" />-->
+    </div>
+    <nav class="hl_nav">
+        <ul class="nav_list">
+            <li class="active">
+                <a class="nav_head" href="HomePage">首页</a>
+            </li>
+            <li>
+                <a class="nav_head" href="news.html">新闻快讯</a>
+                <a class="nav_body" href="news.html">学院新闻</a>
+                <a class="nav_body" href="news.html">校友新闻</a>
+                <a class="nav_body" href="http://www.xtu.edu.cn/xdxw/xnxw/" target="_blank">学校新闻</a>
+            </li>
+            <li>
+                <a class="nav_head" href="CharacterStyle.html">人物风采</a>
+                <a class="nav_body" href="http://glxy.xtu.edu.cn/e/action/ListInfo/?classid=7" target="_blank">老师之星</a>
+                <a class="nav_body" href="CharacterStyle.html">学生之星</a>
+                <a class="nav_body" href="CharacterStyle.html">校友之星</a>
+            </li>
+            <li>
+                <a class="nav_head" href="Service.html">校友服务</a>
+                <a class="nav_body" href="Service_SchoolCard.html">校友卡</a>
+                <a class="nav_body" href="Service_souvenir.html">校友纪念品</a>
+                <a class="nav_body" href="Service_hotel.html">周边食宿</a>
+                <a class="nav_body" href="Service_returnSchool.html">校友返校活动</a>
+            </li>
+            <li>
+                <a class="nav_head" href="#">校友捐赠</a>
+                <a class="nav_body" href="#">校友捐赠</a>
+                <a class="nav_body" href="#">校友捐赠</a>
+            </li>
+            <li>
+                <a class="nav_head" href="Company.html">校友企业</a>
+                <a class="nav_body" href="Company.html">校友企业</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="banner">
+        <img class="change pre" src="static/static/img/pre.png"/>
+        <img class="change next" src="static/static/img/next.png"/>
+
+        <div class="cirbox">
+            <div class="cir cr"></div>
+            <div class="cir"></div>
+            <div class="cir"></div>
+            <div class="cir"></div>
+        </div>
+        <div class="imgbox">
+            <img class="img im" src="static/static/img/HomePage/2.jpg" width = "1540px" height = "500px"/>
+            <img class="img" src="static/static/img/HomePage/1.jpg" width = "1540px" height = "500px"/>
+            <img class="img" src="static/static/img/HomePage/3.jpg" width = "1540px" height = "500px"/>
+            <img class="img" src="static/static/img/HomePage/4.jpg" width = "1540px" height = "500px"/>
+        </div>
+    </div>
+        <!-- top news-->
+        <section>
+            <!-- top news -->
+            <!-- title -->
+            <!-- END title -->
+            <div class="wrap wrap_gray pt20">
+                <div class="wrap">
+                    <div class="container title">
+                        <h1 class="title__h1 underscore">新闻快讯</h1>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="thumbnail thumbnail_big">
+                                <img src="static/static/img/news/news_college_1.jpg" style="height: 380px" alt="News">
+                                <div class="caption thumbnail__caption">
+                                    <div class="news caption__news">
+                                        <p class="news__category yellow-line">竞赛</p>
+                                        <a href="#" class="news__head">“三维空间融合”案例教学模式显成效，公管学子创佳绩</a>
+                                        <p class="news__desc">针对国内公共管理研究生培养存在的结构化缺陷、重理论轻实践的现状，2013年以湘潭大学公共管理学院梁丽芝教授为首的科研团队为强化公共管理研究生培养中的案例教学，锻造高素质公共管理专业人才，创造性的提出了将课堂空间、实践空间和赛场空间“三维空间融合”的案例教学模式。</p>
+                                    </div>
+                                    <div class="posted">
+                                        <span class="posted__date">today, 16:37</span>
+                                        <ul class="posted__icon">
+                                            <li>
+                                                <span>
+                                                <i class="icon-comment-empty"></i>29
+                                            </span>
+                                            </li>
+                                            <li>
+                                                <span>
+                                                <i class="icon-eye"></i>2.3k
+                                            </span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="thumbnail thumbnail_small">
+                                <a href="news.html" class="thumbnail__link">
+                                    <img src="static/static/img/news/news_college_2.jpg" height="153" width="270" alt="News">
+                                </a>
+                                <div class="caption thumbnail__caption">
+                                    <div class="news caption__news">
+                                        <p class="news__category yellow-line">会议</p>
+                                        <a href="news.html" class="news__link">
+                                            <p class="news__text">公共管理学院召开2018年度处级党员领导干部民主生活会</p>
+                                        </a>
+                                    </div>
+                                    <div class="posted">
+                                        <span class="posted__date">today, 12:11</span>
+                                        <ul class="posted__icon">
+                                            <li>
+                                                <span>
+                                                <i class="icon-comment-empty"></i>11
+                                            </span>
+                                            </li>
+                                            <li>
+                                                <span>
+                                                <i class="icon-eye"></i>1.1k
+                                            </span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="thumbnail thumbnail_small">
+                                <a href="news.html" class="thumbnail__link">
+                                    <img src="static/static/img/news/news_college_5.jpg" height="153" width="270" alt="News">
+                                </a>
+                                <div class="caption thumbnail__caption">
+                                    <div class="news caption__news">
+                                        <p class="news__category yellow-line">组织活动</p>
+                                        <a href="news.html" class="news__link">
+                                            <p class="news__text">公共管理学院组织观看“庆祝改革开放40周年大会”</p>
+                                        </a>
+                                    </div>
+                                    <div class="posted">
+                                        <span class="posted__date">today, 19:30</span>
+                                        <ul class="posted__icon">
+                                            <li>
+                                                <span>
+                                                <i class="icon-comment-empty"></i>294
+                                            </span>
+                                            </li>
+                                            <li>
+                                                <span>
+                                                <i class="icon-eye"></i>2.9k
+                                            </span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="thumbnail thumbnail_small">
+                                <a href="news.html" class="thumbnail__link">
+                                    <img src="static/static/img/news/news_college_7.jpg" height="153" width="270" alt="News">
+                                </a>
+                                <div class="caption thumbnail__caption">
+                                    <div class="news caption__news">
+                                        <p class="news__category yellow-line">交流</p>
+                                        <a href="news.html" class="news__link">
+                                            <p class="news__text">云南大学公共管理学院党委书记李家祥到我院调研党建工作</p>
+                                        </a>
+                                    </div>
+                                    <div class="posted">
+                                        <span class="posted__date">today, 2:39</span>
+                                        <ul class="posted__icon">
+                                            <li>
+                                                <span>
+                                                <i class="icon-comment-empty"></i>9
+                                            </span>
+                                            </li>
+                                            <li>
+                                                <span>
+                                                <i class="icon-eye"></i>1.3k
+                                            </span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="thumbnail thumbnail_small">
+                                <a href="news.html" class="thumbnail__link">
+                                    <img src="static/static/img/news/news_college_4.jpg" height="153" width="270" alt="News">
+                                </a>
+                                <div class="caption thumbnail__caption">
+                                    <div class="news caption__news">
+                                        <p class="news__category yellow-line">讲座</p>
+                                        <a href="news.html" class="news__link">
+                                            <p class="news__text">著名政治学家、台湾大学朱云汉教授来学校讲座</p>
+                                        </a>
+                                    </div>
+                                    <div class="posted">
+                                        <span class="posted__date">today, 14:34</span>
+                                        <ul class="posted__icon">
+                                            <li>
+                                                <span>
+                                                <i class="icon-comment-empty"></i>58
+                                            </span>
+                                            </li>
+                                            <li>
+                                                <span>
+                                                <i class="icon-eye"></i>8.8k
+                                            </span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="thumbnail thumbnail_small">
+                                <a href="news.html" class="thumbnail__link">
+                                    <img src="static/static/img/news/news_college_6.jpg" height="153" width="270" alt="News">
+                                </a>
+                                <div class="caption thumbnail__caption">
+                                    <div class="news caption__news">
+                                        <p class="news__category yellow-line">宣讲活动</p>
+                                        <a href="news.html" class="news__link">
+                                            <p class="news__text">公共管理学院召开“明道信道”宣讲活动</p>
+                                        </a>
+                                    </div>
+                                    <div class="posted">
+                                        <span class="posted__date">today, 12:37</span>
+                                        <ul class="posted__icon">
+                                            <li>
+                                                <span>
+                                                <i class="icon-comment-empty"></i>20
+                                            </span>
+                                            </li>
+                                            <li>
+                                                <span>
+                                                <i class="icon-eye"></i>1.2k
+                                            </span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="thumbnail thumbnail_small">
+                                <a href="news.html" class="thumbnail__link">
+                                    <img src="static/static/img/news/news_college_8.jpg" height="153" width="270" alt="News">
+                                </a>
+                                <div class="caption thumbnail__caption">
+                                    <div class="news caption__news">
+                                        <p class="news__category yellow-line">竞技体育</p>
+                                        <a href="news.html" class="news__link">
+                                            <p class="news__text">刚刚，我院学子林鑫夺得韶山红色国际马拉松冠军！</p>
+                                        </a>
+                                    </div>
+                                    <div class="posted">
+                                        <span class="posted__date">today, 11:30</span>
+                                        <ul class="posted__icon">
+                                            <li>
+                                                <span>
+                                                <i class="icon-comment-empty"></i>21
+                                            </span>
+                                            </li>
+                                            <li>
+                                                <span>
+                                                <i class="icon-eye"></i>1.9k
+                                            </span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="thumbnail thumbnail_small">
+                                <a href="news.html" class="thumbnail__link">
+                                    <img src="static/static/img/news/news_college_10.jpg" height="153" width="270" alt="News">
+                                </a>
+                                <div class="caption thumbnail__caption">
+                                    <div class="news caption__news">
+                                        <p class="news__category yellow-line">学生活动</p>
+                                        <a href="news.html" class="news__link">
+                                            <p class="news__text">湘大“青年说”：诗情与文意的大赛</p>
+                                        </a>
+                                    </div>
+                                    <div class="posted">
+                                        <span class="posted__date">today, 10:36</span>
+                                        <ul class="posted__icon">
+                                            <li>
+                                                <span>
+                                                <i class="icon-comment-empty"></i>17
+                                            </span>
+                                            </li>
+                                            <li>
+                                                <span>
+                                                <i class="icon-eye"></i>2.0k
+                                            </span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="thumbnail thumbnail_small">
+                                <a href="news.html" class="thumbnail__link">
+                                    <img src="static/static/img/news/news_college_12.jpg" height="153" width="270" alt="News">
+                                </a>
+                                <div class="caption thumbnail__caption">
+                                    <div class="news caption__news">
+                                        <p class="news__category yellow-line">讲学</p>
+                                        <a href="news.html" class="news__link">
+                                            <p class="news__text">清华大学朱旭峰教授来我院讲学</p>
+                                        </a>
+                                    </div>
+                                    <div class="posted">
+                                        <span class="posted__date">today, 12:30</span>
+                                        <ul class="posted__icon">
+                                            <li>
+                                                <span>
+                                                <i class="icon-comment-empty"></i>29
+                                            </span>
+                                            </li>
+                                            <li>
+                                                <span>
+                                                <i class="icon-eye"></i>2.3k
+                                            </span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- /container-->
+        </section>
+        <!-- /top news -->
+        <section class="wrap wrap_gray">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-9 projects">
+                        <div class="projects__title">
+                            <h2 class="block-title__h2">校友风采</h2>
+                        </div>
+                        <div class="projects__row">
+                            <div class="special special_big">
+                                <img src="static/static/img/news/alumni_style_1.jpg" height="311" width="551" alt="image" class="special__img">
+                                <div class="special__box">
+                                    <h5 class="special__category yel_line">伍星</h5>
+                                    <a href="#" class="special__link">深圳市校管家教育科技有限公司创始人</a>
+                                    <p class="special__desc">我院举行“校管家” 首期学科发展及奖助学金捐赠仪式</p>
+                                </div>
+                            </div>
+                            <div class="special special_small">
+                                <img src="static/static/img/news/alumni_style_2.jpg" height="311" width="285" alt="image" class="special__img">
+                                <div class="special__box">
+                                    <h5 class="special__category yel_line">荀昌荣</h5>
+                                    <a href="#" class="special__link">图书情报系系主任</a>
+                                    <p class="special__desc">荀昌荣先生图书馆学学术思想研讨会在我院举办</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="projects__row">
+                            <div class="special special_small">
+                                <img src="static/static/img/news/alumni_style_5.jpg" height="311" width="285" alt="image" class="special__img">
+                                <div class="special__box">
+                                    <h5 class="special__category yel_line">毛旭</h5>
+                                    <a href="#" class="special__link">北京国光文化公司总经理</a>
+                                    <p class="special__desc">北京国光文化发展有限责任公司总经理毛旭先生莅临我校讲学</p>
+                                </div>
+                            </div>
+                            <div class="special special_big">
+                                <img src="static/static/img/news/alumni_style_4.jpg" height="311" width="551" alt="image" class="special__img">
+                                <div class="special__box">
+                                    <h5 class="special__category yel_line">刘帅辉</h5>
+                                    <a href="#" class="special__link">创数教育创始人</a>
+                                    <p class="special__desc">院领导走访校友单位——99信管刘帅辉等创办的“创数教育”</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- banner -->
+                        <div class="banner">
+                            <img src="static/static/img/xtuSquare.jpg" height="221" width="850" alt="image" class="banner__img">
+                            <div class="banner__box">
+                                <p class="banner__text first-text">了解更多</p>
+                                <p class="banner__text second-text">校友风采</p>
+                                <a href="#" class="banner__link">详情</a>
+                            </div>
+                        </div>
+                        <!-- END banner -->
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="block-title">
+                            <h2 class="block-title__h2">捐赠公示</h2>
+                        </div>
+                        <div class="twitter">
+                            <div class="twitter__header">
+                                <p class="twitter__header__name">公共管理学院捐赠目录</p>
+                                <p class="twitter__header__text">2019-04-11</p>
+                            </div>
+                            <div class="twitter__body" id="marqueearea">
+                                <div id="scorll">
+                                <div class="message">
+                                    <div class="message__text"><span>刘帅辉***</span><span>99信管***</span><span>100万***</span><span>2019-03-12</span></div>
+                                </div>
+                                <div class="message">
+                                    <div class="message__text"><span>刘帅辉***</span><span>99信管***</span><span>100万***</span><span>2019-03-12</span></div>
+                                </div>
+                                <div class="message">
+                                    <div class="message__text"><span>刘帅辉***</span><span>99信管***</span><span>100万***</span><span>2019-03-12</span></div>
+                                </div>
+                                <div class="message">
+                                    <div class="message__text"><span>刘帅辉***</span><span>99信管***</span><span>100万***</span><span>2019-03-12</span></div>
+                                </div>
+                                <div class="message">
+                                    <div class="message__text"><span>刘帅辉***</span><span>99信管***</span><span>100万***</span><span>2019-03-12</span></div>
+                                </div>
+                                <div class="message">
+                                    <div class="message__text"><span>刘帅辉***</span><span>99信管***</span><span>100万***</span><span>2019-03-12</span></div>
+                                </div>
+                                <div class="message">
+                                    <div class="message__text"><span>刘帅辉***</span><span>99信管***</span><span>100万***</span><span>2019-03-12</span></div>
+                                </div>
+                                <div class="message">
+                                    <div class="message__text"><span>刘帅辉***</span><span>99信管***</span><span>100万***</span><span>2019-03-12</span></div>
+                                </div>
+                                <div class="message">
+                                    <div class="message__text"><span>刘帅辉***</span><span>99信管***</span><span>100万***</span><span>2019-03-12</span></div>
+                                </div>
+                                <div class="message">
+                                    <div class="message__text"><span>刘帅辉***</span><span>99信管***</span><span>100万***</span><span>2019-03-12</span></div>
+                                </div>
+                                <div class="message">
+                                    <div class="message__text"><span>刘帅辉***</span><span>99信管***</span><span>100万***</span><span>2019-03-12</span></div>
+                                </div>
+                                    <div class="message">
+                                        <div class="message__text"><span>刘帅辉***</span><span>99信管***</span><span>100万***</span><span>2019-03-12</span></div>
+                                    </div>
+                                    <div class="message">
+                                        <div class="message__text"><span>刘帅辉***</span><span>99信管***</span><span>100万***</span><span>2019-03-12</span></div>
+                                    </div>
+                                    <div class="message">
+                                        <div class="message__text"><span>刘帅辉***</span><span>99信管***</span><span>100万***</span><span>2019-03-12</span></div>
+                                    </div>
+                                    <div class="message">
+                                        <div class="message__text"><span>刘帅辉***</span><span>99信管***</span><span>100万***</span><span>2019-03-12</span></div>
+                                    </div>
+                                    <div class="message">
+                                        <div class="message__text"><span>刘帅辉***</span><span>99信管***</span><span>100万***</span><span>2019-03-12</span></div>
+                                    </div>
+                                    <div class="message">
+                                        <div class="message__text"><span>刘帅辉***</span><span>99信管***</span><span>100万***</span><span>2019-03-12</span></div>
+                                    </div>
+                                    <div class="message">
+                                        <div class="message__text"><span>刘帅辉***</span><span>99信管***</span><span>100万***</span><span>2019-03-12</span></div>
+                                    </div>
+                                    <div class="message">
+                                        <div class="message__text"><span>刘帅辉***</span><span>99信管***</span><span>100万***</span><span>2019-03-12</span></div>
+                                    </div>
+                                    <div class="message">
+                                        <div class="message__text"><span>刘帅辉***</span><span>99信管***</span><span>100万***</span><span>2019-03-12</span></div>
+                                    </div>
+                                    <div class="message">
+                                        <div class="message__text"><span>刘帅辉***</span><span>99信管***</span><span>100万***</span><span>2019-03-12</span></div>
+                                    </div>
+                                    <div class="message">
+                                        <div class="message__text"><span>刘帅辉***</span><span>99信管***</span><span>100万***</span><span>2019-03-12</span></div>
+                                    </div>
+                                </div>
+                                <div id="marquee"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="wrap wrap_gray">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-9">
+                        <div class="row">
+                            <div class="block-title col-sm-12">
+                                <h2 class="block-title__h2">学生风采
+                            </h2>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="thumbnail thumbnail_small">
+                                    <a href="news.html" class="thumbnail__link">
+                                        <img src="static/static/img/CharacterImg/Character_Student_1.jpg" height="153" width="270" alt="News">
+                                    </a>
+                                    <div class="caption thumbnail__caption">
+                                        <div class="news caption__news">
+                                            <p class="news__category yellow-line">公共管理学院朗诵队</p>
+                                            <a href="news.html" class="news__link">
+                                                <p class="news__text">群贤齐至中华诵，公管雅士创佳绩</p>
+                                            </a>
+                                        </div>
+                                        <div class="posted">
+                                            <span class="posted__date">today, 12:30</span>
+                                            <ul class="posted__icon">
+                                                <li>
+                                                    <span>
+                                                    <i class="icon-comment-empty"></i>29
+                                                </span>
+                                                </li>
+                                                <li>
+                                                    <span>
+                                                    <i class="icon-eye"></i>4.4k
+                                                </span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="thumbnail thumbnail_small">
+                                    <a href="news.html" class="thumbnail__link">
+                                        <img src="static/static/img/CharacterImg/Character_Student_2.jpg" height="153" width="270" alt="News">
+                                    </a>
+                                    <div class="caption thumbnail__caption">
+                                        <div class="news caption__news">
+                                            <p class="news__category yellow-line">公共管理学院体育健儿</p>
+                                            <a href="news.html" class="news__link">
+                                                <p class="news__text">公管健儿，用激情燃烧青春</p>
+                                            </a>
+                                        </div>
+                                        <div class="posted">
+                                            <span class="posted__date">today, 11:30</span>
+                                            <ul class="posted__icon">
+                                                <li>
+                                                    <span>
+                                                    <i class="icon-comment-empty"></i>22
+                                                </span>
+                                                </li>
+                                                <li>
+                                                    <span>
+                                                    <i class="icon-eye"></i>5.3k
+                                                </span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="thumbnail thumbnail_small">
+                                    <a href="news.html" class="thumbnail__link">
+                                        <img src="static/static/img/CharacterImg/Character_Student_2.jpg" height="153" width="270" alt="News">
+                                    </a>
+                                    <div class="caption thumbnail__caption">
+                                        <div class="news caption__news">
+                                            <p class="news__category yellow-line">公共管理学院体育健儿</p>
+                                            <a href="news.html" class="news__link">
+                                                <p class="news__text">公管健儿，用激情燃烧青春</p>
+                                            </a>
+                                        </div>
+                                        <div class="posted">
+                                            <span class="posted__date">today, 11:30</span>
+                                            <ul class="posted__icon">
+                                                <li>
+                                                    <span>
+                                                    <i class="icon-comment-empty"></i>22
+                                                </span>
+                                                </li>
+                                                <li>
+                                                    <span>
+                                                    <i class="icon-eye"></i>5.3k
+                                                </span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="block-title col-sm-12">
+                                <h2 class="block-title__h2">校友返校活动
+                            	</h2>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="thumbnail thumbnail_small">
+                                    <a href="news.html" class="thumbnail__link">
+                                        <img src="static/static/img/service/returnSchool/glxy_returnSchool_1.jpg" height="153" width="270" alt="News">
+                                    </a>
+                                    <div class="caption thumbnail__caption">
+                                        <div class="news caption__news">
+                                            <p class="news__category yellow-line">04行管</p>
+                                            <a href="news.html" class="news__link">
+                                                <p class="news__text">十年再相聚，行管在一起——04行管专业校友回校团聚</p>
+                                            </a>
+                                        </div>
+                                        <div class="posted">
+                                            <span class="posted__date">today, 11:31</span>
+                                            <ul class="posted__icon">
+                                                <li>
+                                                    <span>
+                                                    <i class="icon-comment-empty"></i>21
+                                                </span>
+                                                </li>
+                                                <li>
+                                                    <span>
+                                                    <i class="icon-eye"></i>2.1k
+                                                </span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="thumbnail thumbnail_small">
+                                    <a href="news.html" class="thumbnail__link">
+                                        <img src="static/static/img/service/returnSchool/glxy_returnSchool_2.jpg" height="153" width="270" alt="News">
+                                    </a>
+                                    <div class="caption thumbnail__caption">
+                                        <div class="news caption__news">
+                                            <p class="news__category yellow-line">04级档案学</p>
+                                            <a href="news.html" class="news__link">
+                                                <p class="news__text">我院04级档案学专业校友回校团聚</p>
+                                            </a>
+                                        </div>
+                                        <div class="posted">
+                                            <span class="posted__date">today, 10:30</span>
+                                            <ul class="posted__icon">
+                                                <li>
+                                                    <span>
+                                                    <i class="icon-comment-empty"></i>22
+                                                </span>
+                                                </li>
+                                                <li>
+                                                    <span>
+                                                    <i class="icon-eye"></i>2.1k
+                                                </span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4">
+                                <div class="thumbnail thumbnail_small">
+                                    <a href="news.html" class="thumbnail__link">
+                                        <img src="static/static/img/service/returnSchool/glxy_returnSchool_2.jpg" height="153" width="270" alt="News">
+                                    </a>
+                                    <div class="caption thumbnail__caption">
+                                        <div class="news caption__news">
+                                            <p class="news__category yellow-line">04级档案学</p>
+                                            <a href="news.html" class="news__link">
+                                                <p class="news__text">我院04级档案学专业校友回校团聚</p>
+                                            </a>
+                                        </div>
+                                        <div class="posted">
+                                            <span class="posted__date">today, 10:30</span>
+                                            <ul class="posted__icon">
+                                                <li>
+                                                    <span>
+                                                    <i class="icon-comment-empty"></i>22
+                                                </span>
+                                                </li>
+                                                <li>
+                                                    <span>
+                                                    <i class="icon-eye"></i>2.1k
+                                                </span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="block-title">
+                            <h2 class="block-title__h2">校友企业</h2>
+                        </div>
+                        <div class="wrap-redaction wrap-redaction_white">
+                            <div class="redaction redaction_line">
+                                <p class="redaction__category yel_line">深圳市校管家教育科技有限公司</p>
+                                <a class="redaction__title">教育改变未来，科技创造价值</a>
+                                <p class="redaction__text">深圳市校管家教育科技有限公司8年来专注于为民办教育机构提供信息化、数字化解决方案，拥有来自华为、北大青鸟等一批行业内外极具实践经验的技术专家和项目实施专家，获国家高新技术企业认证、ISO27001信息安全认证。</p>
+                                <p class="redaction__time">today, 16:35</p>
+                            </div>
+                            <div class="redaction redaction_line">
+                                <p class="redaction__category yel_line">国华文化产业股份有限公司</p>
+                                <a class="redaction__title">组织文化艺术交流活动</a>
+                                <p class="redaction__text">组织文化艺术交流活动（不含演出）；企业策划；摄影服务；承办展览展示活动；技术开发；电脑图文设计；会议服务；翻译服务；影视策划</p>
+                                <p class="redaction__time">today, 16:35</p>
+                            </div>
+                            <div class="redaction redaction_line">
+                                <p class="redaction__category yel_line">创数教育</p>
+                                <a class="redaction__title">创数-让数学更简单</a>
+                                <p class="redaction__text">创数教育与全国数学教育研究会、北京师范大学数学科学学院等权威机构达成深度战略合作，并获得了全国多所师范院校的人力支持，为品牌的长足发展奠定了坚实的基础。</p>
+                                <p class="redaction__time">today, 16:35</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    <div class="container-fluid fh5co_footer_bg pb-3 special_bottom">
+        <div class="container animate-box">
+            <div class="row1">
+                <div class="col-12 spdp_right py-5"><img src="static/static/img/logo.png" alt="img" class="footer_logo"/></div>
+                <div class="clearfix"></div>
+                <div class="bottomIntroductionLeft">
+                    <div class="footer_main_title py-3">湘潭大学公共管理学院校友会</div>
+                    <div class="footer_sub_about pb-3"> 湘潭大学公共管理学院成立于2007年，是在原来人文学院、信息管理系、管理学院相关专业和学科整合基础上发展而来的。学院办学基础良好，学术积淀深厚，精英人才荟萃。学院成立以来，秉承湘潭大学“博学笃行，盛德日新”的校训，弘扬学院“公为天下”的精神，在师资队伍、人才培养、科学研究、学科建设等方面取得了可喜的成绩，并在跻身国内一流公共管理学院的道路上迈出了重要的步伐。
+                    </div>
+                </div>
+                <div class="bottomIntroductionMedium">
+                    <div class="footer_main_title py-3"> 联系我们</div>
+                    <div><span>院  长：盛明科</span> <span class = "right_padding">办公地点：公管楼309</span></div>
+                    <div><span>联系电话：0731-58292890</span></div>
+                    <div><span>Email: 354939403@qq.com</span></div><br/>
+                    <div><span>党委书记：陈长明 </span><span class = "right_padding">办公地点：公管楼303</span></div>
+                    <div><span>联系电话：0731-58298532</span> <br/><span>Email: ccm1@xtu.edu.cn</span> </div><br/>
+                    <div><span>副院长：王凯伟 </span> <span class = "right_padding">办公地点：公管楼301 </span></div>
+                    <div><span>联系电话：0731-58298519 </span> <br/><span>Email: wangkw168@126.com</span></div><br/>
+                    <div><span>副院长：毛太田 </span> <span class = "right_padding">办公地点：公管楼310 </span></div>
+                    <div><span>联系电话：0731-58293695</span> <br/><span>Email: iaiafang@yeah.net</span></div><br/>
+                </div>
+                <div class="bottomIntroductionRight">
+                    <div class="footer_main_title py-3"> 联系我们</div>
+                    <div><span>副院长：谭九生</span> <span class = "right_padding">办公地点：公管楼307</span></div>
+                    <div><span>联系电话：0731-58298303 </span></div>
+                    <div><span>Email: 1572346084@qq.com</span></div><br/>
+                    <div><span>副书记：谷立平 </span> <span class = "right_padding">办公地点：公管楼311</span></div>
+                    <div><span>联系电话：0731-58293735</span> <br/><span>Email: 20240917@qq.com</span> </div><br/>
+                    <div><span>院长助理：罗泽意 </span> <span class = "right_padding">办公地点：公管楼319 </span></div>
+                    <div><span>联系电话：0731-58298296转8006 </span> <br/><span>Email: luozy83@163.com </span></div><br/>
+                    <div><span>院长助理：刘超 </span> <span class = "right_padding">办公地点：公管楼316 </span></div>
+                    <div><span>联系电话：0731-58298296转8007</span> <br/><span>Email: yifang0709@foxmail.com </span></div><br/>
+                </div>
+            </div>
+            <div class="row1 justify-content-center pt-2 pb-4">
+                <span>友情链接：</span>
+                <span><a href = "http://glxy.xtu.edu.cn/" target="_blank" style="color: white;margin-right: 15px">湘潭大学公共管理学院</a></span>
+                <span><a href = "http://www.xtu.edu.cn/" target="_blank" style="color: white;margin-right: 15px">湘潭大学</a></span>
+                <span><a href = "http://xyzh.xtu.edu.cn/" target="_blank" style="color: white;margin-right: 15px">湘潭大学校友会</a></span><br/>
+            </div>
+            <div class="row1 justify-content-center pt-2 pb-4">
+                <span style="margin-right: 15px">地址：湖南省湘潭市雨湖区湘潭大学</span>
+                <span style="margin-right: 15px">邮编：411105</span>
+                <span style="margin-right: 15px">院训：公为天下，管益千秋</span>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="cd-user-modal">
+            <div class="cd-user-modal-container">
+                <ul class="cd-switcher">
+                    <li class="on">
+                        <a href="#0">用户名密码登录</a>
+                    </li>
+                    <li>
+                        <a href="#0">手机验证码登录</a>
+                    </li>
+                </ul>
+
+                <div id="cd-login">
+                    <!-- 用户名密码登录 -->
+                    <form class="cd-form">
+                        <p class="fieldset">
+                            <label class="image-replace cd-username" for="signin-username">用户名</label>
+                            <input class="full-width has-padding has-border" id="signin-username" type="text" placeholder="输入用户名"/>
+                        </p>
+
+                        <p class="fieldset">
+                            <label class="image-replace cd-password" for="signin-password">密码</label>
+                            <input class="full-width has-padding has-border" id="signin-password" type="text" placeholder="输入密码"/>
+                        </p>
+
+                        <div id="zhuce">
+                            <p id="zhuce1">还没账号？
+                                <a href="Register.html">立即注册</a>
+                            </p>
+                            <p id="zhuce2">
+                                <a href="forgetPassword">忘记密码？</a>
+                            </p>
+                        </div>
+
+                        <p class="fieldset">
+                            <input class="full-width2" type="submit" value="登 录" onclick="login_1()"/>
+                        </p>
+                    </form>
+                </div>
+
+                <div id="cd-signup">
+                    <!-- 手机验证码登录 -->
+                    <form class="cd-form">
+                        <p class="fieldset">
+                            <label class="image-replace cd-username" for="signup-username">手机号</label>
+                            <input class="full-width has-padding has-border" id="signup-username" type="text" placeholder="输入手机号"/>
+                        </p>
+
+                        <p class="fieldset">
+                            <label class="image-replace cd-email" for="signup-email">验证码</label>
+                            <input class="full-width has-padding has-border" id="signup-email" type="email" placeholder="输入验证码"/>
+                        </p>
+
+                        <p class="">
+                            <!--<label class="image-replace cd-password" for="signup-password">密码</label>-->
+                            <!--<input class="full-width has-padding has-border" id="signup-password" type="text"  placeholder="输入密码">-->
+                            <input id="btn" class="yan" type="button" value="获取验证码" onclick="send()"/>
+                        </p>
+
+                        <p class="fieldset">
+                            <input class="full-width2" type="submit" value="登录" onclick="login_2()"/>
+                        </p>
+                    </form>
+                </div>
+
+                <a href="#0" class="cd-close-form">关闭</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="static/static/js/modernizr-3.5.0.min.js"></script>
+    <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+    <script src="static/static/js/banner.js" type="text/javascript"></script>
+    <script src="static/static/js/login.js" type="text/javascript"></script>
+    <script src="static/static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="http://www.sucaihuo.com/Public/js/other/jquery.js"></script>
+
+
+    <!-- menu --><!-- navigation -->
+    <script src="static/static/js/navigator_left.js" type="text/javascript"></script>
+		<script src="static/static/js/index/jquery.min.js"></script>
+		<script src="static/static/js/index/bootstrap.min.js"></script>
+		<!-- Custom JavaScript -->
+        <script src="static/static/js/index/main.js"></script>
+        <script src="static/static/js/index/scroll.js"></script>
+
+    </body>
+</html>

@@ -4,6 +4,7 @@ package com.winterchen.controller;
 import com.winterchen.conf.MyWebAppConfigurer;
 import com.winterchen.model.UserDomain;
 import com.winterchen.service.LoginLogService;
+import com.winterchen.service.MailService;
 import com.winterchen.service.UserService;
 import com.winterchen.util.SendMessageUtil;
 import net.sf.json.JSONObject;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
+import java.util.Random;
 
 import static com.winterchen.util.SendMessageUtil.getRandomCode;
 
@@ -36,8 +38,14 @@ public class UserController extends HttpServlet {
     @Autowired
     private LoginLogService loginLogService;
 
+    @Autowired
+    private MailService mailService;
+
     /*保存手机验证码*/
     static String verifyCode;
+
+    /*保存邮箱验证码*/
+    static String mailCode;
 
     /*保存手机号码*/
     String phoneNum;
@@ -105,7 +113,7 @@ public class UserController extends HttpServlet {
     }
 
     /*
-    注册阶段第一步(必要信息)(检测无误)
+    注册阶段第一步(必要信息)
     */
     @ResponseBody
     @PostMapping("/login")
@@ -113,9 +121,9 @@ public class UserController extends HttpServlet {
             @RequestParam(value = "userName") String userName,
             @RequestParam(value = "password") String password,
             @RequestParam(value = "phone") String phone,
-            @RequestParam(value = "userIdNumber") String userIdNumber
+            @RequestParam(value = "userMail") String userMail
     ) {
-        int i = userService.login(userName, password, phone, userIdNumber);
+        int i = userService.login(userName, password, phone, userMail);
         if (i > 0) {
             //注册成功
             return 1;
@@ -131,7 +139,7 @@ public class UserController extends HttpServlet {
     @ResponseBody
     @PostMapping("/add_info")
     public Object login(
-            @RequestParam(value = "userIdNumber") String userIdNumber,
+            @RequestParam(value = "userMail") String userMail,
             @RequestParam(value = "userGender", required = false) String userGender,  //1 表示男性 2表示女性
             @RequestParam(value = "userGrade", required = false) String userGrade,
             @RequestParam(value = "userMajor", required = false) String userMajor,
@@ -168,7 +176,7 @@ public class UserController extends HttpServlet {
         }
 
 
-        int i = userService.add_info(userIdNumber, userGender, userGrade, userMajor, userAddress, userCompany, userPosition, userEducation, userBirthPlace);
+        int i = userService.add_info(userMail, userGender, userGrade, userMajor, userAddress, userCompany, userPosition, userEducation, userBirthPlace);
         if (i > 0) {
             //信息完善成功
             return 1;
@@ -196,40 +204,36 @@ public class UserController extends HttpServlet {
     }
 
 
-    /*判断验证码*/
-    @ResponseBody
-    @PostMapping("/determine")
-    public Object determine(@RequestParam(value = "Code") String Code) {
-        //判断是否和保存的验证码一致
-        if (Code.equals(verifyCode)) {
-            verifyCode = "-1";
-            return 1;
-        } else {
-            return 0;
-        }
-    }
-
     /*修改密码-1
 
-    身份证验证(测试通过)
+    邮箱验证(测试通过)
     */
     @ResponseBody
     @PostMapping("/updatePassword_1")
-    public Object updatePassword_1(@RequestParam(value = "userIdNumber") String userIdNumber) {
-        UserDomain a = userService.findByuserIdNumber(userIdNumber);
-        System.out.println(a);
+    public Object updatePassword_1(@RequestParam(value = "mailCode") String mailCode,
+                                   @RequestParam(value = "userMail") String userMail) {
+        int result = (int) determine(mailCode);
         HashMap<Object, Object> objectMap = new HashMap<>();
+        if(result == 1){
+            UserDomain a = userService.findByuserMail(userMail);
+            System.out.println(a);
 //        若a不为空
-        if (a != null) {
-            objectMap.put("userId", a.getUserId());
-            objectMap.put("userName", a.getUserName());
-            return objectMap;
-        }
+            if (a != null) {
+                objectMap.put("userId", a.getUserId());
+                objectMap.put("userName", a.getUserName());
+                return objectMap;
+            }
 //        否则返回0
-        else {
-            objectMap.put("userName", "查无此人");
-            return objectMap;
+            else {
+                objectMap.put("userName", "查无此人");
+                return objectMap;
+            }
         }
+        else{
+            objectMap.put("userName","验证码错误");
+        }
+        return objectMap;
+
     }
 
     /*修改密码-2
@@ -237,9 +241,9 @@ public class UserController extends HttpServlet {
       */
     @ResponseBody
     @PostMapping("/updatePassword_2")
-    public int updatePassword(@RequestParam(value = "userIdNumber") String userIdNumber,
+    public int updatePassword(@RequestParam(value = "userId") Integer userId,
                               @RequestParam(value = "password") String password) {
-        int a = userService.updatePassword(userIdNumber, password);
+        int a = userService.updatePassword(userId, password);
         //修改成功则返回修改1
         if (a > 0) {
             return 1;
@@ -253,9 +257,34 @@ public class UserController extends HttpServlet {
 
     /*
      *
-     * 验证码测试
+     * 邮箱验证码
      * */
+     @RequestMapping("getCheckCode")
+     @ResponseBody
+     public String getCheckCode(String userMail){
+         String checkCode = String.valueOf(new Random().nextInt(8999999)+100000);
+         mailCode = checkCode;
+         String message = "您的注册验证码为" + checkCode;
+         try{
+             mailService.sendSimpleMail(userMail,"注册验证码",message);
+         }catch (Exception e){
+             e.printStackTrace();
+         }
+         return checkCode;
+     }
 
+    /*判断验证码(手机号码或者邮箱)*/
+    @ResponseBody
+    @PostMapping("/determine")
+    public Object determine(@RequestParam(value = "Code") String Code) {
+        //判断是否和保存的验证码一致
+        if (Code.equals(mailCode)) {
+            mailCode = "-1";
+            return 1;
+        } else {
+            return 0;
+        }
+    }
 
     /*
      * 状态检测

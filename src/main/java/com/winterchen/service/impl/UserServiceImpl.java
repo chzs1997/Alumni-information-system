@@ -9,7 +9,6 @@ import com.winterchen.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -27,8 +26,8 @@ public class UserServiceImpl implements UserService {
 
     /*注册*/
     @Override
-    public int login(String userName, String password, String phone, String userIdNumber) {
-        return userDao.login(userName, password, phone, userIdNumber);
+    public int login(String userName, String password, String phone, String userMail) {
+        return userDao.login(userName, password, phone, userMail);
     }
 
     /*登录*/
@@ -94,8 +93,8 @@ public class UserServiceImpl implements UserService {
 
     //根据用户id修改密码
     @Override
-    public int updatePassword(String userIdNumber, String password) {
-        return userDao.updatePassword(userIdNumber,password);
+    public int updatePassword(Integer userId, String password) {
+        return userDao.updatePassword(userId,password);
     }
 
     @Override
@@ -104,8 +103,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int add_info(String userIdNumber, String userGender, String userGrade, String userMajor, String userAddress, String userCompany, String userPosition, String userEducation, String userBirthPlace) {
-        return userDao.add_info(userIdNumber, userGender, userGrade, userMajor, userAddress, userCompany, userPosition, userEducation, userBirthPlace);
+    public UserDomain findByuserMail(String userMail) {
+        return userDao.findByuserMail(userMail);
+    }
+
+    @Override
+    public int add_info(String userMail, String userGender, String userGrade, String userMajor, String userAddress, String userCompany, String userPosition, String userEducation, String userBirthPlace) {
+        return userDao.add_info(userMail, userGender, userGrade, userMajor, userAddress, userCompany, userPosition, userEducation, userBirthPlace);
     }
 
     @Override

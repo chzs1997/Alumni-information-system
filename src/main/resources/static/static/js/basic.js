@@ -1,6 +1,6 @@
 var userGrade;  //年级
 var userMajor;  //专业
-var userIdNumber;  //身份证号码
+var userMail;  //身份证号码
 var userEducation; //学历
 
 $(document).ready(function(){
@@ -36,7 +36,7 @@ function btn1(){
     var passWord = $("#password").val();
     var passWord2 = $("#password2").val();
     var phone = $("#phone").val();
-    userIdNumber = $("#userIdNumber").val();
+    userMail = $("#userMail").val();
 
     if(userName == ""){
         alert("用户名尚未填写")
@@ -44,17 +44,17 @@ function btn1(){
         alert("密码尚未填写");
     } else if(phone == ""){
         alert("手机号尚未填写");
-    } else if(userIdNumber == ""){
-        alert("用户身份证号尚未填写");
+    } else if(userMail == ""){
+        alert("用户邮箱尚未填写");
     } else if(passWord !== passWord2) {
         alert("两次密码输入不一致，请重新输入");
     }
     else{
         $.ajax({
-            url: BASE_PATH + "/user/login/",
+            url: BASE_PATH + "/user/login",
             type: "post",
             dateType: "json",
-            data: {"userName": userName, "password": passWord, "userIdNumber": userIdNumber, "phone": phone},
+            data: {"userName": userName, "password": passWord, "userMail": userMail, "phone": phone},
             async: false,
             success: function f(data) {
                 var result = data
@@ -75,7 +75,7 @@ function btn1(){
 }
 
 //第二步：手机验证码登陆
-function btn2(event){
+function btnContact(event){
     var obj = window.document.location;
     var BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));
     var Code = $("#code").val();
@@ -103,6 +103,33 @@ function btn2(event){
                 document.getElementById('step3').style.display='block';
 }
 
+//第二步 邮箱验证码登陆
+function btn2(){
+    var obj = window.document.location;
+    var BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));
+    var Code = $("#code").val();
+    $.ajax({
+        url: BASE_PATH + "/user/determine",
+        type: "post",
+        dateType: "json",
+        data: {"Code": Code},
+        async: false,
+        success: function f(data) {
+            if(data == 1){
+                document.getElementById('step2').style.display='none';
+                document.getElementById('step3').style.display='block';
+            }
+            else{
+                event.preventDefault();
+                alert("验证码错误")
+            }
+        },
+        error: function f() {
+            alert("lose");
+        }
+    })
+}
+
 
 function btn3(){
     document.getElementById('div2').style.display='none';  
@@ -122,7 +149,7 @@ function btn_add(){
     var grade = $(".select1 > p").text();;
     //学历
     var education = $(".select2 > p").text();
-    var u_id = userIdNumber;
+    var u_mail = userMail;
     var province =$("#province").children("option:selected").val();
     var city =$("#city").children("option:selected").val();
     var birthplaceProvince =$("#birthplaceProvince").children("option:selected").val();
@@ -135,7 +162,7 @@ function btn_add(){
         url: BASE_PATH + "/user/add_info",
         type: "post",
         dateType: "json",
-        data: {"userIdNumber": u_id
+        data: {"userMail": u_mail
               ,"userGender":userGender
               ,"userGrade":grade
               ,"userBirthPlace":userBirthPlace
@@ -216,6 +243,22 @@ function SetRemainTime() {
 * 验证工作
 *
 * */
+
+//邮箱格式限定
+function checkMail() {
+    var myemail = $("#userMail").val();
+    var myReg = /^[a-zA-Z0-9_-]+@([a-zA-Z0-9]+\.)+(com|cn|net|org)$/;
+
+    if (myReg.test(myemail)) {
+        $("#phone").removeAttr("disabled");
+        return true;
+    } else {
+        var tip = "邮箱格式不对!";
+        alert(tip);
+        $("#phone").attr("disabled","disabled");
+        return false;
+    }
+}
 
 //身份证验证
 function checkIdentity(){

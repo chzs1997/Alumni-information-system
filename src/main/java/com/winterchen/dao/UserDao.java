@@ -5,7 +5,6 @@ import com.winterchen.model.UserDomain;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -35,14 +34,14 @@ public interface UserDao {
     UserDomain findByPhoneNum(@Param("phoneNum") String phoneNum);
 
     /*根据用户Id修改密码*/
-    int updatePassword(@Param("userIdNumber") String userIdNumber
+    int updatePassword(@Param("userId") Integer userId
                       ,@Param("password") String password);
 
     /*注册*/
     int login(@Param("userName") String userName
              ,@Param("password") String password
              ,@Param("phone") String phone
-             ,@Param("userIdNumber") String userIdNumber);
+             ,@Param("userMail") String userMail);
 
     /*登录*/
     UserDomain check(
@@ -54,7 +53,7 @@ public interface UserDao {
 
     /*根据用户身份证号添加其他信息*/
     int add_info(
-            @Param("userIdNumber") String userIdNumber
+            @Param("userMail") String userMail
             ,@Param("userGender") String userGender
             ,@Param("userGrade") String userGrade
             ,@Param("userMajor") String userMajor
@@ -79,4 +78,7 @@ public interface UserDao {
      * */
     @SuppressWarnings("unchecked")
     Map<String,Integer> findUserAmountLastWeek();
+
+    /*根据用户邮箱验证*/
+    UserDomain findByuserMail(@Param("userMail") String userMail);
 }

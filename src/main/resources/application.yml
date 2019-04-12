@@ -52,6 +52,7 @@ spring:
     devtools:
       restart:
         enabled: true  #设置开启热部署
+    #邮箱发送配置
     mail:
       host: smtp.163.com
       username: chzs_lz@163.com
@@ -64,6 +65,7 @@ spring:
             starttles:
               enable: true
               required: true
+
 #    热部署工作
     thymeleaf:
       cache: false  #页面不加载缓存，修改即时生效
@@ -72,6 +74,8 @@ spring:
 mail:
   fromMail:
     addr: chzs_lz@163.com
+
+
 mybatis:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.winterchen.model
