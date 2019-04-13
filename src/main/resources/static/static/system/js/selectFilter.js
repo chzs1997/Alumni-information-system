@@ -103,3 +103,10 @@
 			console.log(val+'-是返回的值')
 		}
 	});
+
+$('#fi3').selectFilter({
+	callBack : function (val){
+		//返回选择的值
+		console.log(val+'-是返回的值')
+	}
+});

@@ -23,9 +23,25 @@ public interface UserDao {
     /*根据专业查找*/
     List<UserDomain> findByMajor(@Param("userMajor") String userMajor);
 
+    /*根据性别查找*/
+    List<UserDomain> findByGender(@Param("userGender") String userGender);
+
     /*根据年级和专业查找*/
     List<UserDomain> findByGradeAndMajor(@Param("userGrade") String userGrade
                                          ,@Param("userMajor") String userMajor);
+
+    /*根据性别和专业查找*/
+    List<UserDomain> findByGenderAndMajor(@Param("userGender") String userGender
+            ,@Param("userMajor") String userMajor);
+
+    /*根据年级和性别查找*/
+    List<UserDomain> findByGenderAndGrade(@Param("userGender") String userGender
+            ,@Param("userGrade") String userGrade);
+
+    /*根据年级和性别和专业查找*/
+    List<UserDomain> findByGradeAndMajorAndGender(@Param("userGrade") String userGrade
+            ,@Param("userMajor") String userMajor
+            ,@Param("userGender") String userGender);
 
     /*根据用户ID查询用户*/
     UserDomain findByUserId(@Param("userId") Integer userId);
@@ -43,6 +59,9 @@ public interface UserDao {
              ,@Param("phone") String phone
              ,@Param("userMail") String userMail);
 
+    /*根据用户身份证号修改密码*/
+    int assignUserBkey(String phone);
+
     /*登录*/
     UserDomain check(
               @Param("userName") String userName
@@ -57,11 +76,31 @@ public interface UserDao {
             ,@Param("userGender") String userGender
             ,@Param("userGrade") String userGrade
             ,@Param("userMajor") String userMajor
+            ,@Param("userGraduateYear") String userGraduateYear
+            ,@Param("userHeadTeacher") String userHeadTeacher
             ,@Param("userAddress") String userAddress
             ,@Param("userCompany") String userCompany
             ,@Param("userPosition") String userPosition
             ,@Param("userEducation") String userEducation
             ,@Param("userBirthPlace") String userBirthPlace);
+
+    /**
+     * 更改信息
+     * */
+    int updateMessage(@Param("userName") String userName
+                      ,@Param("userGender") String userGender
+                      ,@Param("userBirthPlace")String userBirthPlace
+                      ,@Param("phone") String phone
+                      ,@Param("userMail")String userMail
+                      ,@Param("userStudentId")String userStudentId
+                      ,@Param("userMajor")String userMajor
+                      ,@Param("userGrade")String userGrade
+                      ,@Param("userEducation")String userEducation
+                      ,@Param("userAddress")String userAddress
+                      ,@Param("userCompany")String userCompany
+                      ,@Param("userPosition")String userPosition
+                      ,@Param("userImage") String userImage
+                      ,@Param("userId")int userId);
 
     /*
      * 上个月注册用户数

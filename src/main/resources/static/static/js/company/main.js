@@ -35,7 +35,7 @@
 	      scrollTop: $('body').offset().top
 	    }, 700, 'easeInOutExpo');
 		});
-	}
+	};
 
 	var nextScroll = function() {
 		$('.js-next').on('click', function(e){
@@ -57,7 +57,7 @@
 			}
 
 		});
-	}
+	};
 
 	/*----------------------------------------
 		Burger Menu
@@ -134,7 +134,7 @@
 				$(this).find('> .dropdown-menu').stop(true, true).fadeOut(200).removeClass('animated-fast fadeInUp')
 			});
 		}
-	}
+	};
 	/*----------------------------------------
 		Carousel
 	----------------------------------------*/
@@ -353,7 +353,7 @@
 	    directionNav: false,
 	    controlNav: false
 	  });
-	}
+	};
 
 	
 	/*----------------------------------------
@@ -471,7 +471,7 @@
 
       fixedContentPos: false
     });
-	}
+	};
 
 	/*----------------------------------------
 		Stellar

@@ -596,7 +596,7 @@ if ( typeof Object.create !== "function" ) {
 
 			base.currentItem = base.owl.currentItem = position;
 			if( base.options.transitionStyle !== false  &&  drag !== "drag"  &&  base.options.items === 1  &&  base.browser.support3d === true){
-				base.swapSpeed(0)
+				base.swapSpeed(0);
 				if(base.browser.support3d === true){
 					base.transition3d(base.positionsInArray[position]);
 				} else {
@@ -654,7 +654,7 @@ if ( typeof Object.create !== "function" ) {
 			else if( position <= 0 ){
 				position = 0;
 			}
-			base.swapSpeed(0)
+			base.swapSpeed(0);
 			if(base.browser.support3d === true){
 				base.transition3d(base.positionsInArray[position]);
 			} else {
@@ -669,7 +669,7 @@ if ( typeof Object.create !== "function" ) {
 
 			base.prevArr.push(base.currentItem);
 			base.prevItem = base.owl.prevItem = base.prevArr[base.prevArr.length -2];
-			base.prevArr.shift(0)
+			base.prevArr.shift(0);
 
 			if(base.prevItem !== base.currentItem){
 				base.checkPagination();
@@ -859,7 +859,7 @@ if ( typeof Object.create !== "function" ) {
 				sliding : null,
 				dargging: null,
 				targetElement : null
-			}
+			};
 
 			base.isCssFinish = true;
 
@@ -958,10 +958,10 @@ if ( typeof Object.create !== "function" ) {
 
 				var minSwipe = function(){
 					return  base.newRelativeX / 5;
-				}
+				};
 				var maxSwipe = function(){
 					return  base.maximumPixels + base.newRelativeX / 5;
-				}
+				};
 
 				base.newPosX = Math.max(Math.min( base.newPosX, minSwipe() ), maxSwipe() );
 				if(base.browser.support3d === true){
@@ -1054,10 +1054,10 @@ if ( typeof Object.create !== "function" ) {
 			var base = this,
 				direction;
 			if(base.newRelativeX < 0 ){
-				direction = "right"
+				direction = "right";
 				base.playDirection = "next"
 			} else {
-				direction = "left"
+				direction = "left";
 				base.playDirection = "prev"
 			}
 			return direction

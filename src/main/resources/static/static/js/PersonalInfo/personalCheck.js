@@ -1,9 +1,8 @@
+//获取basePath，测试的话就能用就完了
+var userId;
+var obj = window.document.location;
+var BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));
 jQuery(document).ready(function($) {
-
-    //获取basePath，测试的话就能用就完了
-    var obj = window.document.location;
-    var BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));
-
     $.ajax({
         url: BASE_PATH + "/user/personalCheck",
         type: "post",
@@ -16,6 +15,7 @@ jQuery(document).ready(function($) {
                 alert("您的信息为空，请登陆后查看");
             }
             else{
+                userId = data.userId;
                 var personName = userName;
                 var personPhone = data.phone;
                 var personGender = data.gender;
@@ -28,6 +28,7 @@ jQuery(document).ready(function($) {
                 var personCompany = data.company;
                 var personAddress = data.userAddress;
                 var personPosition = data.position;
+                var personImage = data.userImage;
                 if(personName != null){
                   $("#personName").val(personName);
 
@@ -62,6 +63,8 @@ jQuery(document).ready(function($) {
 
                     $("#personCompany").val(personCompany);
                     $("#personPosition").val(personPosition);
+
+                    $("#icon").attr("src",personImage);
                 }
             }
         },
@@ -69,3 +72,79 @@ jQuery(document).ready(function($) {
         }
     });
 });
+
+$("#btn2").on("click",function () {
+    //姓名
+    var userName = $("#personName").val();
+    //性别
+    var userGender = $('#personGender input[name = "sex"]:checked').val();
+
+    //籍贯省
+    var province =$("#province").children("option:selected").val();
+
+    //籍贯市
+    var city =$("#city option:selected").text();
+
+    //联系方式
+    var phone = $("#personPhone").val();
+
+    //校友邮箱
+    var userMail = $("#personMail").val();
+
+    //校友学号
+    var userStudentId = $("#personStudentId").val();
+
+    //专业
+    var major = $("#personMajor option:selected").text();
+
+    //年级
+    var grade = $("#personGrade option:selected").text();
+
+    //学历
+    var education = $("#personEducation option:selected").text();
+
+    //工作地点
+    var province2 = $("#province2 option:selected").text();
+
+    var city2 = $("#city2 option:selected").text();
+
+    //工作公司
+    var userCompany = $("#personCompany").val();
+
+    //工作职位
+    var userPosition =  $("#personPosition").val();
+
+    //头像
+    var userImage = $("#icon").attr("src");
+
+
+    $.ajax({
+        url: BASE_PATH + "/user/updateMessage",
+        type: "post",
+        dateType: "json",
+        data: {"userName":userName,
+               "userGender":userGender,
+               "userBirthPlace":province+"省"+city+"市",
+               "phone":phone,
+               "userMail":userMail,
+               "userStudentId":userStudentId,
+               "userMajor":major,
+               "userGrade":grade,
+               "userEducation":education,
+               "userAddress":province2+"省"+city2+"市",
+               "userCompany":userCompany,
+               "userPosition":userPosition,
+               "userImage":userImage,
+               "userId":userId
+        },
+        async: false,
+        success: function f(data) {
+               if(data==1){
+                   alert("修改成功");
+                   window.location.href = "http://localhost:8080/PersonalInfo";
+               }
+        },
+        error: function f() {
+        }
+    });
+})

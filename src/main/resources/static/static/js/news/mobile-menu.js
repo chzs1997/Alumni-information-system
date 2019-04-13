@@ -71,7 +71,7 @@
                     "OTransition"      : "oTransitionEnd",
                     "MozTransition"    : "transitionend",
                     "WebkitTransition" : "webkitTransitionEnd"
-                }
+                };
 
                 for (t in transitions) {
                     if (el.style[t] !== undefined) {
@@ -88,7 +88,7 @@
                     "OAnimation"      : "oAnimationEnd",
                     "MozAnimation"    : "animationend",
                     "WebkitAnimation" : "webkitAnimationEnd"
-                }
+                };
 
                 for (t in animations) {
                     if (el.style[t] !== undefined) {

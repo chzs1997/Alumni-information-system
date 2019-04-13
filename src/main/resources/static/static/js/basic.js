@@ -144,11 +144,15 @@ function btn_add(){
     //性别
     var userGender = $(".frm_control_group").children("input:checked").val();
     //专业
-    var major = $(".select > p").text();;
+    var major = $(".select4 > p").text();;
     //年级
-    var grade = $(".select1 > p").text();;
+    var grade = $(".select2 > p").text();;
     //学历
-    var education = $(".select2 > p").text();
+    var education = $(".select1 > p").text();
+
+    //毕业年份
+    var graduateYear = $(".select3 > p").text();
+
     var u_mail = userMail;
     var province =$("#province").children("option:selected").val();
     var city =$("#city").children("option:selected").val();
@@ -156,6 +160,7 @@ function btn_add(){
     var birthplaceCity =$("#birthplaceCity").children("option:selected").val();
     var workPlace = $("#workPlace").val();
     var workPosition = $("#workPosition").val();
+    var headTeacher = $("#headTeacher").val();
     var userAddress = province+"省"+city+"市";
     var userBirthPlace = birthplaceProvince+"省"+birthplaceCity+"市";
     $.ajax({
@@ -168,6 +173,8 @@ function btn_add(){
               ,"userBirthPlace":userBirthPlace
               ,"userEducation":education
               ,"userMajor":major
+              ,"userGraduateYear":graduateYear
+              ,"userHeadTeacher":headTeacher
               ,"userAddress":userAddress
               ,"userCompany":workPlace
               ,"userPosition":workPosition},
@@ -175,7 +182,7 @@ function btn_add(){
         success: function f(data) {
             if(data == 1){
                 alert("注册成功");
-                window.location.href = "http://localhost:8080/HomePage";
+                window.location.href = "http://localhost:8080/index";
             }
             else{
                 event.preventDefault();

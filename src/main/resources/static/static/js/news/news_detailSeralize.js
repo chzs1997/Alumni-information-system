@@ -183,7 +183,7 @@ jQuery(document).ready(function($) {
         error: function f() {
         }
     });
-})
+});
 
 function toggleColor(e) {
     const obj = window.document.location;
@@ -277,4 +277,4 @@ $("#commentButton").on("click",function () {
         error: function f() {
         }
     });
-})
+});

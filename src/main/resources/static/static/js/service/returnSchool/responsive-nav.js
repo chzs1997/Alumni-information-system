@@ -5,8 +5,8 @@ $(document).ready(function() {
 	$(".nav li a").each(function() {
 		if ($(this).next().length > 0) {
 			$(this).addClass("parent");
-		};
-	})
+        }
+    });
 	
 	$(".toggleMenu").click(function(e) {
 		e.preventDefault();
@@ -14,7 +14,7 @@ $(document).ready(function() {
 		$(".nav").toggle();
 	});
 	adjustMenu();
-})
+});
 
 $(window).bind('resize orientationchange', function() {
 	ww = document.body.clientWidth;
@@ -46,5 +46,5 @@ var adjustMenu = function() {
 		 	$(this).toggleClass('hover');
 		});
 	}
-}
+};
 

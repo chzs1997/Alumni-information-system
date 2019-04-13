@@ -50,7 +50,7 @@ public class UserController extends HttpServlet {
     /*保存手机号码*/
     String phoneNum;
 
-    /*
+    /**
     查询所有用户
     */
     @ResponseBody
@@ -63,7 +63,7 @@ public class UserController extends HttpServlet {
         return userService.findAllUser(pageNum, pageSize);
     }
 
-    /*
+    /**
     查询所有用户
     */
     @ResponseBody
@@ -76,11 +76,13 @@ public class UserController extends HttpServlet {
             @RequestParam(name = "grade" , required = false, defaultValue = "全体")
                     String userGrade,
             @RequestParam(name = "major", required = false, defaultValue = "全体")
-                    String userMajor) {
-        return userService.findByGrade(pageNum, pageSize, userGrade, userMajor);
+                    String userMajor,
+            @RequestParam(name = "gender", required = false, defaultValue = "全体")
+                    String userGender){
+        return userService.findByGrade(pageNum, pageSize, userGrade, userMajor, userGender);
     }
 
-    /*
+    /**
     用户名密码登录(测试通过)
     */
     @ResponseBody
@@ -104,15 +106,17 @@ public class UserController extends HttpServlet {
             session.setAttribute("phone", i.getPhone());
             session.setAttribute("gender", i.getUserGender());
             session.setAttribute("userId", i.getUserId());
+            session.setAttribute("userImage",i.getUserImage());
             HashMap<Object, Object> objectMap = new HashMap<>();
             objectMap.put("userName", userName);
             objectMap.put("phone", i.getPhone());
             objectMap.put("gender", i.getUserGender());
+            objectMap.put("userImage",i.getUserImage());
             return objectMap;
         }
     }
 
-    /*
+    /**
     注册阶段第一步(必要信息)
     */
     @ResponseBody
@@ -124,6 +128,7 @@ public class UserController extends HttpServlet {
             @RequestParam(value = "userMail") String userMail
     ) {
         int i = userService.login(userName, password, phone, userMail);
+        userService.assignUserBkey(phone);
         if (i > 0) {
             //注册成功
             return 1;
@@ -133,7 +138,7 @@ public class UserController extends HttpServlet {
         }
     }
 
-    /*
+    /**
     注册阶段第二步(额外信息)(检测无误)
     */
     @ResponseBody
@@ -143,6 +148,8 @@ public class UserController extends HttpServlet {
             @RequestParam(value = "userGender", required = false) String userGender,  //1 表示男性 2表示女性
             @RequestParam(value = "userGrade", required = false) String userGrade,
             @RequestParam(value = "userMajor", required = false) String userMajor,
+            @RequestParam(value = "userGraduateYear", required = false) String userGraduateYear,
+            @RequestParam(value = "userHeadTeacher", required = false) String userHeadTeacher,
             @RequestParam(value = "userAddress", required = false) String userAddress,
             @RequestParam(value = "userCompany", required = false) String userCompany,
             @RequestParam(value = "userPosition", required = false) String userPosition,
@@ -168,6 +175,12 @@ public class UserController extends HttpServlet {
         if (userPosition == null) {
             userPosition = "暂无";
         }
+        if (userGraduateYear == null) {
+            userGraduateYear = "暂无";
+        }
+        if (userHeadTeacher == null) {
+            userHeadTeacher = "暂无";
+        }
         //性别解析
         if (userGender == "1") {
             userGender = "男";
@@ -176,7 +189,7 @@ public class UserController extends HttpServlet {
         }
 
 
-        int i = userService.add_info(userMail, userGender, userGrade, userMajor, userAddress, userCompany, userPosition, userEducation, userBirthPlace);
+        int i = userService.add_info(userMail, userGender, userGrade, userMajor, userGraduateYear, userHeadTeacher, userAddress, userCompany, userPosition, userEducation, userBirthPlace);
         if (i > 0) {
             //信息完善成功
             return 1;
@@ -186,7 +199,7 @@ public class UserController extends HttpServlet {
         }
     }
 
-    /*
+    /**
     找回密码第一步
      && 注册验证码第一步
     */
@@ -204,7 +217,7 @@ public class UserController extends HttpServlet {
     }
 
 
-    /*修改密码-1
+    /**修改密码-1
 
     邮箱验证(测试通过)
     */
@@ -236,7 +249,8 @@ public class UserController extends HttpServlet {
 
     }
 
-    /*修改密码-2
+    /**
+     * 修改密码-2
       密码重置(测试通过)
       */
     @ResponseBody
@@ -255,7 +269,7 @@ public class UserController extends HttpServlet {
     }
 
 
-    /*
+    /**
      *
      * 邮箱验证码
      * */
@@ -286,7 +300,7 @@ public class UserController extends HttpServlet {
         }
     }
 
-    /*
+    /**
      * 状态检测
      * */
     @ResponseBody
@@ -297,6 +311,7 @@ public class UserController extends HttpServlet {
             @SessionAttribute("password") String password,
             @SessionAttribute("gender") String gender,
             @SessionAttribute("phone") String phone,
+            @SessionAttribute("userImage") String userImage,
             Model model) {
         model.addAttribute("name", account);
         System.out.println(username);
@@ -314,12 +329,13 @@ public class UserController extends HttpServlet {
             objectMap.put("password", password);
             objectMap.put("phone", phone);
             objectMap.put("gender", gender);
+            objectMap.put("userImage",userImage);
         }
         return objectMap;
     }
 
 
-   /*
+   /**
    * 退出登陆状态，注销
    *
    * */
@@ -331,7 +347,7 @@ public class UserController extends HttpServlet {
         return 1;
     }
 
-    /*
+    /**
     *
     *个人资料信息填充
     * */
@@ -358,7 +374,49 @@ public class UserController extends HttpServlet {
         objectMap.put("company", i.getUserCompany());
         objectMap.put("userAddress", i.getUserAddress());
         objectMap.put("position", i.getUserPosition());
+        objectMap.put("userId",i.getUserId());
+        objectMap.put("userImage",i.getUserImage());
         return objectMap;
+    }
+
+    /**
+     *
+     * 信息填充
+     */
+    @ResponseBody
+    @RequestMapping(value = "/updateMessage")
+    public int updateMessage(
+            @RequestParam("userName") String userName,
+            @RequestParam("userGender") String userGender,
+            @RequestParam("userBirthPlace") String userBirthPlace,
+            @RequestParam("phone") String phone,
+            @RequestParam("userMail") String userMail,
+            @RequestParam("userStudentId") String userStudentId,
+            @RequestParam("userMajor") String userMajor,
+            @RequestParam("userGrade") String userGrade,
+            @RequestParam("userEducation") String userEducation,
+            @RequestParam("userAddress") String userAddress,
+            @RequestParam("userCompany") String userCompany,
+            @RequestParam("userId") int userId,
+            @RequestParam("userImage") String userImage,
+            @RequestParam("userPosition") String userPosition
+
+    ){
+         int i = userService.updateMessage(userName
+                                          ,userGender
+                                          ,userBirthPlace
+                                          ,phone
+                                          ,userMail
+                                          ,userStudentId
+                                          ,userMajor
+                                          ,userGrade
+                                          ,userEducation
+                                          ,userAddress
+                                          ,userCompany
+                                          ,userPosition
+                                          ,userImage
+                                          ,userId);
+         return i;
     }
 
 

@@ -71,14 +71,20 @@ jQuery(document).ready(function($) {
                 var result = userName;
                 var phone = data.phone;
                 var gender = data.gender;
+                var userImage = data.userImage;
                 if(result != null){
                     $('.cd-user-modal').removeClass('is-visible');
                     $(".cd-signin").hide();
                     $("#top1_register").hide();
                     $(".yourName").text(result);
                     $(".wid").text(phone);
-                    if(gender == '女'){
-                        $(".touxiang").attr("src","../static/static/img/touxaing2.jpg");
+                    if(userImage == ""){
+                        if(gender == '女'){
+                            $(".touxiang").attr("src","static/static/img/touxaing2.jpg");
+                        }
+                    }
+                    else{
+                        $(".touxiang").attr("src",userImage);
                     }
                 }
             }
@@ -200,15 +206,22 @@ function login_1() {
             var result = data.userName;
             var phone = data.phone;
             var gender = data.gender;
+            var userImage = data.userImage;
             if(result != null){
                 $('.cd-user-modal').removeClass('is-visible');
                 $(".cd-signin").hide();
                 $("#top1_register").hide();
                 $(".yourName").text(result);
                 $(".wid").text(phone);
-                if(gender == '女'){
-                    $(".touxiang").attr("src","../static/static/img/touxaing2.jpg");
+                if(userImage == ""){
+                    if(gender == '女'){
+                        $(".touxiang").attr("src","../static/static/img/touxaing2.jpg");
+                    }
                 }
+                else{
+                    $(".touxiang").attr("src",userImage);
+                }
+
             }
             else{
                 alert("用户名或密码错误，请重新登陆")

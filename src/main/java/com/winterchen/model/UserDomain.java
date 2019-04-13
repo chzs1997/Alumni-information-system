@@ -5,55 +5,61 @@ import lombok.Data;
 @Data
 public class UserDomain {
 
-    /*用户id*/
+    /*校友id*/
     private Integer userId;
 
-    /*用户名*/
+    /*校友名*/
     private String userName;
 
-    /*用户性别*/
+    /*校友性别*/
     private String userGender;
 
-    /*用户学历*/
+    /*校友学历*/
     private String userEducation;
 
-    /*用户籍贯*/
+    /*校友籍贯*/
     private String userBirthPlace;
 
-    /*用户学号*/
+    /*校友学号*/
     private String userStudentId;
 
-    /*用户年级*/
+    /*校友年级*/
     private String userGrade;
 
-    /*用户专业*/
+    /*校友专业*/
     private String userMajor;
 
-    /*用户邮箱*/
+    /*校友毕业年份*/
+    private String userGraduateYear;
+
+    /*校友班主任*/
+    private String userHeadTeacher;
+
+    /*校友邮箱*/
     private String userMail;
 
-    /*用户院系*/
+    /*校友院系*/
     private String userDepartment;
 
-    /*用户身份证号*/
+    /*校友身份证号*/
     private String userIdNumber;
 
-    /*用户所在公司*/
+    /*校友所在公司*/
     private String userCompany;
 
-    /*用户职位*/
+    /*校友职位*/
     private String userPosition;
 
-    /*用户工作地址*/
+    /*校友工作地址*/
     private String userAddress;
 
-    /*用户密码*/
+    /*校友密码*/
     private String password;
 
     /*联系方式*/
     private String phone;
 
-    /*用户头像*/
-    private String userImg;
+    /*校友头像*/
+    private String userImage;
 
 }

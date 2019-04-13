@@ -55,24 +55,41 @@ public class UserServiceImpl implements UserService {
 
     /*根据年级和专业查询*/
     @Override
-    public PageInfo<UserDomain> findByGrade(int pageNum, int pageSize, String userGrade, String userMajor) {
+    public PageInfo<UserDomain> findByGrade(int pageNum, int pageSize, String userGrade, String userMajor, String userGender) {
         PageHelper.startPage(pageNum, pageSize);
         List<UserDomain> userDomains;
-        if(userGrade.equals("全体")&&!userMajor.equals("全体")){
-            System.out.println("选择1");
+
+        if(userGender.equals("全体")&&userGrade.equals("全体")&&!userMajor.equals("全体")){
+            System.out.println("专业查询");
             userDomains = userDao.findByMajor(userMajor);
         }
-        else if(userMajor.equals("全体")&&!userGrade.equals("全体")){
-            System.out.println("选择2");
+        else if(userGender.equals("全体")&&userMajor.equals("全体")&&!userGrade.equals("全体")){
+            System.out.println("年级查询");
             userDomains = userDao.findByGrade(userGrade);
         }
-        else if(userMajor.equals("全体")&&userGrade.equals("全体")){
-            System.out.println("选择3");
+        else if(!userGender.equals("全体")&&userMajor.equals("全体")&&userGrade.equals("全体")){
+            System.out.println("性别查询");
+            userDomains = userDao.findByGender(userGender);
+        }
+        else if(userGender.equals("全体")&&!userMajor.equals("全体")&&!userGrade.equals("全体")){
+            System.out.println("专业年级查询");
+            userDomains = userDao.findByGradeAndMajor(userGrade, userMajor);
+        }
+        else if(!userGender.equals("全体")&&!userMajor.equals("全体")&&userGrade.equals("全体")){
+            System.out.println("专业性别查询");
+            userDomains = userDao.findByGenderAndMajor(userGender, userMajor);
+        }
+        else if(!userGender.equals("全体")&&userMajor.equals("全体")&&!userGrade.equals("全体")){
+            System.out.println("年级性别查询");
+            userDomains = userDao.findByGenderAndGrade(userGender, userGrade);
+        }
+        else if(userGender.equals("全体")&&userMajor.equals("全体")&&userGrade.equals("全体")){
+            System.out.println("全体查询");
             userDomains = userDao.selectUsers();
         }
         else{
-            System.out.println("选择4");
-            userDomains = userDao.findByGradeAndMajor(userGrade, userMajor);
+            System.out.println("专业年级性别查询");
+            userDomains = userDao.findByGradeAndMajorAndGender(userGrade, userMajor,userGender);
         }
         System.out.println(userDomains);
         PageInfo result = new PageInfo(userDomains);
@@ -97,6 +114,12 @@ public class UserServiceImpl implements UserService {
         return userDao.updatePassword(userId,password);
     }
 
+    //设定用户编号
+    @Override
+    public int assignUserBkey(String phone) {
+        return userDao.assignUserBkey(phone);
+    }
+
     @Override
     public UserDomain findByuserIdNumber(String userIdNumber) {
         return userDao.findByuserIdNumber(userIdNumber);
@@ -108,8 +131,27 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int add_info(String userMail, String userGender, String userGrade, String userMajor, String userAddress, String userCompany, String userPosition, String userEducation, String userBirthPlace) {
-        return userDao.add_info(userMail, userGender, userGrade, userMajor, userAddress, userCompany, userPosition, userEducation, userBirthPlace);
+    public int add_info(String userMail, String userGender, String userGrade, String userMajor,  String userGraduateYear
+            ,String userHeadTeacher,String userAddress, String userCompany, String userPosition, String userEducation, String userBirthPlace) {
+        return userDao.add_info(userMail, userGender, userGrade, userMajor, userGraduateYear, userHeadTeacher, userAddress, userCompany, userPosition, userEducation, userBirthPlace);
+    }
+
+    @Override
+    public int updateMessage(String userName, String userGender, String userBirthPlace, String phone, String userMail, String userStudentId, String userMajor, String userGrade, String userEducation, String userAddress, String userCompany, String userPosition, String userImage, int userId) {
+        return userDao.updateMessage(userName
+                                     ,userGender
+                                     ,userBirthPlace
+                                     ,phone
+                                     ,userMail
+                                     ,userStudentId
+                                     ,userMajor
+                                     ,userGrade
+                                     ,userEducation
+                                     ,userAddress
+                                     ,userCompany
+                                     ,userPosition
+                                     ,userImage
+                                     ,userId);
     }
 
     @Override

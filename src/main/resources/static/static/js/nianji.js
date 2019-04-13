@@ -1,19 +1,19 @@
 $(function() {
-	$(".select1 p").click(function(e) {
-		$(".select1").toggleClass('open');
+	$(".select2 p").click(function(e) {
+		$(".select2").toggleClass('open');
 		e.stopPropagation();
 	});
 
-	$(".content .select1 ul li").click(function(e) {
+	$(".content2 .select2 ul li").click(function(e) {
 		var _this = $(this);
-		$(".select1 > p").text(_this.attr('data-value'));
+		$(".select2 > p").text(_this.attr('data-value'));
 		_this.addClass("Selected").siblings().removeClass("Selected");
-		$(".select1").removeClass("open");
+		$(".select2").removeClass("open");
 		e.stopPropagation();
 	});
 
 	$(document).on('click', function() {
-		$(".select1").removeClass("open");
+		$(".select2").removeClass("open");
 	})
 
 });

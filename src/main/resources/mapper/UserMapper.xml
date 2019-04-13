@@ -13,6 +13,8 @@
     <result property="password" column="U_PASSWORD"/>
     <result property="phone" column="U_CONTACT"/>
     <result property="userMajor" column="U_MAJOR"/>
+    <result property="userGraduateYear" column="U_GRADUATE_YEAR"/>
+    <result property="userHeadTeacher" column="U_HEAD_TEACHER"/>
     <result property="userMail" column="U_MAIL"/>
     <result property="userDepartment" column="U_DEPARTMENT"/>
     <result property="userIdNumber" column="U_ID_NUMBER"/>
@@ -21,7 +23,7 @@
     <result property="userAddress" column="U_ADDRESS"/>
     <result property="userStudentId" column="U_STUDENTID"/>
     <result property="userGrade" column="U_GRADE"/>
-    <result property="userImg" column="U_IMG"/>
+    <result property="userImage" column="U_IMG"/>
   </resultMap>
 
     <resultMap id="userAmount" type="java.util.HashMap">
@@ -78,6 +80,16 @@
       ORDER BY U_GRADE
   </select>
 
+    <!--根据性别查询用户-->
+    <select id="findByGender" resultMap="userRM">
+      SELECT
+        *
+      FROM
+         `alumni information system`.schooluser
+      WHERE U_GENDER = #{userGender}
+      ORDER BY U_GRADE
+  </select>
+
   <!--根据年级和专业查询用户-->
   <select id="findByGradeAndMajor" resultMap="userRM">
       SELECT
@@ -88,7 +100,35 @@
       ORDER BY U_GRADE asc , U_MAJOR asc
   </select>
 
+    <!--根据性别和专业查询用户-->
+    <select id="findByGenderAndMajor" resultMap="userRM">
+      SELECT
+        *
+      FROM
+         `alumni information system`.schooluser
+      WHERE U_GENDER = #{userGender} and U_MAJOR = #{userMajor}
+      ORDER BY U_GENDER asc , U_MAJOR asc
+  </select>
 
+    <!--根据性别和年级查询用户-->
+    <select id="findByGenderAndGrade" resultMap="userRM">
+      SELECT
+        *
+      FROM
+         `alumni information system`.schooluser
+      WHERE U_GENDER = #{userGender} and U_GRADE = #{userGrade}
+      ORDER BY U_GENDER asc , U_GRADE asc
+  </select>
+
+    <!--根据性别和年级和专业查询用户-->
+    <select id="findByGradeAndMajorAndGender" resultMap="userRM">
+      SELECT
+        *
+      FROM
+         `alumni information system`.schooluser
+      WHERE U_GENDER = #{userGender} and U_GRADE = #{userGrade} and U_MAJOR = #{userMajor}
+      ORDER BY U_GRADE asc , U_MAJOR asc, U_GENDER asc
+  </select>
 
   <!--根据用户id查询用户-->
   <select id="findByUserId" resultMap="userRM">
@@ -142,12 +182,20 @@
     VALUES (#{userName}, #{password}, #{phone}, #{userMail})
   </insert>
 
+    <update id="assignUserBkey" parameterType="com.winterchen.model.UserDomain" >
+     update schooluser
+     set U_BKEY = concat('C',date_format(create_time,'%Y%m%d'),U_ID)
+     where U_CONTACT = #{phone}
+    </update>
+
   <!--补充信息-->
   <update id="add_info" parameterType="com.winterchen.model.UserDomain" >
     UPDATE <include refid="BASE_TABLE"/>
     SET U_GENDER = #{userGender}
         ,U_GRADE = #{userGrade}
         ,U_MAJOR = #{userMajor}
+        ,U_GRADUATE_YEAR = #{userGraduateYear}
+        ,U_HEAD_TEACHER = #{userHeadTeacher}
         ,U_ADDRESS = #{userAddress}
         ,U_COMPANY = #{userCompany}
         ,U_POSITION = #{userPosition}
@@ -155,6 +203,25 @@
         ,U_BIRTHPLACE = #{userBirthPlace}
     WHERE U_MAIL = #{userMail}
   </update>
+
+    <!--修改信息-->
+    <update id="updateMessage" parameterType="com.winterchen.model.UserDomain" >
+        UPDATE <include refid="BASE_TABLE"/>
+        SET U_NAME = #{userName}
+           ,U_GENDER = #{userGender}
+           ,U_BIRTHPLACE = #{userBirthPlace}
+           ,U_CONTACT = #{phone}
+           ,U_MAIL = #{userMail}
+           ,U_STUDENTID = #{userStudentId}
+           ,U_MAJOR = #{userMajor}
+           ,U_GRADE = #{userGrade}
+           ,U_EDUCATION = #{userEducation}
+           ,U_ADDRESS = #{userAddress}
+           ,U_COMPANY = #{userCompany}
+           ,U_POSITION = #{userPosition}
+           ,U_IMG = #{userImage}
+        WHERE U_ID = #{userId}
+    </update>
 
   <!--登录-->
   <select id="check" resultMap="userRM">

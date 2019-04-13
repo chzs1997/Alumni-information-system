@@ -144,10 +144,14 @@
 			<artifactId>commons-httpclient</artifactId>
 			<version>3.0.1</version>
 		</dependency>
+
+		<!--会话聊天功能-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-websocket</artifactId>
 		</dependency>
+
+
 		<dependency><!--Webjars版本定位工具-->
 			<groupId>org.webjars</groupId>
 			<artifactId>webjars-locator-core</artifactId>
