@@ -1,3 +1,5 @@
+const obj = window.document.location;
+const BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));
 jQuery(document).ready(function($) {
     var     $form_modal = $('.cd-user-modal'),
             $form_login = $form_modal.find('#cd-login'),
@@ -6,9 +8,6 @@ jQuery(document).ready(function($) {
             $tab_login = $form_modal_tab.children('li').eq(0).children('a'),
             $tab_signup = $form_modal_tab.children('li').eq(1).children('a'),
             $main_nav = $('.cd-signin');
-    //获取basePath，测试的话就能用就完了
-    var obj = window.document.location;
-    var BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));
 
     //弹出窗口
     $main_nav.on('click', function(event) {
@@ -55,7 +54,6 @@ jQuery(document).ready(function($) {
         $(".cd-switcher").children("li").removeClass("on");
          $(".cd-switcher").children("li").eq(1).addClass("on");
     }
-
     $.ajax({
         url: BASE_PATH + "/user/detectState",
         type: "post",
@@ -63,14 +61,14 @@ jQuery(document).ready(function($) {
         data: {},
         async: false,
         success: function f(data) {
-            var userName = data.username;
+            var userName = data.userName;
             if(userName == "尚未登陆"){
                 out_login();
             }
             else{
                 var result = userName;
                 var phone = data.phone;
-                var gender = data.gender;
+                var gender = data.userGender;
                 var userImage = data.userImage;
                 if(result != null){
                     $('.cd-user-modal').removeClass('is-visible');
@@ -78,9 +76,12 @@ jQuery(document).ready(function($) {
                     $("#top1_register").hide();
                     $(".yourName").text(result);
                     $(".wid").text(phone);
-                    if(userImage == ""){
+                    if(userImage == null){
                         if(gender == '女'){
                             $(".touxiang").attr("src","static/static/img/touxaing2.jpg");
+                        }
+                        else{
+                            $(".touxiang").attr("src","static/static/img/touxaing.jpg");
                         }
                     }
                     else{
@@ -127,10 +128,8 @@ function send(){
     $("#btn").val(curCount + "秒");
     InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
 
-    //获取basePath，测试的话就能用就完了
-    var obj = window.document.location;
-    var BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));
     var Contact = $("#signup-username").val();
+    var BASE_PATH = "http://172.17.108.131:8080";
     $.ajax({
         url: BASE_PATH + "/user/sendMessage",
         type: "post",
@@ -157,9 +156,6 @@ function sendMail(){
     $("#btn").val(curCount + "秒");
     InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
 
-    //获取basePath，测试的话就能用就完了
-    var obj = window.document.location;
-    var BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));
     var userMail = $("#Mail").val();
     $.ajax({
         url: BASE_PATH + "/user/getCheckCode",
@@ -191,11 +187,9 @@ function SetRemainTime() {
 }
 
 function login_1() {
-    //获取basePath，测试的话就能用就完了
-    var obj = window.document.location;
-    var BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));
     var userName = $("#signin-username").val();
     var passWord = $("#signin-password").val();
+    var BASE_PATH = "http://172.17.108.131:8080";
     $.ajax({
         url: BASE_PATH + "/user/check",
         type: "post",
@@ -213,9 +207,12 @@ function login_1() {
                 $("#top1_register").hide();
                 $(".yourName").text(result);
                 $(".wid").text(phone);
-                if(userImage == ""){
+                if(userImage == null){
                     if(gender == '女'){
-                        $(".touxiang").attr("src","../static/static/img/touxaing2.jpg");
+                        $(".touxiang").attr("src","static/static/img/touxaing2.jpg");
+                    }
+                    else{
+                        $(".touxiang").attr("src","static/static/img/touxaing.jpg");
                     }
                 }
                 else{
@@ -234,11 +231,8 @@ function login_1() {
 }
 
 function login_2() {
-    //获取basePath，测试的话就能用就完了
-    var obj = window.document.location;
-    var BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));
     var Code = $("#signup-email").val();
-
+    var BASE_PATH = "http://172.17.108.131:8080";
     $.ajax({
         url: BASE_PATH + "/user/determine",
         type: "post",
@@ -253,7 +247,7 @@ function login_2() {
                 $(".yourName").text(result);
                 $(".wid").text(phone);
                 if(gender == '女'){
-                    $(".touxiang").attr("src","../static/static/img/touxaing2.jpg");
+                    $(".touxiang").attr("src","static/static/img/touxaing2.jpg");
                 }
             }
             else{
@@ -269,13 +263,11 @@ function login_2() {
 function out_login(){
     $(".cd-signin").show();
     $("#top1_register").show();
-    $(".touxiang").attr("src","../static/static/img/touxaing.jpg");
+    $(".touxiang").attr("src","static/static/img/touxaing.jpg");
     $("#homeOptions").css("display","none");
     $(".yourName").text("");
     $(".wid").text("");
-    //获取basePath，测试的话就能用就完了
-    var obj = window.document.location;
-    var BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));
+    var BASE_PATH = "http://172.17.108.131:8080";
     $.ajax({
         url: BASE_PATH + "/user/logout",
         type: "post",

@@ -9,6 +9,7 @@ import com.winterchen.service.UserService;
 import com.winterchen.util.SendMessageUtil;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -101,12 +102,7 @@ public class UserController extends HttpServlet {
             // 设置session
             loginLogService.save(i.getUserId(),i.getUserName());  //在登陆日志中保存
             session.setAttribute(MyWebAppConfigurer.SESSION_KEY, i.getUserId());
-            session.setAttribute("username", i.getUserName());
-            session.setAttribute("password", i.getPassword());
-            session.setAttribute("phone", i.getPhone());
-            session.setAttribute("gender", i.getUserGender());
             session.setAttribute("userId", i.getUserId());
-            session.setAttribute("userImage",i.getUserImage());
             HashMap<Object, Object> objectMap = new HashMap<>();
             objectMap.put("userName", userName);
             objectMap.put("phone", i.getPhone());
@@ -127,15 +123,22 @@ public class UserController extends HttpServlet {
             @RequestParam(value = "phone") String phone,
             @RequestParam(value = "userMail") String userMail
     ) {
-        int i = userService.login(userName, password, phone, userMail);
-        userService.assignUserBkey(phone);
-        if (i > 0) {
-            //注册成功
-            return 1;
-        } else {
-            //注册失败
-            return 0;
+        HashMap<String,Object> result = new HashMap<>();
+        try{
+            int i = userService.login(userName, password, phone, userMail);
+            userService.assignUserBkey(phone);
+            if (i > 0) {
+                //注册成功
+                result.put("result",i);
+            } else {
+                //注册失败
+                result.put("result",i);
+            }
+        }catch (DuplicateKeyException e){
+            result.put("result","邮箱已被注册");
         }
+        return result;
+
     }
 
     /**
@@ -276,7 +279,7 @@ public class UserController extends HttpServlet {
      @RequestMapping("getCheckCode")
      @ResponseBody
      public String getCheckCode(String userMail){
-         String checkCode = String.valueOf(new Random().nextInt(8999999)+100000);
+         String checkCode = String.valueOf(new Random().nextInt(899999) + 100000);
          mailCode = checkCode;
          String message = "您的注册验证码为" + checkCode;
          try{
@@ -307,31 +310,15 @@ public class UserController extends HttpServlet {
     @PostMapping("/detectState")
     public Object detectState(
             @SessionAttribute(MyWebAppConfigurer.SESSION_KEY) String account,
-            @SessionAttribute("username") String username,
-            @SessionAttribute("password") String password,
-            @SessionAttribute("gender") String gender,
-            @SessionAttribute("phone") String phone,
-            @SessionAttribute("userImage") String userImage,
+            @SessionAttribute("userId") int userId,
             Model model) {
         model.addAttribute("name", account);
-        System.out.println(username);
-        System.out.println(password);
-        System.out.println(gender);
-        System.out.println(phone);
-        HashMap<Object, Object> objectMap = new HashMap<>();
-        if (username == "尚未登陆") {
-            objectMap.put("username", username);
-            objectMap.put("password", "尚未登陆");
-            objectMap.put("phone", "尚未登陆");
-            objectMap.put("gender", "尚未登陆");
-        } else {
-            objectMap.put("username", username);
-            objectMap.put("password", password);
-            objectMap.put("phone", phone);
-            objectMap.put("gender", gender);
-            objectMap.put("userImage",userImage);
-        }
-        return objectMap;
+        UserDomain i = userService.findByUserId(userId);
+        System.out.println(i.getUserName());
+        System.out.println(i.getPassword());
+        System.out.println(i.getUserGender());
+        System.out.println(i.getPhone());
+        return i;
     }
 
 

@@ -1,7 +1,5 @@
-//获取basePath，测试的话就能用就完了
 var userId;
-var obj = window.document.location;
-var BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));
+var BASE_PATH = "http://172.17.108.131:8080";
 jQuery(document).ready(function($) {
     $.ajax({
         url: BASE_PATH + "/user/personalCheck",
@@ -65,6 +63,14 @@ jQuery(document).ready(function($) {
                     $("#personPosition").val(personPosition);
 
                     $("#icon").attr("src",personImage);
+                    //专业
+                    var major = $("#personMajor option:selected").attr("value");
+
+                    //年级
+                    var grade = $("#personGrade option:selected").attr("value");
+
+                    //学历
+                    var education = $("#personEducation option:selected").attr("value");
                 }
             }
         },
@@ -117,7 +123,6 @@ $("#btn2").on("click",function () {
     //头像
     var userImage = $("#icon").attr("src");
 
-
     $.ajax({
         url: BASE_PATH + "/user/updateMessage",
         type: "post",
@@ -141,10 +146,11 @@ $("#btn2").on("click",function () {
         success: function f(data) {
                if(data==1){
                    alert("修改成功");
-                   window.location.href = "http://localhost:8080/PersonalInfo";
+                   window.location.href = "http://172.17.108.131:8080/PersonalInfo";
                }
         },
         error: function f() {
+            alert("修改失败");
         }
     });
 })

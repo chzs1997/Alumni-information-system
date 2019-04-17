@@ -4,6 +4,7 @@ import com.github.pagehelper.PageInfo;
 import com.winterchen.model.UserDomain;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
 
 
@@ -28,7 +29,7 @@ public interface UserService {
     /**
      *
      *
-     * 查询所有用户*/
+     * 查询所有用户(分页查询)*/
     PageInfo<UserDomain> findAllUser(int pageNum, int pageSize);
 
     /**
@@ -118,4 +119,13 @@ public interface UserService {
      * 近一周用户注册量
      * */
     Map<Integer,Integer> findUserAmountLastWeek();
+
+
+    /**
+     *
+     * 遍历所有用户
+     *
+     * */
+    List<UserDomain> findAllUser();
+
 }

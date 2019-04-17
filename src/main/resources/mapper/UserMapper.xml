@@ -5,6 +5,7 @@
   <!-- 数据库表映射 -->
   <resultMap id="userRM" type="com.winterchen.model.UserDomain">
     <result property="userId" column="U_ID"/>
+    <result property="userBkey" column="U_BKEY"/>
     <result property="userProperty" column="U_PROPERTY"/>
     <result property="userName" column="U_NAME"/>
     <result property="userGender" column="U_GENDER"/>
@@ -58,6 +59,12 @@
          `alumni information system`.schooluser
       ORDER BY U_GRADE asc , U_MAJOR asc
   </select>
+
+    <!--所有用户-->
+    <select id = "findAllUser" resultMap="userRM">
+        select *
+        from schooluser
+    </select>
 
 
   <!--根据年级查询用户-->

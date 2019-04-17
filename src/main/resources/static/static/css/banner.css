@@ -2,7 +2,7 @@
 
 .banner {
 	width: 100%;
-	height: 35%;
+	height: 40%;
 	/*background-color: aqua;*/
 	overflow: hidden;
 	cursor: pointer;
@@ -10,7 +10,7 @@
 
 .imgbox {
 	width: 100%;
-	height: 500px;
+	height: 100%;
 	position: relative;
 	background-color: #222222;
 	overflow: hidden;
@@ -34,7 +34,7 @@
 	z-index: 20;
 	opacity: 0.4;
 	transition: 0.4s;
-	top: 60%;
+	top: 55%;
 }
 
 .change:hover {
@@ -52,7 +52,7 @@
 .cirbox {
 	width: 88px;
 	position: absolute;
-	bottom: 25px;
+	bottom: 20%;
 	z-index: 10;
 	left: 50%;
 	margin-left: -44px;

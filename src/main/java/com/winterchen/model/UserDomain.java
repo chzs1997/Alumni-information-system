@@ -8,6 +8,9 @@ public class UserDomain {
     /*校友id*/
     private Integer userId;
 
+    /*校友编号*/
+    private String userBkey;
+
     /*校友名*/
     private String userName;
 

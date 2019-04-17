@@ -174,4 +174,11 @@ public class UserServiceImpl implements UserService {
         Map<Integer,Integer> mapAmount = mapSessionMapper.findUserAmountLastWeek();
         return mapAmount;
     }
+
+    @Override
+    public List<UserDomain> findAllUser() {
+        return userDao.findAllUser();
+    }
+
+
 }

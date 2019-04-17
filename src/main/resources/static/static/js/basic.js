@@ -2,22 +2,9 @@ var userGrade;  //年级
 var userMajor;  //专业
 var userMail;  //身份证号码
 var userEducation; //学历
-
+const obj = window.document.location;
+const BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));
 $(document).ready(function(){
-    /*	var i=$(".processorBox li").index();*/
-    $("#nextBtn").click(function(){
-        if(!(check_pwd()&&check_pwd2())) return;
-        $("#step1_frm").fadeOut(300);
-        $("#step2").fadeIn(500);
-        $(".processorBox li").removeClass("current")
-        $(".processorBox li").eq(1).addClass("current");
-    });
-    $("#nextBtn2").click(function(){
-        $("#step2").fadeOut(300);
-        $("#step3").fadeIn(500);
-        $(".processorBox li").removeClass("current")
-        $(".processorBox li").eq(2).addClass("current");
-    });
     $("#btn3").click(function(){
         /*		$("#step").hide();
                 $("#step2").show();*/
@@ -29,9 +16,7 @@ $(document).ready(function(){
 
 //初步登陆
 function btn1(){
- //获取basePath，测试的话就能用就完了
-    var obj = window.document.location;
-    var BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));
+
     var userName = $("#userName").val();
     var passWord = $("#password").val();
     var passWord2 = $("#password2").val();
@@ -57,13 +42,17 @@ function btn1(){
             data: {"userName": userName, "password": passWord, "userMail": userMail, "phone": phone},
             async: false,
             success: function f(data) {
-                var result = data
+                var result = data.result;
                 if(result == 1){
-                    document.getElementById('step1').style.display='none';
-                    document.getElementById("step2").style.display='block';
+                    if(!(check_pwd()&&check_pwd2())) return;
+                    $("#step1_frm").fadeOut(300);
+                    $("#step2").fadeIn(500);
+                    $(".processorBox li").removeClass("current")
+                    $(".processorBox li").eq(1).addClass("current");
                 }
                 else{
-                    alert("信息有误，请重新注册")
+                    event.preventDefault();
+                    alert(result);
                 }
             },
             error: function f(data) {
@@ -76,8 +65,7 @@ function btn1(){
 
 //第二步：手机验证码登陆
 function btnContact(event){
-    var obj = window.document.location;
-    var BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));
+
     var Code = $("#code").val();
     // $.ajax({
     //     url: BASE_PATH + "/user/determine",
@@ -105,8 +93,6 @@ function btnContact(event){
 
 //第二步 邮箱验证码登陆
 function btn2(){
-    var obj = window.document.location;
-    var BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));
     var Code = $("#code").val();
     $.ajax({
         url: BASE_PATH + "/user/determine",
@@ -116,8 +102,10 @@ function btn2(){
         async: false,
         success: function f(data) {
             if(data == 1){
-                document.getElementById('step2').style.display='none';
-                document.getElementById('step3').style.display='block';
+                $("#step2").fadeOut(300);
+                $("#step3").fadeIn(500);
+                $(".processorBox li").removeClass("current")
+                $(".processorBox li").eq(2).addClass("current");
             }
             else{
                 event.preventDefault();
@@ -138,8 +126,7 @@ function btn3(){
 
 //第三步：添加后续信息
 function btn_add(){
-    var obj = window.document.location;
-    var BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));
+
     // var userNickName = $("#nickname").val();  //用户别名
     //性别
     var userGender = $(".frm_control_group").children("input:checked").val();
@@ -212,9 +199,6 @@ function send(){
     $("#btn").val(curCount + "秒");
     InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
 
-    //获取basePath，测试的话就能用就完了
-    var obj = window.document.location;
-    var BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));
     var Contact = $("#Contact").val();
     $.ajax({
         url: BASE_PATH + "/user/sendMessage",
