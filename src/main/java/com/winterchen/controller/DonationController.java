@@ -94,8 +94,8 @@ public class DonationController {
         HashMap<String,Object> hashMap = new HashMap<String, Object>();
         int donationAmountLastMonth = donationService.findAmountLastMonth();  //上个月捐赠金额
         int userAmountLastMonth = userService.findAmountLastMonth();   //上个月注册用户数
-        int donationAmountTotal = donationService.findAmountTotal();
-        int userAmountTotal = userService.findAmountTotal();
+        int donationAmountTotal = donationService.findAmountTotal();   //上个月捐赠总额
+        int userAmountTotal = userService.findAmountTotal();           //上个月用户总数
         hashMap.put("donationAmountLastMonth",donationAmountLastMonth);
         hashMap.put("userAmountLastMonth",userAmountLastMonth);
         hashMap.put("donationAmountTotal",donationAmountTotal);

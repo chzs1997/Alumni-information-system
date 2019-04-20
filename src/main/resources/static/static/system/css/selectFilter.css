@@ -148,7 +148,7 @@ li {
 
 
 .login-button { /* 按钮美化 */
-	width: 270px; /* 宽度 */
+	width: 150px; /* 宽度 */
 	height: 40px; /* 高度 */
 	border-width: 0px; /* 边框宽度 */
 	border-radius: 3px; /* 边框半径 */

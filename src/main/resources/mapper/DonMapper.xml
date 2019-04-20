@@ -91,7 +91,7 @@
     <select id="findAmountLastMonth" resultType="integer">
         select sum(DON_AMOUNT) AS DON_AMOUNT
         from donation
-        where datediff(DON_TIME,now()) &lt;=30
+        where month(CREATE_TIME) = month(now())-1
     </select>
 
     <!--查询合计捐赠金额-->

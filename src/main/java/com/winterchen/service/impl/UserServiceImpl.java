@@ -57,41 +57,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public PageInfo<UserDomain> findByGrade(int pageNum, int pageSize, String userGrade, String userMajor, String userGender) {
         PageHelper.startPage(pageNum, pageSize);
-        List<UserDomain> userDomains;
-
-        if(userGender.equals("全体")&&userGrade.equals("全体")&&!userMajor.equals("全体")){
-            System.out.println("专业查询");
-            userDomains = userDao.findByMajor(userMajor);
-        }
-        else if(userGender.equals("全体")&&userMajor.equals("全体")&&!userGrade.equals("全体")){
-            System.out.println("年级查询");
-            userDomains = userDao.findByGrade(userGrade);
-        }
-        else if(!userGender.equals("全体")&&userMajor.equals("全体")&&userGrade.equals("全体")){
-            System.out.println("性别查询");
-            userDomains = userDao.findByGender(userGender);
-        }
-        else if(userGender.equals("全体")&&!userMajor.equals("全体")&&!userGrade.equals("全体")){
-            System.out.println("专业年级查询");
-            userDomains = userDao.findByGradeAndMajor(userGrade, userMajor);
-        }
-        else if(!userGender.equals("全体")&&!userMajor.equals("全体")&&userGrade.equals("全体")){
-            System.out.println("专业性别查询");
-            userDomains = userDao.findByGenderAndMajor(userGender, userMajor);
-        }
-        else if(!userGender.equals("全体")&&userMajor.equals("全体")&&!userGrade.equals("全体")){
-            System.out.println("年级性别查询");
-            userDomains = userDao.findByGenderAndGrade(userGender, userGrade);
-        }
-        else if(userGender.equals("全体")&&userMajor.equals("全体")&&userGrade.equals("全体")){
-            System.out.println("全体查询");
-            userDomains = userDao.selectUsers();
-        }
-        else{
-            System.out.println("专业年级性别查询");
-            userDomains = userDao.findByGradeAndMajorAndGender(userGrade, userMajor,userGender);
-        }
-        System.out.println(userDomains);
+        List<UserDomain> userDomains = filterByConditions(userGrade, userMajor, userGender);
         PageInfo result = new PageInfo(userDomains);
         return result;
     }
@@ -178,6 +144,55 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<UserDomain> findAllUser() {
         return userDao.findAllUser();
+    }
+
+    @Override
+    public List<UserDomain> findUserExcel(String grade, String major, String gender) {
+        List<UserDomain> userDomains = filterByConditions(grade, major, gender);
+        return  userDomains;
+    }
+
+    /**
+     * 筛选条件通用方法
+     *
+     * */
+    public List<UserDomain> filterByConditions(String userGrade, String userMajor, String userGender){
+        List<UserDomain> userDomains;
+
+        if(userGender.equals("全体")&&userGrade.equals("全体")&&!userMajor.equals("全体")){
+            System.out.println("专业查询");
+            userDomains = userDao.findByMajor(userMajor);
+        }
+        else if(userGender.equals("全体")&&userMajor.equals("全体")&&!userGrade.equals("全体")){
+            System.out.println("年级查询");
+            userDomains = userDao.findByGrade(userGrade);
+        }
+        else if(!userGender.equals("全体")&&userMajor.equals("全体")&&userGrade.equals("全体")){
+            System.out.println("性别查询");
+            userDomains = userDao.findByGender(userGender);
+        }
+        else if(userGender.equals("全体")&&!userMajor.equals("全体")&&!userGrade.equals("全体")){
+            System.out.println("专业年级查询");
+            userDomains = userDao.findByGradeAndMajor(userGrade, userMajor);
+        }
+        else if(!userGender.equals("全体")&&!userMajor.equals("全体")&&userGrade.equals("全体")){
+            System.out.println("专业性别查询");
+            userDomains = userDao.findByGenderAndMajor(userGender, userMajor);
+        }
+        else if(!userGender.equals("全体")&&userMajor.equals("全体")&&!userGrade.equals("全体")){
+            System.out.println("年级性别查询");
+            userDomains = userDao.findByGenderAndGrade(userGender, userGrade);
+        }
+        else if(userGender.equals("全体")&&userMajor.equals("全体")&&userGrade.equals("全体")){
+            System.out.println("全体查询");
+            userDomains = userDao.selectUsers();
+        }
+        else{
+            System.out.println("专业年级性别查询");
+            userDomains = userDao.findByGradeAndMajorAndGender(userGrade, userMajor,userGender);
+        }
+        System.out.println(userDomains);
+        return userDomains;
     }
 
 

@@ -40,10 +40,10 @@
         from(
         select date_format(create_time,"%Y%m%d") date
         from schooluser
-        where datediff(now(),create_time) &lt;7
         )t
         group by t.date
         order by t.date DESC
+        limit 7
     </select>
 
   <!--设置数据库表名-->
@@ -240,7 +240,7 @@
    <select id="findAmountLastMonth"  resultType="integer">
        select count(*) amount
        from schooluser
-       where datediff(CREATE_TIME,now()) &lt;=30
+       where month(CREATE_TIME) = month(now())-1
    </select>
 
     <select id="findAmountTotal"  resultType="integer">

@@ -128,4 +128,11 @@ public interface UserService {
      * */
     List<UserDomain> findAllUser();
 
+
+    /**
+     *
+     * 遍历根据条件筛选用户(用于Excel下载)
+     *
+     * */
+    List<UserDomain> findUserExcel(String grade, String major, String gender);
 }

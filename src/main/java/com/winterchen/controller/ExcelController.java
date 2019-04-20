@@ -5,6 +5,7 @@ import com.winterchen.service.UserService;
 import com.winterchen.util.ExportExcelSeedBack;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.apache.commons.io.output.ByteArrayOutputStream;
+import org.apache.ibatis.annotations.Param;
 import org.apache.poi.hssf.usermodel.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.ClassUtils;
@@ -150,28 +151,32 @@ public class ExcelController {
     }
 
     @GetMapping("/orderrdExportExcel")
-    public void grouppExportExcel(HttpServletRequest request, HttpServletResponse response) throws Exception{
-    List<UserDomain> grouppList = userService.findAllUser();
+    public void grouppExportExcel( @Param("grade") String grade
+                                   ,@Param("major") String major
+                                   ,@Param("gender") String gender
+                                   ,HttpServletRequest request
+                                   ,HttpServletResponse response) throws Exception{
+    List<UserDomain> groupList = userService.findUserExcel(grade,major,gender);
     //导出文件的标题
-        String title = "用户信息.xls";
+        String title = "校友信息.xls";
         //设置表格标题行
         String[] headers = new String[] {"序号","编号","姓名","年级","班级","性别","籍贯","学历","联系方式","工作城市","工作公司","工作职位"};
         List<Object[]> dataList = new ArrayList<Object[]>();
         Object[] objs = null;
-        for (int i = 0; i < grouppList.size(); i++) {
+        for (int i = 0; i < groupList.size(); i++) {
             objs = new Object[headers.length];
             objs[0] = 0;//设置序号,在工具类中会出现
-            objs[1] = grouppList.get(i).getUserBkey();
-            objs[2] = grouppList.get(i).getUserName();
-            objs[3] = grouppList.get(i).getUserGrade();
-            objs[4] = grouppList.get(i).getUserMajor();
-            objs[5] = grouppList.get(i).getUserGender();
-            objs[6] = grouppList.get(i).getUserBirthPlace();
-            objs[7] = grouppList.get(i).getUserEducation();
-            objs[8] = grouppList.get(i).getPhone();
-            objs[9] = grouppList.get(i).getUserAddress();
-            objs[10] = grouppList.get(i).getUserCompany();
-            objs[11] = grouppList.get(i).getUserPosition();
+            objs[1] = groupList.get(i).getUserBkey();
+            objs[2] = groupList.get(i).getUserName();
+            objs[3] = groupList.get(i).getUserGrade();
+            objs[4] = groupList.get(i).getUserMajor();
+            objs[5] = groupList.get(i).getUserGender();
+            objs[6] = groupList.get(i).getUserBirthPlace();
+            objs[7] = groupList.get(i).getUserEducation();
+            objs[8] = groupList.get(i).getPhone();
+            objs[9] = groupList.get(i).getUserAddress();
+            objs[10] = groupList.get(i).getUserCompany();
+            objs[11] = groupList.get(i).getUserPosition();
             dataList.add(objs);//数据添加到excel表格
         }
         //使用流将数据导出
@@ -192,9 +197,5 @@ public class ExcelController {
         }
 
     }
-
-
-
-
 
 }

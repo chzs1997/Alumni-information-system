@@ -10,10 +10,10 @@ jQuery(document).ready(function ($) {
         data: {},
         async: false,
         success: function f(data) {
-           var donationAmountLastMonth = data.donationAmountLastMonth;
-           var userAmountLastMonth = data.userAmountLastMonth;
-           var donationAmountTotal = data.donationAmountTotal;
-           var userAmountTotal = data.userAmountTotal;
+           var donationAmountLastMonth = data.donationAmountLastMonth;  //上月捐赠金额
+           var userAmountLastMonth = data.userAmountLastMonth;          //上月注册用户数
+           var donationAmountTotal = data.donationAmountTotal;          //捐赠总额
+           var userAmountTotal = data.userAmountTotal;                  //注册用户总数
            $("#donationAmountLastMonth").text("RMB "+donationAmountLastMonth);
            $("#userAmountLastMonth").text(userAmountLastMonth);
            $("#donationAmountTotal").text("RMB "+donationAmountTotal);

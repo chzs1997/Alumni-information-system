@@ -239,7 +239,7 @@ jQuery(document).ready(function ($) {
         }
     });
 
-    //近1个月新闻浏览量
+    //近1个月评论统计量
     $.ajax({
         url: BASE_PATH + "/news/findNewsCommentCountsLastMonth",
         type: "post",
