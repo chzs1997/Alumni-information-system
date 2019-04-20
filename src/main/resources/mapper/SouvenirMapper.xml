@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.winterchen.dao.SouvenirDao" >
+
+    <!-- 数据库表映射 -->
+    <resultMap id="souvenirRM" type="com.winterchen.model.Souvenir">
+        <result property="souvenirId" column="SouvenirId"/>
+        <result property="souvenirName" column="SouvenirName"/>
+        <result property="souvenirImage" column="SouvenirImage"/>
+        <result property="souvenirPraiseCounts" column="SouvenirPraiseCounts"/>
+        <result property="souvenirTime" column="SouvenirTime"/>
+        <result property="souvenirMeaning" column="SouvenirMeaning"/>
+    </resultMap>
+
+    <!--设置数据库表名-->
+    <sql id="BASE_TABLE">
+    souvenir
+    </sql>
+
+    <!--分页查询-->
+    <insert id="save" parameterType="com.winterchen.model.Souvenir">
+      insert into souvenir
+      (SouvenirId,SouvenirName)
+      values (#{souvenirId},#{souvenirName})
+    </insert>
+
+    <select id="selectAllSouvenir" resultMap="souvenirRM">
+       select *
+       from souvenir
+       order by SouvenirTime DESC
+    </select>
+
+    <update id="praiseAdd">
+    update souvenir
+    set SouvenirPraiseCounts = SouvenirPraiseCounts + #{souvenirPraise}
+	where SouvenirId = #{souvenirId}
+    </update>
+
+    <select id="selectCounts" resultMap="souvenirRM">
+        SELECT  SouvenirPraiseCounts
+        FROM   souvenir
+        WHERE SouvenirId = #{souvenirId}
+    </select>
+
+
+
+
+
+</mapper>

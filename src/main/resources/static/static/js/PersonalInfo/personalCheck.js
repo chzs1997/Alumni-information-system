@@ -1,6 +1,6 @@
 var userId;
-var BASE_PATH = "http://172.17.108.131:8080";
 jQuery(document).ready(function($) {
+    var BASE_PATH = window.document.location.href.substring(0, window.document.location.href.indexOf(window.document.location.pathname));
     $.ajax({
         url: BASE_PATH + "/user/personalCheck",
         type: "post",
@@ -63,14 +63,6 @@ jQuery(document).ready(function($) {
                     $("#personPosition").val(personPosition);
 
                     $("#icon").attr("src",personImage);
-                    //专业
-                    var major = $("#personMajor option:selected").attr("value");
-
-                    //年级
-                    var grade = $("#personGrade option:selected").attr("value");
-
-                    //学历
-                    var education = $("#personEducation option:selected").attr("value");
                 }
             }
         },
@@ -80,6 +72,8 @@ jQuery(document).ready(function($) {
 });
 
 $("#btn2").on("click",function () {
+    var BASE_PATH = window.document.location.href.substring(0, window.document.location.href.indexOf(window.document.location.pathname));
+
     //姓名
     var userName = $("#personName").val();
     //性别

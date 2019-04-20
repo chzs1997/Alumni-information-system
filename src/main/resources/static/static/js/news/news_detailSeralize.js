@@ -2,7 +2,6 @@ jQuery(document).ready(function($) {
     const artId = parseInt(window.location.href.split("?")[1].split("=")[1]);
     const obj = window.document.location;
     const BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));
-    const div = document.getElementById("test1");
 
     //初始化评论
     $.ajax({
@@ -23,7 +22,7 @@ jQuery(document).ready(function($) {
     });
 
 
-    //主题内容
+    //主体内容
     $.ajax({
         url: BASE_PATH + "/news/newsDetailSeralize",
         type: "post",
@@ -46,8 +45,6 @@ jQuery(document).ready(function($) {
             //时间
             $("#news_detail_time").text(time);
 
-            //图片
-            $("#news_detail_img").attr("src",img);
 
             //标签
             $("#news_detail_label1").text(label1);
@@ -65,11 +62,11 @@ jQuery(document).ready(function($) {
             $("#newsViewCounts").text(newsViewCounts+"次");
 
             //内容
-            const content = data.artContent.split(" ");
-            for(var i = 0;i<content.length;i++){
-                const p = document.createElement("p");
-                p.innerHTML = content[i];
-                div.appendChild(p);
+            $("#test1").html(data.artContent)
+
+            for(var i =0;i<$("#test1 img").length;i++){
+                $("#test1 img").eq(i).attr("src","http://glxy.xtu.edu.cn"+$("#test1 img").eq(i).attr("src"))
+
             }
         },
         error: function f() {
@@ -270,7 +267,7 @@ $("#commentButton").on("click",function () {
         async: false,
         success: function f(data) {
             if(data == 1){
-                alert("注册成功");
+                alert("评论成功");
                 window.location.href = "news_detail.html?artId="+artId;
             }
         },

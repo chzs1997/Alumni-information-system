@@ -31,7 +31,7 @@ public class NewsController extends HttpServlet {
     private NewsDao newsDao;
 
     /**
-     * 文件上传具体实现方法;
+     * 新闻上传具体实现方法;
      *
      * @param file
      * @return

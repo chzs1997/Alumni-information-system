@@ -102,10 +102,7 @@
 			<artifactId>spring-boot-devtools</artifactId>
 			<optional>true</optional>
 		</dependency>
-		<dependency>
-			<groupId>com.google.code.gson</groupId>
-			<artifactId>gson</artifactId>
-		</dependency>
+
 		<dependency>
 			<groupId>net.sf.json-lib</groupId>
 			<artifactId>json-lib</artifactId>
@@ -166,11 +163,7 @@
 			<artifactId>jquery</artifactId>
 			<version>3.3.1</version>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<scope>runtime</scope>
-		</dependency>
+
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>fastjson</artifactId>
@@ -194,10 +187,7 @@
 			<artifactId>spring-boot-starter-freemarker</artifactId>
 		</dependency>
 
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-websocket</artifactId>
-		</dependency>
+
 
 		<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
 		<dependency>
@@ -211,10 +201,7 @@
 			<artifactId>spring-context-support</artifactId>
 			<version>5.0.5.RELEASE</version>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-mail</artifactId>
-		</dependency>
+
 		<dependency>
 			<groupId>commons-lang</groupId>
 			<artifactId>commons-lang</artifactId>
@@ -235,7 +222,6 @@
 			<version>1.0.3</version>
 		</dependency>
 
-		<!-- alipay begin -->
 		<dependency>
 			<groupId>com.alipay</groupId>
 			<artifactId>alipay-sdk-java</artifactId>
@@ -251,10 +237,7 @@
 			<artifactId>alipay-sdk-java</artifactId>
 			<version>3.4.27.ALL</version>
 		</dependency>
-		<dependency>
-			<groupId>com.google.code.gson</groupId>
-			<artifactId>gson</artifactId>
-		</dependency>
+
 		<dependency>
 			<groupId>commons-configuration</groupId>
 			<artifactId>commons-configuration</artifactId>
@@ -265,10 +248,7 @@
 			<artifactId>core</artifactId>
 			<version>3.2.1</version>
 		</dependency>
-		<dependency>
-			<groupId>org.project.lombok</groupId>
-			<artifactId>lombok</artifactId>
-		</dependency>
+
 
 
 		<!--POI-->

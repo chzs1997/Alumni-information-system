@@ -10,7 +10,6 @@
 		<link rel="stylesheet" href="static/static/css/HomePage.css" />
 
 		<script type="text/javascript" src="static/static/js/jquery.min.js"></script>
-		<script type="text/javascript" src="static/static/js/jquery2.1.1.min.js"></script>
 		<script type="text/javascript" src="static/static/js/province.js" defer="defer"></script>
 		<script type="text/javascript" src="static/static/js/basic.js"></script>
 		<script type="text/javascript" src="static/static/js/birthPlaceProvince.js" defer="defer"></script>
@@ -20,6 +19,7 @@
 		<script type="text/javascript" src="static/static/js/education.js"></script>
 		<script type="text/javascript" src="static/static/js/graduate.js"></script>
 		<script type="text/javascript" src="static/static/js/login.js"></script>
+		<script type="text/javascript" src="static/static/js/sendMail.js"></script>
 
 	</head>
 
@@ -288,5 +288,47 @@
 			</div>
 		</div>
 	</body>
+<script>
+	var InterValObj; //timer变量，控制时间
+	var count = 60; //间隔函数，1秒执行
+	var curCount;//当前剩余秒数
+	//发送邮箱验证码
+	$("#btn").on("click",function () {
+		curCount = count;
+		//设置button效果，开始计时
+		$("#btn").attr("disabled", "true");
+		$("#btn").val(curCount + "秒");
+		InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
+		var obj = window.document.location;
+		var BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));
+		var userMail = $("#Mail").val();
+		$.ajax({
+			url: BASE_PATH + "/user/getCheckCode",
+			type: "post",
+			dateType: "json",
+			data: {"userMail": userMail},
+			async: false,
+			success: function f() {
+				return true;
+			},
+			error: function f() {
+				alert("lose");
+			}
+		})
+	})
 
+
+	//timer处理函数
+	function SetRemainTime() {
+		if (curCount == 0) {
+			window.clearInterval(InterValObj);//停止计时器
+			$("#btn").removeAttr("disabled");//启用按钮
+			$("#btn").val("重新发送");
+		}
+		else {
+			curCount--;
+			$("#btn").val(curCount + "秒");
+		}
+	}
+</script>
 </html>

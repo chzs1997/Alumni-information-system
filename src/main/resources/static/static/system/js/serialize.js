@@ -3,7 +3,7 @@ jQuery(document).ready(function(){
      postData(1,12,"全体","全体","全体");
 });
 
-
+//根据筛选条件筛选相应数据
 function changePage(ob) {
     var str = $(ob).attr("id");
     var num = str.charAt(str.length-1);
@@ -84,6 +84,19 @@ function postData(num, pageSize, grade, major, gender){
                 $("#userAddress_"+(i+1)).text(data.list[i].userAddress);
                 $("#company_"+(i+1)).text(data.list[i].userCompany);
                 $("#position_"+(i+1)).text(data.list[i].userPosition);
+            }
+            for(var j = data.list.length+1;j<=12;j++){
+                $("#num_"+j).text("");
+                $("#name_"+j).text("");
+                $("#grade_"+j).text("");
+                $("#room_"+j).text("");
+                $("#gender_"+j).text("");
+                $("#birthplace_"+j).text("");
+                $("#education_"+j).text("");
+                $("#Contact_"+j).text("");
+                $("#userAddress_"+j).text("");
+                $("#company_"+j).text("");
+                $("#position_"+j).text("");
             }
         },
         error: function f(data) {

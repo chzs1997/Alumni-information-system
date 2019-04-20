@@ -93,9 +93,6 @@ jQuery(document).ready(function($) {
         error: function f() {
         }
     });
-
-
-
 });
 
 
@@ -129,7 +126,6 @@ function send(){
     InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
 
     var Contact = $("#signup-username").val();
-    var BASE_PATH = "http://172.17.108.131:8080";
     $.ajax({
         url: BASE_PATH + "/user/sendMessage",
         type: "post",
@@ -145,51 +141,10 @@ function send(){
     })
 }
 
-var InterValObj; //timer变量，控制时间
-var count = 60; //间隔函数，1秒执行
-var curCount;//当前剩余秒数
-//发送邮箱验证码
-function sendMail(){
-    curCount = count;
-    //设置button效果，开始计时
-    $("#btn").attr("disabled", "true");
-    $("#btn").val(curCount + "秒");
-    InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
-
-    var userMail = $("#Mail").val();
-    $.ajax({
-        url: BASE_PATH + "/user/getCheckCode",
-        type: "post",
-        dateType: "json",
-        data: {"userMail": userMail},
-        async: false,
-        success: function f() {
-            return true;
-        },
-        error: function f() {
-            alert("lose");
-        }
-    })
-}
-
-
-//timer处理函数
-function SetRemainTime() {
-    if (curCount == 0) {
-        window.clearInterval(InterValObj);//停止计时器
-        $("#btn").removeAttr("disabled");//启用按钮
-        $("#btn").val("重新发送");
-    }
-    else {
-        curCount--;
-        $("#btn").val(curCount + "秒");
-    }
-}
 
 function login_1() {
     var userName = $("#signin-username").val();
     var passWord = $("#signin-password").val();
-    var BASE_PATH = "http://172.17.108.131:8080";
     $.ajax({
         url: BASE_PATH + "/user/check",
         type: "post",
@@ -232,7 +187,6 @@ function login_1() {
 
 function login_2() {
     var Code = $("#signup-email").val();
-    var BASE_PATH = "http://172.17.108.131:8080";
     $.ajax({
         url: BASE_PATH + "/user/determine",
         type: "post",
@@ -267,7 +221,6 @@ function out_login(){
     $("#homeOptions").css("display","none");
     $(".yourName").text("");
     $(".wid").text("");
-    var BASE_PATH = "http://172.17.108.131:8080";
     $.ajax({
         url: BASE_PATH + "/user/logout",
         type: "post",

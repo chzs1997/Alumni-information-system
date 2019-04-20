@@ -56,12 +56,12 @@ public interface NewsService {
     //查找新闻点赞评论次数
     Object selectCounts(int artId);
 
-    /*
+    /**
      * 近一个月新闻浏览量
      * */
     Map<Integer,Integer> findNewsViewCountsLastMonth();
 
-    /*
+    /**
      * 近一个月新闻评论量
      * */
     Map<Integer,Integer> findNewsCommentCountsLastMonth();

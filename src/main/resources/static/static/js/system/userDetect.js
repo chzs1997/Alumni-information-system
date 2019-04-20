@@ -84,5 +84,4 @@ function out_login(){
             alert("lose");
         }
     })
-
 }

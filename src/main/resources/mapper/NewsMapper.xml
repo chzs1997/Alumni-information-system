@@ -80,7 +80,7 @@
         SELECT *
         FROM
         <include refid="BASE_TABLE"/>
-        WHERE ART_TYPE = '1'
+        WHERE ART_TYPE = '1' AND MANAGER_ID = 3
         ORDER BY ART_TIME DESC
     </select>
 

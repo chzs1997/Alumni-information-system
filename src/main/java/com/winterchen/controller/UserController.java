@@ -72,7 +72,7 @@ public class UserController extends HttpServlet {
     public Object selectByGrade(
             @RequestParam(name = "pageNum", required = false, defaultValue = "1")
                     int pageNum,
-            @RequestParam(name = "pageSize", required = false, defaultValue = "10")
+            @RequestParam(name = "pageSize", required = false, defaultValue = "12")
                     int pageSize,
             @RequestParam(name = "grade" , required = false, defaultValue = "全体")
                     String userGrade,

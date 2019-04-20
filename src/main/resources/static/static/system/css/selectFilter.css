@@ -28,6 +28,7 @@ li {
 
 .filter-text {
 	height: 100%;
+	width: 200px;
 	overflow: hidden;
 	position: relative;
 	cursor: pointer;

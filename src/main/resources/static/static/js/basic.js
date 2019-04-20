@@ -14,7 +14,7 @@ $(document).ready(function(){
 
 
 
-//初步登陆
+//基本信息注册
 function btn1(){
 
     var userName = $("#userName").val();
@@ -173,7 +173,7 @@ function btn_add(){
             }
             else{
                 event.preventDefault();
-                alert("验证码错误")
+                alert("信息有误");
             }
         },
         error: function f() {
