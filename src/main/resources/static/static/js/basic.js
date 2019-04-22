@@ -49,6 +49,7 @@ function btn1(){
                     $("#step2").fadeIn(500);
                     $(".processorBox li").removeClass("current")
                     $(".processorBox li").eq(1).addClass("current");
+                    $("#Mail").val(data.userMail);
                 }
                 else{
                     event.preventDefault();
@@ -183,7 +184,7 @@ function btn_add(){
 }
 
 
-/*
+/**
 *
 * 发送验证码
 * */
@@ -230,7 +231,7 @@ function SetRemainTime() {
 
 
 
-/*
+/**
 * 验证工作
 *
 * */

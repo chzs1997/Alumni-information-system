@@ -130,6 +130,7 @@ public class UserController extends HttpServlet {
             if (i > 0) {
                 //注册成功
                 result.put("result",i);
+                result.put("userMail",userMail);
             } else {
                 //注册失败
                 result.put("result",i);
@@ -301,6 +302,39 @@ public class UserController extends HttpServlet {
         } else {
             return 0;
         }
+    }
+
+    /*邮箱验证码登陆*/
+    @ResponseBody
+    @PostMapping("/loginByMail")
+    public Object loginByMail(@RequestParam(value = "userMail") String userMail
+                           ,@RequestParam(value = "Code") String Code
+                           ,HttpSession session) {
+        HashMap<Object, Object> objectMap = new HashMap<>();
+        //判断是否和保存的验证码一致
+        if (Code.equals(mailCode)) {
+            mailCode = "-1";
+            UserDomain i = userService.findByuserMail(userMail);
+            if (i == null) {
+                //查询没有结果
+                objectMap.put("result","用户尚未注册，请先注册后登陆");
+            } else {
+                //数据库中有该用户
+                // 设置session
+                objectMap.put("result","1");
+                loginLogService.save(i.getUserId(),i.getUserName());  //在登陆日志中保存
+                session.setAttribute(MyWebAppConfigurer.SESSION_KEY, i.getUserId());
+                session.setAttribute("userId", i.getUserId());
+                objectMap.put("userName", i.getUserName());
+                objectMap.put("phone", i.getPhone());
+                objectMap.put("gender", i.getUserGender());
+                objectMap.put("userImage",i.getUserImage());
+                return objectMap;
+            }
+        } else {
+            objectMap.put("result","邮箱验证码错误");
+        }
+        return objectMap;
     }
 
     /**

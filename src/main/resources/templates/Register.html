@@ -108,7 +108,7 @@
 						<div class="w330">
 							<label >邮箱</label>
 								<div>
-									<input type="text" name="" class="frm_input tel" id = "Mail"/>
+									<input type="text" name="" class="frm_input tel" id = "Mail" disabled="disabled"/>
 									<input type="button" value="获取验证码" id="btn" onclick="sendMail()"/><br/>
 									<input type="text" name="" class="frm_input tel" id = "code" placeholder="请输入验证码"/>
 								</div>
@@ -301,7 +301,7 @@
 		InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
 		var obj = window.document.location;
 		var BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));
-		var userMail = $("#Mail").val();
+		var userMail = $("#Mail").val();  //获取邮箱
 		$.ajax({
 			url: BASE_PATH + "/user/getCheckCode",
 			type: "post",

@@ -117,7 +117,10 @@ function navagator_list() {
     $("#homeOptions").fadeToggle(1000);
 }
 
-
+//点击发送短信验证码
+var InterValObj; //timer变量，控制时间
+var count = 60; //间隔函数，1秒执行
+var curCount;//当前剩余秒数
 function send(){
     curCount = count;
     //设置button效果，开始计时
@@ -125,12 +128,12 @@ function send(){
     $("#btn").val(curCount + "秒");
     InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
 
-    var Contact = $("#signup-username").val();
+    var userMail = $("#signup-username").val();
     $.ajax({
-        url: BASE_PATH + "/user/sendMessage",
+        url: BASE_PATH + "/user/getCheckCode",
         type: "post",
         dateType: "json",
-        data: {"phone": Contact},
+        data: {"userMail": userMail},
         async: false,
         success: function f() {
             return true;
@@ -185,27 +188,42 @@ function login_1() {
     });
 }
 
+//邮箱验证码登陆
 function login_2() {
     var Code = $("#signup-email").val();
+    var userMail = $("#signup-username").val();
     $.ajax({
-        url: BASE_PATH + "/user/determine",
+        url: BASE_PATH + "/user/loginByMail",
         type: "post",
         dateType: "json",
-        data: {"Code": Code},
+        data: {"userMail":userMail,"Code": Code},
         async: false,
         success: function f(data) {
-            if(data == 1){
-                $('.cd-user-modal').removeClass('is-visible');
-                $(".cd-signin").hide();
-                $("#top1_register").hide();
-                $(".yourName").text(result);
-                $(".wid").text(phone);
-                if(gender == '女'){
-                    $(".touxiang").attr("src","static/static/img/touxaing2.jpg");
-                }
+            if(data.result == 1){
+                var userName = data.userName;
+                var phone = data.phone;
+                var gender = data.gender;
+                var userImage = data.userImage;
+                    $('.cd-user-modal').removeClass('is-visible');
+                    $(".cd-signin").hide();
+                    $("#top1_register").hide();
+                    $(".yourName").text(userName);
+                    $(".wid").text(phone);
+                    if(userImage == null){
+                        if(gender == '女'){
+                            $(".touxiang").attr("src","static/static/img/touxaing2.jpg");
+                        }
+                        else{
+                            $(".touxiang").attr("src","static/static/img/touxaing.jpg");
+                        }
+                    }
+                    else{
+                        $(".touxiang").attr("src",userImage);
+                    }
             }
             else{
-                alert("验证码错误，请重新登陆")
+                event.preventDefault();
+                alert(data.result);
             }
         },
         error: function f(data) {
@@ -235,4 +253,17 @@ function out_login(){
         }
     })
 
+}
+
+//timer处理函数
+function SetRemainTime() {
+    if (curCount == 0) {
+        window.clearInterval(InterValObj);//停止计时器
+        $("#btn").removeAttr("disabled");//启用按钮
+        $("#btn").val("重新发送");
+    }
+    else {
+        curCount--;
+        $("#btn").val(curCount + "秒");
+    }
 }

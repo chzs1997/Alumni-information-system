@@ -21,7 +21,7 @@ public class SouvenirController {
     private SouvenirService souvenirService;
 
     /**
-     * 新闻加载初始化
+     * 纪念品加载初始化
      *
      * */
     @ResponseBody

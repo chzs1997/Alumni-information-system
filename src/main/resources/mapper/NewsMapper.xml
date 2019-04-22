@@ -76,6 +76,7 @@
       order by ART_ID DESC limit 1
    </select>
 
+    <!--查找所有学院新闻-->
     <select id = "selectAllNews" resultMap="newsRM">
         SELECT *
         FROM
