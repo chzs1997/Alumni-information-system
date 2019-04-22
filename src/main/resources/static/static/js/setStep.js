@@ -242,7 +242,7 @@ SetStep.prototype.setProgress = function(n, curIndex, stepsLen) {
 				_that.checkPage(_that.pageCont, _that.opt.curStep, _that.opt.stepCounts)
 				if(_that.opt.curStep == 3){
 					setTimeout(function () {
-						location.href="http://localhost:8080/HomePage";
+						location.href="index.html";
 					},2000);
 				}
 				_that.opt.animating = false;

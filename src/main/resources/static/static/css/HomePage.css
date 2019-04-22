@@ -161,11 +161,11 @@ ul li {
 .hl_nav .nav_list {
 	position: absolute;
 	/*top: 0;*/
-	left: 10%;
+	left: 5%;
 	z-index: 2;
 	padding: 0;
 	list-style: none;
-	width: 80%;
+	width: 95%;
 	/*height: 50px;*/
 }
 
@@ -173,7 +173,7 @@ ul li {
 	padding: 0;
 	float: left;
 	margin: 0;
-	width: 15%;
+	width: 13%;
 	text-align: center;
 	height: 50px;
 	overflow: hidden;
