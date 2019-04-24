@@ -393,14 +393,17 @@ ul.lm li{
 }
 
 .bottomIntroductionLeft{
+	float: left;
 	width: 30%;
 	margin-left: 15px;
 }
 .bottomIntroductionMedium{
+	float: left;
 	width: 22%;
 	margin-left: 15px;
 }
 .bottomIntroductionRight{
+	float: left;
 	width: 20%;
 	margin-left: 15px;
 }

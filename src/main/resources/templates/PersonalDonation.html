@@ -138,14 +138,14 @@
 		</li>
 	</ul>
 </nav>
-<div class="panel panel-default">
+<div class="panel panel-default" style="height: 50%">
 	<div class="panel-body table-responsive">
 		　　　　　　　　　
 		<div class="query-div" id="toolbar">
 			<form class="form-inline" role="form" id="query_form">
-				<div class="form-group query-form-group">
-					<label for="status">状态</label>
-					<select class="form-control" id="with_appr_status"
+				<div class="form-group query-form-group" style="width: 10%">
+					<label for="status" style="width:30%;float: left;margin-top: 5%">状态</label>
+					<select class="form-control" id="with_appr_status" style="height: 5%"/>
 					<option value="">全部</option>
 					<option value="S1">待处理</option>
 					<option value="S2">已处理</option>
@@ -160,6 +160,56 @@
 		<table class="table table-striped table-bordered table-hover" id="tableL01">
 
 		</table>
+	</div>
+</div>
+<div class="container-fluid fh5co_footer_bg pb-3 special_bottom">
+	<div class="container animate-box" style="width: 90%">
+		<div class="row1" style="height: 30%">
+			<div class="col-12 spdp_right py-5"><img src="static/static/img/logo.png" alt="img" class="footer_logo"/></div>
+			<div class="clearfix"></div>
+			<div class="bottomIntroductionLeft">
+				<div class="footer_main_title py-3">湘潭大学公共管理学院校友会</div>
+				<div class="footer_sub_about pb-3"> 湘潭大学公共管理学院成立于2007年，是在原来人文学院、信息管理系、管理学院相关专业和学科整合基础上发展而来的。学院办学基础良好，学术积淀深厚，精英人才荟萃。学院成立以来，秉承湘潭大学“博学笃行，盛德日新”的校训，弘扬学院“公为天下”的精神，在师资队伍、人才培养、科学研究、学科建设等方面取得了可喜的成绩，并在跻身国内一流公共管理学院的道路上迈出了重要的步伐。
+				</div>
+			</div>
+			<div class="bottomIntroductionMedium">
+				<div class="footer_main_title py-3"> 联系我们</div>
+				<div><span>院  长：梁丽芝</span> <span class = "right_padding">办公地点：公管楼320</span></div>
+				<div><span>联系电话：0731-58292890</span></div>
+				<div><span>Email: 354939403@qq.com</span></div><br/>
+				<div><span>党委书记：陈长明 </span><span class = "right_padding">办公地点：公管楼303</span></div>
+				<div><span>联系电话：0731-58298532</span> <br/><span>Email: ccm1@xtu.edu.cn</span> </div><br/>
+			</div>
+			<div class="bottomIntroductionRight">
+				<div class="footer_main_title py-3"> 联系我们</div>
+				<div><span>副院长：毛太田</span> <span class = "right_padding">办公地点：公管楼310</span></div>
+				<div><span>联系电话：0731-58293695 </span></div>
+				<div><span>Email: iaiafang@yeah.net</span></div><br/>
+				<div><span>副院长：王凯伟 </span> <span class = "right_padding">办公地点：公管楼301</span></div>
+				<div><span>联系电话：0731-58298519 </span> <br/><span>Email: wangkw168@126.com</span> </div><br/>
+			</div>
+			<div class="bottomIntroductionRight">
+				<div class="footer_main_title py-3"> 联系我们</div>
+				<div><span>副院长：谭九生</span> <span class = "right_padding">办公地点：公管楼307</span></div>
+				<div><span>联系电话：0731-58298303 </span></div>
+				<div><span>Email: 1572346084@qq.com</span></div><br/>
+				<div><span>副书记：谷立平 </span> <span class = "right_padding">办公地点：公管楼311</span></div>
+				<div><span>联系电话：0731-58293735</span> <br/><span>Email: 20240917@qq.com</span> </div><br/>
+			</div>
+		</div>
+		<div class="row1 justify-content-center pt-2 pb-4">
+		</div>
+		<div class="row1 justify-content-center pt-2 pb-4" style="text-align: center">
+			<span>友情链接：</span>
+			<span><a href = "http://glxy.xtu.edu.cn/" target="_blank" style="color: white;margin-right: 15px">湘潭大学公共管理学院</a></span>
+			<span><a href = "http://www.xtu.edu.cn/" target="_blank" style="color: white;margin-right: 15px">湘潭大学</a></span>
+			<span><a href = "http://xyzh.xtu.edu.cn/" target="_blank" style="color: white;margin-right: 15px">湘潭大学校友会</a></span><br/>
+		</div>
+		<div class="row1 justify-content-center pt-2 pb-4" style="text-align: center">
+			<span style="margin-right: 15px">地址：湖南省湘潭市雨湖区湘潭大学</span>
+			<span style="margin-right: 15px">邮编：411105</span>
+			<span style="margin-right: 15px">院训：公为天下，管益千秋</span>
+		</div>
 	</div>
 </div>
 <div class="container">
@@ -314,7 +364,7 @@
 			width:300,
 			height:268,
 			method: 'get',
-			pageSize: 3,
+			pageSize: 4,
 			pageNumber: 1,
 			pageList: [],
 			cache: false,
