@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.winterchen.dao.UserIntegrityDao" >
+
+    <!-- 数据库表映射 -->
+    <resultMap id="userIntegrityRM" type="com.winterchen.model.SchoolUserIntegrity">
+        <result property="userId" column="U_ID"/>
+        <result property="genderInfo" column="GENDER_INFO"/>
+        <result property="nameInfo" column="NAME_INFO"/>
+        <result property="passwordInfo" column="PASSWORD_INFO"/>
+        <result property="studentIdInfo" column="STUDENTID_INFO"/>
+        <result property="gradeInfo" column="GRADE_INFO"/>
+        <result property="graduateYearInfo" column="GRADUATE_YEAR_INFO"/>
+        <result property="headTeacherInfo" column="HEAD_TEACHER_INFO"/>
+        <result property="majorInfo" column="MAJOR_INFO"/>
+        <result property="contactInfo" column="CONTACT_INFO"/>
+        <result property="mailInfo" column="MAIL_INFO"/>
+        <result property="educationInfo" column="EDUCATION_INFO"/>
+        <result property="addressInfo" column="ADDRESS_INFO"/>
+        <result property="companyInfo" column="COMPANY_INFO"/>
+        <result property="positionInfo" column="POSITION_INFO"/>
+        <result property="birthPlaceInfo" column="BIRTHPLACE_INFO"/>
+        <result property="imgInfo" column="IMG_INFO"/>
+        <result property="userInfoIntegrity" column="U_INFO_INTEGRITY"/>
+    </resultMap>
+
+    <!-- 数据库用户表映射 -->
+    <resultMap id="userRM" type="com.winterchen.model.UserDomain">
+        <result property="userId" column="U_ID"/>
+        <result property="userBkey" column="U_BKEY"/>
+        <result property="userProperty" column="U_PROPERTY"/>
+        <result property="userName" column="U_NAME"/>
+        <result property="userGender" column="U_GENDER"/>
+        <result property="userEducation" column="U_EDUCATION"/>
+        <result property="userBirthPlace" column="U_BIRTHPLACE"/>
+        <result property="password" column="U_PASSWORD"/>
+        <result property="phone" column="U_CONTACT"/>
+        <result property="userMajor" column="U_MAJOR"/>
+        <result property="userGraduateYear" column="U_GRADUATE_YEAR"/>
+        <result property="userHeadTeacher" column="U_HEAD_TEACHER"/>
+        <result property="userMail" column="U_MAIL"/>
+        <result property="userDepartment" column="U_DEPARTMENT"/>
+        <result property="userIdNumber" column="U_ID_NUMBER"/>
+        <result property="userCompany" column="U_COMPANY"/>
+        <result property="userPosition" column="U_POSITION"/>
+        <result property="userAddress" column="U_ADDRESS"/>
+        <result property="userStudentId" column="U_STUDENTID"/>
+        <result property="userGrade" column="U_GRADE"/>
+        <result property="userImage" column="U_IMG"/>
+    </resultMap>
+
+    <resultMap id="IntegrityCount" type="java.util.HashMap">
+        <result property="key" column = "INTEGRITY_COUNT"/>
+        <result property="value" column = "num"/>
+    </resultMap>
+
+    <resultMap id="IntegrityRank" type="java.util.HashMap">
+        <result property="key" column = "NAME"/>
+        <result property="value" column = "num"/>
+    </resultMap>
+
+    <!--设置数据库表名-->
+    <sql id="BASE_TABLE">
+    schooluser_integrity
+    </sql>
+
+    <insert id="addUser">
+    INSERT INTO schooluser_integrity(U_ID) select U_ID
+                                           from schooluser
+                                           where U_NAME = #{userName}
+                                                and U_PASSWORD = #{password}
+                                                and U_CONTACT = #{phone}
+                                                and U_MAIL = #{userMail}
+    </insert>
+
+    <update id="renewInfo">
+     update schooluser a1,schooluser_integrity a2
+     set a2.GENDER_INFO = (case when a1.U_GENDER is not null then 1 else 0 end)
+     ,a2.NAME_INFO = (case when a1.U_NAME is not null then 1 else 0 end)
+     ,a2.PASSWORD_INFO = (case when a1.U_PASSWORD is not null then 1 else 0 end)
+     ,a2.STUDENTID_INFO = (case when a1.U_STUDENTID is not null then 1 else 0 end)
+     ,a2.GRADE_INFO = (case when a1.U_GRADE is not null then 1 else 0 end)
+     ,a2.GRADUATE_YEAR_INFO = (case when a1.U_GRADUATE_YEAR is not null then 1 else 0 end)
+     ,a2.HEAD_TEACHER_INFO = (case when a1.U_HEAD_TEACHER is not null then 1 else 0 end)
+     ,a2.MAJOR_INFO = (case when a1.U_MAJOR is not null then 1 else 0 end)
+     ,a2.CONTACT_INFO = (case when a1.U_CONTACT is not null then 1 else 0 end)
+     ,a2.MAIL_INFO = (case when a1.U_MAIL is not null then 1 else 0 end)
+     ,a2.EDUCATION_INFO = (case when a1.U_EDUCATION is not null then 1 else 0 end)
+     ,a2.ADDRESS_INFO = (case when a1.U_ADDRESS is not null then 1 else 0 end)
+     ,a2.COMPANY_INFO = (case when a1.U_COMPANY is not null then 1 else 0 end)
+     ,a2.POSITION_INFO = (case when a1.U_POSITION is not null then 1 else 0 end)
+     ,a2.BIRTHPLACE_INFO = (case when a1.U_BIRTHPLACE is not null then 1 else 0 end)
+     ,a2.IMG_INFO = (case when a1.U_IMG is not null then 1 else 0 end)
+     ,a2.CREATE_TIME = a1.CREATE_TIME
+     ,a2.UPDATE_TIME = a2.UPDATE_TIME
+     where a1.U_ID = a2.U_ID;
+    </update>
+
+    <update id="countIntegrity">
+ UPDATE schooluser_integrity set U_INFO_INTEGRITY = 0.1*(NAME_INFO
+                                                         +PASSWORD_INFO
+                                                         +CONTACT_INFO
+                                                         +MAIL_INFO)
+													+0.05*(GRADE_INFO
+														 +MAJOR_INFO
+                                                         +BIRTHPLACE_INFO
+                                                         +EDUCATION_INFO
+                                                         +GRADUATE_YEAR_INFO
+                                                         +HEAD_TEACHER_INFO
+                                                         +ADDRESS_INFO
+                                                         +COMPANY_INFO
+                                                         +POSITION_INFO
+                                                         +IMG_INFO
+                                                         +GENDER_INFO
+                                                         +STUDENTID_INFO)
+    </update>
+
+    <select id = "findIntegrityCount"  resultMap="IntegrityCount">
+        select a1.INTEGRITY_COUNT,count(*) as num
+        from(
+        select b1.*
+              ,case when U_INFO_INTEGRITY&gt;0.41 and U_INFO_INTEGRITY&lt;0.6 then '40%~60%'
+                    when U_INFO_INTEGRITY&gt;=0.6 and U_INFO_INTEGRITY&lt;0.8 then '60%~80%'
+                    when U_INFO_INTEGRITY&gt;=0.8 and U_INFO_INTEGRITY&lt;1.0 then '80%~100%'
+                    when U_INFO_INTEGRITY = 1.0 then '100%'
+                    else '40%' end INTEGRITY_COUNT
+        from schooluser_integrity b1)a1
+        group by a1.INTEGRITY_COUNT
+    </select>
+
+    <select id="findIntegrityBetter" resultMap="IntegrityRank">
+select concat(substring(t.U_GRADE,3,2),t.collective) NAME
+	  ,t.num num
+from(
+select case when a2.U_MAJOR = '数字出版' then '数版'
+            when a2.U_MAJOR = '信息管理与信息系统1班' then '信1'
+            when a2.U_MAJOR = '信息管理与信息系统2班' then '信2'
+            when a2.U_MAJOR = '行政管理1班' then '行1'
+            when a2.U_MAJOR = '行政管理2班' then '行2'
+            when a2.U_MAJOR = '公共事业管理' then '公管'
+            when a2.U_MAJOR = '图书馆学1班' then '图1'
+            when a2.U_MAJOR = '图书馆学2班' then '图2'
+            when a2.U_MAJOR = '档案学' then '档案'
+			when a2.U_MAJOR = '政治学与行政学' then '政行'
+            else '其他' end collective
+            ,a2.U_GRADE
+            ,round(avg(U_INFO_INTEGRITY),3) num
+            from schooluser_integrity a1
+            inner join schooluser  a2
+            on a1.U_ID = a2.U_ID
+            where a2.U_GRADE is not null and a2.U_MAJOR is not null
+            group by a2.U_GRADE,a2.U_MAJOR
+             )t
+            order by t.num DESC
+            limit 7
+    </select>
+
+    <select id="findIntegrityWorse" resultMap="IntegrityRank">
+select concat(substring(t.U_GRADE,3,2),t.collective) NAME
+	  ,t.num num
+from(
+select case when a2.U_MAJOR = '数字出版' then '数版'
+            when a2.U_MAJOR = '信息管理与信息系统1班' then '信1'
+            when a2.U_MAJOR = '信息管理与信息系统2班' then '信2'
+            when a2.U_MAJOR = '行政管理1班' then '行1'
+            when a2.U_MAJOR = '行政管理2班' then '行2'
+            when a2.U_MAJOR = '公共事业管理' then '公管'
+            when a2.U_MAJOR = '图书馆学1班' then '图1'
+            when a2.U_MAJOR = '图书馆学2班' then '图2'
+            when a2.U_MAJOR = '档案学' then '档案'
+			when a2.U_MAJOR = '政治学与行政学' then '政行'
+            else '其他' end collective
+            ,a2.U_GRADE
+            ,round(avg(U_INFO_INTEGRITY),3) num
+            from schooluser_integrity a1
+            inner join schooluser  a2
+            on a1.U_ID = a2.U_ID
+            where a2.U_GRADE is not null and a2.U_MAJOR is not null
+            group by a2.U_GRADE,a2.U_MAJOR
+             )t
+            order by t.num
+            limit 7
+    </select>
+
+    <select id="getUserIntegrity" resultMap="userIntegrityRM">
+        select a1.*
+        from schooluser_integrity a1
+        where a1.U_ID = #{userId}
+    </select>
+
+
+
+</mapper>

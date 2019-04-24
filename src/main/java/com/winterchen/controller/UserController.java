@@ -7,6 +7,8 @@ import com.winterchen.service.LoginLogService;
 import com.winterchen.service.MailService;
 import com.winterchen.service.UserService;
 import com.winterchen.util.SendMessageUtil;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
@@ -30,6 +32,7 @@ import static com.winterchen.util.SendMessageUtil.getRandomCode;
  */
 @Controller
 @RequestMapping(value = "/user")
+@Api(value = "类描述", tags = {"显示的标签"})
 public class UserController extends HttpServlet {
 
 
@@ -56,6 +59,7 @@ public class UserController extends HttpServlet {
     */
     @ResponseBody
     @RequestMapping("/all")
+    @ApiOperation(value = "方法描述", produces = "application/json")
     public Object findAllUser(
             @RequestParam(name = "pageNum", required = false, defaultValue = "1")
                     int pageNum,
@@ -390,6 +394,8 @@ public class UserController extends HttpServlet {
         objectMap.put("mail", i.getUserMail());
         objectMap.put("studentId", i.getUserStudentId());
         objectMap.put("education", i.getUserEducation());
+        objectMap.put("graduateYear", i.getUserGraduateYear());
+        objectMap.put("headTeacher", i.getUserHeadTeacher());
         objectMap.put("grade", i.getUserGrade());
         objectMap.put("major", i.getUserMajor());
         objectMap.put("company", i.getUserCompany());
@@ -416,6 +422,8 @@ public class UserController extends HttpServlet {
             @RequestParam("userMajor") String userMajor,
             @RequestParam("userGrade") String userGrade,
             @RequestParam("userEducation") String userEducation,
+            @RequestParam("userGraduateYear") String userGraduateYear,
+            @RequestParam("userHeadTeacher") String userHeadTeacher,
             @RequestParam("userAddress") String userAddress,
             @RequestParam("userCompany") String userCompany,
             @RequestParam("userId") int userId,
@@ -432,11 +440,14 @@ public class UserController extends HttpServlet {
                                           ,userMajor
                                           ,userGrade
                                           ,userEducation
+                                          ,userGraduateYear
+                                          ,userHeadTeacher
                                           ,userAddress
                                           ,userCompany
                                           ,userPosition
                                           ,userImage
                                           ,userId);
+
          return i;
     }
 

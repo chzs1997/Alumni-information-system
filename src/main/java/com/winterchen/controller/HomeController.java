@@ -222,18 +222,27 @@ public class HomeController {
         return "sysregister";
     }
 
-    @RequestMapping("/login")
-    public String login(){
-        return "login";
-    }
 
     @RequestMapping("/PersonalInfo")
     public String PersonalInfo(){
         return "PersonalInfo";
     }
 
+    @RequestMapping("/PersonalDonation")
+    public String PersonalDonation(){
+        return "PersonalDonation";
+    }
+
+    @RequestMapping("/PersonalStroke")
+    public String PersonalStroke(){
+        return "PersonalStroke";
+    }
+
     @RequestMapping("/sysUserInfo")
     public String sysUserInfo(){
         return "sysUserInfo";
     }
+
+
+
 }

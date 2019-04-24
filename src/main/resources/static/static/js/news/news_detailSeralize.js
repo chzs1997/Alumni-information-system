@@ -240,8 +240,6 @@ function praise(e) {
         data: {"artId":artId,"newsPraise":newsPraise},
         async: false,
         success: function f(data) {
-            var artShareCounts = data.artShareCounts;
-            var artViesCounts = data.artViesCounts;
             var artPraiseCounts = data.artPraiseCounts;
             $("#praiseCounts").text(artPraiseCounts);
         },

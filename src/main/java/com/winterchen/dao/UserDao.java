@@ -141,6 +141,8 @@ public interface UserDao {
                       ,@Param("userMajor")String userMajor
                       ,@Param("userGrade")String userGrade
                       ,@Param("userEducation")String userEducation
+                      ,@Param("userGraduateYear")String userGraduateYear
+                      ,@Param("userHeadTeacher")String userHeadTeacher
                       ,@Param("userAddress")String userAddress
                       ,@Param("userCompany")String userCompany
                       ,@Param("userPosition")String userPosition

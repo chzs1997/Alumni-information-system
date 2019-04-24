@@ -16,6 +16,11 @@
 	<!--导航栏的作用-->
 	<link rel="stylesheet" href="static/static/css/style_navigator.css">
 
+	<!--环比-->
+	<link rel="stylesheet" type="text/css" href="static/static/circleStyle/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" href="static/static/circleStyle/css/htmleaf-demo.css">
+
+
 	<style>
 		.fileinput-button {
 			position: relative;
@@ -153,7 +158,11 @@
 		</div>
 		 <div id="zi2">
 		      <div id="zi2_1">
-			          <div id="zi2_1_1"><span>我的资料</span></div>
+			          <div id="zi2_1_1">
+						  <span>我的资料</span>
+						  <h3 style="text-align: center;">校友信息完善度</h3>
+						  <div class="circleChart" id="0"></div>
+					  </div>
 			          <div id="zi2_1_2">
 					          <div id="zi2_1_2_top">
 					             <div class="photo">
@@ -173,7 +182,7 @@
 								        <div class="ka1_wrapper">
 										   <div class="ka1_top">用户信息</div>
 										   <div class="ka1_line">
-										        <div class="three">姓名</div>
+										        <div class="two">姓名</div>
 												<div class="ka1_input">						           
 										         <input type="text" name="" class="ge_name" maxlength="10" disabled="disabled" id = "personName" />
 											 </div> 
@@ -214,11 +223,11 @@
 								        <div class="ka2_wrapper">
 										   <div class="ka2_top">在校信息</div>
 							 <div class="ka2_line">
-							      <span>学号</span>
+							      <span class="two">学号</span>
 								         <input type="text" name="" class="ge_xnum" maxlength="32" disabled="disabled" id = "personStudentId" />
 							 </div>
 							 <div class="ka2_line">
-							      <span>学历</span>
+							      <span class="two">学历</span>
 								      <select disabled="disabled" class="ge_xueli" id = "personEducation">
                                              <option value ="本科">本科</option>
                                              <option value ="硕士">硕士</option>
@@ -228,7 +237,7 @@
                                       </select>
 							 </div>
 							 <div class="ka2_line">
-							      <span>年级</span>
+							      <span class="two">年级</span>
 								      <select disabled="disabled" class="ge_nianji" id = "personGrade">
                                              <option value ="2019级">2019级</option>
                                              <option value ="2018级">2018级</option>
@@ -258,7 +267,7 @@
                                       </select>
 							 </div>
 							 <div class="ka2_line">
-							      <span>专业</span>
+							      <span class="two">专业</span>
 								      <select disabled="disabled" class="ge_zhuanye" id = "personMajor" style="width: 200px">
                                              <option value ="信息管理与信息系统1班">信息管理与信息系统1班</option>
 										     <option value ="信息管理与信息系统2班">信息管理与信息系统2班</option>
@@ -271,6 +280,14 @@
 										      <option value="图书馆学2班">图书馆学2班</option>
 										  <option value="档案学">档案学</option>
                                       </select>
+							 </div>
+							 <div class="ka2_line">
+								<span class="three">毕业时间</span>
+								<input type="text" name="" class="ge_xnum" maxlength="32" disabled="disabled" id = "personGraduateYear" />
+							 </div>
+							 <div class="ka2_line">
+								<span class="three">班主任</span>
+								<input type="text" name="" class="ge_xnum" maxlength="32" disabled="disabled" id = "personHeadTeacher" />
 							 </div>
 									</div>
 								 </div>
@@ -303,34 +320,6 @@
 				        	  </div>
 			          </div>
 		      </div>
-		 </div>
-	     <div id="zi3">
-		       <div id="zi3_1">
-			         <div id="zi3_1_1"><span>我的行程</span></div>
-					 <div id="zi3_1_2">
-					   <form>
-					      <table class="xing">
-					            <tr><th></th></tr>
-					            <tr><th></th></tr>
-					            <tr><th></th></tr>
-						  </table>
-					   </form>
-					 </div>
-			   </div>
-		 </div>
-	     <div id="zi4">
-		       <div id="zi4_1">
-			         <div id="zi4_1_1"><span>我的捐赠</span></div>
-					 <div id="zi4_1_2">
-					   <form>
-					       <table class="juan">
-					            <tr><th></th></tr>
-					            <tr><th></th></tr>
-					            <tr><th></th></tr>
-						  </table>
-					   </form>
-					 </div>
-			   </div>
 		 </div>
 <div class="container-fluid fh5co_footer_bg pb-3" style="background: rgb(139, 0, 0);width: 100%;float: left;margin-top: -300px">
 	<div class="container animate-box">
@@ -465,6 +454,10 @@
 <!-- menu --><!-- navigation -->
 <script src="static/static/js/navigator_left.js" type="text/javascript"></script>
 
+
+<script src="static/static/circleStyle/dist/circleChart.min.js"></script>
+<script src="static/static/circleStyle/dist/circleSeralize.js"></script>
+
 <!--上传图片-->
 <script>
 	function imgPreview(fileDom) {
@@ -492,4 +485,5 @@
 		reader.readAsDataURL(file);
 	}
 </script>
+
 </html>

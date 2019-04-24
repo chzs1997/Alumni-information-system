@@ -4,6 +4,8 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.winterchen.dao.MapSessionMapper;
 import com.winterchen.dao.UserDao;
+import com.winterchen.dao.UserIntegrityDao;
+import com.winterchen.model.SchoolUserIntegrity;
 import com.winterchen.model.UserDomain;
 import com.winterchen.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,12 +24,31 @@ public class UserServiceImpl implements UserService {
     private UserDao userDao;//这里会报错，但是并不会影响
 
     @Autowired
+    private UserIntegrityDao userIntegrityDao;
+
+    @Autowired
     MapSessionMapper mapSessionMapper;
 
-    /*注册*/
+    /**
+     *
+     * 初步注册*/
     @Override
     public int login(String userName, String password, String phone, String userMail) {
-        return userDao.login(userName, password, phone, userMail);
+        int i = userDao.login(userName, password, phone, userMail);
+        userIntegrityDao.addUser(userName, password, phone, userMail);
+        return i;
+    }
+
+    /**
+     * 详细信息注册
+     * */
+    @Override
+    public int add_info(String userMail, String userGender, String userGrade, String userMajor,  String userGraduateYear
+            ,String userHeadTeacher,String userAddress, String userCompany, String userPosition, String userEducation, String userBirthPlace) {
+        int i = userDao.add_info(userMail, userGender, userGrade, userMajor, userGraduateYear, userHeadTeacher, userAddress, userCompany, userPosition, userEducation, userBirthPlace);
+        userIntegrityDao.renewInfo();
+        userIntegrityDao.countIntegrity();
+        return i;
     }
 
     /*登录*/
@@ -96,28 +117,29 @@ public class UserServiceImpl implements UserService {
         return userDao.findByuserMail(userMail);
     }
 
-    @Override
-    public int add_info(String userMail, String userGender, String userGrade, String userMajor,  String userGraduateYear
-            ,String userHeadTeacher,String userAddress, String userCompany, String userPosition, String userEducation, String userBirthPlace) {
-        return userDao.add_info(userMail, userGender, userGrade, userMajor, userGraduateYear, userHeadTeacher, userAddress, userCompany, userPosition, userEducation, userBirthPlace);
-    }
+
 
     @Override
-    public int updateMessage(String userName, String userGender, String userBirthPlace, String phone, String userMail, String userStudentId, String userMajor, String userGrade, String userEducation, String userAddress, String userCompany, String userPosition, String userImage, int userId) {
-        return userDao.updateMessage(userName
-                                     ,userGender
-                                     ,userBirthPlace
-                                     ,phone
-                                     ,userMail
-                                     ,userStudentId
-                                     ,userMajor
-                                     ,userGrade
-                                     ,userEducation
-                                     ,userAddress
-                                     ,userCompany
-                                     ,userPosition
-                                     ,userImage
-                                     ,userId);
+    public int updateMessage(String userName, String userGender, String userBirthPlace, String phone, String userMail, String userStudentId, String userMajor, String userGrade, String userEducation, String userGraduateYear, String userHeadTeacher,String userAddress, String userCompany, String userPosition, String userImage, int userId) {
+        int i =userDao.updateMessage(userName
+                ,userGender
+                ,userBirthPlace
+                ,phone
+                ,userMail
+                ,userStudentId
+                ,userMajor
+                ,userGrade
+                ,userEducation
+                ,userGraduateYear
+                ,userHeadTeacher
+                ,userAddress
+                ,userCompany
+                ,userPosition
+                ,userImage
+                ,userId);
+        userIntegrityDao.renewInfo();
+        userIntegrityDao.countIntegrity();
+        return i;
     }
 
     @Override
@@ -150,6 +172,29 @@ public class UserServiceImpl implements UserService {
     public List<UserDomain> findUserExcel(String grade, String major, String gender) {
         List<UserDomain> userDomains = filterByConditions(grade, major, gender);
         return  userDomains;
+    }
+
+    @Override
+    public Map<String, Integer> findIntegrityCount() {
+        Map<String,Integer> mapAmount = mapSessionMapper.findIntegrityCount();
+        return mapAmount;
+    }
+
+    @Override
+    public Map<String, Object> findIntegrityBetter() {
+        Map<String,Object> mapAmount = mapSessionMapper.findIntegrityBetter();
+        return mapAmount;
+    }
+
+    @Override
+    public Map<String, Object> findIntegrityWorse() {
+        Map<String,Object> mapAmount = mapSessionMapper.findIntegrityWorse();
+        return mapAmount;
+    }
+
+    @Override
+    public SchoolUserIntegrity getUserIntegrity(Integer userId) {
+        return userIntegrityDao.getUserIntegrity(userId);
     }
 
     /**

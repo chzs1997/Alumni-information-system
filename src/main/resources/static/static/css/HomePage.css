@@ -389,7 +389,7 @@ ul.lm li{
 }
 
 .right_padding{
-	padding-left: 40px;
+	padding-left: 20px;
 }
 
 .bottomIntroductionLeft{
@@ -397,11 +397,11 @@ ul.lm li{
 	margin-left: 15px;
 }
 .bottomIntroductionMedium{
-	width: 30%;
+	width: 22%;
 	margin-left: 15px;
 }
 .bottomIntroductionRight{
-	width: 30%;
+	width: 20%;
 	margin-left: 15px;
 }
 

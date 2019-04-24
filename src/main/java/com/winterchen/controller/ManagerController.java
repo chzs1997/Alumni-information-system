@@ -2,6 +2,7 @@ package com.winterchen.controller;
 
 import com.winterchen.conf.MyWebAppConfigurer;
 import com.winterchen.model.Manager;
+import com.winterchen.model.SchoolUserIntegrity;
 import com.winterchen.model.UserDomain;
 import com.winterchen.service.*;
 import org.apache.poi.hssf.usermodel.HSSFRow;
@@ -257,6 +258,51 @@ public class ManagerController {
         os.flush();
         os.close();
 
+    }
+
+    /**
+     *
+     * 用户信息完善度汇总
+     * */
+    @ResponseBody
+    @RequestMapping(value = "/findIntegrityCount")
+    public Object findIntegrityCount(){
+        Map<String,Integer> hashMap =  userService.findIntegrityCount();
+        return hashMap;
+    }
+
+    /**
+     *
+     * 校友信息完善度较好排名
+     * */
+    @ResponseBody
+    @RequestMapping(value = "/findIntegrityBetter")
+    public Object findIntegrityBetter(){
+        Map<String,Object> hashMap =  userService.findIntegrityBetter();
+        return hashMap;
+    }
+
+    /**
+     *
+     * 校友信息完善度较差排名
+     * */
+    @ResponseBody
+    @RequestMapping(value = "/findIntegrityWorse")
+    public Object findIntegrityWorse(){
+        Map<String,Object> hashMap =  userService.findIntegrityWorse();
+        return hashMap;
+    }
+
+    /**
+     * 获取指定用户的完善度
+     *
+     * */
+    @ResponseBody
+    @RequestMapping(value = "/getUserIntegrity")
+    public Object getUserIntegrity(@RequestParam("userId") Integer userId){
+        SchoolUserIntegrity i =userService.getUserIntegrity(userId);
+           int m = (int) (i.getUserInfoIntegrity()*100);
+           return  m;
     }
 
 

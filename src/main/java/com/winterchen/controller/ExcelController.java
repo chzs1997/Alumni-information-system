@@ -3,7 +3,6 @@ package com.winterchen.controller;
 import com.winterchen.model.UserDomain;
 import com.winterchen.service.UserService;
 import com.winterchen.util.ExportExcelSeedBack;
-import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.apache.commons.io.output.ByteArrayOutputStream;
 import org.apache.ibatis.annotations.Param;
 import org.apache.poi.hssf.usermodel.*;
@@ -14,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.util.ArrayList;
@@ -151,11 +151,11 @@ public class ExcelController {
     }
 
     @GetMapping("/orderrdExportExcel")
-    public void grouppExportExcel( @Param("grade") String grade
-                                   ,@Param("major") String major
-                                   ,@Param("gender") String gender
-                                   ,HttpServletRequest request
-                                   ,HttpServletResponse response) throws Exception{
+    public void grouppExportExcel(@Param("grade") String grade
+                                   , @Param("major") String major
+                                   , @Param("gender") String gender
+                                   , HttpServletRequest request
+                                   , HttpServletResponse response) throws Exception{
     List<UserDomain> groupList = userService.findUserExcel(grade,major,gender);
     //导出文件的标题
         String title = "校友信息.xls";

@@ -22,8 +22,6 @@ jQuery(document).ready(function($) {
             if ($(event.target).is($form_modal) || $(event.target).is('.cd-close-form')) {
                 $form_modal.removeClass('is-visible');
             }
-            //再次检测登陆状态
-            detectLoginState();
         });
 
         //使用Esc键关闭弹出窗口
@@ -41,6 +39,8 @@ jQuery(document).ready(function($) {
     }
 });
 
+
+//信息修改
 $("#btn2").on("click",function () {
     var BASE_PATH = window.document.location.href.substring(0, window.document.location.href.indexOf(window.document.location.pathname));
 
@@ -73,6 +73,12 @@ $("#btn2").on("click",function () {
     //学历
     var education = $("#personEducation option:selected").text();
 
+    //校友毕业年份
+    var userGraduateYear = $("#personGraduateYear").val();
+
+    //校友学号
+    var userHeadTeacher = $("#personHeadTeacher").val();
+
     //工作地点
     var province2 = $("#province2 option:selected").text();
 
@@ -100,6 +106,8 @@ $("#btn2").on("click",function () {
                "userMajor":major,
                "userGrade":grade,
                "userEducation":education,
+               "userGraduateYear":userGraduateYear,
+               "userHeadTeacher":userHeadTeacher,
                "userAddress":province2+"省"+city2+"市",
                "userCompany":userCompany,
                "userPosition":userPosition,
@@ -137,6 +145,8 @@ function signup_selected() {
     $(".cd-switcher").children("li").eq(1).addClass("on");
 }
 
+
+//登陆状态检测+信息填充
 function detectLoginState() {
     var BASE_PATH = window.document.location.href.substring(0, window.document.location.href.indexOf(window.document.location.pathname));
     //检验是否已登陆
@@ -174,6 +184,8 @@ function detectLoginState() {
                         var personAddress = data.userAddress;
                         var personPosition = data.position;
                         var personImage = data.userImage;
+                        var personGraduateYear = data.graduateYear;
+                        var personHeadTeacher = data.headTeacher;
                         if(personName != null){
                             $("#personName").val(personName);
 
@@ -200,6 +212,9 @@ function detectLoginState() {
                             $("#personGrade option[value = "+personGrade +"]").attr("selected",true);
                             $("#personMajor option[value = "+personMajor +"]").attr("selected",true);
 
+                            $("#personGraduateYear").val(personGraduateYear);
+                            $("#personHeadTeacher").val(personHeadTeacher);
+
                             var workProvince = personAddress.split("省")[0];
                             var workCity = personAddress.split("省")[1].split("市")[0];
 
@@ -210,6 +225,28 @@ function detectLoginState() {
                             $("#personPosition").val(personPosition);
 
                             $("#icon").attr("src",personImage);
+
+                            var Integrity = 0;
+                            $.ajax({
+                                url: BASE_PATH +"/manager/getUserIntegrity",
+                                type: "post",
+                                dateType: "json",
+                                data: {"userId": userId},
+                                async: false,
+                                success: function f(data) {
+                                    Integrity = data;
+                                    $("#0").circleChart({
+                                        size: 100,
+                                        value: Integrity,
+                                        text: 0,
+                                        onDraw: function(el, circle) {
+                                            circle.text(Math.round(circle.value) + "%");
+                                        }
+                                    });
+                                },
+                                error: function f() {
+                                }
+                            })
                         }
                     }
                 },

@@ -1,6 +1,7 @@
 package com.winterchen.service;
 
 import com.github.pagehelper.PageInfo;
+import com.winterchen.model.SchoolUserIntegrity;
 import com.winterchen.model.UserDomain;
 import org.springframework.stereotype.Service;
 
@@ -97,6 +98,8 @@ public interface UserService {
                       ,String userMajor
                       ,String userGrade
                       ,String userEducation
+                      ,String userGraduateYear
+                      ,String userHeadTeacher
                       ,String userAddress
                       ,String userCompany
                       ,String userPosition
@@ -135,4 +138,32 @@ public interface UserService {
      *
      * */
     List<UserDomain> findUserExcel(String grade, String major, String gender);
+
+    /**
+     *
+     *
+     * 用户信息度汇总
+     * */
+    Map<String,Integer> findIntegrityCount();
+
+    /**
+     *
+     *
+     * 校友信息完善度较好排名
+     * */
+    Map<String,Object> findIntegrityBetter();
+
+    /**
+     *
+     *
+     * 校友信息完善度较差排名
+     * */
+    Map<String,Object> findIntegrityWorse();
+
+    /**
+     *
+     *
+     * 校友信息完善度较差排名
+     * */
+    SchoolUserIntegrity getUserIntegrity(Integer userId);
 }

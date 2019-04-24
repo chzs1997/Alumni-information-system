@@ -350,9 +350,6 @@
     </div>
 </div>
 
-<!--<div class="gototop js-top">-->
-    <!--<a href="#" class="js-gotop"><i class="fa fa-arrow-up"></i></a>-->
-<!--</div>-->
 <div class="container">
     <div class="cd-user-modal">
         <div class="cd-user-modal-container">
@@ -361,7 +358,7 @@
                     <a href="#0">用户名密码登录</a>
                 </li>
                 <li>
-                    <a href="#0">手机验证码登录</a>
+                    <a href="#0">短信验证码登录</a>
                 </li>
             </ul>
 
@@ -375,7 +372,8 @@
 
                     <p class="fieldset">
                         <label class="image-replace cd-password" for="signin-password">密码</label>
-                        <input class="full-width has-padding has-border" id="signin-password" type="text" placeholder="输入密码"/>
+                        <!--<input type="password" name="old_password" style="display: none">-->
+                        <input class="full-width has-padding has-border" id="signin-password" type="password" placeholder="输入密码"/>
                     </p>
 
                     <div id="zhuce">
@@ -394,11 +392,11 @@
             </div>
 
             <div id="cd-signup">
-                <!-- 手机验证码登录 -->
+                <!-- 短信验证码登录 -->
                 <form class="cd-form">
                     <p class="fieldset">
-                        <label class="image-replace cd-username" for="signup-username">手机号</label>
-                        <input class="full-width has-padding has-border" id="signup-username" type="text" placeholder="输入手机号"/>
+                        <label class="image-replace cd-username" for="signup-username">邮箱账号</label>
+                        <input class="full-width has-padding has-border" id="signup-username" type="text" placeholder="输入邮箱账号"/>
                     </p>
 
                     <p class="fieldset">

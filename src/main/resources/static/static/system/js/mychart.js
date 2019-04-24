@@ -424,22 +424,60 @@ new Chart(document.getElementById("myChart3"), {
     }
 });
 
-//Mychart4
+var count1 ,count2,count3,count4,count5=0;
+var percentage1,percentage2,percentage3,percentage4,percentage5
+//校友信息完善度汇总
+$.ajax({
+    url: BASE_PATH + "/manager/findIntegrityCount",
+    type: "post",
+    dateType: "json",
+    data: {},
+    async: false,
+    success: function f(data) {
+        var j = 1;
+        for(var i in data){
+            switch (j) {
+                case 1:
+                    percentage1 = i;
+                    count1 = data[i];
+                    break;
+                case 2:
+                    percentage2 = i;
+                    count2 = data[i];
+                    break;
+                case 3:
+                    percentage3 = i;
+                    count3 = data[i];
+                    break;
+                case 4:
+                    percentage4 = i;
+                    count4 = data[i];
+                    break;
+                case 5:
+                    percentage5 = i;
+                    count5 = data[i];
+                    break;
+            }
+            j++;
+        }
+    },
+    error: function f() {
+    }
+});
+//校友信息完善度汇总
 new Chart(document.getElementById("myChart4").getContext('2d'), {
   type: 'doughnut',
   data: {
-    labels: ["M", "T", "W", "T", "F", "S", "S"],
+    labels: [percentage1, percentage2, percentage3, percentage4, percentage5],
     datasets: [{
       backgroundColor: [
+        "#95a5a6",
         "#2ecc71",
         "#3498db",
-        "#95a5a6",
         "#9b59b6",
         "#f1c40f",
-        "#e74c3c",
-        "#34495e"
       ],
-      data: [12, 19, 3, 17, 28, 24, 7]
+      data: [count1, count2, count3, count4, count5]
     }]
   },
   options: {
@@ -448,6 +486,180 @@ new Chart(document.getElementById("myChart4").getContext('2d'), {
         display: true,
         text: ''
        } 
+    }
+});
+
+var goodClass1 ,goodClass2,goodClass3,goodClass4,goodClass5,goodClass6,goodClass7
+var goodPercentage1,goodPercentage2,goodPercentage3,goodPercentage4,goodPercentage5,goodPercentage6,goodPercentage7
+//校友信息完善度较好排名
+$.ajax({
+    url: BASE_PATH + "/manager/findIntegrityBetter",
+    type: "post",
+    dateType: "json",
+    data: {},
+    async: false,
+    success: function f(data) {
+        var j = 1;
+        for(var i in data){
+            switch (j) {
+                case 1:
+                    goodClass1 = i;
+                    goodPercentage1 = data[i];
+                    break;
+                case 2:
+                    goodClass2 = i;
+                    goodPercentage2 = data[i];
+                    break;
+                case 3:
+                    goodClass3 = i;
+                    goodPercentage3 = data[i];
+                    break;
+                case 4:
+                    goodClass4 = i;
+                    goodPercentage4 = data[i];
+                    break;
+                case 5:
+                    goodClass5 = i;
+                    goodPercentage5 = data[i];
+                    break;
+                case 6:
+                    goodClass6 = i;
+                    goodPercentage6 = data[i];
+                    break;
+                case 7:
+                    goodClass7 = i;
+                    goodPercentage7 = data[i];
+                    break;
+            }
+            j++;
+        }
+    },
+    error: function f() {
+    }
+});
+//校友信息完善度较好排名
+new Chart(document.getElementById("myChart5").getContext('2d'), {
+    type: 'bar',
+    data: {
+        labels: [goodClass1, goodClass2, goodClass3,goodClass4,goodClass5,goodClass6,goodClass7],
+        datasets: [{
+            label: '',
+            type: 'bar',
+            data: [goodPercentage1, goodPercentage2, goodPercentage3,goodPercentage4,goodPercentage5,goodPercentage6,goodPercentage7],
+            backgroundColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)',
+                'rgba(255, 0,   0,   1)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)',
+                'rgba(255, 0,   0,   1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        legend: { display: false },
+        title: {
+            display: true,
+            text: ''
+        }
+    }
+});
+
+var badClass1 ,badClass2,badClass3,badClass4,badClass5,badClass6,badClass7
+var badPercentage1,badPercentage2,badPercentage3,badPercentage4,badPercentage5,badPercentage6,badPercentage7
+//校友信息完善度较差排名
+$.ajax({
+    url: BASE_PATH + "/manager/findIntegrityWorse",
+    type: "post",
+    dateType: "json",
+    data: {},
+    async: false,
+    success: function f(data) {
+        var j = 1;
+        for(var i in data){
+            switch (j) {
+                case 1:
+                    badClass1 = i;
+                    badPercentage1 = data[i];
+                    break;
+                case 2:
+                    badClass2 = i;
+                    badPercentage2 = data[i];
+                    break;
+                case 3:
+                    badClass3 = i;
+                    badPercentage3 = data[i];
+                    break;
+                case 4:
+                    badClass4 = i;
+                    badPercentage4 = data[i];
+                    break;
+                case 5:
+                    badClass5 = i;
+                    badPercentage5 = data[i];
+                    break;
+                case 6:
+                    badClass6 = i;
+                    badPercentage6 = data[i];
+                    break;
+                case 7:
+                    badClass7 = i;
+                    badPercentage7 = data[i];
+                    break;
+            }
+            j++;
+        }
+    },
+    error: function f() {
+    }
+});
+//校友信息完善度较差排名
+new Chart(document.getElementById("myChart6").getContext('2d'), {
+    type: 'bar',
+    data: {
+        labels: [badClass1, badClass2, badClass3, badClass4,badClass5, badClass6, badClass7],
+        datasets: [{
+            label: '',
+            type: 'bar',
+            data: [badPercentage1, badPercentage2, badPercentage3, badPercentage4, badPercentage5, badPercentage6, badPercentage7],
+            backgroundColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)',
+                'rgba(255, 0,   0,   1)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)',
+                'rgba(255, 0,   0,   1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        legend: { display: false },
+        title: {
+            display: true,
+            text: ''
+        }
     }
 });
 

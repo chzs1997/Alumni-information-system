@@ -1,5 +1,6 @@
 const obj = window.document.location;
 const BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));
+var userState = 0;
 jQuery(document).ready(function($) {
     var     $form_modal = $('.cd-user-modal'),
             $form_login = $form_modal.find('#cd-login'),
@@ -66,6 +67,7 @@ jQuery(document).ready(function($) {
                 out_login();
             }
             else{
+                userState = 1;
                 var result = userName;
                 var phone = data.phone;
                 var gender = data.userGender;
@@ -267,3 +269,14 @@ function SetRemainTime() {
         $("#btn").val(curCount + "秒");
     }
 }
+
+//控制是否能进入个人资料界面
+$(".hl_nav > .nav_list li").eq(6).children("a:eq(1)").on("click",function () {
+    if(userState == 1){
+        window.location.href = "PersonalInfo.html"
+    }
+    else{
+        event.preventDefault();
+        alert("你当前尚未登陆，请登陆后查看个人资料");
+    }
+})
