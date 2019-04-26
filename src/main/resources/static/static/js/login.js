@@ -270,10 +270,32 @@ function SetRemainTime() {
     }
 }
 
-//控制是否能进入个人资料界面
+//控制是否能进入我的资料界面
 $(".hl_nav > .nav_list li").eq(6).children("a:eq(1)").on("click",function () {
     if(userState == 1){
         window.location.href = "PersonalInfo.html"
+    }
+    else{
+        event.preventDefault();
+        alert("你当前尚未登陆，请登陆后查看个人资料");
+    }
+})
+
+//控制是否能进入我的行程界面
+$(".hl_nav > .nav_list li").eq(6).children("a:eq(2)").on("click",function () {
+    if(userState == 1){
+        window.location.href = "PersonStroke.html"
+    }
+    else{
+        event.preventDefault();
+        alert("你当前尚未登陆，请登陆后查看个人资料");
+    }
+})
+
+//控制是否能进入我的捐赠界面
+$(".hl_nav > .nav_list li").eq(6).children("a:eq(3)").on("click",function () {
+    if(userState == 1){
+        window.location.href = "PersonDonation.html"
     }
     else{
         event.preventDefault();

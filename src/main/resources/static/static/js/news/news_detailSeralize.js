@@ -117,7 +117,7 @@ jQuery(document).ready(function($) {
                 $("#newest_news_img_"+(i+1)).attr("src",img);
 
                 //链接
-                $("#newest_news_title_"+(i+1)).attr("href","news_detail.html?artId="+artId);
+                $("#newest_news_title_"+(i+1)).attr("href","news_detail.html?artType="+artType+"&artId="+artId);
             }
 
             for(var i=4;i<8;i++){
@@ -131,7 +131,7 @@ jQuery(document).ready(function($) {
                 $("#oldest_news_img_"+(i+1)).attr("src",img);
 
                 //链接
-                $("#oldest_news_title_"+(i+1)).attr("href","news_detail.html?artId="+artId);
+                $("#oldest_news_title_"+(i+1)).attr("href","news_detail.html?artType="+artType+"&artId="+artId);
             }
 
             for(var i=8;i<12;i++){
@@ -145,7 +145,7 @@ jQuery(document).ready(function($) {
                 $("#focus_news_img_"+(i+1)).attr("src",img);
 
                 //链接
-                $("#focus_news_title_"+(i+1)).attr("href","news_detail.html?artId="+artId);
+                $("#focus_news_title_"+(i+1)).attr("href","news_detail.html?artType="+artType+"&artId="+artId);
             }
         },
         error: function f() {

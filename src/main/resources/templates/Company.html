@@ -28,7 +28,7 @@
     <link type="text/css" href="static/static/css/HomePage.css" rel="stylesheet" />
     <link href="static/static/css/banner.css" rel="stylesheet" type="text/css" />
     <link type="text/css" rel="stylesheet" href="static/static/css/login.css" />
-    <link href="static/static/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+    <link href="static/static/css/bootstrap_bottom.css" rel="stylesheet" type="text/css"/>
     <link href="static/static/css/style_1.css" rel="stylesheet" type="text/css"/>
 
 
@@ -87,19 +87,19 @@
 <nav class="hl_nav">
     <ul class="nav_list">
         <li class="active">
-            <a class="nav_head" href="HomePage">首页</a>
+            <a class="nav_head" href="index.html">首页</a>
         </li>
         <li>
-            <a class="nav_head" href="news.html">新闻快讯</a>
-            <a class="nav_body" href="news.html">学院新闻</a>
-            <a class="nav_body" href="news.html">校友新闻</a>
+            <a class="nav_head" href="#">新闻快讯</a>
+            <a class="nav_body" href="news.html?artType=1">学院新闻</a>
+            <a class="nav_body" href="news.html?artType=2">校友新闻</a>
             <a class="nav_body" href="http://www.xtu.edu.cn/xdxw/xnxw/" target="_blank">学校新闻</a>
         </li>
         <li>
-            <a class="nav_head" href="CharacterStyle.html">人物风采</a>
+            <a class="nav_head" href="#">人物风采</a>
             <a class="nav_body" href="http://glxy.xtu.edu.cn/e/action/ListInfo/?classid=7" target="_blank">老师之星</a>
-            <a class="nav_body" href="CharacterStyle.html">学生之星</a>
-            <a class="nav_body" href="CharacterStyle.html">校友之星</a>
+            <a class="nav_body" href="CharacterStyle.html?charcterType=2">学生之星</a>
+            <a class="nav_body" href="CharacterStyle.html?charcterType=3">校友之星</a>
         </li>
         <li>
             <a class="nav_head" href="Service.html">校友服务</a>
@@ -110,12 +110,17 @@
         </li>
         <li>
             <a class="nav_head" href="#">校友捐赠</a>
-            <a class="nav_body" href="#">校友捐赠</a>
-            <a class="nav_body" href="#">校友捐赠</a>
+            <a class="nav_body" href="Donation.html">校友捐赠</a>
         </li>
         <li>
-            <a class="nav_head" href="Company.html">校友企业</a>
+            <a class="nav_head" href="#">校友企业</a>
             <a class="nav_body" href="Company.html">校友企业</a>
+        </li>
+        <li>
+            <a class="nav_head" href="#">查看信息</a>
+            <a class="nav_body" href="#">我的资料</a>
+            <a class="nav_body" href="#">我的行程</a>
+            <a class="nav_body" href="#">我的捐赠</a>
         </li>
     </ul>
 </nav>
@@ -285,8 +290,8 @@
 	</div>
 <!--/newsletter-->
 <div class="container-fluid fh5co_footer_bg pb-3 special_bottom">
-    <div class="container animate-box">
-        <div class="row">
+    <div class="container animate-box" style="width: 90%">
+        <div class="row1">
             <div class="col-12 spdp_right py-5"><img src="static/static/img/logo.png" alt="img" class="footer_logo"/></div>
             <div class="clearfix"></div>
             <div class="bottomIntroductionLeft">
@@ -296,15 +301,19 @@
             </div>
             <div class="bottomIntroductionMedium">
                 <div class="footer_main_title py-3"> 联系我们</div>
-                <div><span>院  长：盛明科</span> <span class = "right_padding">办公地点：公管楼309</span></div>
+                <div><span>院  长：梁丽芝</span> <span class = "right_padding">办公地点：公管楼320</span></div>
                 <div><span>联系电话：0731-58292890</span></div>
                 <div><span>Email: 354939403@qq.com</span></div><br/>
                 <div><span>党委书记：陈长明 </span><span class = "right_padding">办公地点：公管楼303</span></div>
                 <div><span>联系电话：0731-58298532</span> <br/><span>Email: ccm1@xtu.edu.cn</span> </div><br/>
-                <div><span>副院长：王凯伟 </span> <span class = "right_padding">办公地点：公管楼301 </span></div>
-                <div><span>联系电话：0731-58298519 </span> <br/><span>Email: wangkw168@126.com</span></div><br/>
-                <div><span>副院长：毛太田 </span> <span class = "right_padding">办公地点：公管楼310 </span></div>
-                <div><span>联系电话：0731-58293695</span> <br/><span>Email: iaiafang@yeah.net</span></div><br/>
+            </div>
+            <div class="bottomIntroductionRight">
+                <div class="footer_main_title py-3"> 联系我们</div>
+                <div><span>副院长：毛太田</span> <span class = "right_padding">办公地点：公管楼310</span></div>
+                <div><span>联系电话：0731-58293695 </span></div>
+                <div><span>Email: iaiafang@yeah.net</span></div><br/>
+                <div><span>副院长：王凯伟 </span> <span class = "right_padding">办公地点：公管楼301</span></div>
+                <div><span>联系电话：0731-58298519 </span> <br/><span>Email: wangkw168@126.com</span> </div><br/>
             </div>
             <div class="bottomIntroductionRight">
                 <div class="footer_main_title py-3"> 联系我们</div>
@@ -313,19 +322,15 @@
                 <div><span>Email: 1572346084@qq.com</span></div><br/>
                 <div><span>副书记：谷立平 </span> <span class = "right_padding">办公地点：公管楼311</span></div>
                 <div><span>联系电话：0731-58293735</span> <br/><span>Email: 20240917@qq.com</span> </div><br/>
-                <div><span>院长助理：罗泽意 </span> <span class = "right_padding">办公地点：公管楼319 </span></div>
-                <div><span>联系电话：0731-58298296转8006 </span> <br/><span>Email: luozy83@163.com </span></div><br/>
-                <div><span>院长助理：刘超 </span> <span class = "right_padding">办公地点：公管楼316 </span></div>
-                <div><span>联系电话：0731-58298296转8007</span> <br/><span>Email: yifang0709@foxmail.com </span></div><br/>
             </div>
         </div>
-        <div class="row justify-content-center pt-2 pb-4">
+        <div class="row1 justify-content-center pt-2 pb-4">
             <span>友情链接：</span>
             <span><a href = "http://glxy.xtu.edu.cn/" target="_blank" style="color: white;margin-right: 15px">湘潭大学公共管理学院</a></span>
             <span><a href = "http://www.xtu.edu.cn/" target="_blank" style="color: white;margin-right: 15px">湘潭大学</a></span>
             <span><a href = "http://xyzh.xtu.edu.cn/" target="_blank" style="color: white;margin-right: 15px">湘潭大学校友会</a></span><br/>
         </div>
-        <div class="row justify-content-center pt-2 pb-4">
+        <div class="row1 justify-content-center pt-2 pb-4">
             <span style="margin-right: 15px">地址：湖南省湘潭市雨湖区湘潭大学</span>
             <span style="margin-right: 15px">邮编：411105</span>
             <span style="margin-right: 15px">院训：公为天下，管益千秋</span>
