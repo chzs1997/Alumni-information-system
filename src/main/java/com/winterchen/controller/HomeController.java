@@ -243,6 +243,16 @@ public class HomeController {
         return "sysUserInfo";
     }
 
+    @RequestMapping("/AlmuniStyle")
+    public String AlmuniStyle(){
+        return "AlmuniStyle";
+    }
+
+    @RequestMapping("/Donation")
+    public String Donation(){
+        return "Donation";
+    }
+
 
 
 }

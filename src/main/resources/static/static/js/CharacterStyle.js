@@ -1,26 +1,65 @@
-
+var charType;
 //初始化内容
 $(document).ready(function () {
     //获取basePath，测试的话就能用就完了
     var obj = window.document.location;
     var BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));
+
+    var url = window.location.href.split("?");
+    if(url.length>1){
+        var theRequest = new Object();//theRequest为i获取的参数集合
+        var strs = url[1].split('&');
+    }
+    var charcterType =strs[0].split("=")[1];  //类型 2：学生 3.校友
+    charType = charcterType;
+    //热门人物风采
     for(var i = 1;i<=12;i++){
-        $("#HotTeacher"+i).attr("characterId",i);
+        $("#HotPerson"+i).attr("characterId",i);
+    }
+    //确定何种风采
+    if(charcterType == "3"){
+        $("#characterStyleTitle").text("校友风采");
+        $("#characterStyleStar").text("校友之星");
+        $("#deedTitle").text("校友事迹");
+    }
+    else{
+        $("#characterStyleTitle").text("学生风采");
+        $("#characterStyleStar").text("学生之星");
+        $("#deedTitle").text("学生事迹");
+
     }
     $.ajax({
         url: BASE_PATH + "/CharacterStyle/withdraw",
         type: "post",
         dateType: "json",
-        data: {"styleType": 1},
+        data: {"charcterType": charcterType},
         async: false,
         success: function f(data) {
               for(var i = 0;i < 4;i++){
                   // var time = new Date
-                  $("#teacher_"+i+"_img").attr("src", data.list[i].characterPicture);
-                  $("#teacher_"+i+"_name").text(data.list[i].characterName);
-                  $("#teacher_"+i+"_name").attr("characterId",data.list[i].characterId);
-                  $("#teacher_"+i+"_introduction").text( data.list[i].characterIntroduction);
+                  $("#character_"+i+"_img").attr("src", data.list[i].characterPicture);
+                  $("#character_"+i+"_name").text(data.list[i].characterName);
+                  $("#character_"+i+"_name").attr("characterId",data.list[i].characterId);
+                  $("#character_"+i+"_introduction").text( data.list[i].characterIntroduction);
               }
+            $.ajax({
+                url: BASE_PATH + "/CharacterStyle/hotPerson",
+                type: "post",
+                dateType: "json",
+                data: {"charcterType": charcterType},
+                async: false,
+                success: function f(data) {
+                    for(var i = 0;i < 15;i++){
+                        // var time = new Date
+                        $("#HotPerson"+i).attr("characterId", data.list[i].characterId);
+                        $("#HotPerson"+i).text(data.list[i].characterName);
+                    }
+
+                },
+                error: function f(data) {
+                    alert("lose");
+                }
+            });
         },
         error: function f(data) {
             alert("lose");
@@ -45,69 +84,11 @@ function formatDate(now) {
 }
 
 
-function inter1() {
-    $("#teacher_0_name").attr("href","single.html?Id="+$("#teacher_0_name").attr("characterId"));
+function inter(e) {
+    var id = e.id;
+    var characterId = $("#"+id).attr("characterId");
+    window.location.href = "single.html?characterType="+charType+"&characterId="+characterId;
 }
 
-function inter2() {
-    $("#teacher_1_name").attr("href","single.html?Id="+$("#teacher_1_name").attr("characterId"));
-}
-
-function inter3() {
-    $("#teacher_2_name").attr("href","single.html?Id="+$("#teacher_2_name").attr("characterId"));
-}
-
-function inter4() {
-    $("#teacher_3_name").attr("href","single.html?Id="+$("#teacher_3_name").attr("characterId"));
-}
-
-
-function findTeacher1(){
-    $("#HotTeacher1").attr("href","single.html?Id="+$("#HotTeacher1").attr("characterId"));
-}
-
-function findTeacher2(){
-    $("#HotTeacher2").attr("href","single.html?Id="+$("#HotTeacher2").attr("characterId"));
-}
-
-function findTeacher3(){
-    $("#HotTeacher3").attr("href","single.html?Id="+$("#HotTeacher3").attr("characterId"));
-}
-
-function findTeacher4(){
-    $("#HotTeacher4").attr("href","single.html?Id="+$("#HotTeacher4").attr("characterId"));
-}
-
-function findTeacher5(){
-    $("#HotTeacher5").attr("href","single.html?Id="+$("#HotTeacher5").attr("characterId"));
-}
-
-function findTeacher6(){
-    $("#HotTeacher6").attr("href","single.html?Id="+$("#HotTeacher6").attr("characterId"));
-}
-
-function findTeacher7(){
-    $("#HotTeacher7").attr("href","single.html?Id="+$("#HotTeacher7").attr("characterId"));
-}
-
-function findTeacher8(){
-    $("#HotTeacher8").attr("href","single.html?Id="+$("#HotTeacher8").attr("characterId"));
-}
-
-function findTeacher9(){
-    $("#HotTeacher9").attr("href","single.html?Id="+$("#HotTeacher9").attr("characterId"));
-}
-
-function findTeacher10(){
-    $("#HotTeacher10").attr("href","single.html?Id="+$("#HotTeacher10").attr("characterId"));
-}
-
-function findTeacher11(){
-    $("#HotTeacher11").attr("href","single.html?Id="+$("#HotTeacher11").attr("characterId"));
-}
-
-function findTeacher12() {
-    $("#HotTeacher12").attr("href", "single.html?Id=" + $("#HotTeacher12").attr("characterId"));
-}
 
 

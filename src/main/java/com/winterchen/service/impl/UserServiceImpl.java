@@ -181,14 +181,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Map<String, Object> findIntegrityBetter() {
-        Map<String,Object> mapAmount = mapSessionMapper.findIntegrityBetter();
+    public Map<String, Double> findIntegrityBetter() {
+        Map<String,Double> mapAmount = mapSessionMapper.findIntegrityBetter();
         return mapAmount;
     }
 
     @Override
-    public Map<String, Object> findIntegrityWorse() {
-        Map<String,Object> mapAmount = mapSessionMapper.findIntegrityWorse();
+    public Map<String, Double> findIntegrityWorse() {
+        Map<String,Double> mapAmount = mapSessionMapper.findIntegrityWorse();
         return mapAmount;
     }
 

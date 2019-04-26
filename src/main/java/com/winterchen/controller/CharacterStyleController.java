@@ -23,16 +23,28 @@ public class CharacterStyleController {
     @Autowired
     private CharacterStyleService characterStyleService;
 
-    //抽取新闻操作
+    //抽取人物操作
     @ResponseBody
     @RequestMapping(value = "/withdraw")
     public Object withdraw(@RequestParam(name = "pageNum", required = false, defaultValue = "1")
                                         int pageNum,
                            @RequestParam(name = "pageSize", required = false, defaultValue = "5")
                                         int pageSize,
-                           @RequestParam(name = "styleType", defaultValue = "1")
+                           @RequestParam(name = "charcterType", defaultValue = "1")
                                         int characterType){
        return characterStyleService.findCharacterData(pageNum, pageSize, characterType);
+    }
+
+    //抽取热门人选
+    @ResponseBody
+    @RequestMapping(value = "/hotPerson")
+    public Object hotPerson(@RequestParam(name = "pageNum", required = false, defaultValue = "1")
+                                   int pageNum,
+                           @RequestParam(name = "pageSize", required = false, defaultValue = "15")
+                                   int pageSize,
+                           @RequestParam(name = "charcterType", defaultValue = "1")
+                                   int characterType){
+        return characterStyleService.findHotCharacter(pageNum, pageSize, characterType);
     }
 
     //根据人物id跳转操作

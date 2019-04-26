@@ -74,18 +74,18 @@ public class MapSessionMapper extends SqlSessionDaoSupport {
     }
 
     @SuppressWarnings("findIntegrityBetter")
-    public Map<String,Object> findIntegrityBetter(){
+    public Map<String,Double> findIntegrityBetter(){
         MapResultHander handler = new MapResultHander();
         this.getSqlSession().select(UserIntegrityDao.class.getName()+".findIntegrityBetter",handler);
-        Map<String,Object> map = handler.getMappendResults();
+        Map<String,Double> map = handler.getMappendResults();
         return map;
     }
 
     @SuppressWarnings("findIntegrityWorse")
-    public Map<String,Object> findIntegrityWorse(){
+    public Map<String,Double> findIntegrityWorse(){
         MapResultHander handler = new MapResultHander();
         this.getSqlSession().select(UserIntegrityDao.class.getName()+".findIntegrityWorse",handler);
-        Map<String,Object> map = handler.getMappendResults();
+        Map<String,Double> map = handler.getMappendResults();
         return map;
     }
 }

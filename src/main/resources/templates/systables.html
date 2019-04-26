@@ -438,7 +438,9 @@
             if(gender == "请选择"){
                 gender = "全体"
             }
-            window.open("http://172.17.108.131:8080/excel/orderrdExportExcel?grade="+grade+"&major="+major+"&gender="+gender);
+            var BASE_PATH = window.document.location.href.substring(0, window.document.location.href.indexOf(window.document.location.pathname));
+
+            window.open(BASE_PATH+"/excel/orderrdExportExcel?grade="+grade+"&major="+major+"&gender="+gender);
         }
     </script> 
 </body>

@@ -32,6 +32,15 @@ public class CharacterStyleServiceImpl implements CharacterStyleService {
     }
 
     @Override
+    public PageInfo<CharacterStyle> findHotCharacter(int pageNum, int pageSize, int characterType) {
+        //创建分页工具类
+        PageHelper.startPage(pageNum, pageSize);
+        List<CharacterStyle> docs = characterStyleDao.findHotCharacter(characterType);
+        PageInfo<CharacterStyle> pageInfo = new PageInfo<>(docs);
+        return pageInfo;
+    }
+
+    @Override
     public CharacterStyle findCharacterById(int characterId) {
         return characterStyleDao.findCharacterById(characterId);
     }

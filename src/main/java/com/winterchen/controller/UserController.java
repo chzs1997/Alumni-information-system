@@ -2,9 +2,11 @@ package com.winterchen.controller;
 
 
 import com.winterchen.conf.MyWebAppConfigurer;
+import com.winterchen.model.Stroke;
 import com.winterchen.model.UserDomain;
 import com.winterchen.service.LoginLogService;
 import com.winterchen.service.MailService;
+import com.winterchen.service.StrokeService;
 import com.winterchen.service.UserService;
 import com.winterchen.util.SendMessageUtil;
 import io.swagger.annotations.Api;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Random;
 
 import static com.winterchen.util.SendMessageUtil.getRandomCode;
@@ -44,6 +47,9 @@ public class UserController extends HttpServlet {
 
     @Autowired
     private MailService mailService;
+
+    @Autowired
+    private StrokeService strokeService;
 
     /*保存手机验证码*/
     static String verifyCode;
@@ -105,6 +111,7 @@ public class UserController extends HttpServlet {
             //数据库中有该用户
             // 设置session
             loginLogService.save(i.getUserId(),i.getUserName());  //在登陆日志中保存
+
             session.setAttribute(MyWebAppConfigurer.SESSION_KEY, i.getUserId());
             session.setAttribute("userId", i.getUserId());
             HashMap<Object, Object> objectMap = new HashMap<>();
@@ -371,6 +378,56 @@ public class UserController extends HttpServlet {
         session.removeAttribute(MyWebAppConfigurer.SESSION_KEY);
         return 1;
     }
+
+    /**
+     *
+     * 查询行程
+     * */
+    @ResponseBody
+    @PostMapping("/findStrokeByUserId")
+    public Object findStrokeByUserId(
+            @SessionAttribute(MyWebAppConfigurer.SESSION_KEY) String account,
+            @SessionAttribute("userId") Integer userId,
+            Model model
+    ){
+        System.out.println(userId);
+        model.addAttribute("name", account);
+        List<Stroke> result = strokeService.findStrokeByUserId(userId);
+        System.out.println(result);
+        return  result;
+    }
+
+    /**
+     *
+     * 查询行程
+     * */
+    @ResponseBody
+    @PostMapping("/findStrokeByUserIdAndState")
+    public Object findStrokeByUserIdAndState(
+            @SessionAttribute(MyWebAppConfigurer.SESSION_KEY) String account,
+            @SessionAttribute("userId") Integer userId,
+            @RequestParam("strokeVal") String strokeVal,
+            Model model
+    ){
+        model.addAttribute("name", account);
+        List<Stroke> result = null;
+        int strokeState;
+        switch (strokeVal){
+            case "all":
+                result= strokeService.findStrokeByUserId(userId);
+                break;
+            case "S1":
+                strokeState = 0;
+                result = strokeService.findStrokeByUserIdAndState(userId,strokeState);
+                break;
+            case "S2":
+                strokeState = 1;
+                result = strokeService.findStrokeByUserIdAndState(userId,strokeState);
+                break;
+        }
+        return  result;
+    }
+
 
     /**
     *

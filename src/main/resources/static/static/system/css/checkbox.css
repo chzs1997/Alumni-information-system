@@ -10,7 +10,7 @@ html, body {
     color: #dcdcdc;
     font-family: 'Open Sans';
 }
-#checkbox1,#checkbox2,#checkbox3,#checkbox4,#checkbox5,#checkbox6,#checkbox7,#checkbox8,#checkbox9,#checkbox10  {
+.form-group input  {
     display: none;
 }
 .cb-label {

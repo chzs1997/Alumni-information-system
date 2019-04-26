@@ -1,16 +1,13 @@
 package com.winterchen.controller;
 
-import com.winterchen.model.Stroke;
 import com.winterchen.service.StrokeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
 
 /**
  * @Author: liuzipan
@@ -18,7 +15,7 @@ import java.util.HashMap;
  * @Date :17:46 2019/2/18
  * @Modefied By:
  */
-@RestController
+@Controller
 @RequestMapping(value = "stroke")
 public class StrokeController {
 
@@ -50,17 +47,17 @@ public class StrokeController {
     /*
     * 查询某一个校友的所有行程信息
     * */
-    @PostMapping("strokeSelectByuserId")
-    public Object strokeSelect(
-            @RequestParam(value = "userId") Integer userId
-    ){
-        HashMap<String, Object> hashMap = new HashMap<String, Object>();
-        Stroke stroke = strokeService.strokeSelectByuserId(userId);
-        SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        hashMap.put("schTime", f.format(stroke.getSchTime()));
-        hashMap.put("schPlace", stroke.getSchPlace());
-        return hashMap;
-    }
+//    @PostMapping("strokeSelectByuserId")
+//    public Object strokeSelect(
+//            @RequestParam(value = "userId") Integer userId
+//    ){
+//        HashMap<String, Object> hashMap = new HashMap<String, Object>();
+//        Stroke stroke = strokeService.strokeSelectByuserId(userId);
+//        SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//        hashMap.put("schTime", f.format(stroke.getSchTime()));
+//        hashMap.put("schPlace", stroke.getSchPlace());
+//        return hashMap;
+//    }
 
     /*
     * 修改某一个校友的某项行程

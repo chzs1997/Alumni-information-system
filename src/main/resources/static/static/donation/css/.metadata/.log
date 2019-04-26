@@ -1,0 +1,380 @@
+!SESSION 2019-04-15 13:07:08.168 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=1.7.0_51
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=zh_CN
+Framework arguments:  -login -application com.aptana.commandline.launcher.LauncherApplication D:\360极速浏览器下载\moban3183\css\main.css
+Command-line arguments:  -os win32 -ws win32 -arch x86 -login -data   -application com.aptana.commandline.launcher.LauncherApplication D:\360极速浏览器下载\moban3183\css\main.css
+
+!ENTRY org.eclipse.ui 2 0 2019-04-15 13:07:09.175
+!MESSAGE Warnings while parsing the key bindings from the 'org.eclipse.ui.commands' extension point
+!SUBENTRY 1 org.eclipse.ui 2 0 2019-04-15 13:07:09.175
+!MESSAGE Could not parse key sequence: plug-in='com.pandora.ui', id='org.eclipse.ui.edit.text.contentAssist.proposals', keySequence='Ctrl+Sapce'
+
+!ENTRY com.aptana.rcp 4 0 2019-04-15 13:07:09.418
+!MESSAGE ********HBuilder正常启动：preStartup********
+
+!ENTRY com.aptana.scripting 4 0 2019-04-15 13:07:11.429
+!MESSAGE (Build null) [ERROR]  An error occurred while parsing scope 'Build–in constant' : Cannot recover from the syntax error
+
+!ENTRY com.aptana.scripting 4 0 2019-04-15 13:07:11.431
+!MESSAGE (Build null) [ERROR]  An error occurred while parsing scope 'library class/type' : Cannot recover from the syntax error
+
+!ENTRY com.aptana.rcp 4 0 2019-04-15 13:07:11.920
+!MESSAGE ---------------------start check----------------------
+
+!ENTRY com.aptana.rcp 4 0 2019-04-15 13:07:11.921
+!MESSAGE check mode
+
+!ENTRY com.aptana.rcp 4 0 2019-04-15 13:07:12.062
+!MESSAGE workspace : file:\D:\360极速浏览器下载\moban3183\css
+
+!ENTRY com.aptana.rcp 4 0 2019-04-15 13:07:14.702
+!MESSAGE ********HBuilder正常启动：postStartup********
+
+!ENTRY com.pandora.rcp.upgrade 4 0 2019-04-15 13:07:14.831
+!MESSAGE (Build null) [ERROR]  HBuilder当前版本: 9.1.29.201811231920
+
+!ENTRY com.aptana.editor.css 4 0 2019-04-15 13:07:15.018
+!MESSAGE (Build null) [ERROR]  开始清理css错误marker...
+
+!ENTRY com.aptana.editor.css 4 0 2019-04-15 13:07:15.020
+!MESSAGE (Build null) [ERROR]  清理css错误marker结束
+
+!ENTRY com.pandora.core 4 0 2019-04-15 13:07:15.254
+!MESSAGE (Build null) [ERROR]  The target server failed to respond
+!STACK 0
+org.apache.http.NoHttpResponseException: The target server failed to respond
+	at org.apache.http.impl.conn.DefaultResponseParser.parseHead(DefaultResponseParser.java:101)
+	at org.apache.http.impl.io.AbstractMessageParser.parse(AbstractMessageParser.java:252)
+	at org.apache.http.impl.AbstractHttpClientConnection.receiveResponseHeader(AbstractHttpClientConnection.java:281)
+	at org.apache.http.impl.conn.DefaultClientConnection.receiveResponseHeader(DefaultClientConnection.java:247)
+	at org.apache.http.impl.conn.AbstractClientConnAdapter.receiveResponseHeader(AbstractClientConnAdapter.java:219)
+	at org.apache.http.protocol.HttpRequestExecutor.doReceiveResponse(HttpRequestExecutor.java:298)
+	at org.apache.http.protocol.HttpRequestExecutor.execute(HttpRequestExecutor.java:125)
+	at org.apache.http.impl.client.DefaultRequestDirector.tryExecute(DefaultRequestDirector.java:645)
+	at org.apache.http.impl.client.DefaultRequestDirector.execute(DefaultRequestDirector.java:464)
+	at org.apache.http.impl.client.AbstractHttpClient.execute(AbstractHttpClient.java:820)
+	at org.apache.http.impl.client.AbstractHttpClient.execute(AbstractHttpClient.java:941)
+	at org.apache.http.impl.client.AbstractHttpClient.execute(AbstractHttpClient.java:919)
+	at org.apache.http.impl.client.AbstractHttpClient.execute(AbstractHttpClient.java:910)
+	at com.pandora.core.httpclient.HttpClientUtils.excuteCustomStringPost(HttpClientUtils.java:441)
+	at com.pandora.core.httpclient.HttpClientUtils.excute(HttpClientUtils.java:382)
+	at com.pandora.core.httpclient.HttpClientUtils.excute(HttpClientUtils.java:354)
+	at com.pandora.core.httpclient.HttpClientUtils.excute(HttpClientUtils.java:332)
+	at com.pandora.rcp.upgrade.P2UpgradeUtils.checkGrayUpdate(P2UpgradeUtils.java:902)
+	at com.pandora.rcp.upgrade.P2UpgradeUtils$1.run(P2UpgradeUtils.java:191)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY com.pandora.index.store 4 0 2019-04-15 13:07:15.362
+!MESSAGE (Build null) [ERROR]  IndexStoreService started!!!
+
+!ENTRY com.pandora.launcher.core 4 0 2019-04-15 13:07:15.709
+!MESSAGE (Build null) [ERROR]  系统找不到指定的文件。
+!STACK 0
+com.sun.jna.platform.win32.Win32Exception: 系统找不到指定的文件。
+	at com.sun.jna.platform.win32.Advapi32Util.registryGetStringValue(Advapi32Util.java:552)
+	at com.pandora.launcher.core.iphone.jna.LibraryFinder.loadPath(LibraryFinder.java:58)
+	at com.pandora.launcher.core.iphone.jna.LibraryFinder.<clinit>(LibraryFinder.java:50)
+	at com.pandora.launcher.core.iphone.jna.md.LibraryInstance.getMDLibrary(LibraryInstance.java:15)
+	at com.pandora.launcher.core.iphone.jna.idevice.win.WinDeviceLibrary.<clinit>(WinDeviceLibrary.java:72)
+	at com.pandora.launcher.core.iphone.jna.idevice.DeviceLibraryRegistry.getDeviceLibrary(DeviceLibraryRegistry.java:15)
+	at com.pandora.launcher.core.iphone.IPhoneLauncher.<init>(IPhoneLauncher.java:109)
+	at com.pandora.launcher.core.listener.DeviceStartupListener.earlyStartup(DeviceStartupListener.java:29)
+	at org.eclipse.ui.internal.EarlyStartupRunnable.runEarlyStartup(EarlyStartupRunnable.java:87)
+	at org.eclipse.ui.internal.EarlyStartupRunnable.run(EarlyStartupRunnable.java:66)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.ui.internal.Workbench$69.run(Workbench.java:2726)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY com.pandora.launcher.core 4 0 2019-04-15 13:07:15.715
+!MESSAGE (Build null) [ERROR]  系统找不到指定的文件。
+!STACK 0
+com.sun.jna.platform.win32.Win32Exception: 系统找不到指定的文件。
+	at com.sun.jna.platform.win32.Advapi32Util.registryGetStringValue(Advapi32Util.java:552)
+	at com.pandora.launcher.core.iphone.jna.LibraryFinder.loadPath(LibraryFinder.java:58)
+	at com.pandora.launcher.core.iphone.jna.LibraryFinder.getMDLibrary(LibraryFinder.java:122)
+	at com.pandora.launcher.core.iphone.jna.md.LibraryInstance.getMDLibrary(LibraryInstance.java:15)
+	at com.pandora.launcher.core.iphone.jna.idevice.win.WinDeviceLibrary.<clinit>(WinDeviceLibrary.java:72)
+	at com.pandora.launcher.core.iphone.jna.idevice.DeviceLibraryRegistry.getDeviceLibrary(DeviceLibraryRegistry.java:15)
+	at com.pandora.launcher.core.iphone.IPhoneLauncher.<init>(IPhoneLauncher.java:109)
+	at com.pandora.launcher.core.listener.DeviceStartupListener.earlyStartup(DeviceStartupListener.java:29)
+	at org.eclipse.ui.internal.EarlyStartupRunnable.runEarlyStartup(EarlyStartupRunnable.java:87)
+	at org.eclipse.ui.internal.EarlyStartupRunnable.run(EarlyStartupRunnable.java:66)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.ui.internal.Workbench$69.run(Workbench.java:2726)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY com.pandora.launcher.core 4 0 2019-04-15 13:07:15.734
+!MESSAGE (Build null) [ERROR]  添加Android设备监听......
+
+!ENTRY com.pandora.launcher.core 4 0 2019-04-15 13:07:15.766
+!MESSAGE (Build null) [ERROR]  系统找不到指定的文件。
+!STACK 0
+com.sun.jna.platform.win32.Win32Exception: 系统找不到指定的文件。
+	at com.sun.jna.platform.win32.Advapi32Util.registryGetStringValue(Advapi32Util.java:552)
+	at com.pandora.launcher.core.iphone.jna.LibraryFinder.loadPath(LibraryFinder.java:58)
+	at com.pandora.launcher.core.iphone.jna.LibraryFinder.getMDLibrary(LibraryFinder.java:122)
+	at com.pandora.launcher.core.iphone.jna.md.LibraryInstance.getMDLibrary(LibraryInstance.java:15)
+	at com.pandora.launcher.core.iphone.jna.idevice.win.WinDeviceLibrary.addNotificationHandler(WinDeviceLibrary.java:77)
+	at com.pandora.launcher.core.iphone.IPhoneLauncher$5.run(IPhoneLauncher.java:799)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY com.pandora.launcher.core 4 0 2019-04-15 13:07:15.774
+!MESSAGE (Build null) [ERROR]  library is null!!!!!
+
+!ENTRY com.pandora.stats.core 1 0 2019-04-15 13:07:15.844
+!MESSAGE 
+
+!ENTRY org.eclipse.equinox.p2.repository 4 0 2019-04-15 13:07:17.485
+!MESSAGE E:\HBuilder\p2\org.eclipse.equinox.p2.repository\cache\content-561804826.jar 不是合法的jar
+
+!ENTRY com.aptana.parsing 4 0 2019-04-15 13:07:17.952
+!MESSAGE (Build null) [ERROR]  无效的属性类型“.webkit.SearchBoxImpl@4135441”属性“searchBoxJavaBridge_”
+
+!ENTRY org.eclipse.equinox.p2.repository 4 0 2019-04-15 13:07:18.505
+!MESSAGE E:\HBuilder\p2\org.eclipse.equinox.p2.repository\cache\content-561804826.jar 不是合法的jar
+
+!ENTRY org.eclipse.equinox.p2.repository 2 0 2019-04-15 13:07:18.584
+!MESSAGE Server returned lastModified <= 0 for http://update.dcloud.net.cn/test/update/compositeContent.jar
+
+!ENTRY org.eclipse.equinox.p2.repository 4 0 2019-04-15 13:07:18.826
+!MESSAGE E:\HBuilder\p2\org.eclipse.equinox.p2.repository\cache\compositeContent-561804826.jar 不是合法的jar
+
+!ENTRY org.eclipse.equinox.p2.repository 4 0 2019-04-15 13:07:19.008
+!MESSAGE E:\HBuilder\p2\org.eclipse.equinox.p2.repository\cache\compositeContent-561804826.jar 不是合法的jar
+
+!ENTRY org.eclipse.equinox.p2.repository 4 0 2019-04-15 13:07:19.486
+!MESSAGE E:\HBuilder\p2\org.eclipse.equinox.p2.repository\cache\content1190459293.jar 不是合法的jar
+
+!ENTRY com.pandora.tools.android 4 0 2019-04-15 13:07:19.501
+!MESSAGE (Build null) [ERROR]  ADB PID:::972
+
+!ENTRY org.eclipse.equinox.p2.repository 4 0 2019-04-15 13:07:19.624
+!MESSAGE E:\HBuilder\p2\org.eclipse.equinox.p2.repository\cache\content1190459293.jar 不是合法的jar
+
+!ENTRY org.eclipse.equinox.p2.repository 2 0 2019-04-15 13:07:19.646
+!MESSAGE Server returned lastModified <= 0 for http://update.dcloud.net.cn/test/plugin/compositeContent.jar
+
+!ENTRY com.pandora.tools.android 4 0 2019-04-15 13:07:19.694
+!MESSAGE (Build null) [ERROR]  ADB PID:::972
+
+!ENTRY org.eclipse.equinox.p2.repository 4 0 2019-04-15 13:07:19.781
+!MESSAGE E:\HBuilder\p2\org.eclipse.equinox.p2.repository\cache\compositeContent1190459293.jar 不是合法的jar
+
+!ENTRY org.eclipse.equinox.p2.repository 4 0 2019-04-15 13:07:19.915
+!MESSAGE E:\HBuilder\p2\org.eclipse.equinox.p2.repository\cache\compositeContent1190459293.jar 不是合法的jar
+
+!ENTRY com.aptana.scripting 4 0 2019-04-15 13:07:20.014
+!MESSAGE (Build null) [ERROR]  loadBundles异常
+!STACK 0
+org.jruby.exceptions.RaiseException: (Errno::EINVAL) =::
+	at org.jruby.RubyHash.replace(org/jruby/RubyHash.java:1623)
+
+!ENTRY com.pandora.tools.android 4 0 2019-04-15 13:07:20.361
+!MESSAGE (Build null) [ERROR]  ===Caption  ExecutablePath
+
+!ENTRY com.pandora.tools.android 4 0 2019-04-15 13:07:20.362
+!MESSAGE (Build null) [ERROR]  ===adb.exe  E:\HBuilder\tools\adbs\adb.exe
+
+!ENTRY com.pandora.tools.android 4 0 2019-04-15 13:07:20.363
+!MESSAGE (Build null) [ERROR]  exe===adb.exe   path===e:\hbuilder\tools\adbs\adb.exe
+
+!ENTRY com.pandora.tools.android 4 0 2019-04-15 13:07:20.417
+!MESSAGE (Build null) [ERROR]  ADB Path===e:\hbuilder\tools\adbs\adb.exe
+
+!ENTRY com.pandora.tools.android 4 0 2019-04-15 13:07:20.436
+!MESSAGE (Build null) [ERROR]  ===Caption  ExecutablePath
+
+!ENTRY com.pandora.tools.android 4 0 2019-04-15 13:07:20.437
+!MESSAGE (Build null) [ERROR]  ===adb.exe  E:\HBuilder\tools\adbs\adb.exe
+
+!ENTRY com.pandora.tools.android 4 0 2019-04-15 13:07:20.438
+!MESSAGE (Build null) [ERROR]  exe===adb.exe   path===e:\hbuilder\tools\adbs\adb.exe
+
+!ENTRY com.pandora.tools.android 4 0 2019-04-15 13:07:20.482
+!MESSAGE (Build null) [ERROR]  ADB Path===e:\hbuilder\tools\adbs\adb.exe
+
+!ENTRY com.pandora.core 4 0 2019-04-15 13:07:21.041
+!MESSAGE (Build null) [ERROR]  Unexpected character: [<] while scanning JSON String for JSON type.  Invalid JSON.
+!STACK 0
+org.apache.wink.json4j.JSONException: Unexpected character: [<] while scanning JSON String for JSON type.  Invalid JSON.
+	at org.apache.wink.json4j.JSON.parse(JSON.java:127)
+	at org.apache.wink.json4j.JSON.parse(JSON.java:242)
+	at org.apache.wink.json4j.JSON.parse(JSON.java:259)
+	at com.pandora.core.httpclient.HttpClientUtils.transeResponseObj(HttpClientUtils.java:771)
+	at com.pandora.core.httpclient.HttpClientUtils.excuteGet(HttpClientUtils.java:709)
+	at com.pandora.core.auth.UserAuthService.checkIsDuringEvent(UserAuthService.java:201)
+	at com.pandora.push.PushStartup$1.run(PushStartup.java:41)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY com.aptana.commandline.launcher 4 0 2019-04-15 13:07:21.921
+!MESSAGE Stream closed
+!STACK 0
+java.io.IOException: Stream closed
+	at java.io.BufferedReader.ensureOpen(Unknown Source)
+	at java.io.BufferedReader.readLine(Unknown Source)
+	at java.io.BufferedReader.readLine(Unknown Source)
+	at com.aptana.commandline.launcher.server.LauncherServer$CommandLineArgsServer.run(LauncherServer.java:135)
+
+!ENTRY com.aptana.commandline.launcher 4 0 2019-04-15 13:07:22.143
+!MESSAGE Stream closed
+!STACK 0
+java.io.IOException: Stream closed
+	at java.io.BufferedReader.ensureOpen(Unknown Source)
+	at java.io.BufferedReader.readLine(Unknown Source)
+	at java.io.BufferedReader.readLine(Unknown Source)
+	at com.aptana.commandline.launcher.server.LauncherServer$CommandLineArgsServer.run(LauncherServer.java:135)
+
+!ENTRY com.aptana.index.core 4 0 2019-04-15 13:07:22.639
+!MESSAGE (Build null) [ERROR]  [INDEX_PROCESS_DEBUG] null
+
+!ENTRY com.aptana.index.core 4 0 2019-04-15 13:07:22.640
+!MESSAGE (Build null) [ERROR]  [DEBUG:]INDEXER_SERVER_STARTED_FAILED
+
+!ENTRY com.pandora.core 4 0 2019-04-15 13:07:26.096
+!MESSAGE (Build null) [ERROR]  Connection reset
+!STACK 0
+java.net.SocketException: Connection reset
+	at java.net.SocketInputStream.read(Unknown Source)
+	at java.net.SocketInputStream.read(Unknown Source)
+	at sun.security.ssl.InputRecord.readFully(Unknown Source)
+	at sun.security.ssl.InputRecord.readV3Record(Unknown Source)
+	at sun.security.ssl.InputRecord.read(Unknown Source)
+	at sun.security.ssl.SSLSocketImpl.readRecord(Unknown Source)
+	at sun.security.ssl.SSLSocketImpl.readDataRecord(Unknown Source)
+	at sun.security.ssl.AppInputStream.read(Unknown Source)
+	at org.apache.http.impl.io.AbstractSessionInputBuffer.fillBuffer(AbstractSessionInputBuffer.java:149)
+	at org.apache.http.impl.io.SocketInputBuffer.fillBuffer(SocketInputBuffer.java:110)
+	at org.apache.http.impl.io.AbstractSessionInputBuffer.readLine(AbstractSessionInputBuffer.java:264)
+	at org.apache.http.impl.conn.DefaultResponseParser.parseHead(DefaultResponseParser.java:98)
+	at org.apache.http.impl.io.AbstractMessageParser.parse(AbstractMessageParser.java:252)
+	at org.apache.http.impl.AbstractHttpClientConnection.receiveResponseHeader(AbstractHttpClientConnection.java:281)
+	at org.apache.http.impl.conn.DefaultClientConnection.receiveResponseHeader(DefaultClientConnection.java:247)
+	at org.apache.http.impl.conn.AbstractClientConnAdapter.receiveResponseHeader(AbstractClientConnAdapter.java:219)
+	at org.apache.http.protocol.HttpRequestExecutor.doReceiveResponse(HttpRequestExecutor.java:298)
+	at org.apache.http.protocol.HttpRequestExecutor.execute(HttpRequestExecutor.java:125)
+	at org.apache.http.impl.client.DefaultRequestDirector.tryExecute(DefaultRequestDirector.java:645)
+	at org.apache.http.impl.client.DefaultRequestDirector.execute(DefaultRequestDirector.java:464)
+	at org.apache.http.impl.client.AbstractHttpClient.execute(AbstractHttpClient.java:820)
+	at org.apache.http.impl.client.AbstractHttpClient.execute(AbstractHttpClient.java:941)
+	at org.apache.http.impl.client.AbstractHttpClient.execute(AbstractHttpClient.java:919)
+	at org.apache.http.impl.client.AbstractHttpClient.execute(AbstractHttpClient.java:910)
+	at com.pandora.core.httpclient.HttpClientUtils.excuteCustomStringPost(HttpClientUtils.java:441)
+	at com.pandora.core.httpclient.HttpClientUtils.excute(HttpClientUtils.java:382)
+	at com.pandora.core.httpclient.HttpClientUtils.excute(HttpClientUtils.java:354)
+	at com.pandora.core.httpclient.HttpClientUtils.excute(HttpClientUtils.java:332)
+	at com.pandora.stats.core.UploadStatsSchedule.uploadNow(UploadStatsSchedule.java:148)
+	at com.pandora.stats.core.UploadStatsSchedule.uploadMemoryData(UploadStatsSchedule.java:128)
+	at com.pandora.stats.core.UploadStatsSchedule.handleDataStatsUpload(UploadStatsSchedule.java:105)
+	at com.pandora.stats.core.UploadStatsSchedule$1.run(UploadStatsSchedule.java:69)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY com.aptana.core 4 0 2019-04-15 13:07:26.099
+!MESSAGE (Build null) [ERROR]  Feedback Failed:999
+
+!ENTRY com.pandora.stats.core 4 0 2019-04-15 13:08:19.260
+!MESSAGE (Build null) [ERROR]  list job time: 3373
+
+!ENTRY com.aptana.commandline.launcher 4 0 2019-04-15 13:08:42.652
+!MESSAGE Stream closed
+!STACK 0
+java.io.IOException: Stream closed
+	at java.io.BufferedReader.ensureOpen(Unknown Source)
+	at java.io.BufferedReader.readLine(Unknown Source)
+	at java.io.BufferedReader.readLine(Unknown Source)
+	at com.aptana.commandline.launcher.server.LauncherServer$CommandLineArgsServer.run(LauncherServer.java:135)
+
+!ENTRY com.aptana.commandline.launcher 4 0 2019-04-15 13:08:42.873
+!MESSAGE Stream closed
+!STACK 0
+java.io.IOException: Stream closed
+	at java.io.BufferedReader.ensureOpen(Unknown Source)
+	at java.io.BufferedReader.readLine(Unknown Source)
+	at java.io.BufferedReader.readLine(Unknown Source)
+	at com.aptana.commandline.launcher.server.LauncherServer$CommandLineArgsServer.run(LauncherServer.java:135)
+
+!ENTRY com.aptana.core 4 0 2019-04-15 13:09:21.380
+!MESSAGE (Build null) [ERROR]  刷新项目进工作空间耗时：28
+
+!ENTRY com.aptana.core 4 0 2019-04-15 13:09:21.733
+!MESSAGE (Build null) [ERROR]  *********索引不存在触发 FULL BUILD **********C:/Users/lenovo/Desktop/湘潭大学公共管理学院校友网
+
+!ENTRY com.aptana.commandline.launcher 4 0 2019-04-15 13:18:48.909
+!MESSAGE Stream closed
+!STACK 0
+java.io.IOException: Stream closed
+	at java.io.BufferedReader.ensureOpen(Unknown Source)
+	at java.io.BufferedReader.readLine(Unknown Source)
+	at java.io.BufferedReader.readLine(Unknown Source)
+	at com.aptana.commandline.launcher.server.LauncherServer$CommandLineArgsServer.run(LauncherServer.java:135)
+!SESSION 2019-04-15 13:18:49.404 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=1.7.0_51
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=zh_CN
+Framework arguments:  -login -application com.aptana.commandline.launcher.LauncherApplication D:\360极速浏览器下载\moban3183\css\main.css
+Command-line arguments:  -os win32 -ws win32 -arch x86 -login -data   -application com.aptana.commandline.launcher.LauncherApplication D:\360极速浏览器下载\moban3183\css\main.css
+
+!ENTRY org.eclipse.core.resources 2 10035 2019-04-15 13:18:50.144
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY com.aptana.rcp 4 0 2019-04-15 13:18:50.226
+!MESSAGE 
+!STACK 0
+java.lang.Exception
+	at com.aptana.rcp.SystemUtils.exit(SystemUtils.java:8)
+	at com.aptana.rcp.ReadyFileUtils.saveError(ReadyFileUtils.java:511)
+	at com.aptana.rcp.IDEApplication.checkInstanceLocation(IDEApplication.java:414)
+	at com.aptana.rcp.IDEApplication.start(IDEApplication.java:184)
+	at com.aptana.commandline.launcher.application.LauncherApplication.start(LauncherApplication.java:76)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:110)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:79)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:348)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:183)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:655)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:610)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1491)
+
+!ENTRY com.aptana.core 4 0 2019-04-15 13:27:47.809
+!MESSAGE (Build null) [ERROR]  null
+!STACK 0
+java.lang.NullPointerException
+	at com.aptana.editor.html.contentassist.HTMLContentAssistProcessor.isEnableVuejs(HTMLContentAssistProcessor.java:538)
+	at com.aptana.editor.html.contentassist.HTMLContentAssistProcessor.addElementProposals(HTMLContentAssistProcessor.java:1408)
+	at com.aptana.editor.html.contentassist.HTMLContentAssistProcessor.addOpenTagProposals(HTMLContentAssistProcessor.java:1913)
+	at com.aptana.editor.html.contentassist.HTMLContentAssistProcessor.doComputeCompletionProposals(HTMLContentAssistProcessor.java:2277)
+	at com.aptana.editor.common.CommonContentAssistProcessor.computeCompletionProposals(CommonContentAssistProcessor.java:554)
+	at com.aptana.editor.common.contentassist.ContentAssistant.computeCompletionProposals(ContentAssistant.java:2367)
+	at com.aptana.editor.common.contentassist.CompletionProposalPopup.computeProposals(CompletionProposalPopup.java:442)
+	at com.aptana.editor.common.contentassist.CompletionProposalPopup.access$10(CompletionProposalPopup.java:434)
+	at com.aptana.editor.common.contentassist.CompletionProposalPopup$1.run(CompletionProposalPopup.java:335)
+	at com.aptana.editor.common.contentassist.CompletionProposalPopup.showProposals(CompletionProposalPopup.java:388)
+	at com.aptana.editor.common.contentassist.CompletionProposalPopup.showProposals(CompletionProposalPopup.java:291)
+	at com.aptana.editor.common.contentassist.ContentAssistant$AssistRunnable.showAssist(ContentAssistant.java:318)
+	at com.aptana.editor.common.contentassist.ContentAssistant$AssistRunnable.run(ContentAssistant.java:285)
+	at java.lang.Thread.run(Unknown Source)
+
+!ENTRY com.aptana.core 4 0 2019-04-15 13:27:57.401
+!MESSAGE (Build null) [ERROR]  null
+!STACK 0
+java.lang.NullPointerException
+	at com.aptana.editor.html.contentassist.HTMLContentAssistProcessor.isEnableVuejs(HTMLContentAssistProcessor.java:538)
+	at com.aptana.editor.html.contentassist.HTMLContentAssistProcessor.addAttributeAndEventProposals(HTMLContentAssistProcessor.java:431)
+	at com.aptana.editor.html.contentassist.HTMLContentAssistProcessor.addOpenTagProposals(HTMLContentAssistProcessor.java:1917)
+	at com.aptana.editor.html.contentassist.HTMLContentAssistProcessor.doComputeCompletionProposals(HTMLContentAssistProcessor.java:2277)
+	at com.aptana.editor.common.CommonContentAssistProcessor.computeCompletionProposals(CommonContentAssistProcessor.java:554)
+	at com.aptana.editor.common.contentassist.ContentAssistant.computeCompletionProposals(ContentAssistant.java:2367)
+	at com.aptana.editor.common.contentassist.CompletionProposalPopup.computeProposals(CompletionProposalPopup.java:442)
+	at com.aptana.editor.common.contentassist.CompletionProposalPopup.access$10(CompletionProposalPopup.java:434)
+	at com.aptana.editor.common.contentassist.CompletionProposalPopup$1.run(CompletionProposalPopup.java:335)
+	at com.aptana.editor.common.contentassist.CompletionProposalPopup.showProposals(CompletionProposalPopup.java:388)
+	at com.aptana.editor.common.contentassist.CompletionProposalPopup.showProposals(CompletionProposalPopup.java:291)
+	at com.aptana.editor.common.contentassist.ContentAssistant$AssistRunnable.showAssist(ContentAssistant.java:318)
+	at com.aptana.editor.common.contentassist.ContentAssistant$AssistRunnable.run(ContentAssistant.java:285)
+	at java.lang.Thread.run(Unknown Source)

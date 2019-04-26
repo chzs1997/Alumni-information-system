@@ -151,14 +151,14 @@ public interface UserService {
      *
      * 校友信息完善度较好排名
      * */
-    Map<String,Object> findIntegrityBetter();
+    Map<String,Double> findIntegrityBetter();
 
     /**
      *
      *
      * 校友信息完善度较差排名
      * */
-    Map<String,Object> findIntegrityWorse();
+    Map<String,Double> findIntegrityWorse();
 
     /**
      *

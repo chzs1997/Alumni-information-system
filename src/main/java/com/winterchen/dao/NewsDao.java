@@ -30,7 +30,7 @@ public interface NewsDao {
             ,@Param("artLabel4") String artLabel4);
 
     //初始化加载新闻
-    List<News> selectAllNews();
+    List<News> selectAllNews(@Param("newsType") int newsType);
 
     //初始化加载通知公告
     List<News> selectAnnouncement();

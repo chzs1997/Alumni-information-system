@@ -16,6 +16,9 @@ public interface CharacterStyleService {
     /*查询最新人物风采数据*/
     PageInfo<CharacterStyle> findCharacterData(int pageNum, int pageSize, int characterType);
 
+    /*查询最新人物风采数据*/
+    PageInfo<CharacterStyle> findHotCharacter(int pageNum, int pageSize, int characterType);
+
     /*根据用户ID查找信息*/
     CharacterStyle findCharacterById(int characterId);
 

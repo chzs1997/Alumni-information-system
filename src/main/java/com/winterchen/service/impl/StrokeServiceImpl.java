@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @Author: liuzipan
@@ -25,12 +26,17 @@ public class StrokeServiceImpl implements StrokeService {
     }
 
     @Override
-    public Stroke strokeSelectByuserId(int userId) {
-        return strokeDao.strokeSelectByuserId(userId);
+    public List<Stroke> findStrokeByUserId(int userId) {
+        return strokeDao.findStrokeByUserId(userId);
     }
 
     @Override
     public int strokeUpdateByuserId(int userId, Date schTime, String schPlace) {
         return strokeDao.strokeUpdateByuserId(userId, schTime, schPlace);
+    }
+
+    @Override
+    public List<Stroke> findStrokeByUserIdAndState(int userId, int strokeState) {
+        return strokeDao.findStrokeByUserIdAndState(userId,strokeState);
     }
 }

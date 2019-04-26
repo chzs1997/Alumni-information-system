@@ -73,14 +73,14 @@ public class NewsController extends HttpServlet {
                     break;
             }
             try {
-                String new_img_name = "F:\\BaiduNetdiskDownload\\springboot2-mybatis-demo-master\\src\\main\\resources\\static\\static\\img\\news\\"+img_name;
+                String new_img_name = "F:\\springboot2-mybatis-demo2.0\\src\\main\\resources\\static\\static\\img\\news\\"+img_name;
                 BufferedOutputStream out = new BufferedOutputStream(
                         new FileOutputStream(new_img_name));
                 System.out.println(file.getName());
                 out.write(file.getBytes());
                 out.flush();
                 out.close();
-                String artImage = "/static/static/img/news/"+img_name;
+                String artImage = "static/static/img/news/"+img_name;
                 int i = newsService.save(artType, artTitle, artContent, artImage, stage);
                 System.out.println(i);
             } catch (FileNotFoundException e) {
@@ -107,9 +107,10 @@ public class NewsController extends HttpServlet {
             @RequestParam(name = "pageNum", required = false, defaultValue = "1")
                     int pageNum,
             @RequestParam(name = "pageSize", required = false, defaultValue = "10")
-                    int pageSize
+                    int pageSize,
+            @RequestParam(name = "newsType") int newsType
     ){
-        return newsService.findAllNews(pageNum, pageSize);
+        return newsService.findAllNews(pageNum, pageSize,newsType);
     }
 
     /*

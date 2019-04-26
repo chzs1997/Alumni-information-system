@@ -66,10 +66,10 @@ public class NewsServiceImpl implements NewsService {
     }
 
     @Override
-    public PageInfo<News> findAllNews(int pageNum, int pageSize) {
+    public PageInfo<News> findAllNews(int pageNum, int pageSize, int newsType) {
         //将参数传给这个方法就可以实现物理分页了，非常简单。
         PageHelper.startPage(pageNum, pageSize);
-        List<News> news = newsDao.selectAllNews();
+        List<News> news = newsDao.selectAllNews(newsType);
         PageInfo result = new PageInfo(news);
         return result;
     }

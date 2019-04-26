@@ -3,11 +3,17 @@ jQuery(document).ready(function($) {
     var obj = window.document.location;
     var BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));
 
+    var url = window.location.href.split("?");
+    if(url.length>1){
+        var theRequest = new Object();//theRequest为i获取的参数集合
+        var strs = url[1].split('&');
+    }
+    var newsType =strs[0].split("=")[1];  //类型 1.学院新闻 2.校友新闻
     $.ajax({
         url: BASE_PATH + "/news/newsSeralize",
         type: "post",
         dateType: "json",
-        data: {},
+        data: {"newsType":newsType},
         async: false,
         success: function f(data) {
             for(var i = 0; i<10; i++){

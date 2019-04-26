@@ -7,7 +7,19 @@ $(document).ready(function () {
         var theRequest = new Object();//theRequest为i获取的参数集合
         var strs = url[1].split('&');
     }
-    var charcterId =strs[0].split("=")[1];
+    var charcterType =strs[0].split("=")[1];
+    var charcterId =strs[1].split("=")[1];
+
+    //确定何种风采
+    if(charcterType == "3"){
+        $("#characterStyleStar").text("校友之星");
+        $("#deedTitle").text("校友事迹");
+    }
+    else{
+        $("#characterStyleStar").text("学生之星");
+        $("#deedTitle").text("学生事迹");
+
+    }
     $.ajax({
         url: BASE_PATH + "/CharacterStyle/jump",
         type: "post",
@@ -37,9 +49,33 @@ $(document).ready(function () {
                     alert("lose");
                 }
             });
+            $.ajax({
+                url: BASE_PATH + "/CharacterStyle/hotPerson",
+                type: "post",
+                dateType: "json",
+                data: {"charcterType": charcterType},
+                async: false,
+                success: function f(data) {
+                    for(var i = 0;i < 15;i++){
+                        // var time = new Date
+                        $("#HotPerson"+i).attr("characterId", data.list[i].characterId);
+                        $("#HotPerson"+i).text(data.list[i].characterName);
+                    }
+
+                },
+                error: function f(data) {
+                    alert("lose");
+                }
+            });
         },
         error: function f(data) {
             alert("lose");
         }
     });
 });
+
+function inter(e) {
+    var id = e.id;
+    var characterId = $("#"+id).attr("characterId");
+    window.location.href = "single.html?characterType="+charType+"&characterId="+characterId;
+}

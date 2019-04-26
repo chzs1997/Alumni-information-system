@@ -8,6 +8,7 @@
         <result property="userId" column="U_ID"/>
         <result property="schTime" column="SCH_TIME"/>
         <result property="schPlace" column="SCH_PLACE"/>
+        <result property="schState" column="SCH_STATE"/>
     </resultMap>
 
     <!--设置数据库表名-->
@@ -67,4 +68,29 @@
         SET SCH_TIME = #{schTime},SCH_PLACE = #{schPlace}
         WHERE U_ID = #{userId}
     </update>
+
+    <!--根据用户id查询用户行程-->
+    <select id="findStrokeByUserId" resultMap="strokeRM">
+         SELECT (@i:=@i+1) SCH_ID
+                ,U_ID
+                ,date_format(SCH_TIME, '%Y-%m-%d %H-%i-%s') SCH_TIME
+                ,SCH_PLACE
+                ,case when SCH_STATE = 0 then '待处理'
+                      else '已处理' end SCH_STATE
+         FROM stroke,(SELECT @i:=0) as i
+         where U_ID = #{userId}
+         order by SCH_TIME
+    </select>
+
+    <select id="findStrokeByUserIdAndState" resultMap="strokeRM">
+         SELECT (@i:=@i+1) SCH_ID
+                ,U_ID
+                ,date_format(SCH_TIME, '%Y-%m-%d %H-%i-%s') SCH_TIME
+                ,SCH_PLACE
+                ,case when SCH_STATE = 0 then '待处理'
+                      else '已处理' end SCH_STATE
+         FROM stroke,(SELECT @i:=0) as i
+         where U_ID = #{userId} and SCH_STATE = #{strokeState}
+         order by SCH_TIME
+    </select>
 </mapper>

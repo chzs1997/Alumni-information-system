@@ -2,8 +2,6 @@ package com.winterchen.model;
 
 import lombok.Data;
 
-import java.util.Date;
-
 /**
  * @Author: liuzipan
  * @Description
@@ -14,20 +12,19 @@ import java.util.Date;
 public class Stroke {
 
     /*行程ID*/
-    private Integer schID;
+    private Integer schId;
 
     /*用户ID*/
     private Integer userId;
 
     /*会面时间*/
-    private Date  schTime;
+    private String  schTime;
 
     /*聚会地点*/
     private String schPlace;
 
-    /*创建时间*/
-    private Date createTime;
+    /*行程状态*/
+    private String schState;
 
-    /*更新时间*/
-    private Date updateTime;
+
 }

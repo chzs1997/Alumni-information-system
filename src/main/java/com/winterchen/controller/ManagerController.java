@@ -18,9 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @Author: liuzipan
@@ -278,8 +276,30 @@ public class ManagerController {
     @ResponseBody
     @RequestMapping(value = "/findIntegrityBetter")
     public Object findIntegrityBetter(){
-        Map<String,Object> hashMap =  userService.findIntegrityBetter();
-        return hashMap;
+        Map<String,Double> hashMap =  userService.findIntegrityBetter();
+        //1、按顺序保存map中的元素，使用LinkedList类型
+        List<Map.Entry<String, Double>> keyList = new LinkedList<Map.Entry<String, Double>>(hashMap.entrySet());
+        //2、按照自定义的规则排序
+        Collections.sort(keyList, new Comparator<Map.Entry<String, Double>>() {
+            @Override
+            public int compare(Map.Entry<String, Double> o1,
+                               Map.Entry<String, Double> o2) {
+                if(o2.getValue().compareTo(o1.getValue())>0){
+                    return 1;
+                }else if(o2.getValue().compareTo(o1.getValue())<0){
+                    return -1;
+                }  else {
+                    return 0;
+                }
+            }
+
+        });
+        //3、将LinkedList按照排序好的结果，存入到HashMap中
+        HashMap<String,Double> result=new LinkedHashMap<>();
+        for(Map.Entry<String, Double> entry:keyList){
+            result.put(entry.getKey(),entry.getValue());
+        }
+        return result;
     }
 
     /**
@@ -289,8 +309,30 @@ public class ManagerController {
     @ResponseBody
     @RequestMapping(value = "/findIntegrityWorse")
     public Object findIntegrityWorse(){
-        Map<String,Object> hashMap =  userService.findIntegrityWorse();
-        return hashMap;
+        Map<String,Double> hashMap =  userService.findIntegrityWorse();
+        //1、按顺序保存map中的元素，使用LinkedList类型
+        List<Map.Entry<String, Double>> keyList = new LinkedList<Map.Entry<String, Double>>(hashMap.entrySet());
+        //2、按照自定义的规则排序
+        Collections.sort(keyList, new Comparator<Map.Entry<String, Double>>() {
+            @Override
+            public int compare(Map.Entry<String, Double> o1,
+                               Map.Entry<String, Double> o2) {
+                if(o2.getValue().compareTo(o1.getValue())>0){
+                    return -1;
+                }else if(o2.getValue().compareTo(o1.getValue())<0){
+                    return 1;
+                }  else {
+                    return 0;
+                }
+            }
+
+        });
+        //3、将LinkedList按照排序好的结果，存入到HashMap中
+        HashMap<String,Double> result=new LinkedHashMap<>();
+        for(Map.Entry<String, Double> entry:keyList){
+            result.put(entry.getKey(),entry.getValue());
+        }
+        return result;
     }
 
     /**

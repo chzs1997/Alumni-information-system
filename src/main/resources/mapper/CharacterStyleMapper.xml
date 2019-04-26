@@ -35,6 +35,16 @@
       WHERE CHARACTER_TYPE = #{characterType}
   </select>
 
+    <!--分页查询-->
+    <select id="findHotCharacter" resultMap="characterStyleRM">
+        SELECT
+        CHARACTER_ID
+        ,CHARACTER_NAME
+        FROM
+        <include refid="BASE_TABLE"/>
+        WHERE CHARACTER_TYPE = #{characterType}
+    </select>
+
     <!--根据客户ID查询-->
     <select id="findCharacterById" resultMap="characterStyleRM">
         SELECT

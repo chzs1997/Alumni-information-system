@@ -24,7 +24,7 @@ public interface NewsService {
     int save(int artType, String artTitle, String artContent, String artImage, String stage[]);
 
     //初始化加载新闻
-    PageInfo<News> findAllNews(int pageNum, int pageSize);
+    PageInfo<News> findAllNews(int pageNum, int pageSize,int newsType);
 
     //初始化加载通知公告
     PageInfo<News> findAnnouncement(int pageNum, int pageSize);

@@ -1,7 +1,14 @@
 jQuery(document).ready(function($) {
-    const artId = parseInt(window.location.href.split("?")[1].split("=")[1]);
-    const obj = window.document.location;
-    const BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));
+    //获取basePath，测试的话就能用就完了
+    var obj = window.document.location;
+    var BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));
+    var url = window.location.href.split("?");
+    if(url.length>1){
+        var theRequest = new Object();//theRequest为i获取的参数集合
+        var strs = url[1].split('&');
+    }
+    var artType =strs[0].split("=")[1];
+    var artId =strs[1].split("=")[1];
 
     //初始化评论
     $.ajax({
@@ -61,16 +68,30 @@ jQuery(document).ready(function($) {
             //浏览次数
             $("#newsViewCounts").text(newsViewCounts+"次");
 
-            //内容
-            $("#test1").html(data.artContent)
+            //如果是学院新闻
+            if(artType == 1){
+                //内容
+                $("#test1").html(data.artContent);
 
-            for(var i =0;i<$("#test1 img").length;i++){
-                $("#test1 img").eq(i).attr("src","http://glxy.xtu.edu.cn"+$("#test1 img").eq(i).attr("src"))
+                for(var i =0;i<$("#test1 img").length;i++){
+                    $("#test1 img").eq(i).attr("src","http://glxy.xtu.edu.cn"+$("#test1 img").eq(i).attr("src"))
 
+                }
+            }
+            //如果是校友新闻
+            else if(artType == 2){
+               $("#test1 img").attr("src",img);
+
+               var content = data.artContent.split(/\s+/);
+
+               for(var i =0;i<content.length;i++){
+                   var html = "<p>"+content[i]+"</p>"
+                   $("#content").append(html);
+               }
             }
         },
         error: function f() {
-        }
+         }
     });
 
     //附加内容
@@ -179,7 +200,7 @@ jQuery(document).ready(function($) {
         },
         error: function f() {
         }
-    });
+    })
 });
 
 function toggleColor(e) {
