@@ -31,7 +31,7 @@ jQuery(document).ready(function () {
 
     //附加内容
     $.ajax({
-        url: BASE_PATH + "/news/newsExtra",
+        url:BASE_PATH + "/news/newsExtra",
         type: "post",
         dateType: "json",
         data: {"artId":artId},
@@ -79,7 +79,7 @@ jQuery(document).ready(function () {
 
     //相关新闻
     $.ajax({
-        url: BASE_PATH + "/news/newsRelation",
+        url:BASE_PATH + "/news/newsRelation",
         type: "post",
         dateType: "json",
         data: {"artId":artId},
@@ -124,7 +124,7 @@ jQuery(document).ready(function () {
 //     const BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));
 //     //添加评论
 //     $.ajax({
-//         url: BASE_PATH + "/news/addComments",
+//         BASE_PATH + "/news/addComments",
 //         type: "post",
 //         dateType: "json",
 //         data: {"commentName":commentName,"commentMail":commentMail,"commentContent":commentContent,"artId":artId},

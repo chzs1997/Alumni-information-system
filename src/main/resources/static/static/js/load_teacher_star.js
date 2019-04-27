@@ -1,10 +1,13 @@
 jQuery(document).ready(function($){
-    $.ajax({
-        url: BASE_PATH + "/user/check/",
-        type: "post",
+    $.ajax(
+        BASE_PATH + "/user/check/",
+        {type: "post",
         dateType: "json",
         data: {"userName": userName, "password": passWord},
-        async: false,
+        timeout: 10000,
+        headers:{
+        	'Content-Type':'application/x-www-form-urlencoded'
+        },
         success: function f(data) {
             var result = data.userName;
             if(result != null){

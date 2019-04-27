@@ -29,7 +29,7 @@ $(document).ready(function () {
 
     }
     $.ajax({
-        url: BASE_PATH + "/CharacterStyle/withdraw",
+        url:BASE_PATH + "/CharacterStyle/withdraw",
         type: "post",
         dateType: "json",
         data: {"charcterType": charcterType},
@@ -43,7 +43,7 @@ $(document).ready(function () {
                   $("#character_"+i+"_introduction").text( data.list[i].characterIntroduction);
               }
             $.ajax({
-                url: BASE_PATH + "/CharacterStyle/hotPerson",
+                url:BASE_PATH + "/CharacterStyle/hotPerson",
                 type: "post",
                 dateType: "json",
                 data: {"charcterType": charcterType},

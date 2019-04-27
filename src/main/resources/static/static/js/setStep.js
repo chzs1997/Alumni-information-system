@@ -103,7 +103,7 @@ SetStep.prototype.init = function(arg) {
 				var mailCode = $("#code").val();
 				var userMail = $("#Mail").val();
 				$.ajax({
-					url: BASE_PATH + "/user/updatePassword_1",
+					url:BASE_PATH + "/user/updatePassword_1",
 					type: "post",
 					dateType: "json",
 					data: {"mailCode": mailCode,"userMail":userMail},
@@ -139,12 +139,12 @@ SetStep.prototype.init = function(arg) {
 
 				if(password == passwordCheck){
 					$.ajax({
-						url: BASE_PATH + "/user/updatePassword_2",
+						url:BASE_PATH + "/user/updatePassword_2",
 						type: "post",
 						dateType: "json",
 						data: {"userId": userId, "password": password},
 						async: false,
-						success: function f(data) {
+		 				success: function f(data) {
 							var result = data;
 							if(result == 1){
 								if($(_that).attr('disabled') || _that.opt.animating) {

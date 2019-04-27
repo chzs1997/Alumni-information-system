@@ -21,7 +21,7 @@ $(document).ready(function () {
 
     }
     $.ajax({
-        url: BASE_PATH + "/CharacterStyle/jump",
+        url:BASE_PATH + "/CharacterStyle/jump",
         type: "post",
         dateType: "json",
         data: {"characterId": charcterId},
@@ -33,12 +33,15 @@ $(document).ready(function () {
             $("#CharacterTitle").text(title);
             $("#CharacterContent").text(content);
             $("#CharacterImg").attr("src",img);
-            $.ajax({
-                url: BASE_PATH + "/CharacterStyle/selectSimilar",
-                type: "post",
+            $.ajax(
+                BASE_PATH + "/CharacterStyle/selectSimilar",
+                {type: "post",
                 dateType: "json",
                 data: {"characterId": charcterId},
-                async: false,
+                timeout: 10000,
+                headers:{
+        	        'Content-Type':'application/x-www-form-urlencoded'
+                },
                 success: function f(data) {
                     for(var i = 0;i < 4;i++){
                         $("#RelationTeacher_img"+i).attr("src",data.list[i].characterPicture);
@@ -49,12 +52,15 @@ $(document).ready(function () {
                     alert("lose");
                 }
             });
-            $.ajax({
-                url: BASE_PATH + "/CharacterStyle/hotPerson",
-                type: "post",
+            $.ajax(
+                BASE_PATH + "/CharacterStyle/hotPerson",
+                {type: "post",
                 dateType: "json",
                 data: {"charcterType": charcterType},
-                async: false,
+                timeout: 10000,
+                headers:{
+        	       'Content-Type':'application/x-www-form-urlencoded'
+                },
                 success: function f(data) {
                     for(var i = 0;i < 15;i++){
                         // var time = new Date

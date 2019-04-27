@@ -56,7 +56,7 @@ jQuery(document).ready(function($) {
          $(".cd-switcher").children("li").eq(1).addClass("on");
     }
     $.ajax({
-        url: BASE_PATH + "/user/detectState",
+        url:BASE_PATH + "/user/detectState",
         type: "post",
         dateType: "json",
         data: {},
@@ -132,7 +132,7 @@ function send(){
 
     var userMail = $("#signup-username").val();
     $.ajax({
-        url: BASE_PATH + "/user/getCheckCode",
+        url:BASE_PATH + "/user/getCheckCode",
         type: "post",
         dateType: "json",
         data: {"userMail": userMail},
@@ -151,7 +151,7 @@ function login_1() {
     var userName = $("#signin-username").val();
     var passWord = $("#signin-password").val();
     $.ajax({
-        url: BASE_PATH + "/user/check",
+        url:BASE_PATH + "/user/check",
         type: "post",
         dateType: "json",
         data: {"userName": userName, "password": passWord},
@@ -195,7 +195,7 @@ function login_2() {
     var Code = $("#signup-email").val();
     var userMail = $("#signup-username").val();
     $.ajax({
-        url: BASE_PATH + "/user/loginByMail",
+        url:BASE_PATH + "/user/loginByMail",
         type: "post",
         dateType: "json",
         data: {"userMail":userMail,"Code": Code},
@@ -242,7 +242,7 @@ function out_login(){
     $(".yourName").text("");
     $(".wid").text("");
     $.ajax({
-        url: BASE_PATH + "/user/logout",
+        url:BASE_PATH + "/user/logout",
         type: "post",
         dateType: "json",
         data: {},
@@ -284,7 +284,7 @@ $(".hl_nav > .nav_list li").eq(6).children("a:eq(1)").on("click",function () {
 //控制是否能进入我的行程界面
 $(".hl_nav > .nav_list li").eq(6).children("a:eq(2)").on("click",function () {
     if(userState == 1){
-        window.location.href = "PersonStroke.html"
+        window.location.href = "PersonalStroke.html"
     }
     else{
         event.preventDefault();
@@ -295,7 +295,7 @@ $(".hl_nav > .nav_list li").eq(6).children("a:eq(2)").on("click",function () {
 //控制是否能进入我的捐赠界面
 $(".hl_nav > .nav_list li").eq(6).children("a:eq(3)").on("click",function () {
     if(userState == 1){
-        window.location.href = "PersonDonation.html"
+        window.location.href = "PersonalDonation.html"
     }
     else{
         event.preventDefault();

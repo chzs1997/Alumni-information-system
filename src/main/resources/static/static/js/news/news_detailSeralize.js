@@ -96,7 +96,7 @@ jQuery(document).ready(function($) {
 
     //附加内容
     $.ajax({
-        url: BASE_PATH + "/news/newsExtra",
+        url:BASE_PATH + "/news/newsExtra",
         type: "post",
         dateType: "json",
         data: {"artId":artId},
@@ -154,7 +154,7 @@ jQuery(document).ready(function($) {
 
     //相关新闻
     $.ajax({
-        url: BASE_PATH + "/news/newsRelation",
+        url:BASE_PATH + "/news/newsRelation",
         type: "post",
         dateType: "json",
         data: {"artId":artId},
@@ -185,7 +185,7 @@ jQuery(document).ready(function($) {
 
     //点赞评论数量
     $.ajax({
-        url: BASE_PATH + "/news/coutsSeralize",
+        url:BASE_PATH + "/news/coutsSeralize",
         type: "post",
         dateType: "json",
         data: {"artId":artId},
@@ -224,7 +224,7 @@ function toggleColor(e) {
         }
     //点踩
     $.ajax({
-        url: BASE_PATH + "/news/addCounts",
+        url:BASE_PATH + "/news/addCounts",
         type: "post",
         dateType: "json",
         data: {"commentId":commentId,"commentPraise":commentPraise,"commentTread":commentTread},
@@ -255,7 +255,7 @@ function praise(e) {
     }
     //点踩
     $.ajax({
-        url: BASE_PATH + "/news/praiseAdd",
+        url:BASE_PATH + "/news/praiseAdd",
         type: "post",
         dateType: "json",
         data: {"artId":artId,"newsPraise":newsPraise},
@@ -279,7 +279,7 @@ $("#commentButton").on("click",function () {
     const BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));
     //添加评论
     $.ajax({
-        url: BASE_PATH + "/news/addComments",
+        url:BASE_PATH + "/news/addComments",
         type: "post",
         dateType: "json",
         data: {"commentName":commentName,"commentMail":commentMail,"commentContent":commentContent,"artId":artId},

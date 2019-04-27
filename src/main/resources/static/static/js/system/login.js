@@ -7,7 +7,7 @@ function login() {
     var managerName = $("#managerName").val();
     var managerPassword = $("#managerPassword").val();
     $.ajax({
-        url: BASE_PATH + "/manager/login",
+        url:BASE_PATH + "/manager/login",
         type: "post",
         dateType: "json",
         data: {"managerName": managerName, "managerPassword": managerPassword},
@@ -40,7 +40,7 @@ function out_login(){
     var obj = window.document.location;
     var BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));
     $.ajax({
-        url: BASE_PATH + "/manager/logout",
+        url:BASE_PATH + "/manager/logout",
         type: "post",
         dateType: "json",
         data: {},

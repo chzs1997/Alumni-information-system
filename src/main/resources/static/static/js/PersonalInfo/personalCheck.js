@@ -42,7 +42,7 @@ jQuery(document).ready(function($) {
 
 //信息修改
 $("#btn2").on("click",function () {
-    var BASE_PATH = window.document.location.href.substring(0, window.document.location.href.indexOf(window.document.location.pathname));
+    var BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));
 
     //姓名
     var userName = $("#personName").val();
@@ -94,7 +94,7 @@ $("#btn2").on("click",function () {
     var userImage = $("#icon").attr("src");
 
     $.ajax({
-        url: BASE_PATH + "/user/updateMessage",
+        url:BASE_PATH + "/user/updateMessage",
         type: "post",
         dateType: "json",
         data: {"userName":userName,
@@ -148,22 +148,25 @@ function signup_selected() {
 
 //登陆状态检测+信息填充
 function detectLoginState() {
-    var BASE_PATH = window.document.location.href.substring(0, window.document.location.href.indexOf(window.document.location.pathname));
+    var BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));
     //检验是否已登陆
     $.ajax({
-        url: BASE_PATH + "/user/detectState",
+        url:BASE_PATH + "/user/detectState",
         type: "post",
         dateType: "json",
         data: {},
         async: false,
         success: function f(data) {
             userState = 1; //当前是已登录状态
-            $.ajax({
-                url: BASE_PATH + "/user/personalCheck",
-                type: "post",
+            $.ajax(
+                BASE_PATH + "/user/personalCheck",
+                {type: "post",
                 dateType: "json",
                 data: {},
-                async: false,
+                timeout: 10000,
+                headers:{
+        	      'Content-Type':'application/x-www-form-urlencoded'
+                },
                 success: function f(data) {
                     var userName = data.userName;
                     if(userName == ""){
@@ -228,7 +231,7 @@ function detectLoginState() {
 
                             var Integrity = 0;
                             $.ajax({
-                                url: BASE_PATH +"/manager/getUserIntegrity",
+                                url:BASE_PATH +"/manager/getUserIntegrity",
                                 type: "post",
                                 dateType: "json",
                                 data: {"userId": userId},

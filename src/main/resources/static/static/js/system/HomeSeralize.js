@@ -24,7 +24,7 @@ jQuery(document).ready(function ($) {
     });
 
     $.ajax({
-        url: BASE_PATH + "/manager/findUserLoginLog",
+        url:BASE_PATH + "/manager/findUserLoginLog",
         type: "post",
         dateType: "json",
         data: {},

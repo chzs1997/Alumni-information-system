@@ -4,7 +4,7 @@ jQuery(document).ready(function($) {
     var obj = window.document.location;
     var BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));
     $.ajax({
-        url: BASE_PATH + "/manager/detectState",
+        url:BASE_PATH + "/manager/detectState",
         type: "post",
         dateType: "json",
         data: {},

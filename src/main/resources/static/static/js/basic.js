@@ -36,11 +36,11 @@ function btn1(){
     }
     else{
         $.ajax({
-            url: BASE_PATH + "/user/login",
+            url:BASE_PATH + "/user/login",
             type: "post",
             dateType: "json",
-            data: {"userName": userName, "password": passWord, "userMail": userMail, "phone": phone},
             async: false,
+            data: {"userName": userName, "password": passWord, "userMail": userMail, "phone": phone},
             success: function f(data) {
                 var result = data.result;
                 if(result == 1){
@@ -69,7 +69,7 @@ function btnContact(event){
 
     var Code = $("#code").val();
     // $.ajax({
-    //     url: BASE_PATH + "/user/determine",
+    //     BASE_PATH + "/user/determine",
     //     type: "post",
     //     dateType: "json",
     //     data: {"Code": Code},
@@ -96,7 +96,7 @@ function btnContact(event){
 function btn2(){
     var Code = $("#code").val();
     $.ajax({
-        url: BASE_PATH + "/user/determine",
+        url:BASE_PATH + "/user/determine",
         type: "post",
         dateType: "json",
         data: {"Code": Code},
@@ -152,7 +152,7 @@ function btn_add(){
     var userAddress = province+"省"+city+"市";
     var userBirthPlace = birthplaceProvince+"省"+birthplaceCity+"市";
     $.ajax({
-        url: BASE_PATH + "/user/add_info",
+        url:BASE_PATH + "/user/add_info",
         type: "post",
         dateType: "json",
         data: {"userMail": u_mail
@@ -170,7 +170,7 @@ function btn_add(){
         success: function f(data) {
             if(data == 1){
                 alert("注册成功");
-                window.location.href = "http://localhost:8080/index";
+                window.location.href = "http://172.17.112.104:8080/index";
             }
             else{
                 event.preventDefault();
@@ -202,7 +202,7 @@ function send(){
 
     var Contact = $("#Contact").val();
     $.ajax({
-        url: BASE_PATH + "/user/sendMessage",
+        url:BASE_PATH + "/user/sendMessage",
         type: "post",
         dateType: "json",
         data: {"phone": Contact},

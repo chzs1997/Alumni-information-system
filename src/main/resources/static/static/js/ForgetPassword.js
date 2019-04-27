@@ -13,7 +13,7 @@ function send(){
 
     var userMail = $("#Mail").val();
     $.ajax({
-        url: BASE_PATH + "/user/getCheckCode",
+        url:BASE_PATH + "/user/getCheckCode",
         type: "post",
         dateType: "json",
         data: {"userMail": userMail},

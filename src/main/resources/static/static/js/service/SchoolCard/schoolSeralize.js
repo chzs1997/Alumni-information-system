@@ -8,6 +8,7 @@ jQuery(document).ready(function($) {
     else if($(document).attr("title") == "ServiceSchoolAbility"){
         var artType = 5;
     }
+
     //加载列表新闻
     $.ajax({
         url: BASE_PATH + "/news/serviceListSeralize",
@@ -29,7 +30,7 @@ jQuery(document).ready(function($) {
     });
 
     // $.ajax({
-    //     url: BASE_PATH + "/news/announcement",
+    //     BASE_PATH + "/news/announcement",
     //     type: "post",
     //     dateType: "json",
     //     data: {},

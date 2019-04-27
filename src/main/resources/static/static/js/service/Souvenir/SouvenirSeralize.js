@@ -4,7 +4,7 @@ jQuery(document).ready(function($) {
     var BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));
 
     $.ajax({
-        url: BASE_PATH + "/souvenir/souvenirSeralize",
+        url:BASE_PATH + "/souvenir/souvenirSeralize",
         type: "post",
         dateType: "json",
         data: {},
@@ -41,7 +41,7 @@ function praise(e) {
     }
     //点踩
     $.ajax({
-        url: BASE_PATH + "/souvenir/praiseAdd",
+        url:BASE_PATH + "/souvenir/praiseAdd",
         type: "post",
         dateType: "json",
         data: {"souvenirId":souvenirId,"souvenirPraise":souvenirPraise},
