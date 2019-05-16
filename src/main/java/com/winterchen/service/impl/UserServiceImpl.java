@@ -2,15 +2,22 @@ package com.winterchen.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.winterchen.dao.DonationProjectDao;
 import com.winterchen.dao.MapSessionMapper;
 import com.winterchen.dao.UserDao;
 import com.winterchen.dao.UserIntegrityDao;
 import com.winterchen.model.SchoolUserIntegrity;
 import com.winterchen.model.UserDomain;
+import com.winterchen.modelVO.UserDonationVO;
+import com.winterchen.modelVO.UserRecommendVO;
+import com.winterchen.modelVO.UserVO;
 import com.winterchen.service.UserService;
+import com.winterchen.util.CorrelationCal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
@@ -29,13 +36,16 @@ public class UserServiceImpl implements UserService {
     @Autowired
     MapSessionMapper mapSessionMapper;
 
+    @Autowired
+    private DonationProjectDao donationProjectDao;
+
     /**
      *
      * 初步注册*/
     @Override
-    public int login(String userName, String password, String phone, String userMail) {
-        int i = userDao.login(userName, password, phone, userMail);
-        userIntegrityDao.addUser(userName, password, phone, userMail);
+    public int login(String userName, String password, String phone, String userMail, String userWX) {
+        int i = userDao.login(userName, password, phone, userMail,userWX);
+        userIntegrityDao.addUser(userName, password, phone, userMail,userWX);
         return i;
     }
 
@@ -76,11 +86,9 @@ public class UserServiceImpl implements UserService {
 
     /*根据年级和专业查询*/
     @Override
-    public PageInfo<UserDomain> findByGrade(int pageNum, int pageSize, String userGrade, String userMajor, String userGender) {
-        PageHelper.startPage(pageNum, pageSize);
-        List<UserDomain> userDomains = filterByConditions(userGrade, userMajor, userGender);
-        PageInfo result = new PageInfo(userDomains);
-        return result;
+    public List<UserVO> findByGrade(String userGrade, String userMajor, String userGender) {
+        List<UserVO> userDomains = filterByConditions(userGrade, userMajor, userGender);
+        return userDomains;
     }
 
     /*根据客户id查询用户*/
@@ -120,13 +128,13 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public int updateMessage(String userName, String userGender, String userBirthPlace, String phone, String userMail, String userStudentId, String userMajor, String userGrade, String userEducation, String userGraduateYear, String userHeadTeacher,String userAddress, String userCompany, String userPosition, String userImage, int userId) {
+    public int updateMessage(String userName, String userGender, String userBirthPlace, String phone, String userWX, String userMail, String userMajor, String userGrade, String userEducation, String userGraduateYear, String userHeadTeacher,String userAddress, String userCompany, String userPosition, String userImage, int userId) {
         int i =userDao.updateMessage(userName
                 ,userGender
                 ,userBirthPlace
                 ,phone
+                ,userWX
                 ,userMail
-                ,userStudentId
                 ,userMajor
                 ,userGrade
                 ,userEducation
@@ -137,6 +145,51 @@ public class UserServiceImpl implements UserService {
                 ,userPosition
                 ,userImage
                 ,userId);
+        userIntegrityDao.renewInfo();
+        userIntegrityDao.countIntegrity();
+        return i;
+    }
+
+    @Override
+    public int editUserByUserId(int userId, String userName, String userGender, String userEducation, String userBirthPlace, String userGrade, String userMajor, String userGraduateYear, String userHeadTeacher, String userMail, String userCompany, String userPosition, String userAddress, String phone) {
+        int i =userDao.editUserByUserId(
+                userId
+                ,userName
+                ,userGender
+                ,userEducation
+                ,userBirthPlace
+                ,userGrade
+                ,userMajor
+                ,userGraduateYear
+                ,userHeadTeacher
+                ,userMail
+                ,userCompany
+                ,userPosition
+                ,userAddress
+                ,phone
+        );
+        userIntegrityDao.renewInfo();
+        userIntegrityDao.countIntegrity();
+        return i;
+    }
+
+    @Override
+    public int addUserByManager(String userName, String userGender, String userEducation, String userBirthPlace, String userGrade, String userMajor, String userGraduateYear, String userHeadTeacher, String userMail, String userCompany, String userPosition, String userAddress, String phone) {
+        int i =userDao.addUserByManager(
+                 userName
+                ,userGender
+                ,userEducation
+                ,userBirthPlace
+                ,userGrade
+                ,userMajor
+                ,userGraduateYear
+                ,userHeadTeacher
+                ,userMail
+                ,userCompany
+                ,userPosition
+                ,userAddress
+                ,phone
+        );
         userIntegrityDao.renewInfo();
         userIntegrityDao.countIntegrity();
         return i;
@@ -164,13 +217,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserDomain> findAllUser() {
+    public List<UserVO> findAllUser() {
         return userDao.findAllUser();
     }
 
     @Override
-    public List<UserDomain> findUserExcel(String grade, String major, String gender) {
-        List<UserDomain> userDomains = filterByConditions(grade, major, gender);
+    public List<UserVO> findUserExcel(String grade, String major, String gender) {
+        List<UserVO> userDomains = filterByConditions(grade, major, gender);
         return  userDomains;
     }
 
@@ -197,12 +250,53 @@ public class UserServiceImpl implements UserService {
         return userIntegrityDao.getUserIntegrity(userId);
     }
 
+    @Override
+    public Integer deleteUserByUserId(Integer userId) {
+        return userDao.deleteUserByUserId(userId);
+    }
+
+    @Override
+    public Integer projectApplicant(String applicantName, Integer donationAmount, String donationMajor, String applicantContact, String applicantMail, String applicantPurpose) {
+        return donationProjectDao.projectApplicant(applicantName, donationAmount, donationMajor, applicantContact, applicantMail, applicantPurpose);
+    }
+
+    @Override
+    public List<UserRecommendVO> findRecommendUser(Integer userId) {
+        UserRecommendVO user = userDao.findUserById(userId);
+        List<UserRecommendVO> userRecommend = userDao.findRecommendUser(userId);
+        List<UserRecommendVO> result = CorrelationCal.Correlation(user, userRecommend);
+        Collections.sort(result, new Comparator<UserRecommendVO>() {
+            @Override
+            public int compare(UserRecommendVO o1, UserRecommendVO o2) {
+                double u1 = o1.getUserScore();
+                double u2 = o2.getUserScore();
+                double diff = u1 - u2;
+                if(diff>0){
+                    return -1;
+                }else if(diff < 0){
+                    return 1;
+                }
+                return 0;
+            }
+        });
+        for(int i = 0;i<result.size();i++){
+            result.get(i).setUserId(i+1);
+        }
+        System.out.println(result.toString());
+        return result;
+    }
+
+    @Override
+    public List<UserDonationVO> findDonationByUserId(Integer userId) {
+        return donationProjectDao.findDonationByUserId(userId);
+    }
+
     /**
      * 筛选条件通用方法
      *
      * */
-    public List<UserDomain> filterByConditions(String userGrade, String userMajor, String userGender){
-        List<UserDomain> userDomains;
+    public List<UserVO> filterByConditions(String userGrade, String userMajor, String userGender){
+        List<UserVO> userDomains;
 
         if(userGender.equals("全体")&&userGrade.equals("全体")&&!userMajor.equals("全体")){
             System.out.println("专业查询");
@@ -230,7 +324,7 @@ public class UserServiceImpl implements UserService {
         }
         else if(userGender.equals("全体")&&userMajor.equals("全体")&&userGrade.equals("全体")){
             System.out.println("全体查询");
-            userDomains = userDao.selectUsers();
+            userDomains = userDao.findAllUser();
         }
         else{
             System.out.println("专业年级性别查询");

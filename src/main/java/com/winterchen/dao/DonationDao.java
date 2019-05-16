@@ -1,6 +1,7 @@
 package com.winterchen.dao;
 
 import com.winterchen.model.Donation;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -10,6 +11,7 @@ import java.util.List;
  * @Date :16:01 2019/2/13
  * @Modefied By:
  */
+@Repository
 public interface DonationDao {
     /*
      * 捐赠信息存储

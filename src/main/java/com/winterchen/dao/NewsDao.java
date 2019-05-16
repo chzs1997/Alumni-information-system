@@ -32,6 +32,9 @@ public interface NewsDao {
     //初始化加载新闻
     List<News> selectAllNews(@Param("newsType") int newsType);
 
+    //初始化加载新闻
+    List<News> findDonationNews();
+
     //初始化加载通知公告
     List<News> selectAnnouncement();
 
@@ -46,7 +49,6 @@ public interface NewsDao {
 
     //添加评论
     int addComments(@Param("commentName") String commentName
-                    ,@Param("commentMail") String commentMail
                     ,@Param("commentContent") String commentContent
                     ,@Param("artId") int artId);
 

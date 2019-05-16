@@ -4,6 +4,10 @@ package com.winterchen.controller;
 import com.winterchen.conf.MyWebAppConfigurer;
 import com.winterchen.model.Stroke;
 import com.winterchen.model.UserDomain;
+import com.winterchen.modelVO.UserDonationVO;
+import com.winterchen.modelVO.UserRecommendVO;
+import com.winterchen.modelVO.UserStrokeVO;
+import com.winterchen.modelVO.UserVO;
 import com.winterchen.service.LoginLogService;
 import com.winterchen.service.MailService;
 import com.winterchen.service.StrokeService;
@@ -11,10 +15,10 @@ import com.winterchen.service.UserService;
 import com.winterchen.util.SendMessageUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -80,18 +84,85 @@ public class UserController extends HttpServlet {
     @ResponseBody
     @PostMapping("/selectByGrade")
     public Object selectByGrade(
-            @RequestParam(name = "pageNum", required = false, defaultValue = "1")
-                    int pageNum,
-            @RequestParam(name = "pageSize", required = false, defaultValue = "12")
-                    int pageSize,
             @RequestParam(name = "grade" , required = false, defaultValue = "全体")
                     String userGrade,
             @RequestParam(name = "major", required = false, defaultValue = "全体")
                     String userMajor,
             @RequestParam(name = "gender", required = false, defaultValue = "全体")
                     String userGender){
-        return userService.findByGrade(pageNum, pageSize, userGrade, userMajor, userGender);
+        List<UserVO> user = userService.findByGrade(userGrade, userMajor, userGender);
+        return user;
     }
+
+    /**
+     *
+     *管理端查询所有用户*/
+    @ResponseBody
+    @PostMapping("/selectAllUser")
+    public Object selectAllUser() {
+        List<UserVO> user = userService.findAllUser();
+        return user;
+    }
+
+
+    /**
+     *
+     *管理端查询所有用户行程*/
+    @ResponseBody
+    @PostMapping("/selectAllUserStroke")
+    public Object selectAllUserStroke() {
+        List<UserStrokeVO> user = strokeService.selectAllUserStroke();
+        return user;
+    }
+
+
+    /**
+     *
+     *管理端添加一条用户行程*/
+    @ResponseBody
+    @PostMapping("/addUserStrokeByManager")
+    public Object addUserStrokeByManager(
+            @RequestParam("userMail") String userMail,
+            @RequestParam("schTime") String schTime,
+            @RequestParam("schPlace") String schPlace,
+            @RequestParam("schState") String schState
+
+    ) {
+        int i = strokeService.addUserStrokeByManager(userMail, schTime, schPlace, schState);
+        List<UserStrokeVO> user = strokeService.selectUserStrokeByUserMail(userMail);
+        return user;
+    }
+
+    /**
+     *
+     *管理端添加一条用户行程*/
+    @ResponseBody
+    @PostMapping("/editUserStrokeByschId")
+    public Object editUserStrokeByschId(
+            @RequestParam("schTime") String schTime,
+            @RequestParam("schPlace") String schPlace,
+            @RequestParam("schState") String schState,
+            @RequestParam("schId") Integer schId
+
+    ) {
+        int i = strokeService.editUserStrokeByschId(schTime, schPlace, schState, schId);
+        return i;
+    }
+
+    /**
+     *
+     *管理端删除一条用户行程*/
+    @ResponseBody
+    @PostMapping("/deleteUserStrokeBySchId")
+    public Object deleteUserStrokeBySchId(
+            @RequestParam("schId") Integer schId
+
+    ) {
+        int i = strokeService.deleteUserStrokeBySchId(schId);
+        return i;
+    }
+
+
 
     /**
     用户名密码登录(测试通过)
@@ -115,6 +186,7 @@ public class UserController extends HttpServlet {
             session.setAttribute(MyWebAppConfigurer.SESSION_KEY, i.getUserId());
             session.setAttribute("userId", i.getUserId());
             HashMap<Object, Object> objectMap = new HashMap<>();
+            objectMap.put("result", 1);
             objectMap.put("userName", userName);
             objectMap.put("phone", i.getPhone());
             objectMap.put("gender", i.getUserGender());
@@ -132,11 +204,12 @@ public class UserController extends HttpServlet {
             @RequestParam(value = "userName") String userName,
             @RequestParam(value = "password") String password,
             @RequestParam(value = "phone") String phone,
-            @RequestParam(value = "userMail") String userMail
+            @RequestParam(value = "userMail") String userMail,
+            @RequestParam(value = "userWX") String userWX
     ) {
         HashMap<String,Object> result = new HashMap<>();
         try{
-            int i = userService.login(userName, password, phone, userMail);
+            int i = userService.login(userName, password, phone, userMail, userWX);
             userService.assignUserBkey(phone);
             if (i > 0) {
                 //注册成功
@@ -196,14 +269,8 @@ public class UserController extends HttpServlet {
         if (userHeadTeacher == null) {
             userHeadTeacher = "暂无";
         }
-        //性别解析
-        if (userGender == "1") {
-            userGender = "男";
-        } else {
-            userGender = "女";
-        }
 
-
+        System.out.println(userGender);
         int i = userService.add_info(userMail, userGender, userGrade, userMajor, userGraduateYear, userHeadTeacher, userAddress, userCompany, userPosition, userEducation, userBirthPlace);
         if (i > 0) {
             //信息完善成功
@@ -293,7 +360,7 @@ public class UserController extends HttpServlet {
      public String getCheckCode(String userMail){
          String checkCode = String.valueOf(new Random().nextInt(899999) + 100000);
          mailCode = checkCode;
-         String message = "您的注册验证码为" + checkCode;
+         String message = "[Xiangtan University Public Management Alumni Information System]: Your registration verification code is【" + checkCode +"】";
          try{
              mailService.sendSimpleMail(userMail,"注册验证码",message);
          }catch (Exception e){
@@ -366,6 +433,37 @@ public class UserController extends HttpServlet {
         return i;
     }
 
+    /**
+     * 立项信息查询
+     * */
+    @ResponseBody
+    @PostMapping("/getInfo")
+    public Object getInfo(
+            @SessionAttribute(MyWebAppConfigurer.SESSION_KEY) String account,
+            @SessionAttribute("userId") int userId,
+            Model model) {
+        model.addAttribute("name", account);
+        UserDomain i = userService.findByUserId(userId);
+        return i;
+    }
+
+    /**
+     * 个人立项信息查询
+     * */
+    @ResponseBody
+    @PostMapping("/findDonationByUserId")
+    public Object findDonationByUserId(
+            @SessionAttribute(MyWebAppConfigurer.SESSION_KEY) String account,
+            @SessionAttribute("userId") int userId,
+            Model model) {
+        model.addAttribute("name", account);
+        List<UserDonationVO> result = userService.findDonationByUserId(userId);
+        for(int i = 0;i<result.size();i++){
+            result.get(i).setUserId(i+1);
+        }
+        return result;
+    }
+
 
    /**
    * 退出登陆状态，注销
@@ -395,6 +493,40 @@ public class UserController extends HttpServlet {
         List<Stroke> result = strokeService.findStrokeByUserId(userId);
         System.out.println(result);
         return  result;
+    }
+
+    /**
+     *
+     * 查询行程
+     * */
+    @ResponseBody
+    @PostMapping("/findRecommendUser")
+    public Object findRecommendUser(
+            @SessionAttribute(MyWebAppConfigurer.SESSION_KEY) String account,
+            @SessionAttribute("userId") Integer userId,
+            Model model
+    ){
+        model.addAttribute("name", account);
+        List<UserRecommendVO> user = userService.findRecommendUser(userId);
+        return user;
+    }
+
+    /**
+     *
+     * 捐赠立项
+     * */
+    @ResponseBody
+    @PostMapping("/projectApplicant")
+    public Object projectApplicant(
+             @RequestParam("applicantName") String applicantName,
+             @RequestParam("donationAmount") Integer donationAmount,
+             @RequestParam("donationMajor") String donationMajor,
+             @RequestParam("applicantContact") String applicantContact,
+             @RequestParam("applicantMail") String applicantMail,
+             @RequestParam("applicantPurpose") String applicantPurpose
+    ){
+        int i = userService.projectApplicant(applicantName, donationAmount, donationMajor, applicantContact, applicantMail, applicantPurpose);
+        return  i;
     }
 
     /**
@@ -447,9 +579,9 @@ public class UserController extends HttpServlet {
         objectMap.put("phone", i.getPhone());
         objectMap.put("gender", i.getUserGender());
         objectMap.put("birthPlace", i.getUserBirthPlace());
+        objectMap.put("WX",i.getUserWX());
 
         objectMap.put("mail", i.getUserMail());
-        objectMap.put("studentId", i.getUserStudentId());
         objectMap.put("education", i.getUserEducation());
         objectMap.put("graduateYear", i.getUserGraduateYear());
         objectMap.put("headTeacher", i.getUserHeadTeacher());
@@ -474,8 +606,8 @@ public class UserController extends HttpServlet {
             @RequestParam("userGender") String userGender,
             @RequestParam("userBirthPlace") String userBirthPlace,
             @RequestParam("phone") String phone,
+            @RequestParam("userWX") String userWX,
             @RequestParam("userMail") String userMail,
-            @RequestParam("userStudentId") String userStudentId,
             @RequestParam("userMajor") String userMajor,
             @RequestParam("userGrade") String userGrade,
             @RequestParam("userEducation") String userEducation,
@@ -492,8 +624,8 @@ public class UserController extends HttpServlet {
                                           ,userGender
                                           ,userBirthPlace
                                           ,phone
+                                          ,userWX
                                           ,userMail
-                                          ,userStudentId
                                           ,userMajor
                                           ,userGrade
                                           ,userEducation
@@ -509,18 +641,95 @@ public class UserController extends HttpServlet {
     }
 
 
-    /*
+
+    /**
     *
-    *安卓端应用*/
+    *管理员端校友信息删除*/
     @ResponseBody
-    @PostMapping("/cc")
-    public String check(@RequestBody JSONObject obj) {
-        String username = obj.getString("username");
-        String password = obj.getString("password");
-        System.out.println("username: " + username);
-        System.out.println("password: " + password);
-        return "user";
+    @PostMapping("/deleteUserByUserId")
+    public Integer check(@RequestParam("userId") Integer userId) {
+        int i = userService.deleteUserByUserId(userId);
+        return i;
     }
+
+    /**
+     *
+     *管理员端校友信息编辑*/
+    @ResponseBody
+    @PostMapping("/editUserByUserId")
+    public Integer editUserByUserId(@RequestParam("userId") Integer userId,
+                                    @RequestParam("userName") String userName,
+                                    @RequestParam("userGender") String userGender,
+                                    @RequestParam("userEducation") String userEducation,
+                                    @RequestParam("userBirthPlace") String userBirthPlace,
+                                    @RequestParam("userGrade") String userGrade,
+                                    @RequestParam("userMajor") String userMajor,
+                                    @RequestParam("userGraduateYear") String userGraduateYear,
+                                    @RequestParam("userHeadTeacher") String userHeadTeacher,
+                                    @RequestParam("userMail") String userMail,
+                                    @RequestParam("userCompany") String userCompany,
+                                    @RequestParam("userPosition") String userPosition,
+                                    @RequestParam("userAddress") String userAddress,
+                                    @RequestParam("phone") String phone
+) {
+        int i = userService.editUserByUserId(userId
+                                            ,userName
+                                            ,userGender
+                                            ,userEducation
+                                            ,userBirthPlace
+                                            ,userGrade
+                                            ,userMajor
+                                            ,userGraduateYear
+                                            ,userHeadTeacher
+                                            ,userMail
+                                            ,userCompany
+                                            ,userPosition
+                                            ,userAddress
+                                            ,phone
+                                           );
+        return i;
+    }
+
+    /**
+     *
+     *管理员端校友信息编辑*/
+    @ResponseBody
+    @PostMapping("/addUserByManager")
+    public Integer addUserByManager(
+                                    @RequestParam("userName") String userName,
+                                    @RequestParam("userGender") String userGender,
+                                    @RequestParam("userEducation") String userEducation,
+                                    @RequestParam("userBirthPlace") String userBirthPlace,
+                                    @RequestParam("userGrade") String userGrade,
+                                    @RequestParam("userMajor") String userMajor,
+                                    @RequestParam("userGraduateYear") String userGraduateYear,
+                                    @RequestParam("userHeadTeacher") String userHeadTeacher,
+                                    @RequestParam("userMail") String userMail,
+                                    @RequestParam("userCompany") String userCompany,
+                                    @RequestParam("userPosition") String userPosition,
+                                    @RequestParam("userAddress") String userAddress,
+                                    @RequestParam("phone") String phone
+    ) {
+        int i = userService.addUserByManager(
+                 userName
+                ,userGender
+                ,userEducation
+                ,userBirthPlace
+                ,userGrade
+                ,userMajor
+                ,userGraduateYear
+                ,userHeadTeacher
+                ,userMail
+                ,userCompany
+                ,userPosition
+                ,userAddress
+                ,phone
+        );
+        return i;
+    }
+
+
+
 
 
 }

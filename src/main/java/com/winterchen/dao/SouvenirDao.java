@@ -17,10 +17,31 @@ public interface SouvenirDao {
 
     List<Souvenir> selectAllSouvenir();
 
-    //对新闻点赞
+    /**
+     *
+     * 对纪念品点赞/
+     */
     int praiseAdd(@Param("souvenirId") int souvenirId
                  ,@Param("souvenirPraise") int souvenirPraise);
 
-    //查找新闻点赞评论次数
+    /***
+     *
+     *  查找纪念品点赞评论次数
+     */
     Souvenir selectCounts(int souvenirId);
+
+    /**
+     * 查找最后一个纪念品ID
+     * *
+     */
+    int findSouvenirId();
+
+    /**
+     *
+     * 插入一条新的纪念品信息
+     * */
+    int insSouvenir(@Param("souvenirName") String souvenirName
+                    ,@Param("souvenirImage") String souvenirImage
+                    ,@Param("souvenirTime") String souvenirTime
+                    , @Param("souvenirMeaning") String souvenirMeaning);
 }

@@ -1,6 +1,7 @@
 package com.winterchen.controller;
 
 import com.winterchen.model.UserDomain;
+import com.winterchen.modelVO.UserVO;
 import com.winterchen.service.UserService;
 import com.winterchen.util.ExportExcelSeedBack;
 import org.apache.commons.io.output.ByteArrayOutputStream;
@@ -70,24 +71,24 @@ public class ExcelController {
         HSSFWorkbook workbook = new HSSFWorkbook();
         HSSFSheet sheet = workbook.createSheet("统计表");
         createTitle(workbook,sheet);
-        List<UserDomain> rows = userService.findAllUser();
+        List<UserVO> rows = userService.findAllUser();
 
         //设置日期格式
         HSSFCellStyle style = workbook.createCellStyle();
         style.setDataFormat(HSSFDataFormat.getBuiltinFormat("m/d/yy h:mm"));
 
-        //新增数据行，并且设置单元格数据
-        int rowNum=1;
-        for(UserDomain user:rows){
-            HSSFRow row = sheet.createRow(rowNum);
-            row.createCell(0).setCellValue(user.getUserId());
-            row.createCell(1).setCellValue(user.getUserName());
-            row.createCell(2).setCellValue(user.getPassword());
-            HSSFCell cell = row.createCell(3);
-            cell.setCellValue(user.getUserEducation());
-            cell.setCellStyle(style);
-            rowNum++;
-        }
+//        //新增数据行，并且设置单元格数据
+//        int rowNum=1;
+//        for(UserDo user:rows){
+//            HSSFRow row = sheet.createRow(rowNum);
+//            row.createCell(0).setCellValue(user.getUserId());
+//            row.createCell(1).setCellValue(user.getUserName());
+//            row.createCell(2).setCellValue(user.getPassword());
+//            HSSFCell cell = row.createCell(3);
+//            cell.setCellValue(user.getUserEducation());
+//            cell.setCellStyle(style);
+//            rowNum++;
+//        }
 
         String fileName = "导出excel例子.xls";
 
@@ -156,7 +157,7 @@ public class ExcelController {
                                    , @Param("gender") String gender
                                    , HttpServletRequest request
                                    , HttpServletResponse response) throws Exception{
-    List<UserDomain> groupList = userService.findUserExcel(grade,major,gender);
+    List<UserVO> groupList = userService.findUserExcel(grade,major,gender);
     //导出文件的标题
         String title = "校友信息.xls";
         //设置表格标题行
@@ -166,17 +167,16 @@ public class ExcelController {
         for (int i = 0; i < groupList.size(); i++) {
             objs = new Object[headers.length];
             objs[0] = 0;//设置序号,在工具类中会出现
-            objs[1] = groupList.get(i).getUserBkey();
-            objs[2] = groupList.get(i).getUserName();
-            objs[3] = groupList.get(i).getUserGrade();
-            objs[4] = groupList.get(i).getUserMajor();
-            objs[5] = groupList.get(i).getUserGender();
-            objs[6] = groupList.get(i).getUserBirthPlace();
-            objs[7] = groupList.get(i).getUserEducation();
-            objs[8] = groupList.get(i).getPhone();
-            objs[9] = groupList.get(i).getUserAddress();
-            objs[10] = groupList.get(i).getUserCompany();
-            objs[11] = groupList.get(i).getUserPosition();
+            objs[1] = groupList.get(i).getUserName();
+            objs[2] = groupList.get(i).getUserGrade();
+            objs[3] = groupList.get(i).getUserMajor();
+            objs[4] = groupList.get(i).getUserGender();
+            objs[5] = groupList.get(i).getUserBirthPlace();
+            objs[6] = groupList.get(i).getUserEducation();
+            objs[7] = groupList.get(i).getPhone();
+            objs[8] = groupList.get(i).getUserAddress();
+            objs[9] = groupList.get(i).getUserCompany();
+            objs[10] = groupList.get(i).getUserPosition();
             dataList.add(objs);//数据添加到excel表格
         }
         //使用流将数据导出

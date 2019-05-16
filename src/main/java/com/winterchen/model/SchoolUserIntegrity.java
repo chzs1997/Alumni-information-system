@@ -23,9 +23,6 @@ public class SchoolUserIntegrity {
     /*校友密码*/
     private Integer passwordInfo;
 
-    /*校友学号*/
-    private Integer studentIdInfo;
-
     /*校友年级*/
     private Integer gradeInfo;
 
@@ -40,6 +37,9 @@ public class SchoolUserIntegrity {
 
     /*校友联系方式*/
     private Integer contactInfo;
+
+    /*校友微信*/
+    private Integer wxInfo;
 
     /*校友邮箱*/
     private Integer mailInfo;

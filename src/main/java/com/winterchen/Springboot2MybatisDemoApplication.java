@@ -28,3 +28,4 @@ public class Springboot2MybatisDemoApplication extends SpringBootServletInitiali
 
 
 }
+

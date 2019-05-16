@@ -20,7 +20,8 @@ public interface UserIntegrityDao {
     int addUser(@Param("userName") String userName
                ,@Param("password") String password
                ,@Param("phone") String phone
-               ,@Param("userMail") String userMail);
+               ,@Param("userMail") String userMail
+               ,@Param("userWX") String userWX);
 
     /**
      *

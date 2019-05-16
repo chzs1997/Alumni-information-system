@@ -26,6 +26,9 @@ public interface NewsService {
     //初始化加载新闻
     PageInfo<News> findAllNews(int pageNum, int pageSize,int newsType);
 
+    //查找所有捐赠故事
+    PageInfo<News> findDonationNews(int pageNum, int pageSize);
+
     //初始化加载通知公告
     PageInfo<News> findAnnouncement(int pageNum, int pageSize);
 
@@ -39,7 +42,7 @@ public interface NewsService {
     List<News> findNewsRelation(int artId);
 
     //添加评论
-    int addComments(String commentName, String commentMail, String commentContent, int artId);
+    int addComments(String commentName, String commentContent, int artId);
 
     //初始化评论
     List<Comment> commentsSeralize(int artId);

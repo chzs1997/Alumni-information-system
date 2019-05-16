@@ -2,6 +2,8 @@ package com.winterchen.dao;
 
 
 import com.winterchen.model.UserDomain;
+import com.winterchen.modelVO.UserRecommendVO;
+import com.winterchen.modelVO.UserVO;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -23,47 +25,50 @@ public interface UserDao {
      * 查询所有用户*/
     List<UserDomain> selectUsers();
 
+
+
+
     /**
      *
      *
      * 根据年级查找*/
-    List<UserDomain> findByGrade(@Param("userGrade") String userGrade);
+    List<UserVO> findByGrade(@Param("userGrade") String userGrade);
 
     /**
      *
      *
      * 根据专业查找*/
-    List<UserDomain> findByMajor(@Param("userMajor") String userMajor);
+    List<UserVO> findByMajor(@Param("userMajor") String userMajor);
 
     /**
      *
      * 根据性别查找*/
-    List<UserDomain> findByGender(@Param("userGender") String userGender);
+    List<UserVO> findByGender(@Param("userGender") String userGender);
 
     /**
      *
      * 根据年级和专业查找*/
-    List<UserDomain> findByGradeAndMajor(@Param("userGrade") String userGrade
+    List<UserVO> findByGradeAndMajor(@Param("userGrade") String userGrade
                                          ,@Param("userMajor") String userMajor);
 
     /**
      *
      *
      * 根据性别和专业查找*/
-    List<UserDomain> findByGenderAndMajor(@Param("userGender") String userGender
+    List<UserVO> findByGenderAndMajor(@Param("userGender") String userGender
             ,@Param("userMajor") String userMajor);
 
     /**
      *
      * 根据年级和性别查找*/
-    List<UserDomain> findByGenderAndGrade(@Param("userGender") String userGender
+    List<UserVO> findByGenderAndGrade(@Param("userGender") String userGender
             ,@Param("userGrade") String userGrade);
 
     /**
      *
      *
      * 根据年级和性别和专业查找*/
-    List<UserDomain> findByGradeAndMajorAndGender(@Param("userGrade") String userGrade
+    List<UserVO> findByGradeAndMajorAndGender(@Param("userGrade") String userGrade
             ,@Param("userMajor") String userMajor
             ,@Param("userGender") String userGender);
 
@@ -92,7 +97,8 @@ public interface UserDao {
     int login(@Param("userName") String userName
              ,@Param("password") String password
              ,@Param("phone") String phone
-             ,@Param("userMail") String userMail);
+             ,@Param("userMail") String userMail
+             ,@Param("userWX") String userWX);
 
     /**
      *
@@ -136,8 +142,8 @@ public interface UserDao {
                       ,@Param("userGender") String userGender
                       ,@Param("userBirthPlace")String userBirthPlace
                       ,@Param("phone") String phone
+                      ,@Param("userWX") String userWX
                       ,@Param("userMail")String userMail
-                      ,@Param("userStudentId")String userStudentId
                       ,@Param("userMajor")String userMajor
                       ,@Param("userGrade")String userGrade
                       ,@Param("userEducation")String userEducation
@@ -148,6 +154,46 @@ public interface UserDao {
                       ,@Param("userPosition")String userPosition
                       ,@Param("userImage") String userImage
                       ,@Param("userId")int userId);
+
+    /**
+     * 管理员更新信息
+     * */
+    int addUserByManager(
+             @Param("userName") String userName
+            ,@Param("userGender") String userGender
+            ,@Param("userEducation")String userEducation
+            ,@Param("userBirthPlace")String userBirthPlace
+            ,@Param("userGrade")String userGrade
+            ,@Param("userMajor")String userMajor
+            ,@Param("userGraduateYear")String userGraduateYear
+            ,@Param("userHeadTeacher")String userHeadTeacher
+            ,@Param("userMail")String userMail
+            ,@Param("userCompany")String userCompany
+            ,@Param("userPosition")String userPosition
+            ,@Param("userAddress")String userAddress
+            ,@Param("phone") String phone
+      );
+
+    /**
+     * 管理员添加信息
+     * */
+    int editUserByUserId(
+            @Param("userId")int userId
+            ,@Param("userName") String userName
+            ,@Param("userGender") String userGender
+            ,@Param("userEducation")String userEducation
+            ,@Param("userBirthPlace")String userBirthPlace
+            ,@Param("userGrade")String userGrade
+            ,@Param("userMajor")String userMajor
+            ,@Param("userGraduateYear")String userGraduateYear
+            ,@Param("userHeadTeacher")String userHeadTeacher
+            ,@Param("userMail")String userMail
+            ,@Param("userCompany")String userCompany
+            ,@Param("userPosition")String userPosition
+            ,@Param("userAddress")String userAddress
+            ,@Param("phone") String phone
+    );
+
 
     /**
      * 上个月注册用户数
@@ -175,5 +221,22 @@ public interface UserDao {
      * 遍历所有用户
      *
      * */
-    List<UserDomain> findAllUser();
+    List<UserVO> findAllUser();
+
+    /**
+     * 管理员端校友信息删除
+     * */
+    Integer deleteUserByUserId(@Param("userId") Integer userId);
+
+    /**
+     *
+     * 推荐用户
+     * */
+    List<UserRecommendVO> findRecommendUser(@Param("userId") Integer userId);
+
+    /**
+     *
+     * 查询指定用户
+     * */
+    UserRecommendVO findUserById(@Param("userId") Integer userId);
 }

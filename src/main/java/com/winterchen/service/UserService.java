@@ -3,6 +3,9 @@ package com.winterchen.service;
 import com.github.pagehelper.PageInfo;
 import com.winterchen.model.SchoolUserIntegrity;
 import com.winterchen.model.UserDomain;
+import com.winterchen.modelVO.UserDonationVO;
+import com.winterchen.modelVO.UserRecommendVO;
+import com.winterchen.modelVO.UserVO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,7 +23,7 @@ public interface UserService {
      *
      *
      * 注册*/
-    int login(String userName, String password, String phone, String userMail);
+    int login(String userName, String password, String phone, String userMail, String userWX);
 
     /**
      *
@@ -37,7 +40,7 @@ public interface UserService {
      *
      *
      * 根据年级专业查找*/
-    PageInfo<UserDomain> findByGrade(int pageNum, int pageSize, String userGrade, String userMajor, String userGender);
+    List<UserVO> findByGrade(String userGrade, String userMajor, String userGender);
 
     /**
      *
@@ -93,8 +96,8 @@ public interface UserService {
                       ,String userGender
                       ,String userBirthPlace
                       ,String phone
+                      ,String userWX
                       ,String userMail
-                      ,String userStudentId
                       ,String userMajor
                       ,String userGrade
                       ,String userEducation
@@ -105,6 +108,45 @@ public interface UserService {
                       ,String userPosition
                       ,String userImage
                       ,int userId);
+
+    /**
+     * 管理员更新信息
+     * */
+    int editUserByUserId(
+             int userId
+            ,String userName
+            ,String userGender
+            ,String userEducation
+            ,String userBirthPlace
+            ,String userGrade
+            ,String userMajor
+            ,String userGraduateYear
+            ,String userHeadTeacher
+            ,String userMail
+            ,String userCompany
+            ,String userPosition
+            ,String userAddress
+            ,String phone
+     );
+
+    /**
+     * 管理员更添加信息
+     * */
+    int addUserByManager(
+             String userName
+            ,String userGender
+            ,String userEducation
+            ,String userBirthPlace
+            ,String userGrade
+            ,String userMajor
+            ,String userGraduateYear
+            ,String userHeadTeacher
+            ,String userMail
+            ,String userCompany
+            ,String userPosition
+            ,String userAddress
+            ,String phone
+    );
 
     UserDomain findUserByUserId(Integer userId);
 
@@ -129,7 +171,8 @@ public interface UserService {
      * 遍历所有用户
      *
      * */
-    List<UserDomain> findAllUser();
+    List<UserVO> findAllUser();
+
 
 
     /**
@@ -137,7 +180,7 @@ public interface UserService {
      * 遍历根据条件筛选用户(用于Excel下载)
      *
      * */
-    List<UserDomain> findUserExcel(String grade, String major, String gender);
+    List<UserVO> findUserExcel(String grade, String major, String gender);
 
     /**
      *
@@ -166,4 +209,28 @@ public interface UserService {
      * 校友信息完善度较差排名
      * */
     SchoolUserIntegrity getUserIntegrity(Integer userId);
+
+    /**
+     * 管理员端校友信息删除
+     * */
+    Integer deleteUserByUserId(Integer userId);
+
+
+    /**
+     * 捐赠立项
+     * */
+    Integer projectApplicant(String applicantName, Integer donationAmount, String donationMajor, String  donationContact, String donationMail, String applicantPurpose);
+
+    /**
+     *
+     * 推荐用户
+     * */
+    List<UserRecommendVO> findRecommendUser(Integer userId);
+
+    /**
+     *
+     * 个人捐赠查询
+     * */
+    List<UserDonationVO> findDonationByUserId(Integer userId);
+
 }

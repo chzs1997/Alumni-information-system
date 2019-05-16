@@ -75,6 +75,15 @@ public class NewsServiceImpl implements NewsService {
     }
 
     @Override
+    public PageInfo<News> findDonationNews(int pageNum, int pageSize) {
+        //将参数传给这个方法就可以实现物理分页了，非常简单。
+        PageHelper.startPage(pageNum, pageSize);
+        List<News> news = newsDao.findDonationNews();
+        PageInfo result = new PageInfo(news);
+        return result;
+    }
+
+    @Override
     public PageInfo<News> findAnnouncement(int pageNum, int pageSize) {
         //将参数传给这个方法就可以实现物理分页了，非常简单。
         PageHelper.startPage(pageNum, pageSize);
@@ -99,8 +108,8 @@ public class NewsServiceImpl implements NewsService {
     }
 
     @Override
-    public int addComments(String commentName, String commentMail, String commentContent, int artId) {
-        return  newsDao.addComments(commentName, commentMail, commentContent, artId);
+    public int addComments(String commentName, String commentContent, int artId) {
+        return  newsDao.addComments(commentName, commentContent, artId);
     }
 
     @Override

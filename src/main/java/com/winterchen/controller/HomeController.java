@@ -211,6 +211,11 @@ public class HomeController {
         return "syschart";
     }
 
+    @RequestMapping("/sysStroke")
+    public String sysStroke(){
+        return "sysStroke";
+    }
+
 
     @RequestMapping("/sysbasic-form")
     public String sysbasicForm(){
@@ -220,6 +225,11 @@ public class HomeController {
     @RequestMapping("/sysregister")
     public String sysregister(){
         return "sysregister";
+    }
+
+    @RequestMapping("/sysAlterPassword")
+    public String sysAlterPassword(){
+        return "sysAlterPassword";
     }
 
 
@@ -251,6 +261,16 @@ public class HomeController {
     @RequestMapping("/Donation")
     public String Donation(){
         return "Donation";
+    }
+
+    @RequestMapping("/donationProject")
+    public String donationProject(){
+        return "donationProject";
+    }
+
+    @RequestMapping("/PersonalRecommend")
+    public String PersonalRecommend(){
+        return "PersonalRecommend";
     }
 
 

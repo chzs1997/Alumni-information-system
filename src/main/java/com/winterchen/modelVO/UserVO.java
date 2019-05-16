@@ -1,15 +1,18 @@
-package com.winterchen.model;
+package com.winterchen.modelVO;
 
 import lombok.Data;
 
+/**
+ * @Author: liuzipan
+ * @Description
+ * @Date :9:45 2019/4/30
+ * @Modefied By:
+ */
 @Data
-public class UserDomain {
+public class UserVO {
 
-    /*校友id*/
+    /*校友ID*/
     private Integer userId;
-
-    /*校友编号*/
-    private String userBkey;
 
     /*校友名*/
     private String userName;
@@ -47,16 +50,7 @@ public class UserDomain {
     /*校友工作地址*/
     private String userAddress;
 
-    /*校友密码*/
-    private String password;
-
     /*联系方式*/
     private String phone;
-
-    /*微信号*/
-    private String userWX;
-
-    /*校友头像*/
-    private String userImage;
 
 }
