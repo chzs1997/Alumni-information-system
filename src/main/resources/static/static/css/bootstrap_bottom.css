@@ -2191,7 +2191,7 @@ pre code {
     display: block;
     width: 100%;
     padding: 0.5rem 0.75rem;
-    font-size: 1rem;
+    font-size: 2rem;
     line-height: 1.25;
     color: #464a4c;
     background-color: #fff;
@@ -2593,8 +2593,9 @@ select.form-control-lg:not([size]):not([multiple]), .input-group-lg > select.for
     user-select: none;
     border: 1px solid transparent;
     padding: 0.5rem 1rem;
-    font-size: 1rem;
+    font-size: 2rem;
     border-radius: 0.25rem;
+    float: right;
     -webkit-transition: all 0.2s ease-in-out;
     -o-transition: all 0.2s ease-in-out;
     transition: all 0.2s ease-in-out;

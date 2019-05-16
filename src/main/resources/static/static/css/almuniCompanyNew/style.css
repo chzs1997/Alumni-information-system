@@ -1625,6 +1625,7 @@ p.reply i{
 .work-grid{
 	position:relative;
 	  padding: 4px 4px 0px 0px;
+    height: 33%;
 }
 .rotate:hover  i{
 	transform: rotateY(360deg);

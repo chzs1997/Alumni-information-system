@@ -1498,6 +1498,9 @@ article .quote {
 
 #marqueearea{overflow:hidden;height:700px;width:100%;text-align: center;position: relative;}
 
+#marqueearea_small{overflow:hidden;height:250px;width:100%;text-align: center;position: relative;}
+
+
 .message__link {
   color: #f38844;
   -webkit-transition-property: color;

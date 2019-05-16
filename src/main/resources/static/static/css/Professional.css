@@ -5,7 +5,7 @@
 	background: #ffffff;
 	margin: 0px auto;
 	position: relative;
-	right: 180px;
+	right: 18%;
 	top: 6px;
 	/*bottom: 30px;*/
 	cursor: pointer;
@@ -113,7 +113,7 @@
 			margin: 0px auto;
 			position: relative;
 			cursor: pointer;
-			right: 180px;
+			right: 18%;
 		}
 
         .content2 .select2::after {
@@ -213,7 +213,7 @@
 	background: #ffffff;
 	margin: 0px auto;
 	position: relative;
-	right: 180px;
+	right: 18%;
 	top: 6px;
 	/*bottom: 30px;*/
 	cursor: pointer;
@@ -316,7 +316,7 @@
 			background: #ffffff;
 			margin: 0px auto;
 			position: relative;
-			right: 180px;
+			right: 18%;
 			top: 6px;
 			/*bottom: 30px;*/
 			cursor: pointer;

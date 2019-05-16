@@ -29,7 +29,7 @@
 .processorBox li.current h4 {color:rgb( 211,211,211);}
 .content {background-color:whitesmoke;padding: 45px 50px;}
 .frm_control_group {padding-bottom:25px;}
-.frm_label {width: 6em;float: left;margin-right: 1em;line-height: 30px;}
+.frm_label {width: 8em;float: left;margin-right: 1em;line-height: 30px;}
 .frm_controls {display: table-cell;float: none;vertical-align: top;width: auto;}
 .frm_input,.frm_textarea {width: 300px;outline: 0 none;border: 1px solid #C5C5C5;height: 35px;line-height: 35px;vertical-align: middle;border-radius: 3px;-webkit-border-radius: 3px;-moz-border-radius: 3px;box-shadow: 0 1px 1px rgba(0, 0, 0, 0.06) inset;-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.06) inset;padding: 0 10px;}
 .frm_input:focus,.frm_textarea:focus {border: 1px solid #4677BD;box-shadow: 0 0 2px #ddd;-webkit-box-shadow: 0 0 3px #ddd;}

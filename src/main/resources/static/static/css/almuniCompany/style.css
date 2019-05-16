@@ -1202,9 +1202,10 @@ ul.scial{
 }
 
 .popup .close {
+    text-align: center;
     position: absolute;
     top: 5px;
-    right: 15px;
+    left: 15px;
     transition: all 200ms;
     font-size: 30px;
     font-weight: bold;
@@ -1212,6 +1213,15 @@ ul.scial{
     color: #000;
 }
 
+.companylink{
+    font-size: 30px;
+    font-weight: bold;
+    padding-left: 40%;
+}
+
+.companylink:hover{
+    color: #30c39e;
+}
 .popup .close:hover {
     color: #30c39e;
 }
