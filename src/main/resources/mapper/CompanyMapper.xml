@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.winterchen.dao.CompanyDao" >
+
+    <!-- 数据库表映射 -->
+    <resultMap id="companyRM" type="com.winterchen.model.Company">
+        <result property="companyId" column="COMPANY_ID"/>
+        <result property="companyName" column="COMPANY_NAME"/>
+        <result property="companyIntroduction" column="COMPANY_INTRODUCTION"/>
+        <result property="companyHref" column="COMPANY_HREF"/>
+        <result property="companyImg" column="COMPANY_IMG"/>
+    </resultMap>
+
+    <!--设置数据库表名-->
+    <sql id="BASE_TABLE">
+    company
+    </sql>
+
+    <select id="findCompanyId" resultType="Integer">
+        select COMPANY_ID
+        from company
+        order by create_time desc
+        limit 1
+    </select>
+
+    <insert id="insCompany">
+        insert into company (COMPANY_NAME, COMPANY_IMG,  COMPANY_INTRODUCTION, COMPANY_HREF)
+        VALUES (#{companyName}, #{companyImg}, #{companyIntroduction}, #{companyHref})
+    </insert>
+
+
+
+
+
+
+</mapper>

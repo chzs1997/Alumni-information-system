@@ -42,6 +42,18 @@
         WHERE SouvenirId = #{souvenirId}
     </select>
 
+    <select id="findSouvenirId" resultType="Integer">
+        select SouvenirId
+        from souvenir
+        order by create_time desc
+        limit 1
+    </select>
+
+    <insert id="insSouvenir">
+        insert into souvenir (SouvenirName, SouvenirImage,  SouvenirTime, SouvenirMeaning)
+        VALUES (#{souvenirName}, #{souvenirImage}, #{souvenirTime}, #{souvenirMeaning})
+    </insert>
+
 
 
 

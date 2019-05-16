@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.winterchen.dao.DonationProjectDao" >
+
+    <!-- 数据库表映射 -->
+    <resultMap id="projectRM" type="com.winterchen.model.DonationProject">
+        <result property="projectId" column="PorjectId"/>
+        <result property="applicantName" column="ApplicantName"/>
+        <result property="donationAmount" column="DonationAmount"/>
+        <result property="donationMajor" column="DonationMajor"/>
+        <result property="applicantContact" column="ApplicantContact"/>
+        <result property="applicantMail" column="ApplicantMail"/>
+        <result property="applicantPurpose" column="ApplicantPurpose"/>
+    </resultMap>
+
+    <!-- 数据库表映射 -->
+    <resultMap id="projectFindRM" type="com.winterchen.modelVO.UserDonationVO">
+        <result property="userId" column="U_ID"/>
+        <result property="applicantName" column="ApplicantName"/>
+        <result property="donationAmount" column="DonationAmount"/>
+        <result property="donationMajor" column="DonationMajor"/>
+        <result property="applicantContact" column="ApplicantContact"/>
+        <result property="applicantMail" column="ApplicantMail"/>
+        <result property="applicantPurpose" column="ApplicantPurpose"/>
+    </resultMap>
+
+    <!-- 数据库表映射 -->
+    <resultMap id="projectShowRM" type="com.winterchen.modelVO.DonationShowVO">
+        <result property="projectId" column="ProjectId"/>
+        <result property="applicantName" column="ApplicantName"/>
+        <result property="donationAmount" column="DonationAmount"/>
+        <result property="collective" column="collective"/>
+        <result property="donationTime" column="DonationTime"/>
+    </resultMap>
+
+    <!--设置数据库表名-->
+    <sql id="BASE_TABLE">
+    donation_project
+  </sql>
+
+    <insert id="projectApplicant">
+        insert into donation_project
+        (ApplicantName,DonationAmount,DonationMajor,ApplicantContact,ApplicantMail,ApplicantPurpose)
+        values
+        (#{applicantName},#{donationAmount},#{donationMajor},#{applicantContact},#{applicantMail},#{applicantPurpose})
+    </insert>
+
+    <select id="findDonationByUserId" resultMap="projectFindRM">
+        select a2.U_ID
+               ,a1.ApplicantName
+               ,a1.DonationAmount
+               ,a1.DonationMajor
+               ,a1.ApplicantContact
+               ,a1.ApplicantMail
+               ,a1.ApplicantPurpose
+        from donation_project a1
+        left join
+        schooluser a2
+        on a1.ApplicantMail = a2.U_MAIL
+        where a2.U_ID = #{userId}
+    </select>
+
+    <select id="findAmountLastMonth" resultType="Integer">
+        select sum(DonationAmount) DonationAmount
+        from donation_project
+        where datediff(now(),CREATE_TIME)&lt;=30
+    </select>
+
+    <select id="findAmountTotal" resultType="Integer">
+     select sum(DonationAmount) DonationAmount
+     from donation_project
+    </select>
+
+    <select id="donationShow" resultMap="projectShowRM">
+        select t.PorjectId as ProjectId
+               ,t.ApplicantName
+	           ,t.DonationAmount
+               ,concat(substring(t.U_GRADE,3,2),t.collective) as collective
+               ,t.DonationTime as DonationTime
+        from (
+            select a1.PorjectId PorjectId
+                   ,a1.ApplicantName
+                   ,a1.DonationAmount
+                   ,a2.U_GRADE
+                   ,DATE_FORMAT(a1.CREATE_TIME,'%Y-%m-%d') as DonationTime
+                   ,case when a2.U_MAJOR = '数字出版' then '数版'
+                         when a2.U_MAJOR = '信息管理与信息系统1班' then '信1'
+                         when a2.U_MAJOR = '信息管理与信息系统2班' then '信2'
+                         when a2.U_MAJOR = '行characterstyle政管理1班' then '行1'
+                         when a2.U_MAJOR = '行政管理2班' then '行2'
+                         when a2.U_MAJOR = '公共事业管理' then '公管'
+                         when a2.U_MAJOR = '图书馆学1班' then '图1'
+                         when a2.U_MAJOR = '图书馆学2班' then '图2'
+                         when a2.U_MAJOR = '档案学' then '档案'
+			             when a2.U_MAJOR = '政治学与行政学' then '政行'
+                         else '其他' end collective
+            from donation_project a1
+            inner join schooluser a2
+             on a1.ApplicantMail = a2.U_MAIL
+             order by a1.create_time desc
+             limit #{num}
+      )t
+    </select>
+</mapper>

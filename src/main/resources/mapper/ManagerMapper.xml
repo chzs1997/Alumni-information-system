@@ -25,5 +25,11 @@
       WHERE ManagerName = #{managerName} and ManagerPassword = #{managerPassword}
   </select>
 
+    <update id="alterPassword" parameterType="com.winterchen.model.Manager" >
+        update manager
+        set ManagerPassword = #{managerPassword}
+        where ManagerId = #{managerId}
+    </update>
+
 
 </mapper>

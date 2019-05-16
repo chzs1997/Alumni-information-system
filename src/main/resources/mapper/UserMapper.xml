@@ -13,6 +13,7 @@
     <result property="userBirthPlace" column="U_BIRTHPLACE"/>
     <result property="password" column="U_PASSWORD"/>
     <result property="phone" column="U_CONTACT"/>
+    <result property="userWX" column="U_WX"/>
     <result property="userMajor" column="U_MAJOR"/>
     <result property="userGraduateYear" column="U_GRADUATE_YEAR"/>
     <result property="userHeadTeacher" column="U_HEAD_TEACHER"/>
@@ -22,7 +23,6 @@
     <result property="userCompany" column="U_COMPANY"/>
     <result property="userPosition" column="U_POSITION"/>
     <result property="userAddress" column="U_ADDRESS"/>
-    <result property="userStudentId" column="U_STUDENTID"/>
     <result property="userGrade" column="U_GRADE"/>
     <result property="userImage" column="U_IMG"/>
   </resultMap>
@@ -48,6 +48,40 @@
         <result property="birthPlaceInfo" column="BIRTHPLACE_INFO"/>
         <result property="imgInfo" column="IMG_INFO"/>
         <result property="userInfoIntegrity" column="U_INFO_INTEGRITY"/>
+    </resultMap>
+
+    <!-- 数据库行程表映射 -->
+    <resultMap id="userVoRM" type="com.winterchen.modelVO.UserVO">
+        <result property="userId" column="U_ID"/>
+        <result property="userName" column="U_NAME"/>
+        <result property="userGender" column="U_GENDER"/>
+        <result property="userEducation" column="U_EDUCATION"/>
+        <result property="userBirthPlace" column="U_BIRTHPLACE"/>
+        <result property="phone" column="U_CONTACT"/>
+        <result property="userMajor" column="U_MAJOR"/>
+        <result property="userGraduateYear" column="U_GRADUATE_YEAR"/>
+        <result property="userHeadTeacher" column="U_HEAD_TEACHER"/>
+        <result property="userMail" column="U_MAIL"/>
+        <result property="userCompany" column="U_COMPANY"/>
+        <result property="userPosition" column="U_POSITION"/>
+        <result property="userAddress" column="U_ADDRESS"/>
+        <result property="userGrade" column="U_GRADE"/>
+    </resultMap>
+
+
+    <!-- 数据库行程表映射 -->
+    <resultMap id="userRecommendVORM" type="com.winterchen.modelVO.UserRecommendVO">
+        <result property="userId" column="U_ID"/>
+        <result property="userName" column="U_NAME"/>
+        <result property="userGrade" column="U_GRADE"/>
+        <result property="userMajor" column="U_MAJOR"/>
+        <result property="userWorkProvince" column="U_PROVINCE"/>
+        <result property="userWorkCity" column="U_CITY"/>
+        <result property="userCompany" column="U_COMPANY"/>
+        <result property="userPosition" column="U_POSITION"/>
+        <result property="userMail" column="U_MAIL"/>
+        <result property="phone" column="U_CONTACT"/>
+        <result property="userWX" column="U_WX"/>
     </resultMap>
 
 
@@ -85,14 +119,15 @@
   </select>
 
     <!--所有用户-->
-    <select id = "findAllUser" resultMap="userRM">
+    <select id = "findAllUser" resultMap="userVoRM">
         select *
         from schooluser
+        order by CREATE_TIME DESC
     </select>
 
 
   <!--根据年级查询用户-->
-  <select id="findByGrade" resultMap="userRM">
+  <select id="findByGrade" resultMap="userVoRM">
       SELECT
         *
       FROM
@@ -102,7 +137,7 @@
   </select>
 
   <!--根据专业查询用户-->
-  <select id="findByMajor" resultMap="userRM">
+  <select id="findByMajor" resultMap="userVoRM">
       SELECT
         *
       FROM
@@ -112,7 +147,7 @@
   </select>
 
     <!--根据性别查询用户-->
-    <select id="findByGender" resultMap="userRM">
+    <select id="findByGender" resultMap="userVoRM">
       SELECT
         *
       FROM
@@ -122,7 +157,7 @@
   </select>
 
   <!--根据年级和专业查询用户-->
-  <select id="findByGradeAndMajor" resultMap="userRM">
+  <select id="findByGradeAndMajor" resultMap="userVoRM">
       SELECT
         *
       FROM
@@ -132,7 +167,7 @@
   </select>
 
     <!--根据性别和专业查询用户-->
-    <select id="findByGenderAndMajor" resultMap="userRM">
+    <select id="findByGenderAndMajor" resultMap="userVoRM">
       SELECT
         *
       FROM
@@ -142,7 +177,7 @@
   </select>
 
     <!--根据性别和年级查询用户-->
-    <select id="findByGenderAndGrade" resultMap="userRM">
+    <select id="findByGenderAndGrade" resultMap="userVoRM">
       SELECT
         *
       FROM
@@ -152,7 +187,7 @@
   </select>
 
     <!--根据性别和年级和专业查询用户-->
-    <select id="findByGradeAndMajorAndGender" resultMap="userRM">
+    <select id="findByGradeAndMajorAndGender" resultMap="userVoRM">
       SELECT
         *
       FROM
@@ -209,8 +244,8 @@
   <!--注册-->
   <insert id="login" parameterType="com.winterchen.model.UserDomain">
     INSERT INTO <include refid="BASE_TABLE"/>
-       (U_NAME, U_PASSWORD, U_CONTACT, U_MAIL)
-    VALUES (#{userName}, #{password}, #{phone}, #{userMail})
+       (U_NAME, U_PASSWORD, U_CONTACT, U_MAIL, U_WX)
+    VALUES (#{userName}, #{password}, #{phone}, #{userMail}, #{userWX})
   </insert>
 
     <update id="assignUserBkey" parameterType="com.winterchen.model.UserDomain" >
@@ -242,8 +277,8 @@
            ,U_GENDER = #{userGender}
            ,U_BIRTHPLACE = #{userBirthPlace}
            ,U_CONTACT = #{phone}
+           ,U_WX = #{userWX}
            ,U_MAIL = #{userMail}
-           ,U_STUDENTID = #{userStudentId}
            ,U_MAJOR = #{userMajor}
            ,U_GRADE = #{userGrade}
            ,U_EDUCATION = #{userEducation}
@@ -255,6 +290,32 @@
            ,U_IMG = #{userImage}
         WHERE U_ID = #{userId}
     </update>
+
+    <!--修改信息-->
+    <update id="editUserByUserId" parameterType="com.winterchen.model.UserDomain" >
+        UPDATE <include refid="BASE_TABLE"/>
+        SET U_NAME = #{userName}
+        ,U_GENDER = #{userGender}
+        ,U_EDUCATION = #{userEducation}
+        ,U_BIRTHPLACE = #{userBirthPlace}
+        ,U_GRADE = #{userGrade}
+        ,U_MAJOR = #{userMajor}
+        ,U_GRADUATE_YEAR = #{userGraduateYear}
+        ,U_HEAD_TEACHER = #{userHeadTeacher}
+        ,U_MAIL = #{userMail}
+        ,U_COMPANY = #{userCompany}
+        ,U_POSITION = #{userPosition}
+        ,U_ADDRESS = #{userAddress}
+        ,U_CONTACT = #{phone}
+        WHERE U_ID = #{userId}
+    </update>
+
+    <!--管理员添加信息-->
+    <insert id="addUserByManager" parameterType="com.winterchen.model.UserDomain">
+        INSERT INTO <include refid="BASE_TABLE"/>
+        (U_NAME, U_GENDER, U_EDUCATION, U_BIRTHPLACE, U_GRADE, U_MAJOR, U_GRADUATE_YEAR, U_HEAD_TEACHER, U_MAIL, U_COMPANY, U_POSITION, U_ADDRESS, U_CONTACT)
+        VALUES (#{userName}, #{userGender}, #{userEducation}, #{userBirthPlace}, #{userGrade}, #{userMajor}, #{userGraduateYear}, #{userHeadTeacher}, #{userMail}, #{userCompany}, #{userPosition}, #{userAddress}, #{phone})
+    </insert>
 
   <!--登录-->
   <select id="check" resultMap="userRM">
@@ -274,7 +335,68 @@
        from schooluser
    </select>
 
+    <delete id="deleteUserByUserId">
+        DELETE
+        FROM schooluser
+        WHERE U_ID = #{userId};
+    </delete>
 
+    <!--查询所有相关用户-->
+    <select id="findRecommendUser" resultMap="userRecommendVORM">
+        select  U_ID
+               ,U_NAME
+               ,U_GRADE
+               ,U_MAJOR
+	           ,SUBSTRING_INDEX(U_ADDRESS,'省',1) U_PROVINCE
+               ,replace(SUBSTRING_INDEX(U_ADDRESS,'省',-1),'市','') U_CITY
+               ,U_COMPANY
+               ,U_POSITION
+               ,U_MAIL
+               ,U_CONTACT
+               ,U_WX
+        from schooluser
+        where (U_GRADE = (
+               select U_GRADE
+               from schooluser
+               where U_ID = #{userId}
+        ) or U_MAJOR = (
+               select U_MAJOR
+               from schooluser
+               where U_ID = #{userId}
+        ) or U_COMPANY = (
+               select U_COMPANY
+               from schooluser
+               where U_ID = #{userId}
+        ) or U_POSITION = (
+               select U_POSITION
+               from schooluser
+               where U_ID = #{userId}
+        ) or SUBSTRING_INDEX(U_ADDRESS,'省',1) = (
+               select SUBSTRING_INDEX(U_ADDRESS,'省',1)
+               from schooluser
+               where U_ID = #{userId}
+        ) or replace(SUBSTRING_INDEX(U_ADDRESS,'省',-1),'市','') = (
+           select replace(SUBSTRING_INDEX(U_ADDRESS,'省',-1),'市','')
+           from schooluser
+           where U_ID = #{userId}
+        )) and U_ID !=#{userId}
+    </select>
+
+    <select id="findUserById" resultMap="userRecommendVORM">
+        select U_ID
+               ,U_NAME
+               ,U_GRADE
+               ,U_MAJOR
+	           ,SUBSTRING_INDEX(U_ADDRESS,'省',1) U_PROVINCE
+               ,replace(SUBSTRING_INDEX(U_ADDRESS,'省',-1),'市','') U_CITY
+               ,U_COMPANY
+               ,U_POSITION
+               ,U_MAIL
+               ,U_CONTACT
+               ,U_WX
+        from schooluser
+        where U_ID = #{userId}
+    </select>
 
 
 </mapper>

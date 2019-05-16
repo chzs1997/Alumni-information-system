@@ -33,6 +33,7 @@
       FROM
         <include refid="BASE_TABLE"/>
       WHERE CHARACTER_TYPE = #{characterType}
+      order by create_time desc
   </select>
 
     <!--分页查询-->

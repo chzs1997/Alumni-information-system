@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.winterchen.dao.EntertainmentDao" >
+
+    <!-- 数据库表映射 -->
+    <resultMap id="entertainmentRM" type="com.winterchen.model.Entertainment">
+        <result property="entertainmentId" column="ENTERTAINMENT_ID"/>
+        <result property="entertainmentType" column="ENTERTAINMENT_TYPE"/>
+        <result property="entertainmentName" column="ENTERTAINMENT_NAME"/>
+        <result property="entertainmentImg" column="ENTERTAINMENT_IMG"/>
+        <result property="entertainmentAddress" column="ENTERTAINMENT_ADDRESS"/>
+        <result property="entertainmentContact" column="ENTERTAINMENT_CONTACT"/>
+        <result property="entertainmentIntroduction" column="ENTERTAINMENT_INTRODUCTION"/>
+    </resultMap>
+
+    <!--设置数据库表名-->
+    <sql id="BASE_TABLE">
+    entertainment
+    </sql>
+
+    <select id="findEntertainmentId" resultType="Integer">
+        select ENTERTAINMENT_ID
+        from entertainment
+        order by create_time desc
+        limit 1
+    </select>
+
+    <insert id="insEntertainment">
+        insert into entertainment (ENTERTAINMENT_TYPE, ENTERTAINMENT_NAME,  ENTERTAINMENT_ADDRESS, ENTERTAINMENT_CONTACT, ENTERTAINMENT_IMG, ENTERTAINMENT_INTRODUCTION)
+        VALUES (#{entertainmentType}, #{entertainmentName}, #{entertainmentAddress}, #{entertainmentContact}, #{entertainmentImg}, #{entertainmentIntroduction})
+    </insert>
+
+
+
+
+
+
+
+</mapper>

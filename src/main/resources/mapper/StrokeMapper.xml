@@ -11,6 +11,21 @@
         <result property="schState" column="SCH_STATE"/>
     </resultMap>
 
+    <!-- 数据库表映射 -->
+    <resultMap id="userStrokeRM" type="com.winterchen.modelVO.UserStrokeVO">
+        <result property="userId" column="U_ID"/>
+        <result property="userName" column="U_NAME"/>
+        <result property="userGrade" column="U_GRADE"/>
+        <result property="userMajor" column="U_MAJOR"/>
+        <result property="userHeadTeacher" column="U_HEAD_TEACHER"/>
+        <result property="userMail" column="U_MAIL"/>
+        <result property="phone" column="U_CONTACT"/>
+        <result property="schId" column="SCH_ID"/>
+        <result property="schTime" column="SCH_TIME"/>
+        <result property="schPlace" column="SCH_PLACE"/>
+        <result property="schState" column="SCH_STATE"/>
+    </resultMap>
+
     <!--设置数据库表名-->
     <sql id="BASE_TABLE">
     stroke
@@ -93,4 +108,60 @@
          where U_ID = #{userId} and SCH_STATE = #{strokeState}
          order by SCH_TIME
     </select>
+
+    <select id="selectAllUserStroke" resultMap="userStrokeRM">
+    select a1.SCH_ID
+       ,a1.U_ID
+	   ,a2.U_NAME
+	   ,a2.U_GRADE
+       ,a2.U_MAJOR
+       ,a2.U_HEAD_TEACHER
+       ,a2.U_MAIL
+       ,a2.U_CONTACT
+       ,date_format(a1.SCH_TIME, '%Y-%m-%d %H:%i:%s') SCH_TIME
+       ,a1.SCH_PLACE
+	   ,case when a1.SCH_STATE = 0 then '待处理'
+			 else '已处理' end SCH_STATE
+    from stroke a1
+    left join schooluser a2
+    on a1.U_ID = a2.U_ID
+    </select>
+
+    <insert id="addUserStrokeByManager">
+    INSERT INTO stroke(U_ID,SCH_TIME,SCH_PLACE,SCH_STATE)
+    VALUES ((select U_ID from schooluser where U_MAIL = #{userMail}),#{schTime},#{schPlace},#{schState})
+    </insert>
+
+    <select id="selectUserStrokeByUserMail" resultMap="userStrokeRM">
+     select a1.SCH_ID
+       ,a1.U_ID
+	   ,a2.U_NAME
+	   ,a2.U_GRADE
+       ,a2.U_MAJOR
+       ,a2.U_HEAD_TEACHER
+       ,a2.U_MAIL
+       ,a2.U_CONTACT
+       ,date_format(a1.SCH_TIME, '%Y-%m-%d %H:%i:%s') SCH_TIME
+       ,a1.SCH_PLACE
+	   ,case when a1.SCH_STATE = 0 then '待处理'
+			 else '已处理' end SCH_STATE
+    from stroke a1
+    left join schooluser a2
+    on a1.U_ID = a2.U_ID
+    where a2.U_MAIL = #{userMail}
+    order by a1.create_time desc
+    limit 1
+    </select>
+
+    <update id="editUserStrokeByschId">
+        update stroke
+        set SCH_TIME = #{schTime} ,SCH_PLACE = #{schPlace} ,SCH_STATE = #{schState}
+        where SCH_ID = #{schId}
+    </update>
+
+    <delete id="deleteUserStrokeBySchId">
+        delete
+        from stroke
+        where SCH_ID = #{schId}
+    </delete>
 </mapper>

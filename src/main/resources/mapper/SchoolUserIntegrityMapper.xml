@@ -14,6 +14,7 @@
         <result property="headTeacherInfo" column="HEAD_TEACHER_INFO"/>
         <result property="majorInfo" column="MAJOR_INFO"/>
         <result property="contactInfo" column="CONTACT_INFO"/>
+        <result property="wxInfo" column="WX_INFO"/>
         <result property="mailInfo" column="MAIL_INFO"/>
         <result property="educationInfo" column="EDUCATION_INFO"/>
         <result property="addressInfo" column="ADDRESS_INFO"/>
@@ -35,18 +36,18 @@
         <result property="userBirthPlace" column="U_BIRTHPLACE"/>
         <result property="password" column="U_PASSWORD"/>
         <result property="phone" column="U_CONTACT"/>
+        <result property="userWX" column="U_WX"/>
         <result property="userMajor" column="U_MAJOR"/>
         <result property="userGraduateYear" column="U_GRADUATE_YEAR"/>
         <result property="userHeadTeacher" column="U_HEAD_TEACHER"/>
         <result property="userMail" column="U_MAIL"/>
         <result property="userDepartment" column="U_DEPARTMENT"/>
-        <result property="userIdNumber" column="U_ID_NUMBER"/>
         <result property="userCompany" column="U_COMPANY"/>
         <result property="userPosition" column="U_POSITION"/>
         <result property="userAddress" column="U_ADDRESS"/>
-        <result property="userStudentId" column="U_STUDENTID"/>
         <result property="userGrade" column="U_GRADE"/>
         <result property="userImage" column="U_IMG"/>
+
     </resultMap>
 
     <resultMap id="IntegrityCount" type="java.util.HashMap">
@@ -71,6 +72,7 @@
                                                 and U_PASSWORD = #{password}
                                                 and U_CONTACT = #{phone}
                                                 and U_MAIL = #{userMail}
+                                                and U_WX = #{userWX}
     </insert>
 
     <update id="renewInfo">
@@ -78,12 +80,12 @@
      set a2.GENDER_INFO = (case when a1.U_GENDER is not null then 1 else 0 end)
      ,a2.NAME_INFO = (case when a1.U_NAME is not null then 1 else 0 end)
      ,a2.PASSWORD_INFO = (case when a1.U_PASSWORD is not null then 1 else 0 end)
-     ,a2.STUDENTID_INFO = (case when a1.U_STUDENTID is not null then 1 else 0 end)
      ,a2.GRADE_INFO = (case when a1.U_GRADE is not null then 1 else 0 end)
      ,a2.GRADUATE_YEAR_INFO = (case when a1.U_GRADUATE_YEAR is not null then 1 else 0 end)
      ,a2.HEAD_TEACHER_INFO = (case when a1.U_HEAD_TEACHER is not null then 1 else 0 end)
      ,a2.MAJOR_INFO = (case when a1.U_MAJOR is not null then 1 else 0 end)
      ,a2.CONTACT_INFO = (case when a1.U_CONTACT is not null then 1 else 0 end)
+     ,a2.WX_INFO = (case when a1.U_WX is not null then 1 else 0 end)
      ,a2.MAIL_INFO = (case when a1.U_MAIL is not null then 1 else 0 end)
      ,a2.EDUCATION_INFO = (case when a1.U_EDUCATION is not null then 1 else 0 end)
      ,a2.ADDRESS_INFO = (case when a1.U_ADDRESS is not null then 1 else 0 end)
@@ -97,22 +99,23 @@
     </update>
 
     <update id="countIntegrity">
- UPDATE schooluser_integrity set U_INFO_INTEGRITY = 0.1*(NAME_INFO
-                                                         +PASSWORD_INFO
-                                                         +CONTACT_INFO
-                                                         +MAIL_INFO)
-													+0.05*(GRADE_INFO
-														 +MAJOR_INFO
-                                                         +BIRTHPLACE_INFO
-                                                         +EDUCATION_INFO
-                                                         +GRADUATE_YEAR_INFO
-                                                         +HEAD_TEACHER_INFO
-                                                         +ADDRESS_INFO
-                                                         +COMPANY_INFO
-                                                         +POSITION_INFO
-                                                         +IMG_INFO
-                                                         +GENDER_INFO
-                                                         +STUDENTID_INFO)
+ UPDATE schooluser_integrity
+ set U_INFO_INTEGRITY =
+ 0.0135*IMG_INFO
+ +0.0484*NAME_INFO
+ +0.0392*GENDER_INFO
+ +0.0187*BIRTHPLACE_INFO
+ +0.2188*CONTACT_INFO
+ +0.1011*MAIL_INFO
+ +0.0992*WX_INFO
+ +0.0456*EDUCATION_INFO
+ +0.0722*GRADE_INFO
+ +0.1408*MAJOR_INFO
+ +0.0208*GRADUATE_YEAR_INFO
+ +0.0179*HEAD_TEACHER_INFO
+ +0.0225*ADDRESS_INFO
+ +0.1021*COMPANY_INFO
+ +0.0392*POSITION_INFO
     </update>
 
     <select id = "findIntegrityCount"  resultMap="IntegrityCount">

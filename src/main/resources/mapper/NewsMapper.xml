@@ -85,6 +85,17 @@
         ORDER BY ART_TIME DESC
     </select>
 
+    <!--查找所有捐赠新闻-->
+    <select id = "findDonationNews" resultMap="newsRM">
+		SELECT *
+        FROM
+        news
+        WHERE ART_TYPE = 2
+              AND MANAGER_ID = 3
+              AND (ART_LABEL1 = '捐赠' or ART_LABEL2 = '捐赠' or ART_LABEL3 = '捐赠' or ART_LABEL4 = '捐赠')
+        ORDER BY ART_TIME DESC
+    </select>
+
     <select id = "selectAnnouncement" resultMap="newsRM">
         SELECT *
         FROM
@@ -174,13 +185,11 @@
        INSERT INTO comment
        (
         COMMENT_NAME
-       ,COMMENT_MAIL
        ,COMMENT_CONTENT
        ,ART_ID)
        VALUES
         (
         #{commentName}
-       ,#{commentMail}
        ,#{commentContent}
        ,#{artId}
        )
