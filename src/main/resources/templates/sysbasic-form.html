@@ -10,7 +10,6 @@
     <meta name="robots" content="all,follow"/>
 
     <title>新闻编辑</title>
-    <link rel="shortcut icon" href="static/static/system/img/favicon.ico"/>
     
     <!-- global stylesheets -->
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet"/>
@@ -49,8 +48,6 @@
             </div>
             <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
                 <!-- Expand-->
-                <li class="nav-item d-flex align-items-center full_scr_exp"><a class="nav-link" href="#"><img src="img/expand.png" onclick="toggleFullScreen(document.body)" class="img-fluid" alt=""/></a></li>
-                <!-- Search-->
                 <li class="nav-item d-flex align-items-center"><a id="search" class="nav-link" href="#"><i class="icon-search"></i></a></li>
                 <li class="nav-item dropdown"><a id="profile" class="nav-link logout" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="static/static/img/touxaing.jpg" alt="..." class="img-fluid rounded-circle" style="height: 30px; width: 30px;"/></a>
                     <ul aria-labelledby="profile" class="dropdown-menu profile">
@@ -87,7 +84,7 @@
                         </li>
                     </ul>
                 </li>
-
+                <!--<li class="nav-item d-flex align-items-center"><a id="menu-toggle-right" class="nav-link" href="#"><i class="fa fa-bars"></i></a></li>-->
             </ul>
         </div>
     </nav>
@@ -99,29 +96,24 @@
     <div class="page-content d-flex align-items-stretch">
 
         <!--***** SIDE NAVBAR *****-->
+        <!--***** SIDE NAVBAR *****-->
         <nav class="side-navbar">
             <div class="sidebar-header d-flex align-items-center">
                 <div class="avatar"><img src="static/static/img/touxaing.jpg" alt="..." class="img-fluid rounded-circle"/></div>
                 <div class="title">
-                    <h1 class="h4">无用户</h1>
+                    <h1 class="h4" id = "username_navigator">无用户</h1>
                 </div>
             </div>
             <hr/>
             <!-- Sidebar Navidation Menus-->
             <ul class="list-unstyled">
-                <li class="active"> <a href="/sysindex"><i></i>首页</a></li>
-                <li> <a href="syschart.html"> <i></i>统计图表</a></li>
-                <li><a href="sysbasic-form.html"> <i></i>新闻编辑</a>
-                </li>
-                <li><a href="#pages" aria-expanded="false" data-toggle="collapse"> <i></i>登陆信息</a>
-                    <ul id="pages" class="collapse list-unstyled">
-                        <li><a href="syslogin.html">登陆</a></li>
-                    </ul>
-                </li>
+                <li> <a href="/sysindex"><i></i>数据报表</a></li>
+                <li  class="active"><a href="sysbasic-form.html"> <i></i>新闻编辑</a></li>
                 <li> <a href="systables.html"> <i></i>校友信息</a></li>
+                <li> <a href="sysStroke.html"> <i></i>校友行程</a></li>
             </ul>
         </nav>
-
+        <div>
         <div class="content-inner form-cont">
             <div class="row">
                 <div class="col-md-12">
@@ -137,12 +129,13 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">新闻标题</label>
-                                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="请填写新闻标题" name = "new_title"/>
+                                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="请填写新闻标题" name = "new_title" style="display:block"/>
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputPassword1">标签选择</label>
                                         <br/>
-                                        <div class="cb-container">
+                                        <div id = "type">
+                                        <div class="cb-container" >
                                             <input type="checkbox" id="checkbox1" name = "stage" value="教学"/>
                                             <label for="checkbox1" class="cb-label"></label>
                                             <p style = "color:black;margin-left:7px;margin-top:8px">教学</p>
@@ -184,6 +177,7 @@
                                             <label for="checkbox10" class="cb-label"></label>
                                             <p style = "color:black;margin-left:7px;margin-top:8px">活动</p>
                                         </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -199,12 +193,12 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleTextarea" >新闻内容</label>
-                                        <textarea class="form-control" id="exampleTextarea" rows="3" name = "new_content"></textarea>
+                                        <textarea class="form-control" id="exampleTextarea" rows="10" name = "new_content"></textarea>
                                     </div>
                                     <div class="form-group">
                                             <label>图片上传</label>
-                                            <img id="preview" width="600px" height="400px"/>
-                                            <input type="file"  name="file" id = "file" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg" onchange="imgPreview(this)" />
+                                            <img id="preview" width="600px" height="400px" name="preview"/>
+                                            <input type="file"  name="file" id = "file" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg" onchange="imgPreview(this)" style="display:block"/>
                                         <iframe id="id_iframe" name="nm_iframe" style="display: none"></iframe>
                                     </div>
                                  </div>
@@ -218,6 +212,66 @@
                 </div>
             </div>
         </div>
+
+        <div class="content-inner form-cont">
+            <div class="row">
+                <div class="col-md-12">
+                    <!--***** BASIC FORM *****-->
+                    <div class="card form" id="form2">
+                        <div class="card-header" style="color: black">
+                            <h3>服务编辑</h3>
+                        </div>
+                        <br/>
+                        <form action="../administrator/fileUpload" method="POST" enctype="multipart/form-data" target="nm_iframe" id = "form_info">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group" id = "infoType">
+                                        <label for="exampleInputEmail1">类型</label><br/>
+                                        <input type="radio" value="纪念品" name="serviceType" style = "display: inline-block"/>纪念品
+                                        <input type="radio" value="企业" name="serviceType" style = "display: inline-block"/>企业
+                                        <input type="radio" value="小吃" name="serviceType" style = "display: inline-block"/>小吃
+                                        <input type="radio" value="景点" name="serviceType" style = "display: inline-block"/>景点
+                                        <input type="radio" value="住宿" name="serviceType" style = "display: inline-block"/>住宿
+                                    </div>
+                                    <div class="form-group disNone" id = "souvenirTime">
+                                        <label for="exampleInputEmail1">纪念品时间</label>
+                                        <input type="text" class="form-control" id="infoTime" aria-describedby="emailHelp" placeholder="请填写纪念品发行时间" name = "serviceTime" style="display: block"/>
+                                    </div>
+                                    <div class="form-group disNone" id = "companyHref">
+                                        <label for="exampleInputEmail1">公司官网</label>
+                                        <input type="text" class="form-control" id="infoHref" aria-describedby="emailHelp" placeholder="请填写公司官网" name = "serviceHref" style="display: block"/>
+                                    </div>
+                                    <div class="form-group disNone" id = "entertainmentInfo">
+                                        <label for="exampleInputEmail1">食宿地址及联系方式</label>
+                                        <input type="text" class="form-control" id="infoAddress" aria-describedby="emailHelp" placeholder="请填写地址" name = "serviceAddress" style="display: block"/>
+                                        <input type="text" class="form-control" id="infoContact" aria-describedby="emailHelp" placeholder="请填写联系方式" name = "serviceContact" style="display: block"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">名称</label>
+                                        <input type="text" class="form-control" id="infoTitle" aria-describedby="emailHelp" placeholder="请填写名称" name = "serviceTitle" style="display: block"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleTextarea" >介绍</label>
+                                        <textarea class="form-control" id="infoIntroduction" rows="10" name = "serviceIntroduction"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>图片上传</label>
+                                        <img id="preview2" width="600px" height="400px"/>
+                                        <input type="file"  name="file" id = "file2" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg" onchange="imgPreview2(this)" style="display: block"/>
+                                        <iframe id="id_iframe2" name="nm_iframe" style="display: none"></iframe>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="submit" class="btn btn-general btn-blue mr-2" value="提交" id = "infoEdit"/>
+                            <button type="reset" class="btn btn-general btn-white">取消</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
     </div>
 
     <!--Global Javascript -->
@@ -229,35 +283,12 @@
     <script src="static/static/system/js/jquery.validate.min.js"></script>
     <script src="static/static/system/js/chart.min.js"></script>
     <script src="static/static/system/js/front.js"></script>
-    <script src="static/static/system/js/pictureLoad.js"></script>
     <script src="static/static/system/js/basicFormSeralize.js"></script>
+
+<!--登录状态检查-->
+<script src="static/static/js/system/userDetect.js"></script>
     <!--Core Javascript -->
     <script>
-        new Chart(document.getElementById("myChart-nav").getContext('2d'), {
-          type: 'doughnut',
-          data: {
-            labels: ["M", "T", "W", "T", "F", "S", "S"],
-            datasets: [{
-              backgroundColor: [
-                "#2ecc71",
-                "#3498db",
-                "#95a5a6",
-                "#9b59b6",
-                "#f1c40f",
-                "#e74c3c",
-                "#34495e"
-              ],
-              data: [12, 19, 3, 17, 28, 24, 7]
-            }]
-          },
-          options: {
-              legend: { display: false },
-              title: {
-                display: true,
-                text: ''
-               } 
-            }
-        });
 
         function imgPreview(fileDom) {
             //判断是否支持FileReader
@@ -278,6 +309,31 @@
             reader.onload = function(e) {
                 //获取图片dom
                 var img = document.getElementById("preview");
+                //图片路径设置为读取的图片
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function imgPreview2(fileDom) {
+            //判断是否支持FileReader
+            if(window.FileReader) {
+                var reader = new FileReader();
+            } else {
+                alert("您的设备不支持图片预览功能，如需该功能请升级您的设备！");
+            }
+            //获取文件
+            var file = fileDom.files[0];
+            var imageType = /^image\//;
+            //是否是图片
+            if(!imageType.test(file.type)) {
+                alert("请选择图片！");
+                return;
+            }
+            //读取完成
+            reader.onload = function(e) {
+                //获取图片dom
+                var img = document.getElementById("preview2");
                 //图片路径设置为读取的图片
                 img.src = e.target.result;
             };

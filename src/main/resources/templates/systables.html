@@ -9,9 +9,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta name="robots" content="all,follow"/>
 
-    <title></title>
-    <link rel="shortcut icon" href="static/static/system/img/favicon.ico"/>
-    
+    <title>校友信息</title>
+
+
+
     <!-- global stylesheets -->
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet"/>
     <link rel="stylesheet" href="static/static/system/css/bootstrap.min.css"/>
@@ -25,72 +26,51 @@
     <link href="static/static/css/style_1.css" rel="stylesheet" type="text/css"/>
 
     <link rel="stylesheet" type="text/css" href="static/static/system/css/selectFilter.css" />
+
+
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdn.bootcss.com/datatables/1.10.16/js/jquery.dataTables.js"></script>
+    <style>
+        .content {
+            margin: 50px auto;
+            border: 1px solid #ccc;
+        }
+
+        .operation {
+            margin: 10px;
+        }
+
+        .operation>button {
+            margin: 10px;
+        }
+
+        #books_length {
+            float: left;
+            margin-left: 20px;
+        }
+
+        #books_filter {
+            float: right;
+            margin-right: 20px;
+        }
+
+        #books {
+            margin: 5px;
+        }
+
+        .center-block {
+            display: block;
+            margin: auto;
+        }
+    </style>
 </head>
 
 <body> 
-
-<!--====================================================
-                         MAIN NAVBAR
-======================================================-->
-<header class="header" style="background:rgb(139, 0, 0)">
-    <nav class="navbar navbar-expand-lg ">
-        <div class="search-box">
-            <button class="dismiss"><i class="icon-close"></i></button>
-            <form id="searchForm" action="#" role="search">
-                <input type="search" placeholder="Search Now" class="form-control"/>
-            </form>
-        </div>
-        <div class="container-fluid ">
-            <div class="navbar-holder d-flex align-items-center justify-content-between">
-                <div class="navbar-header">
-                    <a href="index.html" class="navbar-brand">
-                        <div class="brand-text brand-big hidden-lg-down"><img src="static/static/img/logo.png" alt="Logo" class="img-fluid"/></div></a>
-                </div>
-            </div>
-            <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
-                <!-- Expand-->
-                <li class="nav-item d-flex align-items-center full_scr_exp"><a class="nav-link" href="#"><img src="img/expand.png" onclick="toggleFullScreen(document.body)" class="img-fluid" alt=""/></a></li>
-                <!-- Search-->
-                <li class="nav-item d-flex align-items-center"><a id="search" class="nav-link" href="#"><i class="icon-search"></i></a></li>
-                <li class="nav-item dropdown"><a id="profile" class="nav-link logout" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="static/static/img/touxaing.jpg" alt="..." class="img-fluid rounded-circle" style="height: 30px; width: 30px;"/></a>
-                    <ul aria-labelledby="profile" class="dropdown-menu profile">
-                        <li>
-                            <a rel="nofollow" href="#" class="dropdown-item d-flex">
-                                <div class="msg-profile"> <img src="static/static/img/touxaing.jpg" alt="..." class="img-fluid rounded-circle"/></div>
-                                <div class="msg-body">
-                                    <h3 class="h5"  id = "username_right">无用户</h3><span id ="userIdentity_right">暂无</span>
-                                </div>
-                            </a>
-                            <hr/>
-                        </li>
-                        <li>
-                            <a rel="nofollow" href="profile.html" class="dropdown-item">
-                                <div class="notification">
-                                    <div class="notification-content"><i class="fa fa-user "></i>我的资料</div>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a rel="nofollow" href="profile.html" class="dropdown-item">
-                                <div class="notification">
-                                    <div class="notification-content"><i class="fa fa-cog"></i>设置</div>
-                                </div>
-                            </a>
-                            <hr/>
-                        </li>
-                        <li>
-                            <a rel="nofollow" href="profile.html" class="dropdown-item">
-                                <div class="notification">
-                                    <div class="notification-content"><i class="fa fa-power-off"></i>退出</div>
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </nav>
-</header>
 
 <!--====================================================
                         PAGE CONTENT
@@ -102,28 +82,21 @@
             <div class="sidebar-header d-flex align-items-center">
                 <div class="avatar"><img src="static/static/img/touxaing.jpg" alt="..." class="img-fluid rounded-circle"/></div>
                 <div class="title">
-                    <h1 class="h4">无用户</h1>
+                    <h1 class="h4" id = "username_navigator">无用户</h1>
                 </div>
             </div>
             <hr/>
             <!-- Sidebar Navidation Menus-->
             <ul class="list-unstyled">
-                <li class="active"> <a href="/sysindex"><i></i>首页</a></li>
-                <li> <a href="syschart.html"> <i></i>统计图表</a></li>
-                <li><a href="sysbasic-form.html"> <i></i>新闻编辑</a>
-                </li>
-                <li><a href="#pages" aria-expanded="false" data-toggle="collapse"> <i></i>登陆信息</a>
-                    <ul id="pages" class="collapse list-unstyled">
-                        <li><a href="syslogin.html">登陆</a></li>
-                    </ul>
-                </li>
-                <li> <a href="systables.html"> <i></i>校友信息</a></li>
+                <li> <a href="/sysindex"><i></i>数据报表</a></li>
+                <li><a href="sysbasic-form.html"> <i></i>新闻编辑</a></li>
+                <li  class="active"> <a href="systables.html"> <i></i>校友信息</a></li>
+                <li> <a href="sysStroke.html"> <i></i>校友行程</a></li>
             </ul>
         </nav>
 
         <div class="content-inner chart-cont">
             <div class="item" >
-
                 <!-- 这里开始 -->
                 <div style = "float:left ">年级:</div>
                 <div class="filter-box" id = "fi1" style = "float:left;margin-left:15px">
@@ -187,288 +160,726 @@
                 <button type="button" class="btn green" id="excell" onclick="bt()" style="margin-left: 30px;cursor: pointer">下载</button>
 
             </div>
-            <!--***** CONTENT *****-->     
-            <div class="row">
-                <table class="table table-hover">
-                  <thead>
-                    <tr class="bg-info text-white">
-                      <th>序列号</th>
-                      <th>姓名</th>
-                      <th>年级</th>
-                      <th>班级</th>
-                      <th>性别</th>
-                      <th>籍贯</th>
-                      <th>学历</th>
-                      <th>联系方式</th>
-                      <th>工作城市</th>
-                      <th>工作公司</th>
-                      <th>工作职位</th>
-                      <td class="s_top" colspan="2">操作</td>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <th scope="row" id = "num_1">1</th>
-                      <td id = "name_1"></td>
-                      <td id = "grade_1"></td>
-                      <td id = "room_1"></td>
-                      <td id = "gender_1"></td>
-                      <td id = "birthplace_1"></td>
-                      <td id = "education_1"></td>
-                      <td id = "Contact_1"></td>
-                      <td id = "userAddress_1"></td>
-                      <td id = "company_1"></td>
-                      <td id = "position_1"></td>
-                        <td class="s4"><a href="#" onclick='Del(this.parentNode,this.parentNode.parentNode.rowIndex)'>删除</a></td>
-                        <td class="s5"><a href="#" onclick='edit(this)'>修改</a></td>
-                    </tr>
-                    <tr class="table-warning">
-                      <th scope="row" id = "num_2">2</th>
-                      <td id = "name_2"></td>
-                      <td id = "grade_2"></td>
-                      <td id = "room_2"></td>
-                        <td id = "gender_2"></td>
-                        <td id = "birthplace_2"></td>
-                        <td id = "education_2"></td>
-                        <td id = "Contact_2"></td>
-                        <td id = "userAddress_2"></td>
-                        <td id = "company_2"></td>
-                        <td id = "position_2"></td>
-                        <td class="s4"><a href="#" onclick='Del(this.parentNode,this.parentNode.parentNode.rowIndex)'>删除</a></td>
-                        <td class="s5"><a href="#" onclick='edit(this.parentNode.parentNode)'>修改</a></td>
-                    </tr>
-                    <tr>
-                      <th scope="row" id = "num_3">3</th>
-                      <td id = "name_3"></td>
-                      <td id = "grade_3"></td>
-                      <td id = "room_3"></td>
-                        <td id = "gender_3"></td>
-                        <td id = "birthplace_3"></td>
-                        <td id = "education_3"></td>
-                        <td id = "Contact_3"></td>
-                        <td id = "userAddress_3"></td>
-                        <td id = "company_3"></td>
-                        <td id = "position_3"></td>
-                        <td class="s4"><a href="#" onclick='Del(this.parentNode,this.parentNode.parentNode.rowIndex)'>删除</a></td>
-                        <td class="s5"><a href="#" onclick='edit(this.parentNode.parentNode)'>修改</a></td>
-                    </tr>
-                    <tr class="table-success">
-                      <th scope="row" id = "num_4">4</th>
-                      <td id = "name_4"></td>
-                      <td id = "grade_4"></td>
-                      <td id = "room_4"></td>
-                        <td id = "gender_4"></td>
-                        <td id = "birthplace_4"></td>
-                        <td id = "education_4"></td>
-                        <td id = "Contact_4"></td>
-                        <td id = "userAddress_4"></td>
-                        <td id = "company_4"></td>
-                        <td id = "position_4"></td>
-                        <td class="s4"><a href="#" onclick='Del(this.parentNode,this.parentNode.parentNode.rowIndex)'>删除</a></td>
-                        <td class="s5"><a href="#" onclick='edit(this.parentNode.parentNode)'>修改</a></td>
-                    </tr>
-                    <tr>
-                      <th scope="row" id = "num_5">5</th>
-                      <td id = "name_5"></td>
-                      <td id = "grade_5"></td>
-                      <td id = "room_5"></td>
-                        <td id = "gender_5"></td>
-                        <td id = "birthplace_5"></td>
-                        <td id = "education_5"></td>
-                        <td id = "Contact_5"></td>
-                        <td id = "userAddress_5"></td>
-                        <td id = "company_5"></td>
-                        <td id = "position_5"></td>
-                        <td class="s4"><a href="#" onclick='Del(this.parentNode,this.parentNode.parentNode.rowIndex)'>删除</a></td>
-                        <td class="s5"><a href="#" onclick='edit(this.parentNode.parentNode)'>修改</a></td>
-                    </tr>
-                    <tr class="table-danger">
-                      <th scope="row" id = "num_6">6</th>
-                      <td id = "name_6"></td>
-                      <td id = "grade_6"></td>
-                      <td id = "room_6"></td>
-                        <td id = "gender_6"></td>
-                        <td id = "birthplace_6"></td>
-                        <td id = "education_6"></td>
-                        <td id = "Contact_6"></td>
-                        <td id = "userAddress_6"></td>
-                        <td id = "company_6"></td>
-                        <td id = "position_6"></td>
-                        <td class="s4"><a href="#" onclick='Del(this.parentNode,this.parentNode.parentNode.rowIndex)'>删除</a></td>
-                        <td class="s5"><a href="#" onclick='edit(this.parentNode.parentNode)'>修改</a></td>
-                    </tr>
-                    <tr>
-                      <th scope="row" id = "num_7">7</th>
-                      <td id = "name_7"></td>
-                      <td id = "grade_7"></td>
-                      <td id = "room_7"></td>
-                        <td id = "gender_7"></td>
-                        <td id = "birthplace_7"></td>
-                        <td id = "education_7"></td>
-                        <td id = "Contact_7"></td>
-                        <td id = "userAddress_7"></td>
-                        <td id = "company_7"></td>
-                        <td id = "position_7"></td>
-                        <td class="s4"><a href="#" onclick='Del(this.parentNode,this.parentNode.parentNode.rowIndex)'>删除</a></td>
-                        <td class="s5"><a href="#" onclick='edit(this.parentNode.parentNode)'>修改</a></td>
-                    </tr>
-                    <tr class="table-info">
-                      <th scope="row" id = "num_8">8</th>
-                      <td id = "name_8"></td>
-                      <td id = "grade_8"></td>
-                      <td id = "room_8"></td>
-                        <td id = "gender_8"></td>
-                        <td id = "birthplace_8"></td>
-                        <td id = "education_8"></td>
-                        <td id = "Contact_8"></td>
-                        <td id = "userAddress_8"></td>
-                        <td id = "company_8"></td>
-                        <td id = "position_8"></td>
-                        <td class="s4"><a href="#" onclick='Del(this.parentNode,this.parentNode.parentNode.rowIndex)'>删除</a></td>
-                        <td class="s5"><a href="#" onclick='edit(this.parentNode.parentNode)'>修改</a></td>
-                    </tr>
-                    <tr>
-                      <th scope="row" id = "num_9">9</th>
-                      <td id = "name_9"></td>
-                      <td id = "grade_9"></td>
-                      <td id = "room_9"></td>
-                        <td id = "gender_9"></td>
-                        <td id = "birthplace_9"></td>
-                        <td id = "education_9"></td>
-                        <td id = "Contact_9"></td>
-                        <td id = "userAddress_9"></td>
-                        <td id = "company_9"></td>
-                        <td id = "position_9"></td>
-                        <td class="s4"><a href="#" onclick='Del(this.parentNode,this.parentNode.parentNode.rowIndex)'>删除</a></td>
-                        <td class="s5"><a href="#" onclick='edit(this.parentNode.parentNode)'>修改</a></td>
-                    </tr>
-                    <tr class="table-warning">
-                      <th scope="row" id = "num_10">10</th>
-                      <td id = "name_10"></td>
-                      <td id = "grade_10"></td>
-                      <td id = "room_10"></td>
-                        <td id = "gender_10"></td>
-                        <td id = "birthplace_10"></td>
-                        <td id = "education_10"></td>
-                        <td id = "Contact_10"></td>
-                        <td id = "userAddress_10"></td>
-                        <td id = "company_10"></td>
-                        <td id = "position_10"></td>
-                        <td class="s4"><a href="#" onclick='Del(this.parentNode,this.parentNode.parentNode.rowIndex)'>删除</a></td>
-                        <td class="s5"><a href="#" onclick='edit(this.parentNode.parentNode)'>修改</a></td>
-                    </tr>
-                    <tr>
-                      <th scope="row" id = "num_11">11</th>
-                      <td id = "name_11"></td>
-                      <td id = "grade_11"></td>
-                      <td id = "room_11"></td>
-                        <td id = "gender_11"></td>
-                        <td id = "birthplace_11"></td>
-                        <td id = "education_11"></td>
-                        <td id = "Contact_11"></td>
-                        <td id = "userAddress_11"></td>
-                        <td id = "company_11"></td>
-                        <td id = "position_11"></td>
-                        <td class="s4"><a href="#" onclick='Del(this.parentNode,this.parentNode.parentNode.rowIndex)'>删除</a></td>
-                        <td class="s5"><a href="#" onclick='edit(this.parentNode.parentNode)'>修改</a></td>
-                    </tr>
-                    <tr class="table-success">
-                      <th scope="row" id = "num_12">12</th>
-                      <td id = "name_12"></td>
-                      <td id = "grade_12"></td>
-                      <td id = "room_12"></td>
-                        <td id = "gender_12"></td>
-                        <td id = "birthplace_12"></td>
-                        <td id = "education_12"></td>
-                        <td id = "Contact_12"></td>
-                        <td id = "userAddress_12"></td>
-                        <td id = "company_12"></td>
-                        <td id = "position_12"></td>
-                        <td class="s4"><a href="#" onclick='Del(this.parentNode,this.parentNode.parentNode.rowIndex)'>删除</a></td>
-                        <td class="s5"><a href="#" onclick='edit(this.parentNode.parentNode)'>修改</a></td>
-                    </tr>
-                  </tbody>
-                </table>
-            </div>
-            <div class="row mx-0">
-                <div class="col-12 text-center pb-4 pt-4">
-                    <a id="last_page"  href="#" class="btn_mange_pagging" onclick="jumpPage(this)"><i class="fa fa-long-arrow-left"></i>&nbsp;&nbsp; 上一页</a>
-                    <a id="page1" href="#1" class="btn_pagging" onclick="changePage(this)">1</a>
-                    <a id="page2" href="#2" class="btn_pagging" onclick="changePage(this)">2</a>
-                    <a id="page3" href="#3" class="btn_pagging" onclick="changePage(this)">3</a>
-                    <a id="page4" href="#4" class="btn_pagging" onclick="changePage(this)">4</a>
-                    <a id="page5" href="#5" class="btn_pagging" onclick="changePage(this)">5</a>
-                    <a id="page6" href="#6" class="btn_pagging" onclick="changePage(this)">6</a>
-                    <a id="page7" href="#7" class="btn_pagging" onclick="changePage(this)">7</a>
-                    <a id="page8" href="#8" class="btn_pagging" onclick="changePage(this)">8</a>
-                    <a id="page9" href="#9" class="btn_pagging" onclick="changePage(this)">9</a>
-                    <a id="pagemore"  href="#" class="btn_pagging" onclick="changePage(this)">...</a>
-                    <a id="next_page" href="#" class="btn_mange_pagging" onclick="jumpPage(this)">下一页 <i class="fa fa-long-arrow-right"></i>&nbsp;&nbsp; </a>
+            <!--***** CONTENT *****-->
+            <section class="content">
+                <div class="btn-group operation">
+                    <button id="btn_add" type="button" class="btn bg-primary">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+                    </button>
+                    <button id="btn_edit" type="button" class="btn bg-info">
+                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
+                    </button>
+                    <button id="btn_delete" type="button" class="btn btn-success">
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
+                    </button>
                 </div>
-            </div>
+                <div class="modal fade" id="addBook" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">添加校友信息</h4>
+                            </div>
+                            <div id="addBookModal" class="modal-body">
+                                <div class="form-horizontal">
+                                    <div class="form-group">
+                                        <label for="addUserName" class="col-sm-2 control-label">姓名:*</label>
+                                        <div class="col-sm-10">
+                                            <input class="form-control" id="addUserName" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="addUserGender" class="col-sm-2 control-label">性别:*</label>
+                                        <div class="col-sm-10">
+                                            <input class="form-control" id="addUserGender" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="addUserEducation" class="col-sm-2 control-label">学历:*</label>
+                                        <div class="col-sm-10">
+                                            <input class="form-control" id="addUserEducation" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="addUserBirthPlace" class="col-sm-2 control-label">籍贯:*</label>
+                                        <div class="col-sm-10">
+                                            <input class="form-control" id="addUserBirthPlace" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="addUserGrade" class="col-sm-2 control-label">年级:*</label>
+                                        <div class="col-sm-10">
+                                            <input class="form-control" id="addUserGrade" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="addUserMajor" class="col-sm-2 control-label">专业:*</label>
+                                        <div class="col-sm-10">
+                                            <input class="form-control" id="addUserMajor" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="addUserGraduateYear" class="col-sm-2 control-label">毕业年份:*</label>
+                                        <div class="col-sm-10">
+                                            <input class="form-control" id="addUserGraduateYear" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="addHeadTeacher" class="col-sm-2 control-label">班主任:*</label>
+                                        <div class="col-sm-10">
+                                            <input class="form-control" id="addHeadTeacher" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="addUserMail" class="col-sm-2 control-label">邮箱:*</label>
+                                        <div class="col-sm-10">
+                                            <input class="form-control" id="addUserMail" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="addUserCompany" class="col-sm-2 control-label">工作单位:*</label>
+                                        <div class="col-sm-10">
+                                            <input class="form-control" id="addUserCompany" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="addUserPosition" class="col-sm-2 control-label">工作职位:*</label>
+                                        <div class="col-sm-10">
+                                            <input class="form-control" id="addUserPosition" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="addUserAddress" class="col-sm-2 control-label">工作地点:*</label>
+                                        <div class="col-sm-10">
+                                            <input class="form-control" id="addUserAddress" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="addUserContact" class="col-sm-2 control-label">联系方式:*</label>
+                                        <div class="col-sm-10">
+                                            <input class="form-control" id="addUserContact" type="text">
+                                        </div>
+                                    </div>
 
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <div class="center-block">
+                                    <button id="cancelAdd" type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                    <button id="addBooksInfo" type="button" class="btn btn-success" data-dismiss="modal">保存</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="editBookInfo" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">修改校友信息</h4>
+                            </div>
+                            <div id="editBookModal" class="modal-body">
+                                <div class="form-horizontal">
+                                    <div class="form-group">
+                                        <label for="editUserName" class="col-sm-2 control-label">姓名:*</label>
+                                        <div class="col-sm-10">
+                                            <input class="form-control" id="editUserName" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="editUserGender" class="col-sm-2 control-label">性别:*</label>
+                                        <div class="col-sm-10">
+                                            <input class="form-control" id="editUserGender" type="text" placeholder="男/女">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="editUserEducation" class="col-sm-2 control-label">学历:*</label>
+                                        <div class="col-sm-10">
+                                            <input class="form-control" id="editUserEducation" type="text" placeholder="本科/硕士/博士/院士">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="editUserBirthPlace" class="col-sm-2 control-label">籍贯:*</label>
+                                        <div class="col-sm-10">
+                                            <input class="form-control" id="editUserBirthPlace" type="text" placeholder="湖南省湘潭市">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="editUserGrade" class="col-sm-2 control-label">年级:*</label>
+                                        <div class="col-sm-10">
+                                            <input class="form-control" id="editUserGrade" type="text" placeholder="xxxx级">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="editUserMajor" class="col-sm-2 control-label">专业:*</label>
+                                        <div class="col-sm-10">
+                                            <input class="form-control" id="editUserMajor" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="editUserGraduateYear" class="col-sm-2 control-label">毕业年份:*</label>
+                                        <div class="col-sm-10">
+                                            <input class="form-control" id="editUserGraduateYear" type="text" placeholder="xxxx年">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="editHeadTeacher" class="col-sm-2 control-label">班主任:*</label>
+                                        <div class="col-sm-10">
+                                            <input class="form-control" id="editHeadTeacher" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="editUserMail" class="col-sm-2 control-label">邮箱:*</label>
+                                        <div class="col-sm-10">
+                                            <input class="form-control" id="editUserMail" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="editUserCompany" class="col-sm-2 control-label">工作单位:*</label>
+                                        <div class="col-sm-10">
+                                            <input class="form-control" id="editUserCompany" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="editUserPosition" class="col-sm-2 control-label">工作职位:*</label>
+                                        <div class="col-sm-10">
+                                            <input class="form-control" id="editUserPosition" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="editUserAddress" class="col-sm-2 control-label">工作地点:*</label>
+                                        <div class="col-sm-10">
+                                            <input class="form-control" id="editUserAddress" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="editUserContact" class="col-sm-2 control-label">联系方式:*</label>
+                                        <div class="col-sm-10">
+                                            <input class="form-control" id="editUserContact" type="text">
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <div class="center-block">
+                                    <button id="cancelEdit" type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                    <button id="saveEdit" type="button" class="btn btn-success" data-dismiss="modal">保存</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="deleteBook" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">确认要删除吗？</h4>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                <button id="delete" type="button" class="btn btn-danger" data-dismiss="modal">删除</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <table id="books" class="table table-striped table-bordered row-border hover order-column" cellspacing="0" width="100%">
+                    <thead>
+                    <tr>
+                        <th>序号</th>
+                        <th>姓名</th>
+                        <th>性别</th>
+                        <th>学历</th>
+                        <th>籍贯</th>
+                        <th>年级</th>
+                        <th>专业</th>
+                        <th>毕业年份</th>
+                        <th>班主任</th>
+                        <th>邮箱</th>
+                        <th>工作单位</th>
+                        <th>工作职位</th>
+                        <th>工作地点</th>
+                        <th>联系方式</th>
+                    </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </section>
         </div>
+
     </div> 
 
-    <!--Global Javascript -->
-    <script src="static/static/system/js/jquery.min.js"></script>
-    <script src="static/static/system/js/popper/popper.min.js"></script>
-    <script src="static/static/system/js/tether.min.js"></script>
-    <script src="static/static/system/js/bootstrap.min.js"></script>
-    <script src="static/static/system/js/jquery.cookie.js"></script>
-    <script src="static/static/system/js/jquery.validate.min.js"></script>
-    <script src="static/static/system/js/chart.min.js"></script>
-    <script src="static/static/system/js/front.js"></script>
-    <script src = "static/static/system/js/serialize.js"></script>
-    <script type="text/javascript" src="static/static/system/js/selectFilter.js"></script>
     
     <!--Core Javascript -->
-    <script>
-        new Chart(document.getElementById("myChart-nav").getContext('2d'), {
-          type: 'doughnut',
-          data: {
-            labels: ["M", "T", "W", "T", "F", "S", "S"],
-            datasets: [{
-              backgroundColor: [
-                "#2ecc71",
-                "#3498db",
-                "#95a5a6",
-                "#9b59b6",
-                "#f1c40f",
-                "#e74c3c",
-                "#34495e"
-              ],
-              data: [12, 19, 3, 17, 28, 24, 7]
-            }]
-          },
-          options: {
-              legend: { display: false },
-              title: {
-                display: true,
-                text: ''
-               } 
+
+
+
+<!--&lt;!&ndash;Global Javascript &ndash;&gt;-->
+<!--<script src="static/static/system/js/popper/popper.min.js"></script>-->
+<!--<script src="static/static/system/js/tether.min.js"></script>-->
+<!--<script src="static/static/system/js/bootstrap.min.js"></script>-->
+<!--<script src="static/static/system/js/jquery.cookie.js"></script>-->
+<!--<script src="static/static/system/js/jquery.validate.min.js"></script>-->
+<!--<script src="static/static/system/js/chart.min.js"></script>-->
+<!--<script src="static/static/system/js/front.js"></script>-->
+<script src = "static/static/system/js/serialize.js"></script>
+<script type="text/javascript" src="static/static/system/js/selectFilter.js"></script>
+
+<!--登录状态检查-->
+<script src="static/static/js/system/userDetect.js"></script>
+
+<script>
+
+    var obj = window.document.location;
+    var BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));
+    var result = new Array();  //先声明一维
+    $.ajax({
+        url:BASE_PATH + "/user/selectAllUser",
+        type: "post",
+        dateType: "json",
+        async: false,
+        data: {},
+        success: function f(data) {
+            for(var k=0;k<data.length;k++){    //一维长度为i,i为变量，可以根据实际情况改变
+
+                result[k]=new Array();  //声明二维，每一个一维数组里面的一个元素都是一个数组；
+
+                for(var j=0;j<14;j++){   //一维数组里面每个元素数组可以包含的数量p，p也是一个变量；
+
+                    result[k][j]="";    //这里将变量初始化，我这边统一初始化为空，后面在用所需的值覆盖里面的值
+                }
+            }
+            for(var i=0;i<data.length;i++){
+                result[i][0]=data[i].userId;
+                result[i][1]=data[i].userName;
+                result[i][2]=data[i].userGender;
+                result[i][3]=data[i].userEducation;
+                result[i][4]=data[i].userBirthPlace;
+                result[i][5]=data[i].userGrade;
+                result[i][6]=data[i].userMajor;
+                result[i][7]=data[i].userGraduateYear;
+                result[i][8]=data[i].userHeadTeacher;
+                result[i][9]=data[i].userMail;
+                result[i][10]=data[i].userCompany;
+                result[i][11]=data[i].userPosition;
+                result[i][12]=data[i].userAddress;
+                result[i][13]=data[i].phone;
+            }
+        },
+        error: function f(data) {
+            alert("lose");
+        }
+    });
+    var titles = ['序号','姓名', '性别', '学历', '籍贯', '年级','专业', '毕业年份', '班主任', '邮箱', '工作单位','工作职位','工作地点','联系方式']
+    $(function () {
+        var table = $('#books').DataTable({
+            data: result,
+            "pagingType": "full_numbers",
+            "bSort": true,
+            "language": {
+                "sProcessing": "处理中...",
+                "sLengthMenu": "显示 _MENU_ 项结果",
+                "sZeroRecords": "没有匹配结果",
+                "sInfo": "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+                "sInfoEmpty": "显示第 0 至 0 项结果，共 0 项",
+                "sInfoFiltered": "(由 _MAX_ 项结果过滤)",
+                "sInfoPostFix": "",
+                "sSearch": "搜索:",
+                "sUrl": "",
+                "sEmptyTable": "表中数据为空",
+                "sLoadingRecords": "载入中...",
+                "sInfoThousands": ",",
+                "oPaginate": {
+                    "sFirst": "首页",
+                    "sPrevious": "上页",
+                    "sNext": "下页",
+                    "sLast": "末页"
+                },
+                "oAria": {
+                    "sSortAscending": ": 以升序排列此列",
+                    "sSortDescending": ": 以降序排列此列"
+                }
+            },
+            "columnDefs": [{
+                "searchable": false,
+                "orderable": true,
+                "targets": 0
+            }],
+            "order": [[1, 'asc']]
+        });
+        table.on('order.dt search.dt', function() {
+            table.column(0, {
+                search: 'applied',
+                order: 'applied'
+            }).nodes().each(function(cell, i) {
+                cell.innerHTML = i + 1;
+            });
+        }).draw();
+
+        $('#books tbody').on('click', 'tr', function () {
+            if ( $(this).hasClass('selected') ) {
+                $(this).removeClass('selected');
+            }
+            else {
+                table.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
             }
         });
 
-        function bt(){
-            var grade = $("#gradeSelected").val();
-            var major = $("#majorSelected").val();
-            var gender = $("#genderSelected").val();
-            if(grade == "请选择"){
-                grade = "全体";
-            }
-            if(major == "请选择"){
-                major = "全体";
-            }
-            if(gender == "请选择"){
-                gender = "全体"
-            }
-            var BASE_PATH = window.document.location.href.substring(0, window.document.location.href.indexOf(window.document.location.pathname));
+        $("#cancelAdd").on('click', function() {
+            console.log('cancelAdd');
+            $("#addBookModal").find('input').val('')
+        })
 
-            window.open(BASE_PATH+"/excel/orderrdExportExcel?grade="+grade+"&major="+major+"&gender="+gender);
+        $("#addBooksInfo").on('click', function() {
+            console.log('addBooksInfo');
+            if ($("#addBookModal").find('input').val() !== '') {
+                var addUserName = $("#addUserName").val();
+
+                var addUserGender = $("#addUserGender").val();
+                var addUserEducation = $("#addUserEducation").val();
+                var addUserBirthPlace = $("#addUserBirthPlace").val();
+                var addUserGrade = $("#addUserGrade").val();
+                var addUserMajor = $("#addUserMajor").val();
+                var addUserGraduateYear = $("#addUserGraduateYear").val();
+                var addHeadTeacher = $("#addHeadTeacher").val();
+                var addUserMail = $("#addUserMail").val();
+                var addUserCompany = $("#addUserCompany").val();
+                var addUserPosition = $("#addUserPosition").val();
+                var addUserAddress = $("#addUserAddress").val();
+                var addUserContact = $("#addUserContact").val();
+
+                if(!addUserEducation in ('本科','硕士','博士','院士')){
+                    alert("学历输入的格式有误");
+                    event.stopPropagation();
+                }
+                else if(!checkMail(addUserMail)){
+                    alert("邮箱格式错误");
+                    event.stopPropagation();
+                }
+                else if(!phoneCheck(addUserContact)){
+                    alert("联系方式格式错误");
+                    event.stopPropagation();
+                }
+                else {
+                    $.ajax({
+                        url: BASE_PATH + "/user/addUserByManager",
+                        type: "post",
+                        dateType: "json",
+                        async: false,
+                        data: {
+                            "userName": addUserName
+                            , "userGender": addUserGender
+                            , "userEducation": addUserEducation
+                            , "userBirthPlace": addUserBirthPlace
+                            , "userGrade": addUserGrade
+                            , "userMajor": addUserMajor
+                            , "userGraduateYear": addUserGraduateYear
+                            , "userHeadTeacher": addHeadTeacher
+                            , "userMail": addUserMail
+                            , "userCompany": addUserCompany
+                            , "userPosition": addUserPosition
+                            , "userAddress": addUserAddress
+                            , "phone": addUserContact
+                        },
+                        success: function f(data) {
+                            console.log(data);
+                        },
+                        error: function f(data) {
+                            alert("lose");
+                        }
+                    });
+                    // var addBookInfos = [].concat(addUserName, addUserGender, addUserEducation, addUserBirthPlace, addUserGrade, addUserMajor, addUserGraduateYear, addHeadTeacher, addUserMail, addUserCompany, addUserPosition, addUserAddress,  addUserContact);
+                    // for (var i = 0; i < addBookInfos.length; i++) {
+                    //     if (addBookInfos[i] === '') {
+                    //         alert(titles[i] + '内容不能为空')
+                    //     }
+                    // }
+                    table.row.add(['', addUserName, addUserGender, addUserEducation, addUserBirthPlace, addUserGrade, addUserMajor, addUserGraduateYear, addHeadTeacher, addUserMail, addUserCompany, addUserPosition, addUserAddress, addUserContact]).draw();
+                    $("#addBookModal").find('input').val('');
+                }
+            }
+            else{
+                alert("你还未填写任何信息，请添加");
+                event.stopPropagation();
+            }
+        })
+
+        $("#btn_add").click(function(){
+            console.log('add');
+            $("#addBook").modal()
+        });
+
+        //编辑一项校友信息
+        $('#btn_edit').click(function () {
+            if (table.rows('.selected').data().length) {
+                $("#editBookInfo").modal();
+                var rowData = table.rows('.selected').data()[0];
+                var inputs = $("#editBookModal").find('input');
+                for (var i = 0; i < inputs.length; i++) {
+                    $(inputs[i]).val(rowData[i + 1])
+                }
+            } else {
+                alert('请选择项目');
+            }
+        });
+
+        $("#saveEdit").click(function() {
+            var editUserName = $("#editUserName").val();
+
+            var editUserGender = $("#editUserGender").val();
+            var editUserEducation = $("#editUserEducation").val();
+            var editUserBirthPlace = $("#editUserBirthPlace").val();
+            var editUserGrade = $("#editUserGrade").val();
+            var editUserMajor = $("#editUserMajor").val();
+            var editUserGraduateYear = $("#editUserGraduateYear").val();
+            var editHeadTeacher = $("#editHeadTeacher").val();
+            var editUserMail = $("#editUserMail").val();
+            var editUserCompany = $("#editUserCompany").val();
+            var editUserPosition = $("#editUserPosition").val();
+            var editUserAddress = $("#editUserAddress").val();
+            var editUserContact = $("#editUserContact").val();
+            var userId = table.rows('.selected').data()[0][0];
+            $.ajax({
+                url:BASE_PATH + "/user/editUserByUserId",
+                type: "post",
+                dateType: "json",
+                async: false,
+                data: {"userId":userId
+                    ,"userName":editUserName
+                    ,"userGender":editUserGender
+                    ,"userEducation":editUserEducation
+                    ,"userBirthPlace":editUserBirthPlace
+                    ,"userGrade":editUserGrade
+                    ,"userMajor":editUserMajor
+                    ,"userGraduateYear":editUserGraduateYear
+                    ,"userHeadTeacher":editHeadTeacher
+                    ,"userMail":editUserMail
+                    ,"userCompany":editUserCompany
+                    ,"userPosition":editUserPosition
+                    ,"userAddress":editUserAddress
+                    ,"phone":editUserContact
+                },
+                success: function f(data) {
+                    console.log(data);
+                },
+                error: function f(data) {
+                    alert("lose");
+                }
+            });
+            var newRowData = [].concat(editUserName
+                , editUserGender
+                , editUserEducation
+                , editUserBirthPlace
+                , editUserGrade
+                , editUserMajor
+                , editUserGraduateYear
+                , editHeadTeacher
+                , editUserMail
+                , editUserCompany
+                , editUserPosition
+                , editUserAddress
+                , editUserContact);
+            var tds = Array.prototype.slice.call($('.selected td'))
+            for (var i = 0; i < newRowData.length; i++) {
+                if (newRowData[i] !== '') {
+                    tds[i + 1].innerHTML = newRowData[i];
+                } else {
+                    alert(titles[i] + '内容不能为空')
+                }
+            }
+        })
+
+        $("#cancelEdit").click(function() {
+            console.log('cancelAdd');
+            $("#editBookModal").find('input').val('')
+        })
+
+
+        //删除一项
+        $('#btn_delete').click(function () {
+            if (table.rows('.selected').data().length) {
+                $("#deleteBook").modal()
+            } else {
+                alert('请选择项目');
+            }
+        });
+
+        $('#delete').click(function () {
+            var userId = table.rows('.selected').data()[0][0];
+            $.ajax({
+                url:BASE_PATH + "/user/deleteUserByUserId",
+                type: "post",
+                dateType: "json",
+                async: false,
+                data: {"userId":userId},
+                success: function f(data) {
+                    console.log(data);
+                },
+                error: function f(data) {
+                    alert("lose");
+                }
+            });
+            table.row('.selected').remove().draw(false);
+        });
+
+    })
+
+
+    function bt(){
+        var grade = $("#gradeSelected").val();
+        var major = $("#majorSelected").val();
+        var gender = $("#genderSelected").val();
+        if(grade == "请选择"){
+            grade = "全体";
         }
-    </script>
+        if(major == "请选择"){
+            major = "全体";
+        }
+        if(gender == "请选择"){
+            gender = "全体"
+        }
+        var BASE_PATH = window.document.location.href.substring(0, window.document.location.href.indexOf(window.document.location.pathname));
 
+        window.open(BASE_PATH+"/excel/orderrdExportExcel?grade="+grade+"&major="+major+"&gender="+gender);
+    }
+
+
+    $("#searchByconidition").on("click",function () {
+        var grade = $("#gradeSelected").val();
+        var major = $("#majorSelected").val();
+        var gender = $("#genderSelected").val();
+        postData(grade,major, gender);
+    });
+
+    function postData(grade, major, gender){
+        //获取basePath，测试的话就能用就完了
+        var obj = window.document.location;
+        var BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));
+        if(grade == "请选择"){
+            grade = "全体";
+        }
+        if(major == "请选择"){
+            major = "全体";
+        }
+        if(gender == "请选择"){
+            gender = "全体"
+        }
+        var result = new Array();  //先声明一维
+        $.ajax({
+            url: BASE_PATH + "/user/selectByGrade",
+            type: "post",
+            dateType: "json",
+            data: {"grade":grade,"major":major,"gender":gender},
+            async: false,
+            success: function f(data) {
+                for(var k=0;k<data.length;k++){    //一维长度为i,i为变量，可以根据实际情况改变
+
+                    result[k]=new Array();  //声明二维，每一个一维数组里面的一个元素都是一个数组；
+
+                    for(var j=0;j<14;j++){   //一维数组里面每个元素数组可以包含的数量p，p也是一个变量；
+
+                        result[k][j]="";    //这里将变量初始化，我这边统一初始化为空，后面在用所需的值覆盖里面的值
+                    }
+                }
+                for(var i=0;i<data.length;i++){
+                    result[i][0]=data[i].userId;
+                    result[i][1]=data[i].userName;
+                    result[i][2]=data[i].userGender;
+                    result[i][3]=data[i].userEducation;
+                    result[i][4]=data[i].userBirthPlace;
+                    result[i][5]=data[i].userGrade;
+                    result[i][6]=data[i].userMajor;
+                    result[i][7]=data[i].userGraduateYear;
+                    result[i][8]=data[i].userHeadTeacher;
+                    result[i][9]=data[i].userMail;
+                    result[i][10]=data[i].userCompany;
+                    result[i][11]=data[i].userPosition;
+                    result[i][12]=data[i].userAddress;
+                    result[i][13]=data[i].phone;
+                }
+            },
+            error: function f(data) {
+                alert("lose");
+            }
+        });
+        $("#books").dataTable().fnDestroy();
+        var titles = ['序号','姓名', '性别', '学历', '籍贯', '年级','专业', '毕业年份', '班主任', '邮箱', '工作单位','工作职位','工作地点','联系方式']
+        var table = $('#books').DataTable({
+            data: result,
+            "pagingType": "full_numbers",
+            "bSort": true,
+            "language": {
+                "sProcessing": "处理中...",
+                "sLengthMenu": "显示 _MENU_ 项结果",
+                "sZeroRecords": "没有匹配结果",
+                "sInfo": "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+                "sInfoEmpty": "显示第 0 至 0 项结果，共 0 项",
+                "sInfoFiltered": "(由 _MAX_ 项结果过滤)",
+                "sInfoPostFix": "",
+                "sSearch": "搜索:",
+                "sUrl": "",
+                "sEmptyTable": "表中数据为空",
+                "sLoadingRecords": "载入中...",
+                "sInfoThousands": ",",
+                "oPaginate": {
+                    "sFirst": "首页",
+                    "sPrevious": "上页",
+                    "sNext": "下页",
+                    "sLast": "末页"
+                },
+                "oAria": {
+                    "sSortAscending": ": 以升序排列此列",
+                    "sSortDescending": ": 以降序排列此列"
+                }
+            },
+            "columnDefs": [{
+                "searchable": false,
+                "orderable": true,
+                "targets": 0
+            }],
+            "order": [[1, 'asc']]
+        });
+        table.on('order.dt search.dt', function() {
+            table.column(0, {
+                search: 'applied',
+                order: 'applied'
+            }).nodes().each(function(cell, i) {
+                cell.innerHTML = i + 1;
+            });
+        }).draw();
+    }
+
+    /**
+     * 验证工作
+     *
+     * */
+
+    //邮箱格式限定
+    function checkMail(myemail) {
+        var myReg = /^[a-zA-Z0-9_-]+@([a-zA-Z0-9]+\.)+(com|cn|net|org)$/;
+
+        if (myReg.test(myemail)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    //手机号码格式
+    function phoneCheck(obj){
+        var reg=/^[1][3,4,5,7,8][0-9]{9}$/;
+        if(!reg.test(obj)) {
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+</script>
 </body>
 
 </html>

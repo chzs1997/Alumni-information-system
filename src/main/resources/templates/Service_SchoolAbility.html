@@ -8,7 +8,7 @@
     <!-- Basic Page Needs
   ================================================== -->
 	<meta charset="utf-8">
-	<title>ServiceSchoolAbility</title>
+	<title>校友返校活动</title>
 	<meta name="description" content="">
 	<meta name="author" content="">
 	
@@ -23,8 +23,7 @@
 	<link rel="stylesheet" href="static/static/css/service/responsive.css">
     <link rel="stylesheet" href="static/static/css/service/style_Service.css">
 
-	<![endif]-->
-	<link href='static/static/img/service/favicon.ico' rel='icon' type='image/x-icon'/>
+
 
     <!--首页-->
     <link type="text/css" href="static/static/css/HomePage.css" rel="stylesheet" />
@@ -69,7 +68,7 @@
 				<span class="nav_left">
 					<h1>
 						<a href="#" class="txtArr">
-							<img class="userIcon touxiang" src="../static/static/img/touxaing.jpg" onclick="navagator_list()" />
+							<img class="userIcon touxiang" src="static/static/img/touxaing.jpg" onclick="navagator_list()" />
 						</a>
 					</h1>
 				</span>
@@ -77,7 +76,7 @@
                       <div class="profileTitle" id = "linkInfo">
 						  <a href="#">
 							  <p class="headPic">
-							  <img src = "../static/static/img/touxaing.jpg" class="touxiang"/>
+							  <img src = "static/static/img/touxaing.jpg" class="touxiang"/>
 							  </p>
 							  <div class="intro">
 								  <p>
@@ -105,12 +104,12 @@
 			</span>
     </div>
     <img id="logo" src="static/static/img/logo.png" />
-    <span id="title" style="top: 40px">公共管理学院校友会</span>
+    <span id="title" style="top: 40px">公共管理学院校友信息平台</span>
     <!--<img id="bac" src="img/湘大.png" />-->
 </div>
 <nav class="hl_nav">
     <ul class="nav_list">
-        <li class="active">
+        <li>
             <a class="nav_head" href="index.html">首页</a>
         </li>
         <li>
@@ -125,7 +124,7 @@
             <a class="nav_body" href="CharacterStyle.html?charcterType=2">学生之星</a>
             <a class="nav_body" href="CharacterStyle.html?charcterType=3">校友之星</a>
         </li>
-        <li>
+        <li  class="active">
             <a class="nav_head" href="Service.html">校友服务</a>
             <a class="nav_body" href="Service_SchoolCard.html">校友卡</a>
             <a class="nav_body" href="Service_souvenir.html">校友纪念品</a>
@@ -145,6 +144,7 @@
             <a class="nav_body" href="#">我的资料</a>
             <a class="nav_body" href="#">我的行程</a>
             <a class="nav_body" href="#">我的捐赠</a>
+            <a class="nav_body" href="#">相关校友推荐</a>			
         </li>
     </ul>
 </nav>
@@ -198,51 +198,42 @@
 
 				</section>
 			</div>
-		
-			<div class="main-content col11">
-				<article>
-					<div class="heading">
-						<h2><a href="#">2017国庆校友返校活动</a></h2>
-						<p class="info">2017-10-02</p>
-					</div>
-					<div class="content">
-						<img src="static/static/img/service/returnSchool/returnSchool_1.jpg"/>
-                        <p>58级校友是湘潭大学招录的首批学生，是湘潭大学创办之初的历史见证者。“这些老同学都已是耄耋老人，行动也多有不便，但依然纷纷回到母校参加此次纪念活动，有的专门从外地赶过来，有的还是坐着轮椅过来的。”张文简校友深知此次合影极为不易，但又极其珍贵。“我们希望通过这种形式，赋予‘1958’雕塑更鲜明的生命力，我们也准备把这张集体照送给母校，作为母校60周年校庆的小小礼物。”</span></p>
-                        <p>副校长郑赤建、刘建平等接待了返校的58级校友，向大家一一问候，并与校友们进行了深入交流。</p>
-					</div>
-					<div class="footer">
-						<p class="more"><a class="button" href="#">了解更多 >></a></p>
-					</div>
-				</article>
+
+            <div class="main-content col11">
                 <article>
                     <div class="heading">
-                        <h2><a href="#">2017国庆校友返校活动</a></h2>
-                        <p class="info">2017-10-02</p>
+                        <h2><a href="#" id = "service_title_1">湘潭大学公共管理学院校友卡相关问题汇总</a></h2>
+                        <p class="info" id = "service_time_1">2019-04-27</p>
                     </div>
                     <div class="content">
-                        <img src="static/static/img/service/returnSchool/returnSchool_1.jpg"/>
-                        <p>58级校友是湘潭大学招录的首批学生，是湘潭大学创办之初的历史见证者。“这些老同学都已是耄耋老人，行动也多有不便，但依然纷纷回到母校参加此次纪念活动，有的专门从外地赶过来，有的还是坐着轮椅过来的。”张文简校友深知此次合影极为不易，但又极其珍贵。“我们希望通过这种形式，赋予‘1958’雕塑更鲜明的生命力，我们也准备把这张集体照送给母校，作为母校60周年校庆的小小礼物。”</span></p>
-                        <p>副校长郑赤建、刘建平等接待了返校的58级校友，向大家一一问候，并与校友们进行了深入交流。</p>
-                    </div>
-                    <div class="footer">
-                        <p class="more"><a class="button" href="#">了解更多 >></a></p>
+                        <img src="static/static/img/service/glxy.jpg" id = "service_img_1"/>
+                        <p id = "service_summary_1">校友卡是大学为该校应届毕业生发放的纪念卡，是校友的身份象征。当前，校友卡具有身份识别、消费支出、专属权利三大功能，并将根据需要进行调整完善。
+                            进校园、吃饭、消费，入住校园周边部分宾馆可享受优惠价……只要是校内需要用到一卡通的地方，都可通过校友卡来享受。校友可凭卡出入校园（不支持驾车出入校园）参加学校、校友总会及各地校友组织举办的校友活动；校友卡充值后可到校内食堂用餐或在装有校园卡POS机的网点消费，还可刷卡搭乘校园电动车等。校友在使用校内收费体育场馆设施时，凭卡进行支付可享受价格优惠，价格为校外人员价格的7.5折，还可享受校友企业产品或服务的价格优惠，以及到档案馆免费查阅或复印本人学籍资料，免费代办并快递到付学籍证明、成绩单。</p>
                     </div>
                 </article>
                 <article>
                     <div class="heading">
-                        <h2><a href="#">2017国庆校友返校活动</a></h2>
-                        <p class="info">2017-10-02</p>
+                        <h2><a href="#" id = "service_title_2">湘潭大学公共管理学院校友卡相关问题汇总</a></h2>
+                        <p class="info" id = "service_time_2">2019-03-24</p>
                     </div>
                     <div class="content">
-                        <img src="static/static/img/service/returnSchool/returnSchool_1.jpg"/>
-                        <p>58级校友是湘潭大学招录的首批学生，是湘潭大学创办之初的历史见证者。“这些老同学都已是耄耋老人，行动也多有不便，但依然纷纷回到母校参加此次纪念活动，有的专门从外地赶过来，有的还是坐着轮椅过来的。”张文简校友深知此次合影极为不易，但又极其珍贵。“我们希望通过这种形式，赋予‘1958’雕塑更鲜明的生命力，我们也准备把这张集体照送给母校，作为母校60周年校庆的小小礼物。”</span></p>
-                        <p>副校长郑赤建、刘建平等接待了返校的58级校友，向大家一一问候，并与校友们进行了深入交流。</p>
-                    </div>
-                    <div class="footer">
-                        <p class="more"><a class="button" href="#">了解更多 >></a></p>
+                        <img src="static/static/img/service/thumb2.jpg" id = "service_img_2"/>
+                        <p id = "service_summary_2">校友卡是大学为该校应届毕业生发放的纪念卡，是校友的身份象征。据了解，电子科大的校友卡从2016年开始发放。当前，校友卡具有身份识别、消费支出、专属权利三大功能，并将根据需要进行调整完善。
+                            进校园、吃饭、消费，入住校园周边部分宾馆可享受优惠价……只要是校内需要用到一卡通的地方，都可通过校友卡来享受。校友可凭卡出入校园（不支持驾车出入校园）参加学校、校友总会及各地校友组织举办的校友活动；校友卡充值后可到校内食堂用餐或在装有校园卡POS机的网点消费，还可刷卡搭乘校园电动车等。校友在使用校内收费体育场馆设施时，凭卡进行支付可享受价格优惠，价格为校外人员价格的7.5折，还可享受校友企业产品或服务的价格优惠，以及到档案馆免费查阅或复印本人学籍资料，免费代办并快递到付学籍证明、成绩单。</p>
                     </div>
                 </article>
-			</div>
+                <article>
+                    <div class="heading" >
+                        <h2><a href="#" id = "service_title_3">湘潭大学公共管理学院校友卡相关问题汇总</a></h2>
+                        <p class="info" id = "service_time_3">2019-03-24</p>
+                    </div>
+                    <div class="content">
+                        <img src="static/static/img/service/thumb3.jpg" id = "service_img_3"/>
+                        <p id = "service_summary_3">校友卡是大学为该校应届毕业生发放的纪念卡，是校友的身份象征。据了解，电子科大的校友卡从2016年开始发放。当前，校友卡具有身份识别、消费支出、专属权利三大功能，并将根据需要进行调整完善。
+                            进校园、吃饭、消费，入住校园周边部分宾馆可享受优惠价……只要是校内需要用到一卡通的地方，都可通过校友卡来享受。校友可凭卡出入校园（不支持驾车出入校园）参加学校、校友总会及各地校友组织举办的校友活动；校友卡充值后可到校内食堂用餐或在装有校园卡POS机的网点消费，还可刷卡搭乘校园电动车等。校友在使用校内收费体育场馆设施时，凭卡进行支付可享受价格优惠，价格为校外人员价格的7.5折，还可享受校友企业产品或服务的价格优惠，以及到档案馆免费查阅或复印本人学籍资料，免费代办并快递到付学籍证明、成绩单。</p>
+                    </div>
+                </article>
+            </div>
 			
 		</div>
 	</div>
@@ -394,6 +385,9 @@
 <!--登陆注册用的js-->
 <script src="static/static/js/banner.js" type="text/javascript"></script>
 <script src="static/static/js/login.js" type="text/javascript"></script>
+
+<!--加载服务列表-->
+<script src = "static/static/js/service/SchoolCard/schoolSeralize.js"></script>
 
 </body>
 </html>

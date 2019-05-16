@@ -1,37 +1,28 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-	<meta charset="UTF-8">
-	<title></title>
-	<script src="static/static/system/js/jquery.min.js"></script>
+	<meta charset="utf-8" />
+	<title>Demo</title>
+	<link rel="stylesheet" type="text/css" href="static/static/css/xcConfirm.css"/>
+	<script src="static/static/js/jquery-1.9.1.js" type="text/javascript" charset="utf-8"></script>
+	<script src="static/static/js/xcConfirm.js" type="text/javascript" charset="utf-8"></script>
+	<style type="text/css">
+		.sgBtn{width: 135px; height: 35px; line-height: 35px; margin-left: 10px; margin-top: 10px; text-align: center; background-color: #0095D9; color: #FFFFFF; float: left; border-radius: 5px;}
+	</style>
+	<script type="text/javascript">
+		$(function(){
+
+			$("#test").on("click",function () {
+				var txt=  "提示文字，提示文字，提示文字，提示文字，提示文字，提示文字";
+				window.wxc.xcConfirm(txt, window.wxc.xcConfirm.typeEnum.info);
+			})
+
+		});
+	</script>
 </head>
-
 <body>
-<div class="tools">
-	<button type="button" class="btn green" id="excell" onclick="bt()">导出考勤表格</button>
+<div class="" style="height: 768px;">
+	<button id="test">测试</button>
 </div>
-
-<table border="1" id="dataTable">
-	<tr>
-		<td>王婷111</td>
-		<td>一见倾城333 </td>
-	</tr>
-	<tr>
-		<td>祈澈姑娘222</td>
-		<td>Python开发者交流平台44</td>
-	</tr>
-	<tr>
-		<td>wwwangting888</td>
-		<td>13661725475</td>
-	</tr>
-</table>
-
 </body>
-<script>
-	function bt(){
-      window.open("http://172.17.108.131:8080/excel/orderrdExportExcel");
-	}
-</script>
-
 </html>
