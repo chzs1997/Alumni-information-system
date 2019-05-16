@@ -25,7 +25,7 @@ var newsMonth1,newsMonth1Amount
     ,newsMonth5,newsMonth5Amount
 jQuery(document).ready(function ($) {
     $.ajax({
-        url: BASE_PATH + "/manager/findUserAmountLastWeek",
+        url: BASE_PATH + "/administrator/findUserAmountLastWeek",
         type: "post",
         dateType: "json",
         data: {},
@@ -70,7 +70,7 @@ jQuery(document).ready(function ($) {
         }
     });
     $.ajax({
-        url: BASE_PATH + "/manager/findAmountLast5MonthsReal",
+        url: BASE_PATH + "/administrator/findAmountLast5MonthsReal",
         type: "post",
         dateType: "json",
         data: {},
@@ -103,7 +103,7 @@ jQuery(document).ready(function ($) {
                 j++;
             }
             $.ajax({
-                url: BASE_PATH + "/manager/findAmountLast5MonthsAnonymous",
+                url: BASE_PATH + "/administrator/findAmountLast5MonthsAnonymous",
                 type: "post",
                 dateType: "json",
                 data: {},
@@ -428,7 +428,7 @@ var count1 ,count2,count3,count4,count5=0;
 var percentage1,percentage2,percentage3,percentage4,percentage5
 //校友信息完善度汇总
 $.ajax({
-    url: BASE_PATH + "/manager/findIntegrityCount",
+    url: BASE_PATH + "/administrator/findIntegrityCount",
     type: "post",
     dateType: "json",
     data: {},
@@ -493,7 +493,7 @@ var goodClass1 ,goodClass2,goodClass3,goodClass4,goodClass5,goodClass6,goodClass
 var goodPercentage1,goodPercentage2,goodPercentage3,goodPercentage4,goodPercentage5,goodPercentage6,goodPercentage7
 //校友信息完善度较好排名
 $.ajax({
-    url: BASE_PATH + "/manager/findIntegrityBetter",
+    url: BASE_PATH + "/administrator/findIntegrityBetter",
     type: "post",
     dateType: "json",
     data: {},
@@ -580,7 +580,7 @@ var badClass1 ,badClass2,badClass3,badClass4,badClass5,badClass6,badClass7
 var badPercentage1,badPercentage2,badPercentage3,badPercentage4,badPercentage5,badPercentage6,badPercentage7
 //校友信息完善度较差排名
 $.ajax({
-    url: BASE_PATH + "/manager/findIntegrityWorse",
+    url: BASE_PATH + "/administrator/findIntegrityWorse",
     type: "post",
     dateType: "json",
     data: {},
