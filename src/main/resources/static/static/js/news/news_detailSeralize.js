@@ -175,7 +175,7 @@ jQuery(document).ready(function($) {
                 $("#relation_news_img_"+(i+1)).attr("src",img);
 
                 //链接
-                $("#relation_news_title_"+(i+1)).attr("href","news_detail.html?artId="+artId);
+                $("#relation_news_title_"+(i+1)).attr("href","news_detail.html?artType="+artType+"&artId="+artId);
             }
 
         },
@@ -243,7 +243,7 @@ function praise(e) {
     const obj = window.document.location;
     const BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));
     var newsPraise = 0;
-    const artId = parseInt(window.location.href.split("?")[1].split("=")[1]);
+    const artId = parseInt(window.location.href.split("?")[1].split("&")[1].split("=")[1]);
     if(e.style.color == "red"){
         e.style.color = "#747474";
     }
@@ -274,23 +274,47 @@ $("#commentButton").on("click",function () {
     var commentName = $("#commentName").val();
     var commentMail = $("#commentMail").val();
     var commentContent = $("#commentContent").val();
-    const artId = parseInt(window.location.href.split("?")[1].split("=")[1]);
+
+
     const obj = window.document.location;
     const BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));
-    //添加评论
-    $.ajax({
-        url:BASE_PATH + "/news/addComments",
-        type: "post",
-        dateType: "json",
-        data: {"commentName":commentName,"commentMail":commentMail,"commentContent":commentContent,"artId":artId},
-        async: false,
-        success: function f(data) {
-            if(data == 1){
-                alert("评论成功");
-                window.location.href = "news_detail.html?artId="+artId;
+    var url = window.location.href.split("?");
+    if(url.length>1){
+        var theRequest = new Object();//theRequest为i获取的参数集合
+        var strs = url[1].split('&');
+    }
+    var artType =strs[0].split("=")[1];
+    var artId =strs[1].split("=")[1];
+
+    var prompt;
+    if(commentName == ""){
+        prompt = "您的名字未填";
+        alert(prompt);
+    }
+    else if(commentContent == ""){
+        prompt = "您未填写评论内容";
+        alert(prompt);
+    }
+    else {
+        //添加评论
+        $.ajax({
+            url: BASE_PATH + "/news/addComments",
+            type: "post",
+            dateType: "json",
+            data: {
+                "commentName": commentName,
+                "commentContent": commentContent,
+                "artId": artId
+            },
+            async: false,
+            success: function f(data) {
+                if (data == 1) {
+                    alert("评论成功");
+                    window.location.href = "news_detail.html?artType=" + artType + "&artId=" + artId;
+                }
+            },
+            error: function f() {
             }
-        },
-        error: function f() {
-        }
-    });
+        });
+    }
 });

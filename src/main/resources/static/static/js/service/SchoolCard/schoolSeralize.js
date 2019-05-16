@@ -2,10 +2,10 @@ jQuery(document).ready(function($) {
     //获取basePath，测试的话就能用就完了
     var obj = window.document.location;
     var BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));
-    if($(document).attr("title") == "ServiceSchoolCard"){
+    if($(document).attr("title") == "校友卡"){
         var artType = 4;
     }
-    else if($(document).attr("title") == "ServiceSchoolAbility"){
+    else if($(document).attr("title") == "校友返校活动"){
         var artType = 5;
     }
 

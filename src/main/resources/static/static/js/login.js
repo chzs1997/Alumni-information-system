@@ -1,5 +1,5 @@
-const obj = window.document.location;
-const BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));
+var obj = window.document.location;
+var BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));
 var userState = 0;
 jQuery(document).ready(function($) {
     var     $form_modal = $('.cd-user-modal'),
@@ -181,7 +181,8 @@ function login_1() {
 
             }
             else{
-                alert("用户名或密码错误，请重新登陆")
+                event.preventDefault();
+                alert(data.result);
             }
         },
         error: function f(data) {
@@ -241,6 +242,9 @@ function out_login(){
     $("#homeOptions").css("display","none");
     $(".yourName").text("");
     $(".wid").text("");
+
+    var title = $(document).attr("title");
+
     $.ajax({
         url:BASE_PATH + "/user/logout",
         type: "post",
@@ -248,7 +252,9 @@ function out_login(){
         data: {},
         async: false,
         success: function f() {
-            return true;
+            if(title == "个人信息"||title=="我的捐赠"||title=="我的行程"||title=="推荐校友"){
+                window.location.href = "index.html"
+            }
         },
         error: function f() {
             alert("lose");
@@ -288,7 +294,7 @@ $(".hl_nav > .nav_list li").eq(6).children("a:eq(2)").on("click",function () {
     }
     else{
         event.preventDefault();
-        alert("你当前尚未登陆，请登陆后查看个人资料");
+        alert("你当前尚未登陆，请登陆后查看个人行程");
     }
 })
 
@@ -299,6 +305,27 @@ $(".hl_nav > .nav_list li").eq(6).children("a:eq(3)").on("click",function () {
     }
     else{
         event.preventDefault();
-        alert("你当前尚未登陆，请登陆后查看个人资料");
+        alert("你当前尚未登陆，请登陆后查看个人捐赠");
+    }
+})
+
+//控制是否能进入我的捐赠界面
+$(".hl_nav > .nav_list li").eq(6).children("a:eq(4)").on("click",function () {
+    if(userState == 1){
+        window.location.href = "PersonalRecommend.html"
+    }
+    else{
+        event.preventDefault();
+        alert("你当前尚未登陆，请登陆后查看相关校友推荐");
+    }
+})
+
+$("#applicateProject").on("click",function () {
+    if(userState == 1){
+        window.location.href = "donationProject.html"
+    }
+    else{
+        event.preventDefault();
+        alert("你当前尚未登陆，请登陆后申请立项");
     }
 })

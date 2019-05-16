@@ -4,7 +4,7 @@ jQuery(document).ready(function($) {
     var obj = window.document.location;
     var BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));
     $.ajax({
-        url:BASE_PATH + "/manager/detectState",
+        url:BASE_PATH + "/administrator/detectState",
         type: "post",
         dateType: "json",
         data: {},
@@ -32,3 +32,21 @@ jQuery(document).ready(function($) {
         }
     });
 });
+
+function logout() {
+    //获取basePath，测试的话就能用就完了
+    var obj = window.document.location;
+    var BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));
+    $.ajax({
+        url:BASE_PATH + "/administrator/logout",
+        type: "post",
+        dateType: "json",
+        data: {},
+        async: false,
+        success: function f(data) {
+          window.location.href = "syslogin.html"
+        },
+        error: function f() {
+        }
+    });
+}

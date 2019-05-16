@@ -42,10 +42,12 @@ jQuery(document).ready(function($) {
 
 //信息修改
 $("#btn2").on("click",function () {
+    var obj = window.document.location;
     var BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));
 
     //姓名
     var userName = $("#personName").val();
+
     //性别
     var userGender = $('#personGender input[name = "sex"]:checked').val();
 
@@ -58,11 +60,11 @@ $("#btn2").on("click",function () {
     //联系方式
     var phone = $("#personPhone").val();
 
+    //微信号
+    var userWX = $("#personWX").val();
+
     //校友邮箱
     var userMail = $("#personMail").val();
-
-    //校友学号
-    var userStudentId = $("#personStudentId").val();
 
     //专业
     var major = $("#personMajor option:selected").text();
@@ -101,8 +103,8 @@ $("#btn2").on("click",function () {
                "userGender":userGender,
                "userBirthPlace":province+"省"+city+"市",
                "phone":phone,
+               "userWX":userWX,
                "userMail":userMail,
-               "userStudentId":userStudentId,
                "userMajor":major,
                "userGrade":grade,
                "userEducation":education,
@@ -148,6 +150,7 @@ function signup_selected() {
 
 //登陆状态检测+信息填充
 function detectLoginState() {
+    var obj = window.document.location;
     var BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));
     //检验是否已登陆
     $.ajax({
@@ -179,7 +182,7 @@ function detectLoginState() {
                         var personGender = data.gender;
                         var personBirthplace = data.birthPlace;
                         var personMail = data.mail;
-                        var personStudentId = data.studentId;
+                        var personWX = data.WX;
                         var personEducation = data.education;
                         var personGrade = data.grade;
                         var personMajor = data.major;
@@ -207,8 +210,8 @@ function detectLoginState() {
 
                             $("#personPhone").val(personPhone);
                             $("#personMail").val(personMail);
+                            $("#personWX").val(personWX);
 
-                            $("#personStudentId").val(personStudentId);
                             $("#personEducation option[value = "+personEducation +"]").attr("selected",true);
 
 
@@ -226,12 +229,14 @@ function detectLoginState() {
 
                             $("#personCompany").val(personCompany);
                             $("#personPosition").val(personPosition);
+                            if(personImage!=null){
+                                $("#icon").attr("src",personImage);
+                            }
 
-                            $("#icon").attr("src",personImage);
 
                             var Integrity = 0;
                             $.ajax({
-                                url:BASE_PATH +"/manager/getUserIntegrity",
+                                url:BASE_PATH +"/administrator/getUserIntegrity",
                                 type: "post",
                                 dateType: "json",
                                 data: {"userId": userId},

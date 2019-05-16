@@ -24,7 +24,7 @@ jQuery(document).ready(function ($) {
     });
 
     $.ajax({
-        url:BASE_PATH + "/manager/findUserLoginLog",
+        url:BASE_PATH + "/administrator/findUserLoginLog",
         type: "post",
         dateType: "json",
         data: {},
@@ -40,7 +40,7 @@ jQuery(document).ready(function ($) {
     });
 
     $.ajax({
-        url: BASE_PATH + "/manager/findManagerLoginLog",
+        url: BASE_PATH + "/administrator/findManagerLoginLog",
         type: "post",
         dateType: "json",
         data: {},
@@ -58,3 +58,7 @@ jQuery(document).ready(function ($) {
         }
     });
 });
+
+$("#goPage").on("click",function () {
+    window.location.href = "index.html";
+})

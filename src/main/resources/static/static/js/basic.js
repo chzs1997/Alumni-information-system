@@ -2,8 +2,8 @@ var userGrade;  //年级
 var userMajor;  //专业
 var userMail;  //身份证号码
 var userEducation; //学历
-const obj = window.document.location;
-const BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));
+var obj = window.document.location;
+var BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));
 $(document).ready(function(){
     $("#btn3").click(function(){
         /*		$("#step").hide();
@@ -21,18 +21,24 @@ function btn1(){
     var passWord = $("#password").val();
     var passWord2 = $("#password2").val();
     var phone = $("#phone").val();
+    var userWX = $("#userWX").val();
     userMail = $("#userMail").val();
 
     if(userName == ""){
         alert("用户名尚未填写")
-    }else if(passWord == "" ){
-        alert("密码尚未填写");
-    } else if(phone == ""){
-        alert("手机号尚未填写");
-    } else if(userMail == ""){
+    }else if(userMail == ""){
         alert("用户邮箱尚未填写");
+    }else if(userWX == ""){
+        alert("微信号未输入");
+    }else if(phone == ""){
+        alert("手机号尚未填写");
+    } else if(passWord == "" ){
+        alert("密码尚未填写");
     } else if(passWord !== passWord2) {
         alert("两次密码输入不一致，请重新输入");
+    }
+    else if(check_pwd()== false){
+        alert("密码输入格式有误");
     }
     else{
         $.ajax({
@@ -40,7 +46,7 @@ function btn1(){
             type: "post",
             dateType: "json",
             async: false,
-            data: {"userName": userName, "password": passWord, "userMail": userMail, "phone": phone},
+            data: {"userName": userName, "password": passWord, "userMail": userMail, "phone": phone,"userWX":userWX},
             success: function f(data) {
                 var result = data.result;
                 if(result == 1){
@@ -127,8 +133,6 @@ function btn3(){
 
 //第三步：添加后续信息
 function btn_add(){
-
-    // var userNickName = $("#nickname").val();  //用户别名
     //性别
     var userGender = $(".frm_control_group").children("input:checked").val();
     //专业
@@ -151,36 +155,81 @@ function btn_add(){
     var headTeacher = $("#headTeacher").val();
     var userAddress = province+"省"+city+"市";
     var userBirthPlace = birthplaceProvince+"省"+birthplaceCity+"市";
-    $.ajax({
-        url:BASE_PATH + "/user/add_info",
-        type: "post",
-        dateType: "json",
-        data: {"userMail": u_mail
-              ,"userGender":userGender
-              ,"userGrade":grade
-              ,"userBirthPlace":userBirthPlace
-              ,"userEducation":education
-              ,"userMajor":major
-              ,"userGraduateYear":graduateYear
-              ,"userHeadTeacher":headTeacher
-              ,"userAddress":userAddress
-              ,"userCompany":workPlace
-              ,"userPosition":workPosition},
-        async: false,
-        success: function f(data) {
-            if(data == 1){
-                alert("注册成功");
-                window.location.href = "http://172.17.112.104:8080/index";
+
+    var prompt = "";
+    if(userGender != "男" && userGender != "女"){
+        prompt = "您的性别未填";
+        alert(prompt);
+    }
+    else if(birthplaceProvince == "请选择省份"){
+        prompt = "您的籍贯未填";
+        alert(prompt);
+    }
+    else if(education == "选择选项"){
+        prompt = "您的学历未填";
+        alert(prompt);
+    }
+    else if(grade == "选择选项"){
+        prompt = "您的年级未填";
+        alert(prompt);
+    }
+    else if(graduateYear == "选择选项"){
+        prompt = "您的毕业年份未填";
+        alert(prompt);
+    }
+    else if(major == "选择选项"){
+        prompt = "您的专业未填";
+        alert(prompt);
+    }
+    else if(headTeacher == ""){
+        prompt = "您的班主任未填";
+        alert(prompt);
+    }
+    else if(province == "请选择省份"){
+        prompt = "您的工作(学习)地点未填";
+        alert(prompt);
+    }
+    else if(workPlace == ""){
+        prompt = "您的工作(学习)单位未填";
+        alert(prompt);
+    }
+    else if(workPosition==""){
+        prompt = "您的工作(学习)职位未填";
+        alert(prompt);
+    }
+    else {
+        $.ajax({
+            url: BASE_PATH + "/user/add_info",
+            type: "post",
+            dateType: "json",
+            data: {
+                "userMail": u_mail
+                , "userGender": userGender
+                , "userGrade": grade
+                , "userBirthPlace": userBirthPlace
+                , "userEducation": education
+                , "userMajor": major
+                , "userGraduateYear": graduateYear
+                , "userHeadTeacher": headTeacher
+                , "userAddress": userAddress
+                , "userCompany": workPlace
+                , "userPosition": workPosition
+            },
+            async: false,
+            success: function f(data) {
+                if (data == 1) {
+                    alert("注册成功");
+                    window.location.href = "index.html";
+                } else {
+                    event.preventDefault();
+                    alert("信息有误");
+                }
+            },
+            error: function f() {
+                alert("lose");
             }
-            else{
-                event.preventDefault();
-                alert("信息有误");
-            }
-        },
-        error: function f() {
-            alert("lose");
-        }
-    })
+        })
+    }
 }
 
 
@@ -247,9 +296,9 @@ function checkMail() {
     } else {
         var tip = "邮箱格式不对!";
         alert(tip);
-        $("#phone").attr("disabled","disabled");
-        return false;
-    }
+    $("#phone").attr("disabled","disabled");
+    return false;
+}
 }
 
 //身份证验证
@@ -313,5 +362,36 @@ function phoneCheck(){
     }
     else{
         $("#password").removeAttr("disabled");
+    }
+}
+function check_pwd() {
+    var pwd = document.getElementById("password").value;
+    var regPwd =/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[^]{8,16}$/;
+    if (pwd == "" || pwd.trim() == "") {
+        document.getElementById("err_pwd").innerHTML = "请输入密码";
+        return false;
+    } else if (!regPwd.test(pwd)) {
+        document.getElementById("err_pwd").innerHTML = "请输入正确格式";
+        return false;
+    } else {
+        document.getElementById("err_pwd").innerHTML = "";
+        return true;
+    }
+}
+
+
+
+function check_pwd2() {
+    var pwd = document.getElementById("password").value;
+    var pwd2 = document.getElementById("password2").value;
+    if (pwd2 == "" || pwd2.trim() == "") {
+        document.getElementById("err_pwd2").innerHTML = "请输入密码";
+        return false;
+    } else if(pwd2!=pwd) {
+        document.getElementById("err_pwd2").innerHTML = "输入密码不一致";
+        return false;
+    } else {
+        document.getElementById("err_pwd2").innerHTML = "";
+        return true;
     }
 }

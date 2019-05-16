@@ -6,9 +6,13 @@ $(function() {
 	$(".ge_photo").attr("disabled","disabled");
 	});
     $("#btn1").click(function(){
-            $("input").removeAttr("disabled","disabled");
-            $("select").removeAttr("disabled","disabled");
+            $(".ka3 input").removeAttr("disabled","disabled");
+            $(".ka3 select").removeAttr("disabled","disabled");
+            $("#personPhone").removeAttr("disabled","disabled");
+        $("#personMail").removeAttr("disabled","disabled");
     });
+
+
 	$("#btn2").click(function(){
             $("input").attr("disabled","disabled");
             $("select").attr("disabled","disabled");
