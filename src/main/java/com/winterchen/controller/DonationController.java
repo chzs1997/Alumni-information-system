@@ -2,6 +2,7 @@ package com.winterchen.controller;
 
 import com.winterchen.model.Donation;
 import com.winterchen.service.DonationService;
+import com.winterchen.service.NewsService;
 import com.winterchen.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -25,8 +26,13 @@ public class DonationController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private NewsService newsService;
 
-    /*捐赠信息存储*/
+
+    /**
+     *
+     * 捐赠信息存储*/
     @PostMapping("donationKeep")
     public Object donationKeep(
             @RequestParam(value = "userId") int userId,
@@ -48,7 +54,8 @@ public class DonationController {
         return null;
     }
 
-    /*
+    /**
+     *
      * 查询某一个校友的所有捐赠信息
      * */
     @PostMapping("donationSelectByuserId")
@@ -65,7 +72,8 @@ public class DonationController {
         return hashMap;
     }
 
-    /*
+    /**
+     *
      * 修改某一个校友的捐赠信息
      * */
     @PostMapping("donationUpdateByuserId")
@@ -84,7 +92,7 @@ public class DonationController {
         }
     }
 
-    /*
+    /**
     * 初始化捐赠信息
     *
     * */
@@ -94,13 +102,39 @@ public class DonationController {
         HashMap<String,Object> hashMap = new HashMap<String, Object>();
         int donationAmountLastMonth = donationService.findAmountLastMonth();  //上个月捐赠金额
         int userAmountLastMonth = userService.findAmountLastMonth();   //上个月注册用户数
-        int donationAmountTotal = donationService.findAmountTotal();   //上个月捐赠总额
-        int userAmountTotal = userService.findAmountTotal();           //上个月用户总数
+        int donationAmountTotal = donationService.findAmountTotal();   //累计捐赠总额
+        int userAmountTotal = userService.findAmountTotal();           //累计用户总数
         hashMap.put("donationAmountLastMonth",donationAmountLastMonth);
         hashMap.put("userAmountLastMonth",userAmountLastMonth);
         hashMap.put("donationAmountTotal",donationAmountTotal);
         hashMap.put("userAmountTotal",userAmountTotal);
         return hashMap;
+    }
+
+    /**
+     *
+     * 捐赠故事初始化
+     * */
+    @ResponseBody
+    @PostMapping("/donationSeralize")
+    public Object donationSeralize(
+            @RequestParam(name = "pageNum", required = false, defaultValue = "1")
+                    int pageNum,
+            @RequestParam(name = "pageSize", required = false, defaultValue = "8")
+                    int pageSize
+    ){
+        return newsService.findDonationNews(pageNum, pageSize);
+    }
+
+    /**
+    * 捐赠金额公示
+    * */
+    @ResponseBody
+    @PostMapping("donationShow")
+    public Object donationShow(
+            @RequestParam("num") Integer num
+    ){
+        return donationService.donationShow(num);
     }
 
 
