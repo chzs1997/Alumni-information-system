@@ -165,7 +165,7 @@ public class UserController extends HttpServlet {
 
 
     /**
-    用户名密码登录(测试通过)
+    用户名密码登录
     */
     @ResponseBody
     @PostMapping("check")
@@ -227,51 +227,34 @@ public class UserController extends HttpServlet {
     }
 
     /**
-    注册阶段第二步(额外信息)(检测无误)
+    注册阶段第二步(额外信息)
     */
     @ResponseBody
     @PostMapping("/add_info")
     public Object login(
             @RequestParam(value = "userMail") String userMail,
-            @RequestParam(value = "userGender", required = false) String userGender,  //1 表示男性 2表示女性
-            @RequestParam(value = "userGrade", required = false) String userGrade,
-            @RequestParam(value = "userMajor", required = false) String userMajor,
-            @RequestParam(value = "userGraduateYear", required = false) String userGraduateYear,
-            @RequestParam(value = "userHeadTeacher", required = false) String userHeadTeacher,
-            @RequestParam(value = "userAddress", required = false) String userAddress,
-            @RequestParam(value = "userCompany", required = false) String userCompany,
-            @RequestParam(value = "userPosition", required = false) String userPosition,
-            @RequestParam(value = "userEducation", required = false) String userEducation,
-            @RequestParam(value = "userBirthPlace", required = false) String userBirthPlace
+            @RequestParam(value = "userGender", required = false, defaultValue = "暂无") String userGender,  //1 表示男性 2表示女性
+            @RequestParam(value = "userGrade", required = false, defaultValue = "暂无") String userGrade,
+            @RequestParam(value = "userMajor", required = false, defaultValue = "暂无") String userMajor,
+            @RequestParam(value = "userGraduateYear", required = false, defaultValue = "暂无") String userGraduateYear,
+            @RequestParam(value = "userHeadTeacher", required = false, defaultValue = "暂无") String userHeadTeacher,
+            @RequestParam(value = "userAddress", required = false, defaultValue = "暂无") String userAddress,
+            @RequestParam(value = "userCompany", required = false, defaultValue = "暂无") String userCompany,
+            @RequestParam(value = "userPosition", required = false, defaultValue = "暂无") String userPosition,
+            @RequestParam(value = "userEducation", required = false, defaultValue = "暂无") String userEducation,
+            @RequestParam(value = "userBirthPlace", required = false, defaultValue = "暂无") String userBirthPlace
     ) {
-        if (userGender == null) {
-            userGender = "暂无";
-        }
-
-        if (userGrade == null) {
-            userGrade = "暂无";
-        }
-        if (userMajor == null) {
-            userMajor = "暂无";
-        }
-        if (userAddress == null) {
-            userAddress = "暂无";
-        }
-        if (userCompany == null) {
-            userCompany = "暂无";
-        }
-        if (userPosition == null) {
-            userPosition = "暂无";
-        }
-        if (userGraduateYear == null) {
-            userGraduateYear = "暂无";
-        }
-        if (userHeadTeacher == null) {
-            userHeadTeacher = "暂无";
-        }
-
-        System.out.println(userGender);
-        int i = userService.add_info(userMail, userGender, userGrade, userMajor, userGraduateYear, userHeadTeacher, userAddress, userCompany, userPosition, userEducation, userBirthPlace);
+        int i = userService.add_info(userMail
+                                     , userGender
+                                     , userGrade
+                                     , userMajor
+                                     , userGraduateYear
+                                     , userHeadTeacher
+                                     , userAddress
+                                     , userCompany
+                                     , userPosition
+                                     , userEducation
+                                     , userBirthPlace);
         if (i > 0) {
             //信息完善成功
             return 1;
@@ -290,7 +273,7 @@ public class UserController extends HttpServlet {
     public void sendMessage(@RequestParam(value = "phone") String phone) {
         phoneNum = phone;
         verifyCode = getRandomCode(6);
-        Integer resultCode = SendMessageUtil.send("chzs", "d41d8cd98f00b204e980", phone, "【湘潭大学公共管理学院校友系统】验证码:" + verifyCode);
+        Integer resultCode = SendMessageUtil.send("chzs", "d41d8cd98f00b204e980", phone, "【湘潭大学公共管理学院校友信息管理系统】验证码:" + verifyCode);
         if (resultCode > 0) {
             System.out.println("发送成功");
         } else {
@@ -299,8 +282,7 @@ public class UserController extends HttpServlet {
     }
 
 
-    /**修改密码-1
-
+    /**修改密码-步骤1
     邮箱验证(测试通过)
     */
     @ResponseBody
@@ -312,13 +294,13 @@ public class UserController extends HttpServlet {
         if(result == 1){
             UserDomain a = userService.findByuserMail(userMail);
             System.out.println(a);
-//        若a不为空
+         //若a不为空
             if (a != null) {
                 objectMap.put("userId", a.getUserId());
                 objectMap.put("userName", a.getUserName());
                 return objectMap;
             }
-//        否则返回0
+         //否则返回0
             else {
                 objectMap.put("userName", "查无此人");
                 return objectMap;
@@ -332,8 +314,8 @@ public class UserController extends HttpServlet {
     }
 
     /**
-     * 修改密码-2
-      密码重置(测试通过)
+     * 修改密码-步骤2
+      密码重置
       */
     @ResponseBody
     @PostMapping("/updatePassword_2")
@@ -353,14 +335,14 @@ public class UserController extends HttpServlet {
 
     /**
      *
-     * 邮箱验证码
+     * 邮箱验证码获取（登陆使用）
      * */
      @RequestMapping("getCheckCode")
      @ResponseBody
      public String getCheckCode(String userMail){
          String checkCode = String.valueOf(new Random().nextInt(899999) + 100000);
          mailCode = checkCode;
-         String message = "[Xiangtan University Public Management Alumni Information System]: Your registration verification code is【" + checkCode +"】";
+         String message = "[Alumni Information System of The Faulty of Public Administration]: Your registration verification code is【" + checkCode +"】";
          try{
              mailService.sendSimpleMail(userMail,"注册验证码",message);
          }catch (Exception e){
@@ -368,6 +350,7 @@ public class UserController extends HttpServlet {
          }
          return checkCode;
      }
+
 
     /*判断验证码(手机号码或者邮箱)*/
     @ResponseBody
@@ -382,7 +365,8 @@ public class UserController extends HttpServlet {
         }
     }
 
-    /*邮箱验证码登陆*/
+
+    /*邮箱验证码登陆-验证阶段*/
     @ResponseBody
     @PostMapping("/loginByMail")
     public Object loginByMail(@RequestParam(value = "userMail") String userMail
@@ -401,6 +385,8 @@ public class UserController extends HttpServlet {
                 // 设置session
                 objectMap.put("result","1");
                 loginLogService.save(i.getUserId(),i.getUserName());  //在登陆日志中保存
+
+                //存储SESSION_ID
                 session.setAttribute(MyWebAppConfigurer.SESSION_KEY, i.getUserId());
                 session.setAttribute("userId", i.getUserId());
                 objectMap.put("userName", i.getUserName());
@@ -433,8 +419,9 @@ public class UserController extends HttpServlet {
         return i;
     }
 
+
     /**
-     * 立项信息查询
+     * 捐赠立项信息查询
      * */
     @ResponseBody
     @PostMapping("/getInfo")
@@ -446,6 +433,7 @@ public class UserController extends HttpServlet {
         UserDomain i = userService.findByUserId(userId);
         return i;
     }
+
 
     /**
      * 个人立项信息查询
@@ -548,11 +536,11 @@ public class UserController extends HttpServlet {
             case "all":
                 result= strokeService.findStrokeByUserId(userId);
                 break;
-            case "S1":
+            case "S1":    //已处理行程查询
                 strokeState = 0;
                 result = strokeService.findStrokeByUserIdAndState(userId,strokeState);
                 break;
-            case "S2":
+            case "S2":    //未处理行程查询
                 strokeState = 1;
                 result = strokeService.findStrokeByUserIdAndState(userId,strokeState);
                 break;
@@ -727,9 +715,5 @@ public class UserController extends HttpServlet {
         );
         return i;
     }
-
-
-
-
 
 }

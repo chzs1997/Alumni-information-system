@@ -42,7 +42,7 @@ public class DonationController {
     ){
         try{
             int i = donationService.donationKeep(userId, donProperty, donItem, donAmount);
-            if(i>0){
+            if(i>0){  //已存入数据库
                 return 1;
             }
             else{
@@ -65,7 +65,7 @@ public class DonationController {
         HashMap<String, Object> hashMap = new HashMap<String, Object>();
         Donation donation = donationService.donationSelectByuserId(userId);
         SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        hashMap.put("donTime", f.format(donation.getDonTime()));
+        hashMap.put("donTime", f.format(donation.getDonTime()));  //格式调整
         hashMap.put("donProperty", donation.getDonProperty());
         hashMap.put("donItem", donation.getDonItem());
         hashMap.put("donAmount", donation.getDonAmount());
@@ -85,7 +85,7 @@ public class DonationController {
     ){
         int a = donationService.donationUpdateByuserId(userId, donProperty, donItem, donAmount);
         if(a>0){
-            return 1;
+            return 1;  //捐赠信息修改成功
         }
         else{
             return 0;

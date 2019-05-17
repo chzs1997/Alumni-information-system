@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * @Author: liuzipan
- * @Description
+ * @Description  静态网页加载
  * @Date :15:25 2019/2/23
  * @Modefied By:
  */

@@ -30,7 +30,7 @@ public class CharacterStyleController {
                                         int pageNum,
                            @RequestParam(name = "pageSize", required = false, defaultValue = "5")
                                         int pageSize,
-                           @RequestParam(name = "charcterType", defaultValue = "1")
+                           @RequestParam(name = "charcterType", defaultValue = "1")  //人物类型
                                         int characterType){
        return characterStyleService.findCharacterData(pageNum, pageSize, characterType);
     }
@@ -42,7 +42,7 @@ public class CharacterStyleController {
                                    int pageNum,
                            @RequestParam(name = "pageSize", required = false, defaultValue = "15")
                                    int pageSize,
-                           @RequestParam(name = "charcterType", defaultValue = "1")
+                           @RequestParam(name = "charcterType", defaultValue = "1")   //人物类型
                                    int characterType){
         return characterStyleService.findHotCharacter(pageNum, pageSize, characterType);
     }
