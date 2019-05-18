@@ -4,7 +4,7 @@ import lombok.Data;
 
 /**
  * @Author: liuzipan
- * @Description
+ * @Description 校友信息完整度
  * @Date :15:45 2019/4/22
  * @Modefied By:
  */

@@ -4,7 +4,7 @@ import lombok.Data;
 
 /**
  * @Author: liuzipan
- * @Description
+ * @Description 食宿
  * @Date :10:23 2019/5/1
  * @Modefied By:
  */

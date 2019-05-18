@@ -6,7 +6,7 @@ import java.util.Date;
 
 /**
  * @Author: liuzipan
- * @Description
+ * @Description 捐赠
  * @Date :15:47 2019/2/13
  * @Modefied By:
  */

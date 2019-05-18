@@ -2,7 +2,7 @@ package com.winterchen.Exception;
 
 /**
  * @Author: liuzipan
- * @Description
+ * @Description 自定义异常处理
  * @Date :22:31 2019/4/14
  * @Modefied By:
  */

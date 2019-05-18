@@ -6,7 +6,7 @@ import java.sql.Date;
 
 /**
  * @Author: liuzipan
- * @Description
+ * @Description 新闻
  * @Date :19:19 2019/3/19
  * @Modefied By:
  */

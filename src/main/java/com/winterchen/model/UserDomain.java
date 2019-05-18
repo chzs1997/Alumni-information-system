@@ -2,6 +2,13 @@ package com.winterchen.model;
 
 import lombok.Data;
 
+/**
+ * @Author: liuzipan
+ * @Description  校友
+ * @Date :16:27 2019/2/13
+ * @Modefied By:
+ */
+
 @Data
 public class UserDomain {
 

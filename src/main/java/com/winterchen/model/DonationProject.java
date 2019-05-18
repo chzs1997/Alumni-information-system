@@ -4,7 +4,7 @@ import lombok.Data;
 
 /**
  * @Author: liuzipan
- * @Description
+ * @Description 捐赠项目
  * @Date :22:18 2019/5/3
  * @Modefied By:
  */
@@ -18,10 +18,7 @@ public class DonationProject {
     /*立项人姓名*/
     private Integer applicantName;
 
-    /*捐赠金额
-     *
-     *
-     * */
+    /*捐赠金额*/
     private Integer donationAmount;
 
     /*捐赠专业*/
