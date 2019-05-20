@@ -32,7 +32,7 @@
 
         <title>Home</title>
     </head>
-    <body>
+    <body onkeydown="keyLogin();">
     <div id="top">
         <div id="top1">
             <span>
@@ -131,8 +131,8 @@
             <!--<div class="cir"></div>-->
         <!--</div>-->
         <div class="imgbox">
-            <img class="img im" src="static/static/img/HomePage/2.jpg"/>
-            <img class="img" src="static/static/img/HomePage/1.jpg" />
+            <img class="img im" src="static/static/img/HomePage/1.jpg"/>
+            <img class="img" src="static/static/img/HomePage/2.jpg" />
             <img class="img" src="static/static/img/HomePage/3.jpg" />
             <img class="img" src="static/static/img/HomePage/4.jpg" />
         </div>
@@ -149,37 +149,37 @@
                         </div>
                         <div class="projects__row">
                             <div class="special special_big">
-                                <img src="static/static/img/news/alumni_style_1.jpg" height="311" width="551" alt="image" class="special__img">
+                                <img src="static/static/img/news/alumni_style_1.jpg" height="311" width="551" alt="image" class="special__img" id = "homeImg_1">
                                 <div class="special__box">
-                                    <h5 class="special__category yel_line">伍星</h5>
-                                    <a href="#" class="special__link">深圳市校管家教育科技有限公司创始人</a>
-                                    <p class="special__desc">我院举行“校管家” 首期学科发展及奖助学金捐赠仪式</p>
+                                    <h5 class="special__category yel_line" id = "homeName_1">伍星</h5>
+                                    <a href="#" class="special__link" id = "homeIntro_1">深圳市校管家教育科技有限公司创始人</a>
+                                    <p class="special__desc" id = "news_1">我院举行“校管家” 首期学科发展及奖助学金捐赠仪式</p>
                                 </div>
                             </div>
                             <div class="special special_small">
-                                <img src="static/static/img/news/alumni_style_2.jpg" height="311" width="285" alt="image" class="special__img">
+                                <img src="static/static/img/news/alumni_style_2.jpg" height="311" width="285" alt="image" class="special__img" id = "homeImg_2">
                                 <div class="special__box">
-                                    <h5 class="special__category yel_line">荀昌荣</h5>
-                                    <a href="#" class="special__link">图书情报系系主任</a>
-                                    <p class="special__desc">荀昌荣先生图书馆学学术思想研讨会在我院举办</p>
+                                    <h5 class="special__category yel_line" id = "homeName_2">荀昌荣</h5>
+                                    <a href="#" class="special__link" id = "homeIntro_2">图书情报系系主任</a>
+                                    <p class="special__desc" id = "news_2">荀昌荣先生图书馆学学术思想研讨会在我院举办</p>
                                 </div>
                             </div>
                         </div>
                         <div class="projects__row">
                             <div class="special special_small">
-                                <img src="static/static/img/news/alumni_style_5.jpg" height="311" width="285" alt="image" class="special__img">
+                                <img src="static/static/img/news/alumni_style_5.jpg" height="311" width="285" alt="image" class="special__img" id = "homeImg_3">
                                 <div class="special__box">
-                                    <h5 class="special__category yel_line">毛旭</h5>
-                                    <a href="#" class="special__link">北京国光文化公司总经理</a>
-                                    <p class="special__desc">北京国光文化发展有限责任公司总经理毛旭先生莅临我校讲学</p>
+                                    <h5 class="special__category yel_line" id = "homeName_3">毛旭</h5>
+                                    <a href="#" class="special__link" id = "homeIntro_3">北京国光文化公司总经理</a>
+                                    <p class="special__desc" id = "news_3">北京国光文化发展有限责任公司总经理毛旭先生莅临我校讲学</p>
                                 </div>
                             </div>
                             <div class="special special_big">
-                                <img src="static/static/img/news/alumni_style_4.jpg" height="311" width="551" alt="image" class="special__img">
+                                <img src="static/static/img/news/alumni_style_4.jpg" height="311" width="551" alt="image" class="special__img" id = "homeImg_4">
                                 <div class="special__box">
-                                    <h5 class="special__category yel_line">刘帅辉</h5>
-                                    <a href="#" class="special__link">创数教育创始人</a>
-                                    <p class="special__desc">院领导走访校友单位——99信管刘帅辉等创办的“创数教育”</p>
+                                    <h5 class="special__category yel_line" id = "homeName_4">刘帅辉</h5>
+                                    <a href="#" class="special__link" id = "homeIntro_4">创数教育创始人</a>
+                                    <p class="special__desc" id = "news_4">院领导走访校友单位——99信管刘帅辉等创办的“创数教育”</p>
                                 </div>
                             </div>
                         </div>
@@ -189,7 +189,7 @@
                             <div class="banner__box">
                                 <p class="banner__text first-text">了解更多</p>
                                 <p class="banner__text second-text">校友风采</p>
-                                <a href="#" class="banner__link">详情</a>
+                                <a href="CharacterStyle.html?charcterType=3" class="banner__link">详情</a>
                             </div>
                         </div>
                         <!-- END banner -->
@@ -519,12 +519,13 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="thumbnail thumbnail_big">
-                            <img src="static/static/img/news/news_college_1.jpg" style="height: 380px" alt="News">
+                            <img src="static/static/img/news/news_college_1.jpg" style="height: 470px" alt="News" id="img_1">
                             <div class="caption thumbnail__caption">
                                 <div class="news caption__news">
-                                    <p class="news__category yellow-line">竞赛</p>
-                                    <a href="#" class="news__head">“三维空间融合”案例教学模式显成效，公管学子创佳绩</a>
-                                    <p class="news__desc">针对国内公共管理研究生培养存在的结构化缺陷、重理论轻实践的现状，2013年以湘潭大学公共管理学院梁丽芝教授为首的科研团队为强化公共管理研究生培养中的案例教学，锻造高素质公共管理专业人才，创造性的提出了将课堂空间、实践空间和赛场空间“三维空间融合”的案例教学模式。</p>
+                                    <p class="news__category yellow-line" id="label_1">竞赛</p>
+                                    <a href="#" class="news__head news__link">
+                                        <p class="news__text" id = "title_1">公共管理学院召开2018年度处级党员领导干部民主生活会</p>
+                                    </a>
                                 </div>
                                 <div class="posted">
                                     <span class="posted__date">today, 16:37</span>
@@ -547,13 +548,13 @@
                     <div class="col-sm-3">
                         <div class="thumbnail thumbnail_small">
                             <a href="news.html" class="thumbnail__link">
-                                <img src="static/static/img/news/news_college_2.jpg" height="153" width="270" alt="News">
+                                <img src="static/static/img/news/news_college_2.jpg" height="153" width="270" alt="News" id="img_2">
                             </a>
                             <div class="caption thumbnail__caption">
                                 <div class="news caption__news">
-                                    <p class="news__category yellow-line">会议</p>
+                                    <p class="news__category yellow-line" id="label_2">会议</p>
                                     <a href="news.html" class="news__link">
-                                        <p class="news__text">公共管理学院召开2018年度处级党员领导干部民主生活会</p>
+                                        <p class="news__text" id = "title_2">公共管理学院召开2018年度处级党员领导干部民主生活会</p>
                                     </a>
                                 </div>
                                 <div class="posted">
@@ -577,13 +578,13 @@
                     <div class="col-sm-3">
                         <div class="thumbnail thumbnail_small">
                             <a href="news.html" class="thumbnail__link">
-                                <img src="static/static/img/news/news_college_5.jpg" height="153" width="270" alt="News">
+                                <img src="static/static/img/news/news_college_5.jpg" height="153" width="270" alt="News" id="img_3">
                             </a>
                             <div class="caption thumbnail__caption">
                                 <div class="news caption__news">
-                                    <p class="news__category yellow-line">组织活动</p>
+                                    <p class="news__category yellow-line" id="label_3">组织活动</p>
                                     <a href="news.html" class="news__link">
-                                        <p class="news__text">公共管理学院组织观看“庆祝改革开放40周年大会”</p>
+                                        <p class="news__text" id = "title_3">公共管理学院组织观看“庆祝改革开放40周年大会”</p>
                                     </a>
                                 </div>
                                 <div class="posted">
@@ -607,13 +608,13 @@
                     <div class="col-sm-3">
                         <div class="thumbnail thumbnail_small">
                             <a href="news.html" class="thumbnail__link">
-                                <img src="static/static/img/news/news_college_7.jpg" height="153" width="270" alt="News">
+                                <img src="static/static/img/news/news_college_7.jpg" height="153" width="270" alt="News" id="img_4">
                             </a>
                             <div class="caption thumbnail__caption">
                                 <div class="news caption__news">
-                                    <p class="news__category yellow-line">交流</p>
+                                    <p class="news__category yellow-line" id="label_4">交流</p>
                                     <a href="news.html" class="news__link">
-                                        <p class="news__text">云南大学公共管理学院党委书记李家祥到我院调研党建工作</p>
+                                        <p class="news__text" id = "title_4">云南大学公共管理学院党委书记李家祥到我院调研党建工作</p>
                                     </a>
                                 </div>
                                 <div class="posted">
@@ -637,13 +638,13 @@
                     <div class="col-sm-3">
                         <div class="thumbnail thumbnail_small">
                             <a href="news.html" class="thumbnail__link">
-                                <img src="static/static/img/news/news_college_4.jpg" height="153" width="270" alt="News">
+                                <img src="static/static/img/news/news_college_4.jpg" height="153" width="270" alt="News" id="img_5">
                             </a>
                             <div class="caption thumbnail__caption">
                                 <div class="news caption__news">
-                                    <p class="news__category yellow-line">讲座</p>
+                                    <p class="news__category yellow-line" id="label_5">讲座</p>
                                     <a href="news.html" class="news__link">
-                                        <p class="news__text">著名政治学家、台湾大学朱云汉教授来学校讲座</p>
+                                        <p class="news__text" id = "title_5">著名政治学家、台湾大学朱云汉教授来学校讲座</p>
                                     </a>
                                 </div>
                                 <div class="posted">
@@ -669,13 +670,13 @@
                     <div class="col-sm-3">
                         <div class="thumbnail thumbnail_small">
                             <a href="news.html" class="thumbnail__link">
-                                <img src="static/static/img/news/news_college_6.jpg" height="153" width="270" alt="News">
+                                <img src="static/static/img/news/news_college_6.jpg" height="153" width="270" alt="News" id="img_6">
                             </a>
                             <div class="caption thumbnail__caption">
                                 <div class="news caption__news">
-                                    <p class="news__category yellow-line">宣讲活动</p>
+                                    <p class="news__category yellow-line" id="label_6 ">宣讲活动</p>
                                     <a href="news.html" class="news__link">
-                                        <p class="news__text">公共管理学院召开“明道信道”宣讲活动</p>
+                                        <p class="news__text" id = "title_6">公共管理学院召开“明道信道”宣讲活动</p>
                                     </a>
                                 </div>
                                 <div class="posted">
@@ -699,13 +700,13 @@
                     <div class="col-sm-3">
                         <div class="thumbnail thumbnail_small">
                             <a href="news.html" class="thumbnail__link">
-                                <img src="static/static/img/news/news_college_8.jpg" height="153" width="270" alt="News">
+                                <img src="static/static/img/news/news_college_8.jpg" height="153" width="270" alt="News" id="img_7">
                             </a>
                             <div class="caption thumbnail__caption">
                                 <div class="news caption__news">
-                                    <p class="news__category yellow-line">竞技体育</p>
+                                    <p class="news__category yellow-line" id="label_7">竞技体育</p>
                                     <a href="news.html" class="news__link">
-                                        <p class="news__text">刚刚，我院学子林鑫夺得韶山红色国际马拉松冠军！</p>
+                                        <p class="news__text" id = "title_7">刚刚，我院学子林鑫夺得韶山红色国际马拉松冠军！</p>
                                     </a>
                                 </div>
                                 <div class="posted">
@@ -729,13 +730,13 @@
                     <div class="col-sm-3">
                         <div class="thumbnail thumbnail_small">
                             <a href="news.html" class="thumbnail__link">
-                                <img src="static/static/img/news/news_college_10.jpg" height="153" width="270" alt="News">
+                                <img src="static/static/img/news/news_college_10.jpg" height="153" width="270" alt="News" id="img_8">
                             </a>
                             <div class="caption thumbnail__caption">
                                 <div class="news caption__news">
-                                    <p class="news__category yellow-line">学生活动</p>
+                                    <p class="news__category yellow-line" id="label_8">学生活动</p>
                                     <a href="news.html" class="news__link">
-                                        <p class="news__text">湘大“青年说”：诗情与文意的大赛</p>
+                                        <p class="news__text" id = "title_8">湘大“青年说”：诗情与文意的大赛</p>
                                     </a>
                                 </div>
                                 <div class="posted">
@@ -759,13 +760,13 @@
                     <div class="col-sm-3">
                         <div class="thumbnail thumbnail_small">
                             <a href="news.html" class="thumbnail__link">
-                                <img src="static/static/img/news/news_college_12.jpg" height="153" width="270" alt="News">
+                                <img src="static/static/img/news/news_college_12.jpg" height="153" width="270" alt="News" id="img_9">
                             </a>
                             <div class="caption thumbnail__caption">
                                 <div class="news caption__news">
-                                    <p class="news__category yellow-line">讲学</p>
+                                    <p class="news__category yellow-line" id="label_9">讲学</p>
                                     <a href="news.html" class="news__link">
-                                        <p class="news__text">清华大学朱旭峰教授来我院讲学</p>
+                                        <p class="news__text" id = "title_9">清华大学朱旭峰教授来我院讲学</p>
                                     </a>
                                 </div>
                                 <div class="posted">
@@ -873,7 +874,7 @@
                                 <a href="Register.html">立即注册</a>
                             </p>
                             <p id="zhuce2">
-                                <a href="forgetPassword">忘记密码？</a>
+                                <a href="forgetPassword.html">忘记密码？</a>
                             </p>
                         </div>
 
@@ -928,6 +929,8 @@
     <script src="static/static/js/index/scroll.js"></script>
 
     <script src="static/static/js/donationShow.js"></script>
+
+    <script src="static/static/js/index/homeSerialize.js"></script>
 
     </body>
 </html>

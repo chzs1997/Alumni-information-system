@@ -96,7 +96,6 @@
     <div class="page-content d-flex align-items-stretch">
 
         <!--***** SIDE NAVBAR *****-->
-        <!--***** SIDE NAVBAR *****-->
         <nav class="side-navbar">
             <div class="sidebar-header d-flex align-items-center">
                 <div class="avatar"><img src="static/static/img/touxaing.jpg" alt="..." class="img-fluid rounded-circle"/></div>
@@ -190,6 +189,10 @@
                                             <option value="校友卡">校友卡</option>
                                             <option value="校友返校活动">校友返校活动</option>
                                         </select>
+                                    </div>
+                                    <div class="form-group" id = "name" style="display: none;">
+                                        <label for="exampleTextarea" >校友姓名</label>
+                                        <input type="text" class="form-control" id="AlumniName" aria-describedby="emailHelp" placeholder="请填写校友姓名" name = "AlumniName" style="display: block"/>
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleTextarea" >新闻内容</label>
@@ -287,9 +290,9 @@
 
 <!--登录状态检查-->
 <script src="static/static/js/system/userDetect.js"></script>
-    <!--Core Javascript -->
-    <script>
 
+    <!--图片 -->
+    <script>
         function imgPreview(fileDom) {
             //判断是否支持FileReader
             if(window.FileReader) {
