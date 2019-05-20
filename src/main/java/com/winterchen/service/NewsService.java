@@ -3,6 +3,7 @@ package com.winterchen.service;
 import com.github.pagehelper.PageInfo;
 import com.winterchen.model.Comment;
 import com.winterchen.model.News;
+import com.winterchen.modelVO.NewsVO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,10 +22,14 @@ public interface NewsService {
     int findArtId();
 
     //存储新闻
-    int save(int artType, String artTitle, String artContent, String artImage, String stage[]);
+    int save(int artType, String characterName, String artTitle, String artContent, String artImage, String stage[]);
 
     //初始化加载新闻
     PageInfo<News> findAllNews(int pageNum, int pageSize,int newsType);
+
+    List<NewsVO> homeNews();
+
+    List<News> homeNewsByLabel();
 
     //查找所有捐赠故事
     PageInfo<News> findDonationNews(int pageNum, int pageSize);

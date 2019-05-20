@@ -22,6 +22,9 @@ public class News {
     /*新闻类型*/
     private Integer artType;
 
+    /*所属知名校友ID*/
+    private Integer characterId;
+
     /*新闻发布时间*/
     private Date artTime;
 

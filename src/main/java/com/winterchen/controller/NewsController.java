@@ -37,7 +37,7 @@ public class NewsController extends HttpServlet {
     /**
      * 新闻上传具体实现方法;
      *
-     * @param file
+     * @param
      * @return
      */
     @RequestMapping(value = "/fileUpload", method = RequestMethod.POST)
@@ -46,9 +46,11 @@ public class NewsController extends HttpServlet {
                              @RequestParam("new_title") String artTitle,
                              @RequestParam(name = "stage",required = false) String stage[],
                              @RequestParam("new_type") String type,
+                             @RequestParam("alumniName") String characterName,
                              @RequestParam("new_content") String artContent
     ) {
             int artType = 0;
+            int i;
             //测算目前图片到哪个id
             int id = newsService.findArtId();
             System.out.println(id);
@@ -69,7 +71,7 @@ public class NewsController extends HttpServlet {
                     artType  = 5;
                     break;
             }
-                int i = newsService.save(artType, artTitle, artContent, img, stage);
+                    i = newsService.save(artType, characterName, artTitle, artContent, img, stage);
                 System.out.println(i);
                 return "success";
         }
@@ -90,6 +92,28 @@ public class NewsController extends HttpServlet {
             @RequestParam(name = "newsType") int newsType
     ){
         return newsService.findAllNews(pageNum, pageSize,newsType);
+    }
+
+    /**
+     * 首页新闻初始化
+     *
+     * */
+    @ResponseBody
+    @PostMapping("/homeNews")
+    public Object homeNews(
+    ){
+        return newsService.homeNews();
+    }
+
+    /**
+     * 首页新闻根据标签初始化
+     *
+     * */
+    @ResponseBody
+    @PostMapping("/homeNewsByLabel")
+    public Object homeNewsByLabel(
+    ){
+        return newsService.homeNewsByLabel();
     }
 
     /*

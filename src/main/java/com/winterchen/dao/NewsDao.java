@@ -2,6 +2,7 @@ package com.winterchen.dao;
 
 import com.winterchen.model.Comment;
 import com.winterchen.model.News;
+import com.winterchen.modelVO.NewsVO;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -19,8 +20,20 @@ public interface NewsDao {
     //查找当前截止到最后一条新闻ID号
     int findArtId();
 
-    //存储新闻
+    //存储新闻(非校友新闻)
     int save(@Param("artType") int artType
+            ,@Param("artTitle") String artTitle
+            ,@Param("artContent") String artContent
+            ,@Param("artImage") String artImage
+            ,@Param("artLabel1") String artLabel1
+            ,@Param("artLabel2") String artLabel2
+            ,@Param("artLabel3") String artLabel3
+            ,@Param("artLabel4") String artLabel4);
+
+
+    //存储新闻(校友新闻)
+    int saveAlumniNews(@Param("artType") int artType
+            ,@Param("characterName") String characterName
             ,@Param("artTitle") String artTitle
             ,@Param("artContent") String artContent
             ,@Param("artImage") String artImage
@@ -72,4 +85,8 @@ public interface NewsDao {
 
     //查找新闻点赞评论次数
     News selectCounts(int artId);
+
+    List<NewsVO> homeNews();
+
+    List<News> homeNewsByLabel();
 }

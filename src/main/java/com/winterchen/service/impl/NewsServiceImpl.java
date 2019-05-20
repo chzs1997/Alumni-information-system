@@ -6,6 +6,7 @@ import com.winterchen.dao.MapSessionMapper;
 import com.winterchen.dao.NewsDao;
 import com.winterchen.model.Comment;
 import com.winterchen.model.News;
+import com.winterchen.modelVO.NewsVO;
 import com.winterchen.service.NewsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,7 +36,7 @@ public class NewsServiceImpl implements NewsService {
     }
 
     @Override
-    public int save(int artType, String artTitle, String artContent, String artImage, String[] stage) {
+    public int save(int artType, String characterName ,String artTitle, String artContent, String artImage, String[] stage) {
         String artLabel1 ="无"
                ,artLabel2 = "无"
                 ,artLabel3 = "无"
@@ -62,8 +63,14 @@ public class NewsServiceImpl implements NewsService {
                 artLabel4 = stage[3];
                 break;
         }
-        return newsDao.save(artType, artTitle, artContent, artImage, artLabel1, artLabel2, artLabel3, artLabel4);
+        if(artType==2){
+            return newsDao.saveAlumniNews(artType,characterName,artTitle, artContent, artImage, artLabel1, artLabel2, artLabel3, artLabel4);
+        }
+        else{
+            return newsDao.save(artType, artTitle, artContent, artImage, artLabel1, artLabel2, artLabel3, artLabel4);
+        }
     }
+
 
     @Override
     public PageInfo<News> findAllNews(int pageNum, int pageSize, int newsType) {
@@ -72,6 +79,16 @@ public class NewsServiceImpl implements NewsService {
         List<News> news = newsDao.selectAllNews(newsType);
         PageInfo result = new PageInfo(news);
         return result;
+    }
+
+    @Override
+    public List<NewsVO> homeNews() {
+        return newsDao.homeNews();
+    }
+
+    @Override
+    public List<News> homeNewsByLabel() {
+        return newsDao.homeNewsByLabel();
     }
 
     @Override
