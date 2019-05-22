@@ -7,6 +7,7 @@
         <result property="artId" column="ART_ID"/>
         <result property="userId" column="U_ID"/>
         <result property="artType" column="ART_TYPE"/>
+        <result property="characterId" column="CHARACTER_ID"/>
         <result property="artTime" column="ART_TIME"/>
         <result property="artTitle" column="ART_TITLE"/>
         <result property="artSummary" column="ART_SUMMARY"/>
@@ -21,6 +22,7 @@
         <result property="artLabel4" column="ART_LABEL4"/>
     </resultMap>
 
+    <!--评论映射-->
     <resultMap id="commentRM" type="com.winterchen.model.Comment">
         <result property="commentId" column="COMMENT_ID"/>
         <result property="commentTime" column="COMMENT_TIME"/>
@@ -32,9 +34,19 @@
         <result property="artId" column="ART_ID"/>
     </resultMap>
 
+    <!--捐赠金额映射-->
     <resultMap id="newsAmount" type="java.util.HashMap">
         <result property="key" column = "newType"/>
         <result property="value" column = "counts"/>
+    </resultMap>
+
+    <!--首页新闻映射-->
+    <resultMap id="homeNewsRM" type="com.winterchen.modelVO.NewsVO">
+        <result property="characterName" column = "CHARACTER_NAME"/>
+        <result property="characterIntroduction" column = "CHARACTER_INTRODUCTION"/>
+        <result property="artTitle" column = "ART_TITLE"/>
+        <result property="artImage" column = "ART_IMAGE"/>
+        <result property="artId" column = "ART_ID"/>
     </resultMap>
 
     <!--设置数据库表名-->
@@ -181,6 +193,30 @@
         )
     </insert>
 
+    <insert id = "saveAlumniNews" parameterType="com.winterchen.model.News">
+        INSERT INTO <include refid="BASE_TABLE"/>
+        (ART_TYPE
+        ,CHARACTER_ID
+        ,ART_TITLE
+        ,ART_CONTENT
+        ,ART_IMAGE
+        ,ART_LABEL1
+        ,ART_LABEL2
+        ,ART_LABEL3
+        ,ART_LABEL4)
+        VALUES (
+        #{artType}
+        ,(select CHARACTER_ID from characterstyle where CHARACTER_NAME = #{characterName} and CHARACTER_TYPE = 3)
+        ,#{artTitle}
+        ,#{artContent}
+        ,#{artImage}
+        ,#{artLabel1}
+        ,#{artLabel2}
+        ,#{artLabel3}
+        ,#{artLabel4}
+        )
+    </insert>
+
     <insert id="addComments" parameterType="com.winterchen.model.Comment">
        INSERT INTO comment
        (
@@ -235,6 +271,35 @@
                ,ART_PRAISE_COUNTS
         FROM   news
         WHERE ART_ID = #{artId}
+    </select>
+
+
+    <select id="homeNews" resultMap="homeNewsRM">
+      select a2.CHARACTER_NAME
+             ,a2.CHARACTER_INTRODUCTION
+             ,a1.ART_TITLE
+             ,a1.ART_IMAGE
+             ,a1.ART_ID
+      from news a1
+      inner join characterstyle a2
+      on a1.CHARACTER_ID = a2.CHARACTER_ID
+      order by a1.CREATE_TIME DESC
+      limit 4
+    </select>
+
+    <select id="homeNewsByLabel" resultMap="newsRM">
+        select a1.ART_ID
+               ,a1.ART_TITLE
+               ,a1.ART_LABEL1
+               ,a1.ART_IMAGE
+        from news a1
+        where ART_ID in(
+             select max(ART_ID)
+             from news
+             where ART_LABEL1 is not null and ART_LABEL1 != '无' and ART_TYPE = 1
+              group by ART_LABEL1
+         )
+      limit 9
     </select>
 
 </mapper>
