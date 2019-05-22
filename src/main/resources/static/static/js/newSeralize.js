@@ -15,8 +15,9 @@ jQuery(document).ready(function($) {
     else{
         window.location.href = "news.html?artType=1"
     }
+    //新闻
     $.ajax({
-        url: BASE_PATH + "/news/newsSeralize",
+        url: BASE_PATH + "/news/newsSerialize",
         type: "post",
         dateType: "json",
         data: {"newsType":newsType},
@@ -33,6 +34,7 @@ jQuery(document).ready(function($) {
         }
     });
 
+    //公告
     $.ajax({
         url:BASE_PATH + "/news/announcement",
         type: "post",

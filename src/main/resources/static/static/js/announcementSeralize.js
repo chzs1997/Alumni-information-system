@@ -1,8 +1,8 @@
 jQuery(document).ready(function () {
-    const artId = parseInt(window.location.href.split("?")[1].split("=")[1]);
-    const obj = window.document.location;
-    const BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));
-    const div = document.getElementById("test1");
+    var artId = parseInt(window.location.href.split("?")[1].split("=")[1]);
+    var obj = window.document.location;
+    var BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));
+    var div = document.getElementById("test1");
 
     //主题内容
     $.ajax({

@@ -76,7 +76,7 @@ $(function () {
         $("#search-button, #search-form").toggle();
     });
     // --------------------------------------------------------------------
-    // Carousel slider for blog page
+    // Carousel slider for blog page  滚动播放插件
     // --------------------------------------------------------------------
     $("#feature-news-carousel").owlCarousel({
         loop: true

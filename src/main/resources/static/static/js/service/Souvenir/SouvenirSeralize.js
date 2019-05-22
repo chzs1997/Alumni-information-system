@@ -4,7 +4,7 @@ jQuery(document).ready(function($) {
     var BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));
 
     $.ajax({
-        url:BASE_PATH + "/souvenir/souvenirSeralize",
+        url:BASE_PATH + "/souvenir/souvenirSerialize",
         type: "post",
         dateType: "json",
         data: {},
@@ -25,11 +25,12 @@ jQuery(document).ready(function($) {
 
 });
 
+//对纪念品点赞
 function praise(e) {
-    const obj = window.document.location;
-    const BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));
+    var obj = window.document.location;
+    var BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));
     var souvenirPraise = 0;
-    const souvenirId = e.id;
+    var souvenirId = e.id;
     if(e.style.color == "red"){
         e.style.color = "#747474";
     }
@@ -39,7 +40,7 @@ function praise(e) {
     if($(e).hasClass("fa-thumbs-o-up") && e.style.color=="red"){
         souvenirPraise = 1;
     }
-    //点踩
+    //点赞
     $.ajax({
         url:BASE_PATH + "/souvenir/praiseAdd",
         type: "post",

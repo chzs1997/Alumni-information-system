@@ -1,5 +1,4 @@
-function handleFiles(obj,id) 
-{ file = document.getElementById("icon"); 
+function handleFiles(obj,id) {file = document.getElementById("icon");
 var files = obj.files; 
 img = new Image(); 
 if(window.URL){ 

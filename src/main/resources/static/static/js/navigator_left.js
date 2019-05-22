@@ -1,4 +1,7 @@
 $(document).ready(function () {
+
+    //左部顶端导航栏
+
     $('.mobile-nav-button').hover(
 function () {
     $( ".mobile-nav-button .mobile-nav-button__line:nth-of-type(1)" ).toggleClass( "mobile-nav-button__line--1");

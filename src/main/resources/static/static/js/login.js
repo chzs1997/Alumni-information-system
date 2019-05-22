@@ -1,6 +1,7 @@
 var obj = window.document.location;
+var url = window.location.href;
 var BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));
-var userState = 0;
+var userState = 0;  //当前用户状态   0：未登录  1：已登录
 jQuery(document).ready(function($) {
     var     $form_modal = $('.cd-user-modal'),
             $form_login = $form_modal.find('#cd-login'),
@@ -21,7 +22,7 @@ jQuery(document).ready(function($) {
 
     //关闭弹出窗口
     $('.cd-user-modal').on('click', function(event) {
-        if ($(event.target).is($form_modal) || $(event.target).is('.cd-close-form')) {
+        if ($(event.target).is('.cd-close-form')) {
             $form_modal.removeClass('is-visible');
         }
     });
@@ -55,6 +56,7 @@ jQuery(document).ready(function($) {
         $(".cd-switcher").children("li").removeClass("on");
          $(".cd-switcher").children("li").eq(1).addClass("on");
     }
+    //登陆状态检测
     $.ajax({
         url:BASE_PATH + "/user/detectState",
         type: "post",
@@ -98,23 +100,6 @@ jQuery(document).ready(function($) {
 });
 
 
-//credits http://css-tricks.com/snippets/jquery/move-cursor-to-end-of-textarea-or-input/
-jQuery.fn.putCursorAtEnd = function() {
-    return this.each(function() {
-        // If this function exists...
-        if (this.setSelectionRange) {
-            // ... then use it (Doesn't work in IE)
-            // Double the length because Opera is inconsistent about whether a carriage return is one character or two. Sigh.
-            var len = $(this).val().length * 2;
-            this.setSelectionRange(len, len);
-        } else {
-            // ... otherwise replace the contents with itself
-            // (Doesn't work in Google Chrome)
-            $(this).val($(this).val());
-        }
-    });
-};
-
 function navagator_list() {
     $("#homeOptions").fadeToggle(1000);
 }
@@ -146,7 +131,7 @@ function send(){
     })
 }
 
-
+//用户名+密码登陆
 function login_1() {
     var userName = $("#signin-username").val();
     var passWord = $("#signin-password").val();
@@ -157,15 +142,15 @@ function login_1() {
         data: {"userName": userName, "password": passWord},
         async: false,
         success: function f(data) {
-            var result = data.userName;
-            var phone = data.phone;
-            var gender = data.gender;
-            var userImage = data.userImage;
-            if(result != null){
+            if(data.result == 1){
+                var userName = data.userName;
+                var phone = data.phone;
+                var gender = data.gender;
+                var userImage = data.userImage;
                 $('.cd-user-modal').removeClass('is-visible');
                 $(".cd-signin").hide();
-                $("#top1_register").hide();
-                $(".yourName").text(result);
+                $("#top1_register").hide();  //注册隐藏
+                $(".yourName").text(userName);
                 $(".wid").text(phone);
                 if(userImage == null){
                     if(gender == '女'){
@@ -178,11 +163,10 @@ function login_1() {
                 else{
                     $(".touxiang").attr("src",userImage);
                 }
-
             }
             else{
-                event.preventDefault();
                 alert(data.result);
+                event.preventDefault();
             }
         },
         error: function f(data) {
@@ -235,6 +219,7 @@ function login_2() {
     });
 }
 
+//退出登陆
 function out_login(){
     $(".cd-signin").show();
     $("#top1_register").show();
@@ -320,6 +305,7 @@ $(".hl_nav > .nav_list li").eq(6).children("a:eq(4)").on("click",function () {
     }
 })
 
+//非登陆状态下不能立项
 $("#applicateProject").on("click",function () {
     if(userState == 1){
         window.location.href = "donationProject.html"
@@ -328,4 +314,15 @@ $("#applicateProject").on("click",function () {
         event.preventDefault();
         alert("你当前尚未登陆，请登陆后申请立项");
     }
-})
+});
+
+//非登陆状态下不能点赞
+$("#likeIcon").on("click",function () {
+    if(userState == 1){
+        praise(this);
+    }
+    else{
+        event.preventDefault();
+        alert("你当前尚未登陆，请登陆后点赞");
+    }
+});

@@ -3,7 +3,7 @@ var userMajor;  //专业
 var userMail;  //身份证号码
 var userEducation; //学历
 var obj = window.document.location;
-var BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));
+var BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));  //初始URL
 $(document).ready(function(){
     $("#btn3").click(function(){
         /*		$("#step").hide();
@@ -352,7 +352,7 @@ function checkIdentity(){
         return pass;
     }
 
-    //手机号码格式
+//手机号码格式
 function phoneCheck(){
     var obj = $("#phone").val();
     var reg=/^[1][3,4,5,7,8][0-9]{9}$/;
@@ -364,6 +364,8 @@ function phoneCheck(){
         $("#password").removeAttr("disabled");
     }
 }
+
+//密码检验
 function check_pwd() {
     var pwd = document.getElementById("password").value;
     var regPwd =/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[^]{8,16}$/;
@@ -393,5 +395,11 @@ function check_pwd2() {
     } else {
         document.getElementById("err_pwd2").innerHTML = "";
         return true;
+    }
+}
+
+function keyLogin(){
+    if(event.keyCode==13){
+      $("#cd-login .full-width2").click();
     }
 }

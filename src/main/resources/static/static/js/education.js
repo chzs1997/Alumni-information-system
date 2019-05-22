@@ -1,4 +1,5 @@
 $(function () {
+    //学历的选择
     $(".select1 p").click(function(e) {
         $(".select1").toggleClass('open');
         e.stopPropagation();

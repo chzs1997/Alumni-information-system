@@ -1,5 +1,8 @@
+/**
+ * 管理员状态检测
+ *
+ * */
 jQuery(document).ready(function($) {
-
     //获取basePath，测试的话就能用就完了
     var obj = window.document.location;
     var BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));
@@ -31,8 +34,11 @@ jQuery(document).ready(function($) {
             window.location.href = "syslogin.html";
         }
     });
+
 });
 
+
+//退出登陆选项
 function logout() {
     //获取basePath，测试的话就能用就完了
     var obj = window.document.location;
@@ -50,3 +56,5 @@ function logout() {
         }
     });
 }
+
+

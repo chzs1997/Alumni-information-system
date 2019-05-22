@@ -77,7 +77,7 @@ objprovince.onchange=function GetCity(){
     var x=this.selectedIndex-1;
     for(i=0;i<objcity.length;i++)
     {
-        objcity.remove(i);
+        objcity.remove(i);  //去掉标志位
     }
 
     if(x>=0)

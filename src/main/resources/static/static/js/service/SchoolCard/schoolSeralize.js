@@ -11,7 +11,7 @@ jQuery(document).ready(function($) {
 
     //加载列表新闻
     $.ajax({
-        url: BASE_PATH + "/news/serviceListSeralize",
+        url: BASE_PATH + "/news/serviceListSerialize",
         type: "post",
         dateType: "json",
         data: {"artType":artType},

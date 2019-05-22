@@ -1,3 +1,4 @@
+//人物风采页面加载
 $(document).ready(function () {
     //获取basePath，测试的话就能用就完了
     var obj = window.document.location;

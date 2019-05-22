@@ -9,6 +9,8 @@
  * 2. window.wxc.xcConfirm("成功","success");
  * 3. window.wxc.xcConfirm("请输入","input",{onOk:function(){}})
  * 4. window.wxc.xcConfirm("自定义",{title:"自定义"})
+ *
+ * 提示信息处理
  */
 (function($){
 	window.wxc = window.wxc || {};

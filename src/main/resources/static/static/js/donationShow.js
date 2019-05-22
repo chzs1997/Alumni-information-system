@@ -11,6 +11,7 @@ $(document).ready(function(){
     }
     var myDate = new Date();//获取系统当前时间
 
+    //捐赠公示信息
     $.ajax({
         url:BASE_PATH + "/donation/donationShow",
         type: "post",
@@ -31,15 +32,16 @@ $(document).ready(function(){
     })
 })
 
+//动态添加html代码
 function setDiv(item){
     var div = '<div class="message"><div class="message__text"><span>'
-              +item.applicantName
+              +item.applicantName  //捐赠人姓名
               +'***</span><span>'
-              +item.collective
+              +item.collective     //捐赠人班级
               +'***</span><span>'
-              +item.donationAmount
+              +item.donationAmount  //捐赠人金额
               +'***</span><span>'
-              +item.donationTime
+              +item.donationTime    //捐赠时间
               +'</span></div></div>'
     return div;
 }

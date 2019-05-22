@@ -1,5 +1,5 @@
-const obj = window.document.location;
-const BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));
+var obj = window.document.location;
+var BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));
 //点击发送短信验证码
 var InterValObj; //timer变量，控制时间
 var count = 60; //间隔函数，1秒执行

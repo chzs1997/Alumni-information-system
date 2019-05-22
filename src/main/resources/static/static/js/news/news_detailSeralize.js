@@ -2,14 +2,13 @@ jQuery(document).ready(function($) {
     //获取basePath，测试的话就能用就完了
     var obj = window.document.location;
     var BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));
-    var url = window.location.href.split("?");
+    var url = window.location.href.replace("#","").split("?");
     if(url.length>1){
         var theRequest = new Object();//theRequest为i获取的参数集合
         var strs = url[1].split('&');
     }
     var artType =strs[0].split("=")[1];
     var artId =strs[1].split("=")[1];
-
     //初始化评论
     $.ajax({
         url: BASE_PATH + "/news/commentsSeralize",
@@ -203,9 +202,10 @@ jQuery(document).ready(function($) {
     })
 });
 
+//对评论点赞
 function toggleColor(e) {
-    const obj = window.document.location;
-    const BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));
+    var obj = window.document.location;
+    var BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));
     var commentTread = 0;
     var commentPraise = 0;
     var commentId = e.parentNode.parentNode.getAttribute("commentId");
@@ -239,11 +239,12 @@ function toggleColor(e) {
     });
 }
 
+//对新闻点赞
 function praise(e) {
-    const obj = window.document.location;
-    const BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));
+    var obj = window.document.location;
+    var BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));
     var newsPraise = 0;
-    const artId = parseInt(window.location.href.split("?")[1].split("&")[1].split("=")[1]);
+    var artId = parseInt(window.location.href.replace("#","").split("?")[1].split("&")[1].split("=")[1]);
     if(e.style.color == "red"){
         e.style.color = "#747474";
     }
@@ -253,7 +254,7 @@ function praise(e) {
     if($(e).hasClass("fa-thumbs-o-up") && e.style.color=="red"){
         newsPraise = 1;
     }
-    //点踩
+    //点赞
     $.ajax({
         url:BASE_PATH + "/news/praiseAdd",
         type: "post",
@@ -270,14 +271,16 @@ function praise(e) {
     });
 }
 
+
+//添加评论
 $("#commentButton").on("click",function () {
     var commentName = $("#commentName").val();
     var commentMail = $("#commentMail").val();
     var commentContent = $("#commentContent").val();
 
 
-    const obj = window.document.location;
-    const BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));
+    var obj = window.document.location;
+    var BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));
     var url = window.location.href.split("?");
     if(url.length>1){
         var theRequest = new Object();//theRequest为i获取的参数集合

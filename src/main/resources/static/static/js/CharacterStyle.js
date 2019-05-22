@@ -1,11 +1,11 @@
-var charType;
+var charType;  //人物类型 2.学生 3.校友
 //初始化内容
 $(document).ready(function () {
     //获取basePath，测试的话就能用就完了
     var obj = window.document.location;
     var BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));
 
-    var url = window.location.href.split("?");
+    var url = window.location.href.replace("#","").split("?");
     if(url.length>1){
         var theRequest = new Object();//theRequest为i获取的参数集合
         var strs = url[1].split('&');

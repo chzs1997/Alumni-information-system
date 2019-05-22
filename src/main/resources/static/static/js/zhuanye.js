@@ -1,4 +1,6 @@
 $(function() {
+
+	//专业
 	$(".select4 p").click(function(e) {
 		$(".select4").toggleClass('open');
 		e.stopPropagation();

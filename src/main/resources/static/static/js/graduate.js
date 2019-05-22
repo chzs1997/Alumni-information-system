@@ -1,4 +1,5 @@
 $(function () {
+    //毕业年份
     $(".select3 p").click(function(e) {
         $(".select3").toggleClass('open');
         e.stopPropagation();

@@ -1,4 +1,5 @@
 $(function() {
+	//年级
 	$(".select2 p").click(function(e) {
 		$(".select2").toggleClass('open');
 		e.stopPropagation();

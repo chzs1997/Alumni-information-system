@@ -28,7 +28,7 @@ function login() {
     });
 }
 
-
+//退出登陆
 function out_login(){
     $(".cd-signin").show();
     $("#top1_register").show();
@@ -52,4 +52,11 @@ function out_login(){
             alert("lose");
         }
     })
+}
+
+//enter登陆
+function keyLogin(){
+    if(event.keyCode==13){
+        $(".col-md-12 .contact-h-cont button").click();
+    }
 }
