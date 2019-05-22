@@ -2619,3 +2619,11 @@ div#nivo-lightbox-demo img {
 	  height: 96%;
 	}
 }
+
+h3.tittle,h2.tittle {
+    text-shadow: 2px 2px 2px rgba(41, 41, 41, 0.15);
+    font-size: 3em;
+    color: #ef9632;
+
+    font-weight: 700;
+}
