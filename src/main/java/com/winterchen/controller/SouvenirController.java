@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * @Author: liuzipan
- * @Description
+ * @Description 纪念品问题
  * @Date :19:00 2019/4/19
  * @Modefied By:
  */
@@ -25,7 +25,7 @@ public class SouvenirController {
      *
      * */
     @ResponseBody
-    @PostMapping("/souvenirSeralize")
+    @PostMapping("/souvenirSerialize")
     public Object newsSeralize(
             @RequestParam(name = "pageNum", required = false, defaultValue = "1")
                     int pageNum,

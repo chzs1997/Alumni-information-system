@@ -83,8 +83,8 @@ public class NewsController extends HttpServlet {
     *
     * */
     @ResponseBody
-    @PostMapping("/newsSeralize")
-    public Object newsSeralize(
+    @PostMapping("/newsSerialize")
+    public Object newsSerialize(
             @RequestParam(name = "pageNum", required = false, defaultValue = "1")
                     int pageNum,
             @RequestParam(name = "pageSize", required = false, defaultValue = "10")
@@ -250,8 +250,8 @@ public class NewsController extends HttpServlet {
      * 初始化评论
      * */
     @ResponseBody
-    @PostMapping("/serviceListSeralize")
-    public Object serviceListSeralize(@RequestParam(name = "artType") int artType){
+    @PostMapping("/serviceListSerialize")
+    public Object serviceListSerialize(@RequestParam(name = "artType") int artType){
         return newsService.findNewsByartType(artType);
     }
 

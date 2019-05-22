@@ -116,8 +116,8 @@ public class DonationController {
      * 捐赠故事初始化
      * */
     @ResponseBody
-    @PostMapping("/donationSeralize")
-    public Object donationSeralize(
+    @PostMapping("/donationSerialize")
+    public Object donationSerialize(
             @RequestParam(name = "pageNum", required = false, defaultValue = "1")
                     int pageNum,
             @RequestParam(name = "pageSize", required = false, defaultValue = "8")

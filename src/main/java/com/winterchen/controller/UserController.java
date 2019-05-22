@@ -174,10 +174,12 @@ public class UserController extends HttpServlet {
             @RequestParam(value = "password") String password,
             HttpSession session
     ) {
+        HashMap<Object, Object> objectMap = new HashMap<>();
         UserDomain i = userService.check(userName, password);
         if (i == null) {
             //查询没有结果
-            return 0;
+            objectMap.put("result","用户名或密码错误");
+            return objectMap;
         } else {
             //数据库中有该用户
             // 设置session
@@ -185,8 +187,7 @@ public class UserController extends HttpServlet {
 
             session.setAttribute(MyWebAppConfigurer.SESSION_KEY, i.getUserId());
             session.setAttribute("userId", i.getUserId());
-            HashMap<Object, Object> objectMap = new HashMap<>();
-            objectMap.put("result", 1);
+            objectMap.put("result", "1");
             objectMap.put("userName", userName);
             objectMap.put("phone", i.getPhone());
             objectMap.put("gender", i.getUserGender());
