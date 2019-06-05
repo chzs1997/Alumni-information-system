@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta name="robots" content="all,follow"/>
 
-    <title>校友行程</title>
+    <title>校友捐赠</title>
 
 
 
@@ -42,7 +42,6 @@
 ======================================================-->
     <div class="page-content d-flex align-items-stretch">
         <!--***** SIDE NAVBAR *****-->
-        <!--***** SIDE NAVBAR *****-->
         <nav class="side-navbar">
             <div class="sidebar-header d-flex align-items-center">
                 <div class="avatar"><img src="static/static/img/touxaing.jpg" alt="..." class="img-fluid rounded-circle"/></div>
@@ -56,13 +55,13 @@
                 <li> <a href="/sysindex"><i></i>数据报表</a></li>
                 <li><a href="sysbasic-form.html"> <i></i>新闻编辑</a></li>
                 <li> <a href="systables.html"> <i></i>校友信息</a></li>
-                <li class="active"> <a href="sysStroke.html"> <i></i>校友行程</a></li>
-                <li> <a href="sysDonation.html"> <i></i>校友捐赠</a></li>
+                <li> <a href="sysStroke.html"> <i></i>校友行程</a></li>
+                <li class="active"> <a href="sysDonation.html"> <i></i>校友捐赠</a></li>
             </ul>
         </nav>
 
         <div class="content-inner chart-cont" style="width: 100%">
-            <h1>校友行程</h1>
+            <h1>校友捐赠</h1>
             <!--***** CONTENT *****-->
             <section class="content">
                 <div class="btn-group operation">
@@ -81,7 +80,7 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title">增加校友行程</h4>
+                                <h4 class="modal-title">增加校友捐赠</h4>
                             </div>
                             <div id="addBookModal" class="modal-body">
                                 <div class="form-horizontal">
@@ -92,21 +91,24 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="addSchTime" class="col-sm-2 control-label">行程时间:*</label>
+                                        <label for="addUserAmount" class="col-sm-2 control-label">捐赠金额:*</label>
                                         <div class="col-sm-10">
-                                            <input class="form-control" id="addSchTime" type="text" placeholder="2019-03-20 09:30:00">
+                                            <input class="form-control" id="addUserAmount" type="text">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="addSchPlace" class="col-sm-2 control-label">行程地点:*</label>
+                                        <label for="addMajor" class="col-sm-2 control-label">捐赠专业:*</label>
                                         <div class="col-sm-10">
-                                            <input class="form-control" id="addSchPlace" type="text" >
+                                            <input class="form-control" id="addMajor" type="text" >
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="addSchState" class="col-sm-2 control-label">行程状态:*</label>
-                                        <div class="col-sm-10">
-                                            <input class="form-control" id="addSchState" type="text" placeholder="待处理/已处理">
+                                        <label  class="col-sm-2 control-label">捐赠目的:*</label>
+                                        <div class="col-sm-10" id="applicantPurpose">
+                                            <input name="purpose" type="radio" value="资助贫困生" /><b>资助贫困生</b>
+                                            <input name="purpose" type="radio" value="奖励优秀生" /><b>奖励优秀生</b>
+                                            <input name="purpose" type="radio" value="建设学院环境" /><b>建设学院环境</b>
+                                            <input name="purpose" type="radio" value="其他" /><b>其他</b>
                                         </div>
                                     </div>
 
@@ -126,26 +128,29 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title">修改校友行程</h4>
+                                <h4 class="modal-title">修改校友捐赠</h4>
                             </div>
                             <div id="editBookModal" class="modal-body">
                                 <div class="form-horizontal">
                                     <div class="form-group">
-                                        <label for="editSchTime" class="col-sm-2 control-label">行程时间:*</label>
+                                        <label for="editAmount" class="col-sm-2 control-label">捐赠金额:*</label>
                                         <div class="col-sm-10">
-                                            <input class="form-control" id="editSchTime" type="text" placeholder="2019-03-20 09:30:00">
+                                            <input class="form-control" id="editAmount" type="text">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="editSchPlace" class="col-sm-2 control-label">行程地点:*</label>
+                                        <label for="editAmount" class="col-sm-2 control-label">捐赠专业:*</label>
                                         <div class="col-sm-10">
-                                            <input class="form-control" id="editSchPlace" type="text">
+                                            <input class="form-control" id="editMajor" type="text" >
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="editSchState" class="col-sm-2 control-label">行程状态:*</label>
-                                        <div class="col-sm-10">
-                                            <input class="form-control" id="editSchState" type="text" placeholder="待处理/已处理">
+                                        <label class="col-sm-2 control-label">捐赠目的:*</label>
+                                        <div class="col-sm-10" id = "editPurpose">
+                                            <input name="purpose" type="radio" value="资助贫困生" /><b>资助贫困生</b>
+                                            <input name="purpose" type="radio" value="奖励优秀生" /><b>奖励优秀生</b>
+                                            <input name="purpose" type="radio" value="建设学院环境" /><b>建设学院环境</b>
+                                            <input name="purpose" type="radio" value="其他" /><b>其他</b>
                                         </div>
                                     </div>
 
@@ -180,14 +185,12 @@
                     <tr>
                         <th>序号</th>
                         <th>姓名</th>
-                        <th>年级</th>
-                        <th>专业</th>
-                        <th>班主任</th>
-                        <th>邮箱</th>
                         <th>联系方式</th>
-                        <th>行程时间</th>
-                        <th>行程地点</th>
-                        <th>行程状态</th>
+                        <th>邮箱</th>
+                        <th>捐赠金额</th>
+                        <th>捐赠专业</th>
+                        <th>捐赠目的</th>
+                        <th>申请时间</th>
                     </tr>
                     </thead>
                     <tbody></tbody>
@@ -205,12 +208,11 @@
 <!--登录状态检查-->
 <script src="static/static/js/system/userDetect.js"></script>
 <script>
-
     var obj = window.document.location;
     var BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));
     var result = new Array();  //先声明一维
     $.ajax({
-        url:BASE_PATH + "/user/selectAllUserStroke",
+        url:BASE_PATH + "/administrator/selectAllDonation",
         type: "post",
         dateType: "json",
         async: false,
@@ -220,29 +222,27 @@
 
                 result[k]=new Array();  //声明二维，每一个一维数组里面的一个元素都是一个数组；
 
-                for(var j=0;j<10;j++){   //一维数组里面每个元素数组可以包含的数量p，p也是一个变量；
+                for(var j=0;j<8;j++){   //一维数组里面每个元素数组可以包含的数量p，p也是一个变量；
 
                     result[k][j]="";    //这里将变量初始化，我这边统一初始化为空，后面在用所需的值覆盖里面的值
                 }
             }
             for(var i=0;i<data.length;i++){
-                result[i][0]=data[i].schId;
-                result[i][1]=data[i].userName;
-                result[i][2]=data[i].userGrade;
-                result[i][3]=data[i].userMajor;
-                result[i][4]=data[i].userHeadTeacher;
-                result[i][5]=data[i].userMail;
-                result[i][6]=data[i].phone;
-                result[i][7]=data[i].schTime;
-                result[i][8]=data[i].schPlace;
-                result[i][9]=data[i].schState;
+                result[i][0]=data[i].projectId;
+                result[i][1]=data[i].applicantName;
+                result[i][2]=data[i].applicantContact;
+                result[i][3]=data[i].applicantMail;
+                result[i][4]=data[i].donationAmount;
+                result[i][5]=data[i].donationMajor;
+                result[i][6]=data[i].applicantPurpose;
+                result[i][7]=data[i].donationTime;
             }
         },
         error: function f(data) {
             alert("lose");
         }
     });
-    var titles = ['序号','姓名', '年级', '专业', '班主任', '邮箱', '联系方式', '行程时间', '行程地点', '行程状态'];
+    var titles = ['序号','姓名', '联系方式', '邮箱', '捐赠金额', '捐赠专业', '捐赠目的', '申请时间'];
     $(function () {
         var table = $('#books').DataTable({
             data: result,
@@ -308,50 +308,43 @@
             if ($("#addBookModal").find('input').val() !== '') {
                 var addUserMail = $("#addUserMail").val();
 
-                var addSchTime = $("#addSchTime").val();
-                var addSchPlace = $("#addSchPlace").val();
-                var addSchState = $("#addSchState").val();
-
-                var reg = /^[1-9]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])\s+(20|21|22|23|[0-1]\d):[0-5]\d:[0-5]\d$/;
-                var regExp = new RegExp(reg);
+                var addUserAmount = $("#addUserAmount").val();
+                var addUserMajor = $("#addMajor").val();
+                var applicantPurpose = $('#applicantPurpose input[name = "purpose"]:checked').val();
                 if(addUserMail==""){
                     alert("邮箱未填");
                     event.stopPropagation();
                 }
-                else if(addSchTime == ""){
-                    alert("行程时间未填");
+                else if(addUserAmount == ""){
+                    alert("捐赠金额未填");
                     event.stopPropagation();
                 }
-                else if(!regExp.test(addSchTime)){
-                    alert("时间格式不正确,正确格式为: 2014-01-01 12:00:00 ");
+                else if(addUserMajor == ""){
+                    alert("捐赠专业未填");
                     event.stopPropagation();
                 }
-                else if(addSchPlace == ""){
-                    alert("行程地点未填");
-                    event.stopPropagation();
-                }
-                else if(addSchState!='待处理'&&addSchState!='已处理'){
-                    alert("行程状态必须为待处理/已处理");
+                else if(applicantPurpose == ""){
+                    alert("捐赠目的未填");
                     event.stopPropagation();
                 }
                 else{
                 $.ajax({
-                    url:BASE_PATH + "/user/addUserStrokeByManager",
+                    url:BASE_PATH + "/administrator/addUserDonation",
                     type: "post",
                     dateType: "json",
                     async: false,
                     data: {
                         "userMail":addUserMail
-                        ,"schTime":addSchTime
-                        ,"schPlace":addSchPlace
-                        ,"schState":addSchState
+                        ,"donationAmount":addUserAmount
+                        ,"donationMajor":addUserMajor
+                        ,"applicantPurpose":applicantPurpose
                     },
                     success: function f(data) {
-                        table.row.add(['', data[0].userName,  data[0].userGrade,  data[0].userMajor,  data[0].userHeadTeacher,  data[0].userMail,  data[0].phone,  data[0].schTime,  data[0].schPlace,  data[0].schState]).draw();
+                        table.row.add(['', data.applicantName,  data.donationAmount,  data.donationMajor,  data.applicantContact,  data.applicantMail,  data.applicantPurpose,  data.donationTime]).draw();
                         $("#addBookModal").find('input').val('')
                     },
                     error: function f(data) {
-                        alert("lose");
+                        alert("添加失败");
                     }
                 });
                 }
@@ -373,38 +366,39 @@
                 $("#editBookInfo").modal();
                 var rowData = table.rows('.selected').data()[0];
                 var inputs = $("#editBookModal").find('input');
-                for (var i = 0; i < inputs.length; i++) {
-                    $(inputs[i]).val(rowData[i + 7])
-                }
+                $(inputs[0]).val(rowData[4]);
+                $(inputs[1]).val(rowData[5]);
+                $(inputs[2]).val(rowData[6]);
             } else {
                 alert('请选择项目');
             }
         });
 
         $("#saveEdit").click(function() {
-            var editSchTime = $("#editSchTime").val();
-            var editSchPlace = $("#editSchPlace").val();
-            var editSchState = $("#editSchState").val();
-            var schId = table.rows('.selected').data()[0][0];
-            var reg = /^[1-9]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])\s+(20|21|22|23|[0-1]\d):[0-5]\d:[0-5]\d$/;
-            var regExp = new RegExp(reg);
-            if(!regExp.test(editSchTime)){
-                alert("时间格式不正确,正确格式为: 2014-01-01 12:00:00 ");
+            var editAmount = $("#editAmount").val();
+            var editMajor = $("#editMajor").val();
+            var editPurpose = $('#editPurpose input[name = "purpose"]:checked').val();
+            var projectId = table.rows('.selected').data()[0][0];
+            if(editAmount==""){
+                alert("捐赠金额为空");
             }
-            else if(editSchState!='待处理'&&editSchState!='已处理'){
-                alert("行程状态必须为待处理/已处理");
+            else if(editMajor==""){
+                alert("捐赠专业为空");
+            }
+            else if(editPurpose==""){
+                alert("捐赠目的为空");
             }
             else{
                 $.ajax({
-                    url:BASE_PATH + "/user/editUserStrokeByschId",
+                    url:BASE_PATH + "/administrator/editUserDonation",
                     type: "post",
                     dateType: "json",
                     async: false,
                     data: {
-                        "schTime":editSchTime
-                        ,"schPlace":editSchPlace
-                        ,"schState":editSchState
-                        ,"schId":schId
+                        "donationAmount":editAmount
+                        ,"donationMajor":editMajor
+                        ,"applicantPurpose":editPurpose
+                        ,"ProjectId":projectId
                     },
                     success: function f(data) {
                         console.log(data);
@@ -414,15 +408,15 @@
                     }
                 });
             }
-            var newRowData = [].concat(editSchTime
-                , editSchPlace
-                , editSchState);
+            var newRowData = [].concat(editAmount
+                , editMajor
+                , editPurpose);
             var tds = Array.prototype.slice.call($('.selected td'))
             for (var i = 0; i < newRowData.length; i++) {
                 if (newRowData[i] !== '') {
-                    tds[i + 7].innerHTML = newRowData[i];
+                    tds[i + 4].innerHTML = newRowData[i];
                 } else {
-                    alert(titles[i+7] + '内容不能为空')
+                    alert(titles[i+4] + '内容不能为空')
                 }
             }
         });
@@ -443,13 +437,13 @@
         });
 
         $('#delete').click(function () {
-            var schId = table.rows('.selected').data()[0][0];
+            var projectId = table.rows('.selected').data()[0][0];
             $.ajax({
-                url:BASE_PATH + "/user/deleteUserStrokeBySchId",
+                url:BASE_PATH + "/administrator/deleteUserDonation",
                 type: "post",
                 dateType: "json",
                 async: false,
-                data: {"schId":schId},
+                data: {"projectId":projectId},
                 success: function f(data) {
                     console.log(data);
                 },
