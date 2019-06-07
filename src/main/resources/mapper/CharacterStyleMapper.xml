@@ -79,5 +79,15 @@
                                 WHERE CHARACTER_ID = #{characterId})
     </select>
 
+    <select id="findCharacterOfStudent" resultMap="characterStyleRM">
+        SELECT  CHARACTER_ID
+               ,CHARACTER_NAME
+               ,CHARACTER_TITLE
+               ,CHARACTER_PICTURE
+        FROM `alumni information system`.characterstyle where CHARACTER_TYPE = 2
+        order by CHARACTER_TIME DESC
+        limit 3
+    </select>
+
 
 </mapper>

@@ -4,13 +4,14 @@
 
     <!-- 数据库表映射 -->
     <resultMap id="projectRM" type="com.winterchen.model.DonationProject">
-        <result property="projectId" column="PorjectId"/>
+        <result property="projectId" column="ProjectId"/>
         <result property="applicantName" column="ApplicantName"/>
         <result property="donationAmount" column="DonationAmount"/>
         <result property="donationMajor" column="DonationMajor"/>
         <result property="applicantContact" column="ApplicantContact"/>
         <result property="applicantMail" column="ApplicantMail"/>
         <result property="applicantPurpose" column="ApplicantPurpose"/>
+        <result property="donationTime" column="CREATE_TIME"/>
     </resultMap>
 
     <!-- 数据库表映射 -->
@@ -72,13 +73,13 @@
     </select>
 
     <select id="donationShow" resultMap="projectShowRM">
-        select t.PorjectId as ProjectId
+        select t.ProjectId as ProjectId
                ,t.ApplicantName
 	           ,t.DonationAmount
                ,concat(substring(t.U_GRADE,3,2),t.collective) as collective
                ,t.DonationTime as DonationTime
         from (
-            select a1.PorjectId PorjectId
+            select a1.ProjectId ProjectId
                    ,a1.ApplicantName
                    ,a1.DonationAmount
                    ,a2.U_GRADE
@@ -86,7 +87,7 @@
                    ,case when a2.U_MAJOR = '数字出版' then '数版'
                          when a2.U_MAJOR = '信息管理与信息系统1班' then '信1'
                          when a2.U_MAJOR = '信息管理与信息系统2班' then '信2'
-                         when a2.U_MAJOR = '行characterstyle政管理1班' then '行1'
+                         when a2.U_MAJOR = '行政管理1班' then '行1'
                          when a2.U_MAJOR = '行政管理2班' then '行2'
                          when a2.U_MAJOR = '公共事业管理' then '公管'
                          when a2.U_MAJOR = '图书馆学1班' then '图1'
@@ -101,4 +102,48 @@
              limit #{num}
       )t
     </select>
+
+    <select id="selectAllDonation" resultMap="projectRM">
+        select ProjectId
+              ,ApplicantName
+              ,DonationAmount
+              ,DonationMajor
+              ,ApplicantContact
+              ,ApplicantMail
+              ,ApplicantPurpose
+              ,date_format(CREATE_TIME, '%Y-%m-%d') CREATE_TIME
+        from donation_project
+        order by CREATE_TIME DESC
+    </select>
+
+    <insert id="addUserDonation">
+        insert into donation_project(ApplicantName,DonationAmount,DonationMajor,ApplicantContact,ApplicantMail,ApplicantPurpose)
+        values ((select U_NAME from schooluser where U_MAIL = #{userMail}),#{donationAmount},#{donationMajor},(select U_CONTACT from schooluser where U_MAIL = #{userMail}),#{userMail},#{applicantPurpose})
+    </insert>
+
+    <select id="selectNewDonation" resultMap="projectRM">
+        select ProjectId
+              ,ApplicantName
+              ,DonationAmount
+              ,DonationMajor
+              ,ApplicantContact
+              ,ApplicantMail
+              ,ApplicantPurpose
+              ,date_format(CREATE_TIME, '%Y-%m-%d') CREATE_TIME
+        from donation_project
+        where ApplicantMail = #{userMail}
+        order by ProjectId DESC
+        limit 1
+    </select>
+
+    <update id="editUserDonation">
+        update donation_project
+        set DonationAmount = #{donationAmount},DonationMajor = #{donationMajor}, ApplicantPurpose = #{applicantPurpose}
+        where ProjectId = #{ProjectId}
+    </update>
+
+    <delete id="deleteUserDonation">
+        delete from donation_project
+        where ProjectId = #{projectId}
+    </delete>
 </mapper>

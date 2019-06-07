@@ -6,6 +6,8 @@
     <resultMap id="loginLogRM" type="com.winterchen.model.LoginLog">
         <result property="loginId" column="LOGIN_ID"/>
         <result property="userId" column="U_ID"/>
+        <result property="lockFlag" column="LOCK_FLAG"/>
+        <result property="failureNum" column="FAILURE_NUM"/>
         <result property="userName" column="U_NAME"/>
         <result property="loginTime" column="LOGIN_Time"/>
     </resultMap>
@@ -15,18 +17,51 @@
     loginlog
     </sql>
 
-    <!--分页查询-->
-    <insert id="save" parameterType="com.winterchen.model.LoginLog">
-      insert into loginlog
-      (U_ID,U_NAME)
-      values (#{userId},#{userName})
-    </insert>
+    <!--保存最新登录时间-->
+    <update id="save" parameterType="com.winterchen.model.LoginLog">
+      update loginlog
+      set FAILURE_NUM = 0 and LOCK_FLAG = 0
+      where U_ID = #{userId} and U_NAME = #{userName}
+    </update>
+
 
     <select id="selectUsers" resultMap="loginLogRM">
        select U_NAME,LOGIN_TIME
        from loginlog
        order by LOGIN_TIME DESC
     </select>
+
+    <update id="addFailure">
+        update loginlog
+        set FAILURE_NUM = case when TIMESTAMPDIFF(HOUR,LOGIN_TIME,now()) &lt;=1 and FAILURE_NUM&lt;5 then FAILURE_NUM+1
+                               when TIMESTAMPDIFF(HOUR,LOGIN_TIME,now()) &lt;=1 and FAILURE_NUM=5 then 5
+                          else 1
+                          end,
+            LOCK_FLAG = case when FAILURE_NUM = 5 then 1
+                        else 0
+                        end
+        where U_NAME = #{userName}
+    </update>
+
+    <select id="findState" resultMap="loginLogRM">
+       select IFNULL(LOCK_FLAG,0) LOCK_FLAG
+              ,IFNULL(FAILURE_NUM,0) FAILURE_NUM
+       from loginlog
+       where U_NAME = #{userName}
+    </select>
+
+    <insert id="insert">
+        insert into loginlog
+        (U_ID,U_NAME)
+        VALUES #{userId},#{userName}
+    </insert>
+
+    <insert id="addNewUser">
+        insert into loginlog
+        (U_ID,U_NAME)
+        VALUES ((select U_ID from schooluser where U_MAIL = #{userMail}),
+                (select U_NAME from schooluser where U_MAIL = #{userMail}))
+    </insert>
 
 
 

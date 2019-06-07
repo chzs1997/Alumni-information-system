@@ -302,4 +302,13 @@
       limit 9
     </select>
 
+    <select id="homeNewsAboutAlumni" resultMap="newsRM">
+     select ART_ID
+           ,ART_TITLE
+           ,ART_IMAGE
+     from news where art_type = 5
+     order by ART_TIME DESC
+     limit 3
+    </select>
+
 </mapper>

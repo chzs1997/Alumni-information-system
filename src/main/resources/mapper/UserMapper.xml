@@ -398,5 +398,22 @@
         where U_ID = #{userId}
     </select>
 
+    <!--查询所有相关用户-->
+    <select id="findPersonalUser" resultMap="userRecommendVORM">
+        select  U_ID
+               ,U_NAME
+               ,U_GRADE
+               ,U_MAJOR
+	           ,SUBSTRING_INDEX(U_ADDRESS,'省',1) U_PROVINCE
+               ,replace(SUBSTRING_INDEX(U_ADDRESS,'省',-1),'市','') U_CITY
+               ,U_COMPANY
+               ,U_POSITION
+               ,U_MAIL
+               ,U_CONTACT
+               ,U_WX
+        from schooluser
+        where  U_ID !=#{userId}
+    </select>
+
 
 </mapper>
