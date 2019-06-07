@@ -2,6 +2,8 @@ package com.winterchen.controller;
 
 
 import com.winterchen.conf.MyWebAppConfigurer;
+import com.winterchen.dao.LoginLogDao;
+import com.winterchen.model.LoginLog;
 import com.winterchen.model.Stroke;
 import com.winterchen.model.UserDomain;
 import com.winterchen.modelVO.UserDonationVO;
@@ -54,6 +56,9 @@ public class UserController extends HttpServlet {
 
     @Autowired
     private StrokeService strokeService;
+
+    @Autowired
+    private LoginLogDao loginLogDao;
 
     /*保存手机验证码*/
     static String verifyCode;
@@ -175,26 +180,51 @@ public class UserController extends HttpServlet {
             HttpSession session
     ) {
         HashMap<Object, Object> objectMap = new HashMap<>();
-        UserDomain i = userService.check(userName, password);
-        if (i == null) {
-            //查询没有结果
-            objectMap.put("result","用户名或密码错误");
-            return objectMap;
-        } else {
-            //数据库中有该用户
-            // 设置session
-            loginLogService.save(i.getUserId(),i.getUserName());  //在登陆日志中保存
-
-            session.setAttribute(MyWebAppConfigurer.SESSION_KEY, i.getUserId());
-            session.setAttribute("userId", i.getUserId());
-            objectMap.put("result", "1");
-            objectMap.put("userName", userName);
-            objectMap.put("phone", i.getPhone());
-            objectMap.put("gender", i.getUserGender());
-            objectMap.put("userImage",i.getUserImage());
-            return objectMap;
+        //检验是否可以登录
+        try{
+            //已被锁定，直接拒绝
+            LoginLog state = loginLogDao.findState(userName);
+            if(state.getLockFlag() == 1){
+                objectMap.put("result","用户名或密码错误次数过多，已被锁定，请于1小时后重新登录");
+                return objectMap;
+            }
+        }catch (NullPointerException e){
+            e.printStackTrace();
+        }finally {
+            //查询用户名和密码是否正确
+            UserDomain i = userService.check(userName, password);
+            if (i == null) {
+                //查询没有结果
+                try{
+                    //用户登录情况错误次数加1
+                    LoginLog  param = loginLogService.addFailure(userName);
+                    if(param.getLockFlag() == 1){
+                        objectMap.put("result","用户名或密码错误次数过多，已被锁定，请于1小时后重新登录");
+                    }
+                    else{
+                        objectMap.put("result","用户名或密码已连续错误"+param.getFailureNum()+"次,还可以输入"+(5-param.getFailureNum()+"次"));
+                    }
+                    return objectMap;
+                }catch (NullPointerException e){
+                    e.printStackTrace();
+                }
+                finally {
+                    System.out.println(objectMap);
+                }
+            } else {
+                //登录成功，刷新登录时间
+                loginLogService.save(i.getUserId(),i.getUserName());  //在登陆日志中保存
+                session.setAttribute(MyWebAppConfigurer.SESSION_KEY, i.getUserId());
+                session.setAttribute("userId", i.getUserId());
+                objectMap.put("result", "1");
+                objectMap.put("userName", userName);
+                objectMap.put("phone", i.getPhone());
+                objectMap.put("gender", i.getUserGender());
+                objectMap.put("userImage",i.getUserImage());
+            }
         }
-    }
+        return objectMap;
+        }
 
     /**
     注册阶段第一步(必要信息)
@@ -211,11 +241,14 @@ public class UserController extends HttpServlet {
         HashMap<String,Object> result = new HashMap<>();
         try{
             int i = userService.login(userName, password, phone, userMail, userWX);
-            userService.assignUserBkey(phone);
+
+            userService.assignUserBkey(phone);  //给每个用户编码
+
             if (i > 0) {
                 //注册成功
                 result.put("result",i);
                 result.put("userMail",userMail);
+                loginLogService.addNewUser(userMail);  //登录日志中记录用户
             } else {
                 //注册失败
                 result.put("result",i);
@@ -486,7 +519,7 @@ public class UserController extends HttpServlet {
 
     /**
      *
-     * 查询行程
+     * 查询推荐校友
      * */
     @ResponseBody
     @PostMapping("/findRecommendUser")
@@ -497,6 +530,22 @@ public class UserController extends HttpServlet {
     ){
         model.addAttribute("name", account);
         List<UserRecommendVO> user = userService.findRecommendUser(userId);
+        return user;
+    }
+
+    /**
+     *
+     * 查询全体校友
+     * */
+    @ResponseBody
+    @PostMapping("/findAllUser")
+    public Object findAllUser(
+            @SessionAttribute(MyWebAppConfigurer.SESSION_KEY) String account,
+            @SessionAttribute("userId") Integer userId,
+            Model model
+    ){
+        model.addAttribute("name", account);
+        List<UserRecommendVO> user = userService.findPersonalUser(userId);
         return user;
     }
 
@@ -636,7 +685,7 @@ public class UserController extends HttpServlet {
     *管理员端校友信息删除*/
     @ResponseBody
     @PostMapping("/deleteUserByUserId")
-    public Integer check(@RequestParam("userId") Integer userId) {
+    public Integer deleteUserByUserId(@RequestParam("userId") Integer userId) {
         int i = userService.deleteUserByUserId(userId);
         return i;
     }

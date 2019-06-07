@@ -1,6 +1,7 @@
 package com.winterchen.controller;
 
 import com.winterchen.conf.MyWebAppConfigurer;
+import com.winterchen.model.DonationProject;
 import com.winterchen.model.Manager;
 import com.winterchen.model.SchoolUserIntegrity;
 import com.winterchen.modelVO.UserVO;
@@ -200,7 +201,7 @@ public class ManagerController {
 
 
     /**
-     * 数据导出  弃用
+     * 数据导出  (弃用)
      */
 //    @ResponseBody
 //    @RequestMapping(value = "export")
@@ -357,5 +358,59 @@ public class ManagerController {
         } else {
             return "false";
         }
+    }
+
+    /**
+     *
+     *管理端查询所有用户捐赠*/
+    @ResponseBody
+    @PostMapping("/selectAllDonation")
+    public Object selectAllDonation() {
+        List<DonationProject> user = donationService.selectAllDonation();
+        return user;
+    }
+
+    /**
+     *
+     *管理端添加捐赠*/
+    @ResponseBody
+    @PostMapping("/addUserDonation")
+    public Object addUserDonation(@RequestParam("userMail") String userMail
+                                  ,@RequestParam("donationAmount") int donationAmount
+                                  ,@RequestParam("donationMajor") String donationMajor
+                                  ,@RequestParam("applicantPurpose") String applicantPurpose) {
+        int i = donationService.addUserDonation(userMail, donationAmount, donationMajor, applicantPurpose);
+        if(i>0){
+            DonationProject result = donationService.selectNewDonation(userMail);
+            return result;
+        }
+        else{
+            return null;
+        }
+    }
+
+
+    /**
+     *
+     *管理端添加捐赠*/
+    @ResponseBody
+    @PostMapping("/editUserDonation")
+    public Object editUserDonation(@RequestParam("donationAmount") Integer donationAmount
+            ,@RequestParam("donationMajor") String donationMajor
+            ,@RequestParam("applicantPurpose") String applicantPurpose
+            ,@RequestParam("ProjectId") Integer ProjectId) {
+        int i = donationService.editUserDonation(donationAmount, donationMajor, applicantPurpose, ProjectId);
+        return i;
+    }
+
+    /**
+     *
+     *管理端添加捐赠*/
+    @ResponseBody
+    @PostMapping("/deleteUserDonation")
+    public Object deleteUserDonation(
+            @RequestParam("projectId") Integer projectId) {
+        int i = donationService.deleteUserDonation(projectId);
+        return i;
     }
 }

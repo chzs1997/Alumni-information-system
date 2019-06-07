@@ -232,6 +232,12 @@ public class HomeController {
         return "sysAlterPassword";
     }
 
+    @RequestMapping("/sysDonation")
+    public String sysDonation(){
+        return "sysDonation";
+    }
+
+
 
     @RequestMapping("/PersonalInfo")
     public String PersonalInfo(){
@@ -271,6 +277,11 @@ public class HomeController {
     @RequestMapping("/PersonalRecommend")
     public String PersonalRecommend(){
         return "PersonalRecommend";
+    }
+
+    @RequestMapping("/PersonalAllInfo")
+    public String PersonalAllInfo(){
+        return "PersonalAllInfo";
     }
 
 

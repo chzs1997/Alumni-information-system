@@ -1,6 +1,7 @@
 package com.winterchen.controller;
 
 import com.winterchen.dao.NewsDao;
+import com.winterchen.service.CharacterStyleService;
 import com.winterchen.service.NewsService;
 import org.apache.commons.fileupload.disk.DiskFileItem;
 import org.apache.tomcat.util.codec.binary.Base64;
@@ -28,6 +29,9 @@ public class NewsController extends HttpServlet {
 
     @Autowired
     private NewsService newsService;
+
+    @Autowired
+    private CharacterStyleService characterStyleService;
 
     @Autowired
     private NewsDao newsDao;
@@ -103,6 +107,20 @@ public class NewsController extends HttpServlet {
     public Object homeNews(
     ){
         return newsService.homeNews();
+    }
+
+    /**
+     * 首页新闻初始化
+     *
+     * */
+    @ResponseBody
+    @PostMapping("/homeNewsAboutAlumni")
+    public Object homeNewsAboutAlumni(
+    ){
+        HashMap<String,Object> hashMap = new HashMap<>();
+        hashMap.put("ReturnSchool",newsService.homeNewsAboutAlumni());
+        hashMap.put("Student",characterStyleService.findCharacterOfStudent());
+        return hashMap;
     }
 
     /**
@@ -192,8 +210,8 @@ public class NewsController extends HttpServlet {
      * 初始化评论
      * */
     @ResponseBody
-    @PostMapping("/commentsSeralize")
-    public Object commentsSeralize(
+    @PostMapping("/commentsSerialize")
+    public Object commentsSerialize(
             @RequestParam(name = "artId") int artId
     ){
         return newsService.commentsSeralize(artId);
