@@ -19,4 +19,13 @@ public interface LoginLogService {
 
     //最近登陆情况查询
     PageInfo<LoginLog> selectLog(int pageNum,int pageSize);
+
+    //错误次数加1
+    LoginLog addFailure(String userName);
+
+    //登陆日志存储
+    int insert(Integer userId,String userName);
+
+    //登录日志中记录新用户
+    int addNewUser(String userMail);
 }

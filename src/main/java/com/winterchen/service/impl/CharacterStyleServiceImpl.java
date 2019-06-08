@@ -54,4 +54,9 @@ public class CharacterStyleServiceImpl implements CharacterStyleService {
         return pageInfo;
     }
 
+    @Override
+    public List<CharacterStyle> findCharacterOfStudent() {
+        return characterStyleDao.findCharacterOfStudent();
+    }
+
 }

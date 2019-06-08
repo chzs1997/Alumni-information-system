@@ -4,6 +4,8 @@ import com.github.pagehelper.PageInfo;
 import com.winterchen.model.CharacterStyle;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @Author: liuzipan
  * @Description
@@ -13,15 +15,29 @@ import org.springframework.stereotype.Service;
 @Service
 public interface CharacterStyleService {
 
-    /*查询最新人物风采数据*/
+    /**
+     *
+     * 查询最新人物风采数据*/
     PageInfo<CharacterStyle> findCharacterData(int pageNum, int pageSize, int characterType);
 
-    /*查询最新人物风采数据*/
+    /***
+     *
+     * 查询最新人物风采数据*/
     PageInfo<CharacterStyle> findHotCharacter(int pageNum, int pageSize, int characterType);
 
-    /*根据用户ID查找信息*/
+    /***
+     *
+     * 根据用户ID查找信息*/
     CharacterStyle findCharacterById(int characterId);
 
-    /*根据人物ID寻找类似老师*/
+    /***
+     *
+     * 根据人物ID寻找类似老师*/
     PageInfo<CharacterStyle> selectSimilar(int pageNum, int pageSize, int characterType);
+
+    /**
+     *
+     * 查询学生风采（用于首页）
+     * */
+    List<CharacterStyle> findCharacterOfStudent();
 }

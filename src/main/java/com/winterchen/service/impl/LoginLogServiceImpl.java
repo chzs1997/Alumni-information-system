@@ -24,7 +24,8 @@ public class LoginLogServiceImpl implements LoginLogService {
 
     @Override
     public int save(Integer userId,String userName) {
-        return loginLogDao.save(userId,userName);
+        int i = loginLogDao.save(userId,userName);
+        return i;
     }
 
     @Override
@@ -34,5 +35,21 @@ public class LoginLogServiceImpl implements LoginLogService {
         List<LoginLog> loginUser = loginLogDao.selectUsers();
         PageInfo result = new PageInfo(loginUser);
         return result;
+    }
+
+    @Override
+    public LoginLog addFailure(String userName) {
+        loginLogDao.addFailure(userName);
+        return loginLogDao.findState(userName);
+    }
+
+    @Override
+    public int insert(Integer userId, String userName) {
+        return loginLogDao.insert(userId, userName);
+    }
+
+    @Override
+    public int addNewUser(String userMail) {
+        return loginLogDao.addNewUser(userMail);
     }
 }

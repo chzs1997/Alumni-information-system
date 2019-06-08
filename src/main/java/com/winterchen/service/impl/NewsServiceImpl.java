@@ -92,6 +92,11 @@ public class NewsServiceImpl implements NewsService {
     }
 
     @Override
+    public List<News> homeNewsAboutAlumni() {
+        return newsDao.homeNewsAboutAlumni();
+    }
+
+    @Override
     public PageInfo<News> findDonationNews(int pageNum, int pageSize) {
         //将参数传给这个方法就可以实现物理分页了，非常简单。
         PageHelper.startPage(pageNum, pageSize);

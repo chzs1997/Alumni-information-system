@@ -4,6 +4,7 @@ import com.winterchen.dao.DonationDao;
 import com.winterchen.dao.DonationProjectDao;
 import com.winterchen.dao.MapSessionMapper;
 import com.winterchen.model.Donation;
+import com.winterchen.model.DonationProject;
 import com.winterchen.modelVO.DonationShowVO;
 import com.winterchen.service.DonationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,5 +71,30 @@ public class DonationServiceImpl implements DonationService {
     @Override
     public List<DonationShowVO> donationShow(Integer num) {
         return donationProjectDao.donationShow(num);
+    }
+
+    @Override
+    public List<DonationProject> selectAllDonation() {
+            return donationProjectDao.selectAllDonation();
+    }
+
+    @Override
+    public int addUserDonation(String userMail, Integer donationAmount, String donationMajor, String applicantPurpose) {
+        return donationProjectDao.addUserDonation(userMail, donationAmount, donationMajor, applicantPurpose);
+    }
+
+    @Override
+    public DonationProject selectNewDonation(String userMail) {
+        return donationProjectDao.selectNewDonation(userMail);
+    }
+
+    @Override
+    public int editUserDonation(Integer donationAmount, String donationMajor, String applicantPurpose, Integer ProjectId) {
+        return donationProjectDao.editUserDonation(donationAmount, donationMajor, applicantPurpose, ProjectId);
+    }
+
+    @Override
+    public int deleteUserDonation(Integer projectId) {
+        return donationProjectDao.deleteUserDonation(projectId);
     }
 }

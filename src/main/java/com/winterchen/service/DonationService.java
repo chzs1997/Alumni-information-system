@@ -1,6 +1,7 @@
 package com.winterchen.service;
 
 import com.winterchen.model.Donation;
+import com.winterchen.model.DonationProject;
 import com.winterchen.modelVO.DonationShowVO;
 import org.springframework.stereotype.Service;
 
@@ -56,4 +57,35 @@ public interface DonationService {
      * 捐赠信息公示
      * */
     List<DonationShowVO> donationShow(Integer num);
+
+    /**
+     *
+     * 查询所有用户捐赠情况
+     * */
+
+    List<DonationProject> selectAllDonation();
+
+
+    /**
+     *
+     * 添加用户捐赠信息
+     * */
+
+    int addUserDonation(String userMail, Integer donationAmount, String donationMajor, String applicantPurpose);
+
+    /**
+     * 查询某个邮箱最后一条数据
+     * */
+    DonationProject selectNewDonation(String userMail);
+
+    /**
+     * 编辑某个捐赠数据
+     * */
+    int editUserDonation(Integer donationAmount, String donationMajor, String applicantPurpose, Integer ProjectId);
+
+    /**
+     * 删除某个捐赠数据
+     * */
+    int deleteUserDonation(Integer projectId);
+
 }

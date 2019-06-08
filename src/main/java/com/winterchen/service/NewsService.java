@@ -31,6 +31,9 @@ public interface NewsService {
 
     List<News> homeNewsByLabel();
 
+    //首页返校活动新闻加载
+    List<News> homeNewsAboutAlumni();
+
     //查找所有捐赠故事
     PageInfo<News> findDonationNews(int pageNum, int pageSize);
 

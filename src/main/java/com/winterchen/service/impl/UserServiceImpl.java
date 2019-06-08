@@ -288,6 +288,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<UserRecommendVO> findPersonalUser(Integer userId) {
+        return userDao.findPersonalUser(userId);
+    }
+
+    @Override
     public List<UserDonationVO> findDonationByUserId(Integer userId) {
         return donationProjectDao.findDonationByUserId(userId);
     }

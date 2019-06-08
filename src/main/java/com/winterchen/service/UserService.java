@@ -60,7 +60,7 @@ public interface UserService {
 
     /**
      *
-     * 根据用户身份证号修改密码*/
+     * 用户编码*/
     int assignUserBkey(String phone);
 
     /**
@@ -226,6 +226,12 @@ public interface UserService {
      * 推荐用户
      * */
     List<UserRecommendVO> findRecommendUser(Integer userId);
+
+    /**
+     *
+     * 查询所有用户
+     * */
+    List<UserRecommendVO> findPersonalUser(Integer userId);
 
     /**
      *
